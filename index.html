@@ -77,6 +77,8 @@ body { font-family:"PingFang SC","Microsoft YaHei","Helvetica Neue",sans-serif;
 .option { padding:10px 14px; border:1px solid var(--border); border-radius:6px; cursor:pointer; transition:var(--transition); display:flex; align-items:center; gap:8px; font-size:0.9rem; }
 .option:hover { background:var(--hover); }
 .option.selected { border-color:var(--primary); background:rgba(26,39,68,0.05); }
+.option input[type="checkbox"] { position: absolute; opacity: 0; cursor: pointer; }
+.option input[type="checkbox"]:disabled { cursor: not-allowed; }
 .option.correct { border-color:var(--success); background:rgba(5,150,105,0.08); }
 .option.wrong { border-color:var(--error); background:rgba(220,38,38,0.05); }
 .option .letter { width:24px; height:24px; border-radius:50%; border:1px solid var(--border); display:flex; align-items:center; justify-content:center; font-size:0.75rem; font-weight:600; flex-shrink:0; }
@@ -349,7 +351,3632 @@ body { font-family:"PingFang SC","Microsoft YaHei","Helvetica Neue",sans-serif;
 <div class="toast" id="toast"></div>
 
 <script>
-const TESTS = [{"id": "c17t1", "year": 2022, "name": "剑桥雅思 17 · Test 1", "listening": {"duration": 30, "sections": [{"title": "Section 1 · 旅游咨询", "audio": "Good morning, Blue Mountain Tours. How can I help? Hello, I'd like to book a day trip. Our Mountain Explorer departs at 8:30 AM. The price is 45 pounds per person, including lunch. The meeting point is the visitor centre car park. Please arrive 15 minutes early. We accept all major credit cards. The booking reference will be MT7834. My name is Sarah Wilson, that's W-I-L-S-O-N.", "questions": [{"q": "The trip departs at ______ AM.", "type": "fill", "answer": "8:30"}, {"q": "The cost is ______ pounds per person.", "type": "fill", "answer": "45"}, {"q": "The meeting point is the ______ car park.", "type": "fill", "answer": "visitor centre"}, {"q": "The booking reference is ______.", "type": "fill", "answer": "MT7834"}, {"q": "The staff member's surname is ______.", "type": "fill", "answer": "Wilson"}]}, {"title": "Section 2 · 大学图书馆介绍", "audio": "Good morning everyone, and welcome to the university library orientation. The main library building is open from 8 AM to midnight on weekdays, and 10 AM to 8 PM on weekends. You will need your student ID card to enter after 6 PM. The reference section is on the second floor, and you can borrow up to 10 books at a time for a period of 4 weeks. If you need to renew, you can do so online up to 3 times. Late returns incur a fine of 50 pence per day per book. The quiet study area is on the third floor, and group study rooms can be booked through the library website.", "questions": [{"q": "When does the library close on weekdays?", "options": ["10 PM", "11 PM", "Midnight", "2 AM"], "answer": 2}, {"q": "What is needed to enter after 6 PM?", "options": ["Key card", "Student ID", "Passport", "Library card"], "answer": 1}, {"q": "How many books can be borrowed at once?", "options": ["5", "8", "10", "15"], "answer": 2}, {"q": "What is the maximum borrowing period?", "options": ["2 weeks", "3 weeks", "4 weeks", "6 weeks"], "answer": 2}, {"q": "How much is the daily late fine per book?", "options": ["20p", "50p", "1 pound", "2 pounds"], "answer": 1}]}]}, "reading": {"duration": 60, "passage": "The Rise of Micro-Credentials in Higher Education\n\nOver the past decade, the landscape of higher education has undergone a significant transformation. Traditional degree programmes, once the undisputed gold standard of academic achievement, are now being challenged by a new contender: micro-credentials. These short, focused learning programmes are designed to provide specific skills and knowledge in a condensed timeframe, typically ranging from a few weeks to several months.\n\nMicro-credentials have gained traction for several reasons. Firstly, the rapid pace of technological change means that many professionals need to continuously update their skills throughout their careers. A four-year degree obtained two decades ago may no longer equip an individual with the competencies required in today's job market. Micro-credentials offer a flexible, targeted approach to lifelong learning that traditional universities have struggled to provide.\n\nSecondly, employers are increasingly valuing skills over degrees. Major corporations such as Google, Apple, and IBM have removed degree requirements for many positions, instead focusing on what candidates can actually do. This shift has created a demand for credentials that accurately signal specific competencies.\n\nHowever, micro-credentials are not without their critics. Some educators argue that the fragmentation of learning into bite-sized units risks losing the depth and breadth that a comprehensive degree programme provides. There are also concerns about quality assurance, as the micro-credential market remains largely unregulated.\n\nDespite these challenges, the micro-credential movement shows no signs of slowing. Universities themselves are entering the market, with institutions like MIT, Harvard, and Stanford offering their own micro-credentials through platforms such as edX. This suggests that rather than replacing traditional degrees, micro-credentials may become a complementary layer in a more diverse and flexible higher education ecosystem.", "questions": [{"q": "What is the main topic of the passage?", "options": ["University admission requirements", "The growth of micro-credentials in education", "Corporate hiring practices", "History of traditional degrees"], "answer": 1}, {"q": "What is the typical duration of a micro-credential programme?", "options": ["A few days", "A few weeks to several months", "One to two years", "Four years"], "answer": 1}, {"q": "Why are professionals drawn to micro-credentials?", "options": ["They are free", "They need to update skills continuously", "They prefer online learning", "Universities recommend them"], "answer": 1}, {"q": "Which companies are mentioned as removing degree requirements?", "options": ["Microsoft, Amazon, Facebook", "Google, Apple, IBM", "Tesla, Netflix, Uber", "Samsung, Sony, LG"], "answer": 1}, {"q": "What concern do critics raise about micro-credentials?", "options": ["They are too expensive", "They may sacrifice depth and breadth of learning", "They take too long to complete", "Employers do not recognise them"], "answer": 1}, {"q": "How have traditional universities responded?", "options": ["They have banned them", "They are ignoring them", "They are offering their own micro-credentials", "They have reduced degree programmes"], "answer": 2}]}, "writing": {"duration": 60, "task1": {"prompt": "The graph below shows the percentage of people using different modes of transport in a European city between 2000 and 2020.", "data": "Year | Car | Bus | Bicycle | Walking\n2000 | 48% | 28% | 8% | 16%\n2005 | 44% | 26% | 12% | 18%\n2010 | 38% | 24% | 18% | 20%\n2015 | 32% | 22% | 24% | 22%\n2020 | 28% | 20% | 30% | 22%", "minWords": 150, "sample": "The line graph illustrates the percentage of commuters using four different modes of transport in a European city over a 20-year period from 2000 to 2020. Overall, car and bus usage declined steadily while cycling and walking gained popularity.\n\nIn 2000, cars were the dominant mode of transport at 48%, followed by buses at 28%. However, both figures fell consistently throughout the period, with cars dropping to 28% and buses to 20% by 2020.\n\nIn contrast, bicycle use rose dramatically from just 8% in 2000 to 30% in 2020, overtaking both buses and cars to become the most popular mode of transport. Walking also increased, though more modestly, from 16% to 22%.\n\nNotably, the most significant shift occurred in cycling, which more than tripled its share over two decades, likely reflecting growing environmental awareness and investment in cycling infrastructure."}, "task2": {"prompt": "Some people believe that governments should invest more in public transportation to reduce traffic congestion and pollution. Others think that encouraging the use of electric vehicles is a better solution. Discuss both views and give your own opinion.", "minWords": 250, "sample": "Traffic congestion and air pollution have become pressing issues in cities worldwide, prompting debate about the most effective solutions. While some advocate for increased investment in public transportation, others argue that promoting electric vehicles offers a better path forward. This essay will examine both perspectives before presenting my own view.\n\nProponents of public transportation argue that buses, trains, and metro systems can move large numbers of people efficiently, dramatically reducing the number of private vehicles on the road. Cities like Tokyo, Singapore, and London demonstrate that well-funded public transit networks can significantly reduce both congestion and emissions. Moreover, public transport is accessible to all socioeconomic groups, making it an equitable solution.\n\nOn the other hand, supporters of electric vehicles point to their zero tailpipe emissions and the convenience they offer. Unlike public transport, EVs do not require people to change their travel habits or adhere to fixed schedules. Advances in battery technology and expanding charging infrastructure are making EVs increasingly practical.\n\nIn my opinion, the most effective approach combines both strategies. Governments should invest in modern, reliable public transportation to provide a viable alternative to private car use, while simultaneously offering incentives for EV adoption among those who genuinely need personal vehicles. This dual approach would address the problem from multiple angles, maximising the reduction in both congestion and pollution."}}, "speaking": {"parts": [{"part": "Part 1", "topic": "Introduction & Interview", "questions": ["Where do you live?", "Do you work or are you a student?", "What do you like about your hometown?", "How often do you travel by public transport?"]}, {"part": "Part 2", "topic": "Describe a memorable trip you have taken", "cue": "You should say: Where you went, Who you went with, What you did there, And explain why it was memorable", "time": 120}, {"part": "Part 3", "topic": "Discussion · Travel & Tourism", "questions": ["How has tourism changed in your country in recent years?", "Do you think travel broadens the mind?", "What are the environmental impacts of mass tourism?", "Should governments limit tourist numbers in popular destinations?"]}]}}, {"id": "c17t2", "year": 2022, "name": "剑桥雅思 17 · Test 2", "listening": {"duration": 30, "sections": [{"title": "Section 1 · 租房咨询", "audio": "Hello, I'm calling about the apartment for rent. Yes, it's a two-bedroom flat on Oak Street. The monthly rent is 850 pounds, bills included. It's available from the 15th of September. There's a deposit of one month's rent required. The landlord is Mr. Thompson, you can reach him at 07700 934 621. The nearest tube station is Brixton, about a 7-minute walk.", "questions": [{"q": "The flat has ______ bedrooms.", "type": "fill", "answer": "two"}, {"q": "The monthly rent is ______ pounds.", "type": "fill", "answer": "850"}, {"q": "It is available from the ______ of September.", "type": "fill", "answer": "15th"}, {"q": "The landlord's name is Mr. ______.", "type": "fill", "answer": "Thompson"}, {"q": "The nearest tube station is ______.", "type": "fill", "answer": "Brixton"}]}, {"title": "Section 2 · 志愿者项目介绍", "audio": "Thank you for your interest in our community volunteering programme. We have three main projects you can get involved with. The first is our tree planting initiative, which takes place every spring in local parks and nature reserves. Volunteers meet on Saturday mornings from 9 AM to 1 PM, and all equipment is provided. The second project is wildlife monitoring, where volunteers help track bird populations in the nearby wetlands. This runs monthly, with a training session on the first Thursday of each month. The third project is our community garden, which operates year-round. We grow organic vegetables that are donated to local food banks. This is particularly popular as volunteers can see the direct impact of their work. All we ask is that volunteers wear sturdy footwear and bring their own water bottle.", "questions": [{"q": "When does the tree planting initiative take place?", "options": ["Winter", "Spring", "Summer", "Autumn"], "answer": 1}, {"q": "How often do wildlife monitoring volunteers meet for training?", "options": ["Weekly", "Monthly", "Quarterly", "Yearly"], "answer": 1}, {"q": "Which project operates year-round?", "options": ["Tree planting", "Wildlife monitoring", "Community garden", "All of them"], "answer": 2}, {"q": "Where are the vegetables donated to?", "options": ["Schools", "Hospitals", "Local food banks", "Restaurants"], "answer": 2}, {"q": "What should volunteers bring themselves?", "options": ["Tools", "Equipment", "Sturdy footwear", "Vegetable seeds"], "answer": 2}]}]}, "reading": {"duration": 60, "passage": "The Psychology of Habit Formation\n\nHabits are the invisible architecture of daily life, shaping approximately 40 percent of our everyday behaviours according to research by Wendy Wood at the University of Southern California. Understanding how habits form and how they can be changed has become a central concern in psychology, with implications for health, productivity, and personal development.\n\nThe neurological basis of habit formation lies in a region of the brain called the basal ganglia, which plays a crucial role in the development of automatic behaviours. When we first perform an action, the prefrontal cortex, responsible for conscious decision-making, is highly active. However, as the behaviour is repeated in a consistent context, control gradually shifts to the basal ganglia, allowing the action to be performed with minimal conscious effort. This transition from deliberate to automatic is what we experience as a habit.\n\nCharles Duhigg popularised the concept of the 'habit loop' consisting of three elements: a cue, a routine, and a reward. The cue triggers the brain to initiate a behaviour, the routine is the behaviour itself, and the reward helps the brain determine whether this particular loop is worth remembering. Over time, this loop becomes more automatic as the brain begins to anticipate the reward as soon as the cue is presented.\n\nHowever, recent research suggests that the habit loop model, while useful, oversimplifies the complexity of habit formation. Studies by Phillippa Lally at University College London found that, on average, it takes 66 days for a new behaviour to become automatic, though this varies widely from 18 to 254 days depending on the complexity of the behaviour and individual differences. Furthermore, contrary to popular belief, missing a single day does not significantly affect the habit formation process.", "questions": [{"q": "What percentage of daily behaviours are habits according to Wood?", "options": ["30%", "40%", "50%", "60%"], "answer": 1}, {"q": "Which brain region is key to habit formation?", "options": ["Cerebellum", "Hippocampus", "Basal ganglia", "Amygdala"], "answer": 2}, {"q": "What is the first element of the habit loop?", "options": ["Routine", "Reward", "Cue", "Trigger"], "answer": 2}, {"q": "How long does it take on average to form a habit?", "options": ["21 days", "30 days", "66 days", "90 days"], "answer": 2}, {"q": "What happens when a behaviour becomes a habit?", "options": ["It requires more effort", "Control shifts to basal ganglia", "Prefrontal cortex becomes more active", "It becomes harder to perform"], "answer": 1}]}, "writing": {"duration": 60, "task1": {"prompt": "The table below shows the percentage of households with various electronic devices in a country from 1995 to 2015.", "data": "Device | 1995 | 2000 | 2005 | 2010 | 2015\nTV | 96% | 98% | 98% | 97% | 96%\nComputer | 28% | 48% | 65% | 78% | 86%\nMobile Phone | 15% | 55% | 82% | 91% | 95%\nTablet | 0% | 0% | 2% | 18% | 52%", "minWords": 150, "sample": "The table compares the percentage of households owning four types of electronic devices in a particular country at five-year intervals from 1995 to 2015.\n\nOverall, while television ownership remained consistently high throughout the period, the most dramatic increases were seen in mobile phones and computers, with tablets emerging as a significant category in the final decade.\n\nTelevision was already present in 96% of households in 1995 and remained largely stable, fluctuating between 96% and 98%. In stark contrast, only 15% of households owned a mobile phone in 1995, but this figure surged to 95% by 2015. Computer ownership followed a similar upward trajectory, rising steadily from 28% to 86%.\n\nTablets, which did not exist in 1995, appeared in 2005 at just 2% but experienced remarkable growth, reaching 52% by 2015. Notably, by the end of the period, mobile phones had overtaken televisions as the most ubiquitous electronic device."}, "task2": {"prompt": "Some people think that children should begin their formal education at a very early age. Others believe that they should start school at a later age. Discuss both views and give your opinion.", "minWords": 250, "sample": "The optimal age for children to begin formal education has long been a subject of debate among parents, educators, and policymakers. While some advocate for an early start to maximise learning opportunities, others contend that a later beginning allows for more natural development through play. This essay will discuss both perspectives before offering my own view.\n\nThose in favour of early formal education argue that young children have a remarkable capacity for learning, particularly in language acquisition and cognitive development. Starting early, proponents claim, helps children develop discipline, social skills, and foundational knowledge that gives them an academic advantage.\n\nConversely, advocates of a later start emphasise the importance of unstructured play in early childhood. Research in developmental psychology suggests that play is essential for developing creativity, problem-solving skills, and emotional regulation. Children who are pushed into formal academics too early may experience stress and burnout, potentially developing negative attitudes toward learning.\n\nIn my opinion, the distinction between 'formal education' and 'learning' is crucial. While I believe that structured, play-based early childhood education provides immense benefits, rigid academic instruction before the age of six or seven may be counterproductive. The focus in early years should be on nurturing curiosity, social skills, and a love of learning rather than on formal academic benchmarks."}}, "speaking": {"parts": [{"part": "Part 1", "topic": "Introduction & Hobbies", "questions": ["What do you do in your free time?", "Do you enjoy reading?", "How often do you exercise?", "What kind of music do you like?"]}, {"part": "Part 2", "topic": "Describe a skill you would like to learn", "cue": "You should say: What the skill is, Why you want to learn it, How you plan to learn it, And explain how it might benefit you", "time": 120}, {"part": "Part 3", "topic": "Discussion · Learning & Education", "questions": ["What skills are most important for young people to learn today?", "How has technology changed the way people learn new skills?", "Do you think schools should teach more practical skills?", "Is it better to learn from an expert or teach yourself?"]}]}}, {"id": "c18t1", "year": 2023, "name": "剑桥雅思 18 · Test 1", "listening": {"duration": 30, "sections": [{"title": "Section 1 · 图书馆会员注册", "audio": "Welcome to City Library. To register for a membership, I need some details. Your full name please. Emily Parker, P-A-R-K-E-R. And your address? 42 Green Lane, Manchester, postcode M14 6QS. Your date of birth? 12th March 1998. A contact number? 07462 815 390. Membership is free for residents. Your card number will be CL88721.", "questions": [{"q": "The applicant's surname is ______.", "type": "fill", "answer": "Parker"}, {"q": "The house number is ______ Green Lane.", "type": "fill", "answer": "42"}, {"q": "The postcode is ______.", "type": "fill", "answer": "M14 6QS"}, {"q": "Her date of birth is 12th ______ 1998.", "type": "fill", "answer": "March"}, {"q": "The library card number is ______.", "type": "fill", "answer": "CL88721"}]}, {"title": "Section 2 · 校园设施介绍", "audio": "I would like to welcome all new students and give you a quick overview of our campus facilities. The main library, located in the centre of campus, is open 24 hours a day during term time. It underwent a major renovation last year at a cost of 12 million pounds, and now features over 40 group study rooms that can be booked online. The sports centre, situated at the north end of campus, includes a 25-metre swimming pool, a fully equipped gym, and two sports halls. Student membership costs 25 pounds per month, with a 40 percent discount if you sign up for a full year. Finally, the Student Services Centre is in the West Building, open from 8:30 AM to 5 PM on weekdays, where you can get advice on accommodation, finances, and wellbeing.", "questions": [{"q": "What time does the Student Services Centre open?", "options": ["7:30 AM", "8:00 AM", "8:30 AM", "9:00 AM"], "answer": 2}, {"q": "How much did the library renovation cost?", "options": ["8 million pounds", "10 million pounds", "12 million pounds", "15 million pounds"], "answer": 2}, {"q": "How many group study rooms does the library have?", "options": ["20", "30", "40", "50"], "answer": 2}, {"q": "What is included in the sports centre?", "options": ["Gym only", "Pool, gym, and sports halls", "Tennis courts", "Running track"], "answer": 1}, {"q": "What is the student discount on sports membership?", "options": ["20%", "30%", "40%", "50%"], "answer": 2}]}]}, "reading": {"duration": 60, "passage": "The Future of Urban Agriculture\n\nAs the global population continues to urbanise, with the United Nations projecting that 68 percent of the world's population will live in cities by 2050, the challenge of feeding urban populations sustainably has become increasingly urgent. Urban agriculture, the practice of cultivating food within or around cities, has emerged as a promising solution that addresses multiple challenges simultaneously.\n\nVertical farming represents one of the most innovative approaches to urban agriculture. By growing crops in stacked layers within controlled environments, vertical farms can produce food year-round with dramatically reduced water usage and zero pesticides. Companies such as AeroFarms in New Jersey and Spread in Japan have demonstrated that vertical farms can achieve yields up to 390 times higher per square metre than traditional farming, while using 95 percent less water.\n\nCommunity gardens offer a more grassroots approach to urban food production. Beyond providing fresh produce, these spaces serve as hubs for community engagement, environmental education, and mental wellbeing. Studies in cities including New York, London, and Melbourne have shown that participation in community gardening is associated with reduced stress levels and increased consumption of fruits and vegetables.\n\nHowever, urban agriculture faces significant barriers. Land in cities is expensive and often contaminated with industrial pollutants, requiring costly remediation before it can be safely used for food production. Additionally, zoning regulations in many cities were not designed with agriculture in mind, creating legal hurdles for would-be urban farmers.\n\nDespite these challenges, cities worldwide are beginning to integrate agriculture into their planning frameworks. Singapore, which imports over 90 percent of its food, has launched an ambitious '30 by 30' initiative aiming to produce 30 percent of its nutritional needs locally by 2030. Paris has mandated that new commercial buildings must include green roofs, many of which are being used for food production.", "questions": [{"q": "What percentage of the world population is projected to live in cities by 2050?", "options": ["55%", "60%", "68%", "75%"], "answer": 2}, {"q": "What is a key advantage of vertical farming?", "options": ["Lower electricity costs", "Year-round production", "More jobs", "Larger crop variety"], "answer": 1}, {"q": "How much less water do vertical farms use?", "options": ["75%", "85%", "90%", "95%"], "answer": 3}, {"q": "What benefit do community gardens provide beyond food?", "options": ["Higher property values", "Reduced stress levels", "Lower crime rates", "Better air quality"], "answer": 1}, {"q": "What is Singapore's '30 by 30' goal?", "options": ["Export 30% of food", "Produce 30% of nutritional needs locally", "Reduce food waste by 30%", "Build 30 vertical farms"], "answer": 1}]}, "writing": {"duration": 60, "task1": {"prompt": "The chart below shows the percentage of adults in different age groups who used the internet daily in a European country between 2006 and 2016.", "data": "Age Group | 2006 | 2011 | 2016\n16-24 | 72% | 91% | 98%\n25-44 | 65% | 85% | 95%\n45-64 | 38% | 62% | 82%\n65+ | 8% | 22% | 48%", "minWords": 150, "sample": "The bar chart illustrates the proportion of adults across four age groups who used the internet on a daily basis in a European country at three points in time: 2006, 2011, and 2016.\n\nOverall, internet usage increased across all age groups over the decade, with the most dramatic growth occurring among older adults.\n\nIn 2006, there was a clear correlation between age and internet usage, with 72% of 16 to 24-year-olds accessing the internet daily compared to just 8% of those aged 65 and over. By 2016, the gap had narrowed considerably. The youngest group reached near-universal usage at 98%, while the 65-plus group experienced the most remarkable growth, increasing sixfold from 8% to 48%.\n\nThe 25 to 44 and 45 to 64 age groups also saw substantial increases of 30 and 44 percentage points respectively. The most significant period of growth for the oldest age group was between 2011 and 2016, when their daily internet usage more than doubled."}, "task2": {"prompt": "In many countries, people are living longer than ever before. What problems does this cause? What can be done to address these problems?", "minWords": 250, "sample": "Increased life expectancy is one of the greatest achievements of modern medicine and public health. However, ageing populations present significant challenges for societies worldwide. This essay will examine the key problems arising from this demographic shift and propose potential solutions.\n\nThe most pressing issue is the strain on healthcare systems. Older populations typically require more medical care, particularly for chronic conditions such as diabetes, heart disease, and dementia. This increased demand drives up healthcare costs and can lead to longer waiting times and resource shortages.\n\nA second major challenge is the economic burden on pension systems. As the ratio of workers to retirees decreases, fewer working-age people must support a growing number of pensioners, potentially leading to unsustainable public finances.\n\nTo address these challenges, governments should consider several measures. Firstly, raising the retirement age gradually, in line with increases in healthy life expectancy, can help maintain the worker-to-retiree ratio. Secondly, investing in preventative healthcare and promoting healthy ageing can reduce the burden of chronic diseases. Thirdly, encouraging older people to remain in the workforce through flexible working arrangements and anti-age-discrimination laws can harness their valuable experience while reducing pension costs.\n\nIn conclusion, while an ageing population presents genuine challenges, they are not insurmountable. With thoughtful policy interventions and a shift in societal attitudes toward ageing, countries can adapt to this new demographic reality."}}, "speaking": {"parts": [{"part": "Part 1", "topic": "Introduction & Daily Life", "questions": ["What time do you usually get up?", "Do you prefer mornings or evenings?", "How do you usually spend your weekends?", "What do you typically eat for breakfast?"]}, {"part": "Part 2", "topic": "Describe a person who has influenced you", "cue": "You should say: Who this person is, How you know them, What they have done, And explain how they have influenced you", "time": 120}, {"part": "Part 3", "topic": "Discussion · Role Models", "questions": ["What qualities make someone a good role model?", "Do celebrities have a responsibility to be good role models?", "How have role models changed over generations?", "Can someone be a role model without knowing it?"]}]}}, {"id": "c18t2", "year": 2023, "name": "剑桥雅思 18 · Test 2", "listening": {"duration": 30, "sections": [{"title": "Section 1 · 求职申请", "audio": "Thanks for applying to Green Valley Hotel. Your name is James O'Connor, O-apostrophe-C-O-N-N-O-R. You're applying for the receptionist position, full-time. Your previous experience is two years at Grand Plaza Hotel. Your expected salary is 22,000 pounds per year. You can start from the 1st of next month. We'll contact you at james.o@email.com.", "questions": [{"q": "The applicant's surname is ______.", "type": "fill", "answer": "O'Connor"}, {"q": "He is applying for a ______ position.", "type": "fill", "answer": "receptionist"}, {"q": "He has ______ years of experience.", "type": "fill", "answer": "two"}, {"q": "The expected salary is ______ pounds per year.", "type": "fill", "answer": "22000"}, {"q": "He can start from the ______ of next month.", "type": "fill", "answer": "1st"}]}, {"title": "Section 2 · 公司健康计划", "audio": "I am pleased to announce the launch of our new employee wellness programme, starting next Monday. The programme has three main components. First, we have partnered with the City Gym to offer discounted memberships at 25 pounds per month instead of the usual 40 pounds. Second, we will be running weekly yoga sessions every Wednesday at 1 PM in the conference room. These sessions last 45 minutes and are suitable for all levels, including complete beginners. Please wear comfortable clothing and bring a towel. Third, we are introducing a nutrition advice service. You can book a 30-minute appointment with a qualified nutritionist through the HR portal. The first consultation is free, and follow-up sessions cost 15 pounds. We believe these initiatives will contribute to a healthier, happier workplace.", "questions": [{"q": "When does the wellness programme launch?", "options": ["This Friday", "Next Monday", "Next Wednesday", "Next month"], "answer": 1}, {"q": "What is the discounted gym membership rate?", "options": ["15 pounds", "20 pounds", "25 pounds", "30 pounds"], "answer": 2}, {"q": "When are yoga sessions held?", "options": ["Monday at 1 PM", "Wednesday at 1 PM", "Friday at 1 PM", "Wednesday at 3 PM"], "answer": 1}, {"q": "How long are the yoga sessions?", "options": ["30 minutes", "45 minutes", "60 minutes", "90 minutes"], "answer": 1}, {"q": "How can employees book nutritionist appointments?", "options": ["By email", "By phone", "Through the HR portal", "In person"], "answer": 2}]}]}, "reading": {"duration": 60, "passage": "The Sharing Economy: Promise and Peril\n\nThe sharing economy, characterised by peer-to-peer platforms that facilitate the exchange of goods and services, has transformed industries from transportation to accommodation in less than two decades. Companies like Airbnb, Uber, and TaskRabbit have become household names, promising greater efficiency, lower costs, and new income opportunities. However, as the sector matures, a more nuanced picture is emerging.\n\nOn the positive side, the sharing economy has demonstrably increased access to goods and services. For consumers, platforms like Airbnb have made travel more affordable by expanding accommodation options beyond traditional hotels. For providers, these platforms have created flexible income opportunities, allowing people to monetise underutilised assets such as spare rooms, cars, and even tools and equipment.\n\nThe economic benefits extend beyond individual participants. Research by the European Commission suggests that the sharing economy could add up to 572 billion euros to the EU economy annually. The environmental case is also compelling: by making better use of existing resources, the sharing economy can reduce waste and lower carbon footprints.\n\nYet the sharing economy has faced mounting criticism. Labour advocates point out that many platform workers are classified as independent contractors rather than employees, denying them access to minimum wage protections, sick pay, and pensions. The 'gig economy' label, once associated with freedom and flexibility, has become synonymous with precarious work for many.\n\nRegulatory challenges have also emerged. Cities from Barcelona to New York have grappled with the impact of short-term rentals on housing affordability, with some implementing strict limits on Airbnb-style listings. The taxi industry has been fundamentally disrupted by ride-hailing apps, leading to protests and calls for tighter regulation.", "questions": [{"q": "What is the sharing economy characterised by?", "options": ["Government regulation", "Peer-to-peer platforms", "Large corporations", "Traditional retail"], "answer": 1}, {"q": "How much could the sharing economy add to the EU economy annually?", "options": ["372 billion euros", "472 billion euros", "572 billion euros", "672 billion euros"], "answer": 2}, {"q": "What is a key criticism of platform workers' status?", "options": ["They earn too much", "They lack employment protections", "They work too few hours", "They have no flexibility"], "answer": 1}, {"q": "What environmental benefit does the sharing economy offer?", "options": ["More production", "Better use of existing resources", "Increased manufacturing", "Higher energy consumption"], "answer": 1}, {"q": "What concern do cities have about short-term rentals?", "options": ["Tourism decline", "Housing affordability", "Transportation issues", "Cultural problems"], "answer": 1}]}, "writing": {"duration": 60, "task1": {"prompt": "The diagram below shows the process of recycling plastic bottles.", "data": "Step 1: Collection from recycling bins → Step 2: Transportation to recycling plant → Step 3: Sorting by type and colour → Step 4: Cleaning and removal of labels → Step 5: Shredding into small flakes → Step 6: Washing and drying flakes → Step 7: Melting and forming into pellets → Step 8: Manufacturing new products", "minWords": 150, "sample": "The flowchart illustrates the eight-stage process by which plastic bottles are recycled, from initial collection to the manufacturing of new products.\n\nThe process begins with consumers depositing used plastic bottles into designated recycling bins. These bottles are then collected and transported by truck to a recycling facility.\n\nAt the plant, the bottles undergo sorting, where they are separated according to their plastic type and colour, as different types of plastic require different treatment. Following sorting, the bottles are thoroughly cleaned to remove any labels, caps, and residual contents.\n\nThe cleaned bottles are then fed into a shredding machine that breaks them down into small plastic flakes. These flakes are subsequently washed again and dried to ensure they are completely free of contaminants.\n\nIn the penultimate stage, the clean flakes are melted at high temperatures and extruded into small pellets, which serve as the raw material for manufacturing. Finally, these recycled plastic pellets are used to produce a wide range of new products, completing the recycling loop."}, "task2": {"prompt": "Some people believe that unpaid community service should be a compulsory part of high school programmes. To what extent do you agree or disagree?", "minWords": 250, "sample": "The proposal to make unpaid community service a mandatory component of secondary education has generated considerable debate. While I acknowledge the potential benefits, I believe that compelling students to perform unpaid work raises significant ethical and practical concerns.\n\nProponents argue that compulsory community service instils civic responsibility and empathy in young people. By engaging with vulnerable populations or environmental projects, students gain perspectives that cannot be taught in a classroom. Additionally, such programmes provide practical experience that enhances university applications and CVs.\n\nHowever, I find the compulsory aspect problematic on several grounds. Firstly, forced labour, even for charitable purposes, contradicts the very values of voluntarism and altruism that such programmes aim to instil. Secondly, mandating unpaid work disproportionately affects students from lower-income backgrounds, who may need to spend their free time on paid employment or family responsibilities.\n\nA more effective approach would be to strongly encourage but not require community service. Schools could integrate service-learning into the curriculum as an optional component, provide recognition for students who participate, and partner with local organisations to create meaningful opportunities. This would achieve the educational goals without the ethical compromises of compulsion.\n\nIn conclusion, while community service has clear educational value, making it compulsory is neither ethically sound nor practically feasible. Encouragement and opportunity, rather than obligation, represent the better path forward."}}, "speaking": {"parts": [{"part": "Part 1", "topic": "Introduction & Work", "questions": ["Do you work or are you a student?", "What do you like about your job/studies?", "Would you like to change your job?", "What job would you like to do in the future?"]}, {"part": "Part 2", "topic": "Describe a time you helped someone", "cue": "You should say: Who you helped, What you did, Why you helped them, And explain how you felt afterwards", "time": 120}, {"part": "Part 3", "topic": "Discussion · Helping Others", "questions": ["Why do some people choose to volunteer?", "Should schools teach children to help others?", "How has technology changed the way people help each other?", "Do you think people are more or less helpful than in the past?"]}]}}, {"id": "c19t1", "year": 2024, "name": "剑桥雅思 19 · Test 1", "listening": {"duration": 30, "sections": [{"title": "Section 1 · 健身房入会", "audio": "Hi, I'd like to join the gym. Great, we have several membership options. The standard monthly membership is 39 pounds. The annual membership is 360 pounds, which works out cheaper. Our facilities include a swimming pool and sauna. We're open from 6 AM to 10 PM on weekdays. Your membership key fob code will be 4521. We're located at 88 Harbour Street.", "questions": [{"q": "The monthly membership fee is ______ pounds.", "type": "fill", "answer": "39"}, {"q": "The annual membership costs ______ pounds.", "type": "fill", "answer": "360"}, {"q": "The gym opens at ______ AM on weekdays.", "type": "fill", "answer": "6"}, {"q": "The key fob code is ______.", "type": "fill", "answer": "4521"}, {"q": "The gym is at ______ Harbour Street.", "type": "fill", "answer": "88"}]}, {"title": "Section 2 · 历史导览", "audio": "Welcome to the Old Town walking tour. We will be visiting six historic sites over the next two hours. Our first stop is the medieval Clock Tower, built in 1682, which offers spectacular views of the city from the top. Next, we will walk through the Merchant's Quarter, where you can see beautifully preserved 18th-century townhouses. The third stop is the Old Harbour, once the busiest port in the region. We will then visit the Cathedral of St. Mary, a stunning example of Gothic architecture completed in 1320. Our fifth stop is the City Museum, housed in a former palace, and finally, we end at the Victorian Gardens. Your ticket also includes free entry to the museum for the rest of the day, so feel free to explore at your leisure after the tour.", "questions": [{"q": "How long is the walking tour?", "options": ["One hour", "90 minutes", "Two hours", "Three hours"], "answer": 2}, {"q": "When was the Clock Tower built?", "options": ["1662", "1682", "1702", "1722"], "answer": 1}, {"q": "How many sites will be visited?", "options": ["Five", "Six", "Seven", "Eight"], "answer": 1}, {"q": "What architectural style is the Cathedral?", "options": ["Romanesque", "Baroque", "Gothic", "Modern"], "answer": 2}, {"q": "What additional benefit does the ticket provide?", "options": ["Free lunch", "Free museum entry", "Free transport", "Souvenir gift"], "answer": 1}]}]}, "reading": {"duration": 60, "passage": "Artificial Intelligence in Healthcare: Revolution or Evolution?\n\nArtificial intelligence has been heralded as a transformative force in healthcare, promising to revolutionise everything from diagnosis to drug discovery. While the potential is undoubtedly enormous, the reality of AI implementation in clinical settings reveals a more complex picture of gradual integration rather than sudden transformation.\n\nIn medical imaging, AI has arguably made the most significant strides. Deep learning algorithms trained on millions of labelled images can now detect certain conditions with accuracy matching or exceeding that of experienced radiologists. A landmark study published in Nature in 2020 demonstrated that an AI system developed by Google Health could identify breast cancer in mammograms with fewer false positives and false negatives than human radiologists. Similar successes have been reported in detecting lung cancer, diabetic retinopathy, and skin cancer.\n\nDrug discovery represents another domain where AI is making substantial contributions. Traditional drug development is notoriously slow and expensive, typically taking 10 to 15 years and costing over 2.6 billion dollars to bring a single drug to market. AI can accelerate this process by predicting how potential drug compounds will interact with biological targets, screening millions of candidates in silico before any laboratory testing begins.\n\nHowever, significant obstacles remain. The 'black box' problem—the difficulty in understanding how AI systems reach their conclusions—creates challenges for clinical adoption and regulatory approval. Data privacy concerns, algorithmic bias, and the fragmented nature of healthcare data systems further complicate deployment. Moreover, the fear that AI might replace healthcare professionals appears largely unfounded; instead, the technology is proving most effective when it augments rather than replaces human expertise.", "questions": [{"q": "In which area has AI made the most significant strides?", "options": ["Surgery", "Medical imaging", "Electronic records", "Hospital management"], "answer": 1}, {"q": "What did the 2020 Nature study demonstrate?", "options": ["AI can replace doctors", "AI can detect breast cancer accurately", "AI can cure cancer", "AI is cheaper than doctors"], "answer": 1}, {"q": "How much does it cost to bring a drug to market?", "options": ["1.6 billion dollars", "2.6 billion dollars", "3.6 billion dollars", "4.6 billion dollars"], "answer": 1}, {"q": "What is the 'black box' problem?", "options": ["AI systems are physically black", "Difficulty understanding AI decisions", "AI systems are invisible", "AI requires dark rooms"], "answer": 1}, {"q": "What is the most effective role for AI in healthcare?", "options": ["Replacing doctors", "Augmenting human expertise", "Managing hospitals", "Reducing patient visits"], "answer": 1}]}, "writing": {"duration": 60, "task1": {"prompt": "The maps below show the changes that have taken place in a coastal town between 1995 and the present.", "data": "1995: Fishing port, small hotel, local market, narrow roads, forest area\nPresent: Marina with yachts, large resort hotel, shopping centre, widened roads, golf course on former forest land", "minWords": 150, "sample": "The maps illustrate the significant transformation of a coastal town from 1995 to the present day.\n\nOverall, the town has undergone extensive commercial development, shifting from a modest fishing community to a modern tourist destination.\n\nIn 1995, the town had a working fishing port along the coastline, a small hotel, and a local market serving residents. The road network was limited to narrow streets, and a substantial forest area occupied the eastern part of the town.\n\nBy the present day, almost every feature has been replaced or upgraded. The fishing port has been converted into a modern marina filled with yachts, while the small hotel has been replaced by a large resort hotel to accommodate increased tourism. The local market has given way to a shopping centre, and the narrow roads have been widened to handle greater traffic volumes.\n\nThe most dramatic change has been in the eastern area, where the entire forest has been cleared to make way for a golf course. This transformation reflects the town's evolution from a traditional fishing economy to one focused on tourism and leisure."}, "task2": {"prompt": "Some people think that social media platforms have a negative impact on both individuals and society. To what extent do you agree or disagree?", "minWords": 250, "sample": "Social media has become deeply embedded in modern life, with billions of users worldwide. While critics argue that its effects are overwhelmingly negative, I believe the reality is more nuanced: social media has both significant drawbacks and meaningful benefits, and its impact depends largely on how it is used.\n\nOn the negative side, there is compelling evidence that excessive social media use can harm mental health, particularly among young people. Studies have linked heavy social media consumption to increased rates of anxiety, depression, and poor body image, driven by constant social comparison and the pressure to present a curated, idealised version of oneself.\n\nHowever, dismissing social media as purely harmful overlooks its genuine benefits. These platforms have enabled social movements to organise and amplify marginalised voices, from the Arab Spring to climate activism. They allow people to maintain relationships across vast distances and provide support communities for individuals with rare conditions or shared interests.\n\nIn conclusion, while I agree that social media can have negative effects, I disagree that these are inevitable or universal. The challenge lies not in the technology itself but in how we regulate it, educate users, and design platforms that prioritise wellbeing over engagement metrics."}}, "speaking": {"parts": [{"part": "Part 1", "topic": "Introduction & Technology", "questions": ["How often do you use social media?", "What is your favourite app?", "Do you think technology makes life easier?", "How has technology changed your daily routine?"]}, {"part": "Part 2", "topic": "Describe a piece of technology you find useful", "cue": "You should say: What it is, How you use it, How long you have had it, And explain why you find it useful", "time": 120}, {"part": "Part 3", "topic": "Discussion · Technology & Society", "questions": ["How has technology changed the way people work?", "Has technology made people more or less social?", "What technological development would you most like to see?", "Should there be limits on technological development?"]}]}}, {"id": "c19t2", "year": 2024, "name": "剑桥雅思 19 · Test 2", "listening": {"duration": 30, "sections": [{"title": "Section 1 · 会议场地预订", "audio": "I need to book a conference room for next Friday, the 22nd. We have the Boardroom, capacity 30 people, or the Riverside Suite for up to 50. Let's go with the Riverside Suite. The rate is 250 pounds for a half day. We'll need a projector and a flip chart. Catering is extra at 15 pounds per person. The booking is under the name of David Chen, C-H-E-N. Confirmation number is BK3491.", "questions": [{"q": "The event date is Friday the ______.", "type": "fill", "answer": "22nd"}, {"q": "The Riverside Suite can hold up to ______ people.", "type": "fill", "answer": "50"}, {"q": "The half-day rate is ______ pounds.", "type": "fill", "answer": "250"}, {"q": "Catering is ______ pounds per person.", "type": "fill", "answer": "15"}, {"q": "The booking is under the name David ______.", "type": "fill", "answer": "Chen"}]}, {"title": "Section 2 · 城市公园介绍", "audio": "Welcome to Riverside Park, one of the largest urban parks in the country. The park was established in 1854 and covers an area of 250 hectares. One of our most popular attractions is the boating lake, where you can rent rowing boats and pedal boats from 9 AM until sunset. For nature enthusiasts, we have 15 kilometres of marked walking trails that pass through woodland, meadows, and along the river. The wildlife observation hide is open daily and is a great spot to see herons, kingfishers, and occasionally otters. If you are visiting with children, the adventure playground near the main entrance has been recently refurbished at a cost of 1.2 million pounds. For refreshments, the Lakeside Cafe serves hot and cold meals and has a terrace with views over the water. It is open from 8 AM to 6 PM in summer and 9 AM to 4 PM in winter.", "questions": [{"q": "When was Riverside Park established?", "options": ["1844", "1854", "1864", "1874"], "answer": 1}, {"q": "How large is the park?", "options": ["150 hectares", "200 hectares", "250 hectares", "300 hectares"], "answer": 2}, {"q": "How long are the walking trails?", "options": ["10 km", "12 km", "15 km", "20 km"], "answer": 2}, {"q": "How much did the playground refurbishment cost?", "options": ["0.8 million", "1.0 million", "1.2 million", "1.5 million"], "answer": 2}, {"q": "When does the cafe close in winter?", "options": ["3 PM", "4 PM", "5 PM", "6 PM"], "answer": 1}]}]}, "reading": {"duration": 60, "passage": "The Renaissance of Remote Work\n\nThe COVID-19 pandemic triggered what many have called the world's largest experiment in remote work. What began as a temporary necessity has evolved into a permanent shift in how and where work gets done. As of 2024, approximately 28 percent of paid workdays in the United States are performed from home, compared to just 5 percent before the pandemic.\n\nResearch on productivity in remote settings has produced mixed but largely encouraging results. A comprehensive study by Stanford University involving 16,000 workers over nine months found that remote work led to a 13 percent increase in productivity, attributed to a quieter working environment and fewer interruptions. However, a separate study by Microsoft Research identified a potential downside: remote work appeared to reduce cross-team collaboration and the formation of new professional connections.\n\nThe impact on employees varies significantly based on individual circumstances. For parents, particularly mothers, remote work has often meant a reduction in the impossible juggle between professional and domestic responsibilities. For younger workers early in their careers, however, the absence of in-person mentorship and networking opportunities has raised concerns about long-term career development.\n\nCompanies have adopted diverse approaches. Some, like Spotify and Dropbox, have embraced fully flexible models where employees choose where they work. Others, including Goldman Sachs and Tesla, have mandated a return to the office, arguing that in-person collaboration is essential for innovation and company culture. A growing number have settled on hybrid arrangements, typically requiring two to three days in the office per week.", "questions": [{"q": "What percentage of paid workdays in the US are now from home?", "options": ["5%", "15%", "28%", "40%"], "answer": 2}, {"q": "What did the Stanford study find about remote work productivity?", "options": ["It decreased by 13%", "It increased by 13%", "No change", "Inconclusive results"], "answer": 1}, {"q": "What downside did Microsoft Research identify?", "options": ["Higher costs", "Reduced cross-team collaboration", "Lower individual output", "More sick days"], "answer": 1}, {"q": "Which group has particularly benefited from remote work?", "options": ["Young workers", "Senior executives", "Parents, especially mothers", "IT professionals"], "answer": 2}, {"q": "Which company is mentioned as requiring a return to the office?", "options": ["Spotify", "Dropbox", "Goldman Sachs", "Airbnb"], "answer": 2}]}, "writing": {"duration": 60, "task1": {"prompt": "The bar chart below shows the average monthly rainfall in three cities over a year.", "data": "Month | London | Sydney | Tokyo\nJan | 55mm | 100mm | 50mm\nApr | 45mm | 120mm | 120mm\nJul | 40mm | 80mm | 160mm\nOct | 70mm | 70mm | 170mm", "minWords": 150, "sample": "The bar chart compares the average monthly rainfall in London, Sydney, and Tokyo across four months representing different seasons.\n\nOverall, Tokyo experienced the highest rainfall in most months, while London recorded the lowest precipitation levels across the period.\n\nIn January, Sydney had the highest rainfall at 100mm, which was nearly double London's 55mm and twice Tokyo's 50mm. By April, the situation had shifted considerably: both Sydney and Tokyo recorded 120mm of rain, while London maintained the lowest figure at 45mm.\n\nJuly saw Tokyo's rainfall peak at 160mm, significantly higher than Sydney's 80mm and London's minimal 40mm. In October, Tokyo maintained the lead with 170mm, followed by London's 70mm and Sydney's 70mm, both considerably lower.\n\nA clear seasonal pattern is evident: London's rainfall remained relatively stable throughout the year, while Tokyo showed a dramatic increase from summer through autumn. Sydney demonstrated a reverse pattern, with higher rainfall in the first half of the year and declining levels in the latter months."}, "task2": {"prompt": "Some people believe that it is better to live in a city, while others prefer living in the countryside. Discuss both views and give your opinion.", "minWords": 250, "sample": "The choice between urban and rural living is one of the most fundamental lifestyle decisions people face. Both environments offer distinct advantages and disadvantages, and the right choice depends heavily on individual priorities and circumstances.\n\nCity living offers unparalleled access to amenities and opportunities. Urban areas typically provide better employment prospects, with a wider range of industries and higher salaries. Cultural institutions such as museums, theatres, and concert halls are concentrated in cities, as are diverse dining and entertainment options. Furthermore, cities generally offer superior public services, including extensive public transportation networks, world-class hospitals, and specialised educational institutions.\n\nConversely, rural areas offer what cities cannot: space, tranquillity, and a closer connection to nature. Countryside residents typically enjoy larger living spaces at lower costs, cleaner air, and a slower pace of life that many find conducive to mental wellbeing. The sense of community is often stronger in rural areas, where neighbours know each other and social bonds run deeper.\n\nIn my opinion, the ideal scenario would be to experience the best of both worlds. Many people now choose to live in smaller towns or suburban areas that offer reasonable proximity to urban centres while retaining a degree of rural character. Ultimately, the decision should be guided by one's career requirements, family needs, and personal preferences rather than any universal prescription."}}, "speaking": {"parts": [{"part": "Part 1", "topic": "Introduction & Home", "questions": ["Do you live in a house or an apartment?", "What is your favourite room in your home?", "Would you like to move to a different place?", "What can you see from your window?"]}, {"part": "Part 2", "topic": "Describe a place you would like to visit", "cue": "You should say: Where it is, What you know about it, Why you want to go there, And explain what you would do there", "time": 120}, {"part": "Part 3", "topic": "Discussion · Travel & Places", "questions": ["Why do people enjoy visiting new places?", "How has tourism affected local communities?", "What makes a place popular with tourists?", "Should tourists be encouraged to visit less well-known destinations?"]}]}}, {"id": "c20t1", "year": 2025, "name": "剑桥雅思 20 · Test 1", "listening": {"duration": 30, "sections": [{"title": "Section 1 · 驾校报名", "audio": "Hello, I'd like to enrol in driving lessons. Sure, your name is Michael Brown, B-R-O-W-N. You need a provisional licence, which takes about two weeks. We offer 10-hour packages at 28 pounds per hour, so 280 pounds total. The instructor is assigned to your area, Park District. Lessons can be weekday mornings or Saturday afternoons. Your first lesson is on the 5th of November.", "questions": [{"q": "The student's surname is ______.", "type": "fill", "answer": "Brown"}, {"q": "The provisional licence takes about ______ weeks.", "type": "fill", "answer": "two"}, {"q": "The total package price is ______ pounds.", "type": "fill", "answer": "280"}, {"q": "The instructor covers the ______ District area.", "type": "fill", "answer": "Park"}, {"q": "The first lesson is on the 5th of ______.", "type": "fill", "answer": "November"}]}, {"title": "Section 2 · 音乐节信息", "audio": "Welcome to the Riverside Music Festival! The festival runs over three days from Friday 14th to Sunday 16th June. There are four stages: the Main Stage, the Acoustic Tent, the Dance Arena, and the Emerging Artists Platform. The Main Stage headliners are The Northern Lights on Friday, Electric Wave on Saturday, and Luna Park on Sunday. The Acoustic Tent features more intimate performances and has limited capacity, so arrive early if there is a particular act you want to see. Food stalls are located in the Global Food Village behind the Main Stage, offering everything from Mexican street food to Japanese ramen. There are also plenty of vegetarian and vegan options. Water refill stations are available throughout the site, so please bring a reusable bottle. Toilets are located at three points around the festival site. In case of emergency, first aid tents are positioned next to each stage.", "questions": [{"q": "How many days does the festival run?", "options": ["Two days", "Three days", "Four days", "Five days"], "answer": 1}, {"q": "Who headlines the Main Stage on Saturday?", "options": ["The Northern Lights", "Electric Wave", "Luna Park", "The Southern Stars"], "answer": 1}, {"q": "Where are the food stalls located?", "options": ["Next to the entrance", "Behind the Main Stage", "Near the car park", "By the Acoustic Tent"], "answer": 1}, {"q": "What should visitors bring?", "options": ["A reusable bottle", "Food", "A chair", "An umbrella"], "answer": 0}, {"q": "Where are first aid tents positioned?", "options": ["At the entrance", "In the car park", "Next to each stage", "In the food village"], "answer": 2}]}]}, "reading": {"duration": 60, "passage": "Ocean Cleanup Technologies: Promise and Limitations\n\nThe growing crisis of ocean plastic pollution has spurred a wave of technological innovation aimed at cleaning up the world's seas. An estimated 11 million metric tons of plastic enter the oceans each year, a figure projected to nearly triple by 2040 without significant intervention. In response, engineers and entrepreneurs have developed a range of technologies, from massive floating barriers to microscopic nanobots.\n\nThe most prominent of these initiatives is The Ocean Cleanup, a Dutch non-profit founded by Boyan Slat. Its approach uses a 600-metre-long U-shaped floating barrier that moves with ocean currents, concentrating plastic debris for collection by support vessels. The organisation claims its System 03 can clean an area the size of a football field every five seconds. In 2023, it began operations in the Great Pacific Garbage Patch, an accumulation zone spanning 1.6 million square kilometres.\n\nSmaller-scale technologies have also emerged. The Seabin, developed by Australian surfers, is a floating rubbish bin that skims the surface of marinas and harbours, capturing plastic, oil, and detergents. Interceptor devices deployed at river mouths aim to stop plastic before it reaches the ocean, addressing the fact that 80 percent of ocean plastic originates from land-based sources via rivers.\n\nHowever, critics argue that these technologies, while valuable, risk distracting from the fundamental solution: reducing plastic production and consumption. Cleanup technologies capture only a fraction of the plastic in the ocean, and much of it is microplastic that cannot be easily recovered. Environmental scientists warn that the energy and resources invested in cleanup might be better directed toward upstream solutions such as improved waste management infrastructure in developing countries.", "questions": [{"q": "How much plastic enters the oceans annually?", "options": ["8 million tons", "11 million tons", "14 million tons", "20 million tons"], "answer": 1}, {"q": "Who founded The Ocean Cleanup?", "options": ["Boyan Slat", "Bill Gates", "Elon Musk", "Richard Branson"], "answer": 0}, {"q": "How large is the Great Pacific Garbage Patch?", "options": ["1.2 million sq km", "1.6 million sq km", "2.0 million sq km", "2.5 million sq km"], "answer": 1}, {"q": "What percentage of ocean plastic comes from rivers?", "options": ["60%", "70%", "80%", "90%"], "answer": 2}, {"q": "What is the critics' main argument?", "options": ["Cleanup is too cheap", "Focus should be on reducing plastic production", "Technology is ineffective", "Oceans will clean themselves"], "answer": 1}]}, "writing": {"duration": 60, "task1": {"prompt": "The line graph below shows the number of visitors to three museums in London from 2010 to 2020.", "data": "Year | British Museum | Science Museum | V&A\n2010 | 5.8m | 2.7m | 2.3m\n2013 | 6.7m | 3.3m | 3.2m\n2016 | 6.4m | 3.0m | 3.8m\n2019 | 6.2m | 3.2m | 4.0m\n2020 | 1.3m | 0.6m | 0.9m", "minWords": 150, "sample": "The line graph illustrates the number of visitors to three major London museums—the British Museum, the Science Museum, and the Victoria and Albert Museum—between 2010 and 2020.\n\nOverall, all three museums experienced a gradual increase in visitor numbers until 2019, followed by a dramatic decline in 2020, likely due to the pandemic.\n\nThe British Museum consistently attracted the most visitors throughout the period, starting at 5.8 million in 2010, peaking at 6.7 million in 2013, and then gradually declining to 6.2 million by 2019 before plummeting to just 1.3 million in 2020.\n\nThe Science Museum started lower at 2.7 million, rose to 3.3 million by 2013, and fluctuated around 3 million until 2019 before dropping to 0.6 million. The V&A showed the most consistent growth among the three, rising from 2.3 million in 2010 to a peak of 4.0 million in 2019, nearly overtaking the Science Museum, before falling to 0.9 million in 2020."}, "task2": {"prompt": "Some people think that the government should provide free housing for those who cannot afford it. Others believe that this is not the government's responsibility. Discuss both views and give your opinion.", "minWords": 250, "sample": "Housing is a fundamental human need, yet in many countries, a significant portion of the population struggles to afford adequate accommodation. Whether governments should provide free housing to those in need is a contentious issue that touches on questions of social justice, economic feasibility, and the proper role of the state.\n\nAdvocates of government-provided housing argue that shelter is a basic right, not a privilege. In a civilised society, they contend, no one should be forced to sleep on the streets. Furthermore, providing stable housing can generate long-term savings for the state by reducing expenditure on emergency healthcare, policing, and other crisis services. Countries such as Finland have demonstrated the effectiveness of the 'Housing First' approach, which provides permanent housing to homeless individuals without preconditions, resulting in significant reductions in homelessness and associated social costs.\n\nOpponents, however, raise valid concerns about cost and dependency. Building and maintaining public housing requires substantial government expenditure that must be funded through taxation. There is also the argument that free housing might create a disincentive to work, potentially trapping people in dependency rather than empowering them toward self-sufficiency.\n\nIn my view, while the government should not necessarily provide free housing to everyone who cannot afford it, it has a clear responsibility to ensure that no one is left without shelter. A tiered approach—providing emergency housing for the most vulnerable while subsidising affordable housing for low-income families—strikes the right balance between compassion and fiscal responsibility."}}, "speaking": {"parts": [{"part": "Part 1", "topic": "Introduction & Food", "questions": ["What is your favourite food?", "Do you enjoy cooking?", "How often do you eat out?", "What is a traditional dish from your country?"]}, {"part": "Part 2", "topic": "Describe a meal you enjoyed", "cue": "You should say: Where you ate it, Who you were with, What you ate, And explain why you enjoyed it", "time": 120}, {"part": "Part 3", "topic": "Discussion · Food & Culture", "questions": ["How has food culture changed in your country?", "Do you think people are more health-conscious about food now?", "What role does food play in celebrations?", "Should schools teach children about nutrition?"]}]}}, {"id": "c20t2", "year": 2025, "name": "剑桥雅思 20 · Test 2", "listening": {"duration": 30, "sections": [{"title": "Section 1 · 酒店预订", "audio": "I'd like to book a room for two nights from the 10th of December. A double room is available at 120 pounds per night, including breakfast. Total comes to 240 pounds. Could I have your name? Susan Taylor, T-A-Y-L-O-R. A credit card is required for the reservation. Check-in is from 2 PM. The hotel is at 15 Victoria Road, near the central station. Your reservation number is HB7756.", "questions": [{"q": "The stay is for ______ nights.", "type": "fill", "answer": "two"}, {"q": "The room rate is ______ pounds per night.", "type": "fill", "answer": "120"}, {"q": "The guest's surname is ______.", "type": "fill", "answer": "Taylor"}, {"q": "Check-in time is from ______ PM.", "type": "fill", "answer": "2"}, {"q": "The reservation number is ______.", "type": "fill", "answer": "HB7756"}]}, {"title": "Section 2 · 企业培训日安排", "audio": "Good morning everyone. Here is the schedule for today's company training day. We will start at 9 AM with a welcome address from the CEO in the main conference room. At 9:30, we split into three groups. Group A will attend the Communication Skills workshop in Room 201, Group B goes to the Leadership Development session in Room 202, and Group C has the IT Security briefing in the IT Lab. Morning tea break is at 11 AM for 30 minutes in the staff canteen. From 11:30 to 1 PM, we continue with the second round of workshops where groups rotate. Lunch is from 1 PM to 2 PM, and we have arranged for catering from the Italian restaurant downstairs. The afternoon session from 2 PM to 4 PM is the team-building activity in the park across the road, weather permitting. If it rains, we will use the sports hall instead.", "questions": [{"q": "What time does the CEO's welcome address begin?", "options": ["8:30 AM", "9:00 AM", "9:30 AM", "10:00 AM"], "answer": 1}, {"q": "Where is the Communication Skills workshop?", "options": ["Room 201", "Room 202", "IT Lab", "Main conference room"], "answer": 0}, {"q": "How long is the morning tea break?", "options": ["15 minutes", "20 minutes", "30 minutes", "45 minutes"], "answer": 2}, {"q": "Where is lunch catered from?", "options": ["Chinese restaurant", "Italian restaurant", "French bakery", "Staff canteen"], "answer": 1}, {"q": "Where is the team-building activity if it rains?", "options": ["Conference room", "Sports hall", "IT Lab", "It is cancelled"], "answer": 1}]}]}, "reading": {"duration": 60, "passage": "The Economics of Renewable Energy Transition\n\nThe global transition from fossil fuels to renewable energy represents one of the most significant economic transformations in modern history. While the environmental imperative is clear, the economic dimensions of this transition are complex and multifaceted, involving questions of cost, employment, energy security, and international competitiveness.\n\nThe economics of renewables have shifted dramatically over the past decade. The levelised cost of electricity from solar photovoltaics has fallen by approximately 89 percent since 2010, while onshore wind costs have dropped by 70 percent, according to the International Renewable Energy Agency. In many parts of the world, building new renewable capacity is now cheaper than operating existing coal plants.\n\nEmployment effects have been a central focus of the transition debate. The renewable energy sector employed approximately 13.7 million people globally in 2023, up from 7.3 million in 2012. Solar photovoltaic installations account for the largest share of these jobs, followed by bioenergy and hydropower. However, the transition also involves substantial job displacement in fossil fuel industries, creating a need for 'just transition' policies that support affected workers and communities.\n\nEnergy security considerations have gained new urgency following the geopolitical disruptions of recent years. Countries heavily dependent on imported fossil fuels have faced severe price volatility and supply uncertainties. Renewables, by contrast, offer the prospect of domestic energy production that is insulated from international market fluctuations, though intermittency challenges require investment in storage and grid infrastructure.", "questions": [{"q": "By how much have solar PV costs fallen since 2010?", "options": ["70%", "80%", "89%", "95%"], "answer": 2}, {"q": "How many people did the renewable energy sector employ in 2023?", "options": ["7.3 million", "10.2 million", "13.7 million", "15.5 million"], "answer": 2}, {"q": "What is the 'just transition' about?", "options": ["Environmental protection", "Supporting displaced fossil fuel workers", "International trade", "Technology transfer"], "answer": 1}, {"q": "What challenge do renewables face regarding energy security?", "options": ["High fuel costs", "Intermittency issues", "Lack of technology", "Poor management"], "answer": 1}, {"q": "Which renewable sector has the most jobs?", "options": ["Wind energy", "Bioenergy", "Solar PV", "Hydropower"], "answer": 2}]}, "writing": {"duration": 60, "task1": {"prompt": "The pie charts below show the energy consumption by source in a country in 2000 and 2023.", "data": "2000: Coal 38%, Oil 32%, Gas 18%, Nuclear 8%, Renewables 4%\n2023: Coal 15%, Oil 28%, Gas 25%, Nuclear 12%, Renewables 20%", "minWords": 150, "sample": "The pie charts compare the distribution of energy consumption across five sources in a particular country between 2000 and 2023.\n\nOverall, the country's energy mix diversified significantly over the 23-year period, with a dramatic decline in coal usage offset by substantial growth in renewables and natural gas.\n\nIn 2000, coal dominated the energy landscape at 38%, followed by oil at 32%. Together, these two fossil fuels accounted for 70% of all energy consumption. Gas contributed 18%, while nuclear and renewables made up just 8% and 4% respectively.\n\nBy 2023, the picture had transformed considerably. Coal fell sharply to just 15%, a decrease of 23 percentage points. Oil also declined to 28%, though more moderately. In contrast, gas consumption rose to 25%, nuclear energy increased to 12%, and renewables experienced the most dramatic growth, surging from 4% to 20%.\n\nThis shift represents a clear movement away from the most carbon-intensive fossil fuels toward cleaner energy sources, with renewables showing the most impressive expansion over the period."}, "task2": {"prompt": "Many people believe that the increasing use of modern technology in the workplace is creating more problems than it solves. To what extent do you agree or disagree?", "minWords": 250, "sample": "Modern technology has fundamentally reshaped the workplace, from the tools we use to the ways we communicate and collaborate. While some argue that this technological integration has created more problems than it has solved, I largely disagree with this assessment, believing that the benefits significantly outweigh the drawbacks when technology is implemented thoughtfully.\n\nOn the positive side, technology has dramatically increased workplace productivity and efficiency. Automation of routine tasks has freed workers to focus on higher-value activities that require creativity and critical thinking. Communication tools such as instant messaging and video conferencing have enabled seamless collaboration across time zones and geographies, a capability that proved invaluable during the pandemic and continues to support flexible working arrangements.\n\nHowever, it would be naive to dismiss the genuine problems that workplace technology can create. The blurring of boundaries between work and personal life, facilitated by constant connectivity, has contributed to increased stress and burnout among many workers. The expectation of immediate responses to emails and messages can fragment attention and reduce deep work. Additionally, the rapid pace of technological change can leave some workers feeling deskilled or obsolete.\n\nIn my view, these problems are not inherent to the technology itself but rather stem from how it is implemented and managed. Organisations that establish clear policies around after-hours communication, provide adequate training, and involve employees in technology decisions tend to experience fewer negative effects. The solution is not to reject workplace technology but to use it more intelligently."}}, "speaking": {"parts": [{"part": "Part 1", "topic": "Introduction & Sports", "questions": ["Do you play any sports?", "How often do you exercise?", "What sports are popular in your country?", "Did you enjoy PE lessons at school?"]}, {"part": "Part 2", "topic": "Describe a sports event you watched", "cue": "You should say: What event it was, Where you watched it, Who you watched it with, And explain why you remember it", "time": 120}, {"part": "Part 3", "topic": "Discussion · Sports & Society", "questions": ["Why are some sports more popular than others?", "Do professional athletes have a responsibility to be role models?", "How has technology changed sports?", "Should governments invest in sports facilities?"]}]}}, {"id": "c21t1", "year": 2025, "name": "剑桥雅思 21 · Test 1", "listening": {"duration": 30, "sections": [{"title": "Section 1 · 诊所预约", "audio": "Good afternoon, I'd like to make an appointment with Dr. Foster. We have availability on Wednesday the 17th at 10:30 AM. Your name is Robert King, K-I-N-G. Your date of birth is 3rd July 1985. Is this a new problem? Yes, I've had a sore throat for three days. Your NHS number please. It's 4837 291 065. Please arrive 10 minutes before your appointment.", "questions": [{"q": "The appointment is with Dr. ______.", "type": "fill", "answer": "Foster"}, {"q": "The date is Wednesday the ______.", "type": "fill", "answer": "17th"}, {"q": "The patient's surname is ______.", "type": "fill", "answer": "King"}, {"q": "The patient has had a sore throat for ______ days.", "type": "fill", "answer": "three"}, {"q": "The NHS number is ______.", "type": "fill", "answer": "4837 291 065"}]}, {"title": "Section 2 · 社区中心活动", "audio": "I would like to tell you about the activities we are offering at the community centre this autumn. Our most popular programme is the Art for All workshop, which runs every Tuesday morning from 10 AM to noon. No previous experience is necessary, and all materials are provided free of charge. For those interested in fitness, we have introduced a new gentle yoga class on Thursday afternoons from 2 PM to 3 PM, specifically designed for older adults. On Saturday mornings, we host a community breakfast from 9 AM to 11 AM, where for just 3 pounds you can enjoy a full cooked breakfast and meet your neighbours. We also have a book club that meets on the first Monday of each month at 7 PM. This month's book is 'The Midnight Library' by Matt Haig. Finally, our computer skills drop-in session runs on Wednesday afternoons where volunteers provide one-to-one help with smartphones, tablets, and laptops.", "questions": [{"q": "When does the Art for All workshop take place?", "options": ["Monday morning", "Tuesday morning", "Wednesday morning", "Thursday morning"], "answer": 1}, {"q": "What time does the yoga class start?", "options": ["1 PM", "2 PM", "3 PM", "4 PM"], "answer": 1}, {"q": "How much does the community breakfast cost?", "options": ["2 pounds", "3 pounds", "4 pounds", "It is free"], "answer": 1}, {"q": "When does the book club meet?", "options": ["First Monday of the month", "Second Monday", "Last Monday", "Every Monday"], "answer": 0}, {"q": "Which book is the book club reading this month?", "options": ["The Silent Patient", "The Midnight Library", "The Thursday Murder Club", "Normal People"], "answer": 1}]}]}, "reading": {"duration": 60, "passage": "The Circular Economy: Beyond Recycling\n\nThe concept of a circular economy has gained significant traction in recent years as an alternative to the traditional linear economic model of 'take, make, dispose'. In a circular economy, resources are kept in use for as long as possible, extracting maximum value before recovering and regenerating products and materials at the end of their service life.\n\nThe environmental case for circularity is compelling. The Ellen MacArthur Foundation estimates that adopting circular economy principles in just five key sectors—cement, aluminium, steel, plastics, and food—could eliminate almost half of the remaining emissions from the production of goods, equivalent to 9.3 billion tonnes of CO2 by 2050. This would be roughly equivalent to cutting all current transport emissions to zero.\n\nBusinesses are beginning to embrace circular principles for clear economic reasons. The volatility of raw material prices, supply chain disruptions, and growing consumer demand for sustainable products have made circularity an increasingly attractive business strategy. Companies like Philips have shifted from selling lighting products to selling 'light as a service', retaining ownership of the physical equipment and ensuring its recovery and refurbishment.\n\nHowever, the transition faces significant obstacles. Current economic systems are optimised for linear production, with subsidies, tax structures, and infrastructure all favouring the extraction of virgin materials over reuse and recycling. Additionally, many products were not designed with circularity in mind, making disassembly and material recovery difficult and expensive.\n\nPerhaps the most profound challenge is cultural. Consumer culture is built on novelty and disposability, and shifting to a mindset that values durability, repairability, and sharing represents a fundamental change in how people relate to the material world.", "questions": [{"q": "What is the traditional economic model referred to as?", "options": ["Circular model", "Linear model of take-make-dispose", "Sharing economy", "Sustainable model"], "answer": 1}, {"q": "How much CO2 could circular principles eliminate by 2050?", "options": ["5.3 billion tonnes", "7.3 billion tonnes", "9.3 billion tonnes", "11.3 billion tonnes"], "answer": 2}, {"q": "What approach has Philips adopted?", "options": ["Selling cheaper bulbs", "Selling light as a service", "Reducing production", "Moving manufacturing overseas"], "answer": 1}, {"q": "What makes disassembly difficult for many products?", "options": ["High labour costs", "Products not designed for circularity", "Lack of technology", "Government regulations"], "answer": 1}, {"q": "What is identified as the most profound challenge?", "options": ["Economic systems", "Product design", "Cultural mindset of disposability", "Lack of infrastructure"], "answer": 2}]}, "writing": {"duration": 60, "task1": {"prompt": "The table below shows the results of a survey about people's reasons for learning a foreign language in two different years.", "data": "Reason | 2005 | 2025\nTravel | 45% | 38%\nWork/Career | 30% | 42%\nEducation | 15% | 8%\nPersonal interest | 10% | 12%", "minWords": 150, "sample": "The table presents the results of a survey comparing the reasons people learn a foreign language, with data from 2005 and 2025.\n\nOverall, work and career overtook travel as the primary motivation for language learning over the 20-year period, while education declined significantly as a reason.\n\nIn 2005, travel was the most common reason at 45%, followed by work at 30%. Education accounted for 15%, while personal interest was the least cited reason at 10%. By 2025, the picture had shifted notably. Work and career became the leading motivation, rising to 42%, an increase of 12 percentage points. Travel, while still significant, declined to 38%.\n\nThe most dramatic change occurred in education, which fell from 15% to just 8%, nearly halving its share. Personal interest showed a modest increase to 12%. This shift likely reflects the growing importance of multilingual skills in an increasingly globalised job market, where language proficiency has become a valuable career asset rather than merely a tool for leisure or academic requirements."}, "task2": {"prompt": "Some people believe that advertising has a powerful effect on what people buy, while others think that advertising no longer influences consumer behaviour. Discuss both views and give your opinion.", "minWords": 250, "sample": "Advertising has been a cornerstone of consumer capitalism for over a century, yet its effectiveness in the digital age is increasingly debated. While some maintain that advertising remains a powerful force shaping purchasing decisions, others argue that modern consumers have developed immunity to its influence. This essay will examine both perspectives.\n\nThose who believe in advertising's continued power point to the sheer scale of investment: global advertising expenditure exceeded 700 billion dollars in 2024, suggesting that businesses continue to see it as highly effective. Modern advertising has also become far more sophisticated, using data analytics and behavioural targeting to deliver personalised messages at precisely the right moment. The rise of influencer marketing demonstrates advertising's ability to adapt to new media environments.\n\nConversely, sceptics argue that consumers today are more informed and sceptical than ever before. Online reviews, comparison websites, and social media discussions allow people to research products independently before making purchases. Ad-blocking software is used by over 40 percent of internet users globally. Furthermore, younger generations, particularly Gen Z, have demonstrated a marked preference for authentic, peer-generated content over polished advertisements.\n\nIn my opinion, the truth lies between these extremes. Advertising has not lost its power, but the nature of that power has transformed. The most effective modern advertising operates subtly, through brand building, emotional association, and social proof rather than direct persuasion. Consumers may believe they are immune, but the cumulative effect of consistent brand messaging shapes preferences in ways that are often unconscious."}}, "speaking": {"parts": [{"part": "Part 1", "topic": "Introduction & Shopping", "questions": ["Do you enjoy shopping?", "How often do you go shopping?", "Do you prefer shopping online or in stores?", "What was the last thing you bought?"]}, {"part": "Part 2", "topic": "Describe something you bought that you were happy with", "cue": "You should say: What you bought, Where you bought it, Why you chose it, And explain why you were happy with it", "time": 120}, {"part": "Part 3", "topic": "Discussion · Consumer Behaviour", "questions": ["How has shopping changed in recent years?", "Do you think advertising influences what people buy?", "Is it better to buy cheap products or invest in quality?", "What impact does online shopping have on local businesses?"]}]}}, {"id": "c21t2", "year": 2025, "name": "剑桥雅思 21 · Test 2", "listening": {"duration": 30, "sections": [{"title": "Section 1 · 夏令营报名", "audio": "I'd like to register my daughter for summer camp. Her name is Lucy White, W-H-I-T-E. She is twelve years old. We have the Adventure Camp from 20th July to 3rd August, that's two weeks. The fee is 350 pounds including meals and activities. She needs to bring a sleeping bag and waterproof jacket. The camp is at Lakewood Forest, about 40 miles from the city. The registration code is SC2024.", "questions": [{"q": "The child's surname is ______.", "type": "fill", "answer": "White"}, {"q": "She is ______ years old.", "type": "fill", "answer": "twelve"}, {"q": "The camp duration is ______ weeks.", "type": "fill", "answer": "two"}, {"q": "The total fee is ______ pounds.", "type": "fill", "answer": "350"}, {"q": "The camp is at ______ Forest.", "type": "fill", "answer": "Lakewood"}]}, {"title": "Section 2 · 环保倡议介绍", "audio": "Today I want to talk about our community's Green Living Initiative, which launched six months ago. The initiative has three main programmes. The first is our food waste reduction scheme. We distributed 2,000 kitchen caddies to households and now collect food waste separately every Monday. In just six months, we have diverted 350 tonnes of food waste from landfill. The second programme is our tree planting campaign. We set a target of planting 10,000 trees across the community, and I am delighted to say we have already reached 7,500, with the remainder to be planted this autumn. Volunteers are always welcome at our monthly planting days. The third is our sustainable transport project. We have installed 50 new electric vehicle charging points across the town and launched a bike-sharing scheme with 200 bicycles at 25 docking stations. The scheme has been hugely popular, with over 15,000 journeys made in the first three months.", "questions": [{"q": "When did the Green Living Initiative launch?", "options": ["Three months ago", "Six months ago", "Nine months ago", "One year ago"], "answer": 1}, {"q": "How many kitchen caddies were distributed?", "options": ["1,500", "2,000", "2,500", "3,000"], "answer": 1}, {"q": "How many tonnes of food waste have been diverted?", "options": ["250 tonnes", "300 tonnes", "350 tonnes", "400 tonnes"], "answer": 2}, {"q": "How many trees have been planted so far?", "options": ["5,000", "6,500", "7,500", "10,000"], "answer": 2}, {"q": "How many journeys were made on the bike scheme in the first three months?", "options": ["10,000", "12,000", "15,000", "20,000"], "answer": 2}]}]}, "reading": {"duration": 60, "passage": "The Anthropology of Digital Communities\n\nThe rise of digital platforms has given birth to new forms of human community that challenge traditional anthropological categories. Online communities, from Reddit forums to Discord servers to massive multiplayer online games, have become genuine sites of culture, complete with their own norms, languages, hierarchies, and rituals.\n\nAnthropologists studying these digital spaces have observed that they function remarkably similarly to physical communities. The concept of 'liminality', originally developed by anthropologist Victor Turner to describe the transitional phase in rites of passage, has proven useful in understanding how newcomers are socialised into online communities. New members typically undergo a period of observation and tentative participation—known as 'lurking' in internet parlance—before becoming fully integrated members with recognised status.\n\nLanguage plays a particularly important role in digital community formation. Each community develops its own lexicon of insider terms, acronyms, and references that serve both communicative and identity-marking functions. The use of these linguistic markers signals belonging and excludes outsiders, much as specialised jargon does in professional communities.\n\nHowever, digital communities also present unique characteristics that distinguish them from their physical counterparts. The absence of physical co-presence fundamentally alters the nature of social accountability. Anonymity and pseudonymity, while enabling freer expression, can also facilitate antisocial behaviour that would be constrained by face-to-face interaction. The ease of exit—simply closing a browser tab—means that community bonds, while often genuine, can be more fragile than those forged through shared physical experience.\n\nPerhaps most significantly, digital communities have demonstrated the capacity to mobilise collective action in the physical world. From political movements to charitable fundraising, online communities have repeatedly translated virtual solidarity into real-world impact.", "questions": [{"q": "What does 'lurking' refer to in online communities?", "options": ["Being banned", "Observation before participation", "Posting frequently", "Moderating content"], "answer": 1}, {"q": "Who developed the concept of 'liminality'?", "options": ["Claude Levi-Strauss", "Victor Turner", "Margaret Mead", "Bronislaw Malinowski"], "answer": 1}, {"q": "What role does language play in digital communities?", "options": ["It is unimportant", "It signals belonging and excludes outsiders", "It simplifies communication", "It replaces visual cues"], "answer": 1}, {"q": "What fundamental difference does the text identify between digital and physical communities?", "options": ["Different interests", "Absence of physical co-presence", "More members", "No rules"], "answer": 1}, {"q": "What capacity have digital communities demonstrated?", "options": ["Creating jobs", "Mobilising collective action", "Reducing screen time", "Improving education"], "answer": 1}]}, "writing": {"duration": 60, "task1": {"prompt": "The bar chart below shows the percentage of men and women in different age groups who participated in volunteer work in a European country in 2023.", "data": "Age Group | Men | Women\n18-25 | 22% | 32%\n26-40 | 18% | 28%\n41-55 | 24% | 35%\n56-70 | 30% | 38%\n71+ | 25% | 20%", "minWords": 150, "sample": "The bar chart illustrates the proportion of males and females across five age groups who engaged in volunteer work in a European country during 2023.\n\nOverall, women participated in volunteering at higher rates than men across most age groups, with the notable exception of the oldest category where the pattern reversed.\n\nAmong the youngest group (18-25), 32% of women volunteered compared to 22% of men, a gap of 10 percentage points. This pattern continued in the 26-40 age bracket, where female participation stood at 28% versus 18% for males. The gender gap widened further in the 41-55 group, with 35% of women and 24% of men volunteering.\n\nThe 56-70 age group showed the highest participation rates for both genders, with 38% of women and 30% of men engaged in volunteer work. However, a striking reversal occurred in the 71-plus category: male participation rose to 25% while female participation dropped sharply to 20%, making this the only age group where men volunteered at a higher rate than women. This pattern may reflect differing retirement patterns and caregiving responsibilities in later life."}, "task2": {"prompt": "Some people think that all university students should study whatever they like. Others believe that they should only be allowed to study subjects that will be useful in the future, such as those related to science and technology. Discuss both views and give your opinion.", "minWords": 250, "sample": "The question of what university students should study touches on fundamental tensions between personal freedom, economic utility, and the purpose of higher education itself. While some argue that students should follow their passions regardless of practical considerations, others advocate for a more utilitarian approach focused on future economic needs.\n\nThose who support academic freedom emphasise that genuine intellectual engagement produces the best outcomes. Students who are passionate about their subjects are more likely to excel, contribute original ideas, and persist through challenges. History shows that many groundbreaking innovations emerged from seemingly 'impractical' disciplines: philosophy gave us the foundations of logic that underpin computer science, while linguistics research contributed to the development of natural language processing.\n\nMoreover, predicting which skills will be 'useful' in the future is notoriously difficult. The rapid pace of technological change means that specific technical knowledge can become obsolete quickly, while transferable skills such as critical thinking, communication, and adaptability—cultivated across all disciplines—retain enduring value.\n\nOn the other hand, pragmatists argue that societies face pressing challenges in areas like climate change, healthcare, and technological development that require specific expertise. Governments investing in higher education have a legitimate interest in ensuring that graduates can contribute to addressing these challenges.\n\nIn my view, a balanced approach is most sensible. Students should have the freedom to pursue their interests, but universities and governments should also ensure that the overall distribution of graduates across disciplines meets societal needs. This could be achieved through incentives such as scholarships in priority fields rather than through restrictions on student choice."}}, "speaking": {"parts": [{"part": "Part 1", "topic": "Introduction & Weather", "questions": ["What is the weather like today?", "Do you prefer hot or cold weather?", "Has the weather in your country changed in recent years?", "What do you like to do when the weather is good?"]}, {"part": "Part 2", "topic": "Describe an environmental problem in your country", "cue": "You should say: What the problem is, What causes it, What effects it has, And explain what could be done about it", "time": 120}, {"part": "Part 3", "topic": "Discussion · Environment", "questions": ["What are the biggest environmental challenges facing the world today?", "Do individuals have a responsibility to protect the environment?", "How can governments encourage people to be more environmentally friendly?", "Do you think the situation will improve in the future?"]}]}}];
+const TESTS = [
+  {
+    "id": "c17t1",
+    "year": 2022,
+    "name": "剑桥雅思 17 · Test 1",
+    "listening": {
+      "duration": 30,
+      "sections": [
+        {
+          "title": "Section 1 · Buckworth Conservation Group",
+          "questions": [
+            {
+              "q": "Q1",
+              "type": "fill",
+              "answer": "litter"
+            },
+            {
+              "q": "Q2",
+              "type": "fill",
+              "answer": "dogs"
+            },
+            {
+              "q": "Q3",
+              "type": "fill",
+              "answer": "insects"
+            },
+            {
+              "q": "Q4",
+              "type": "fill",
+              "answer": "butterflies"
+            },
+            {
+              "q": "Q5",
+              "type": "fill",
+              "answer": "wall"
+            },
+            {
+              "q": "Q6",
+              "type": "fill",
+              "answer": "island"
+            },
+            {
+              "q": "Q7",
+              "type": "fill",
+              "answer": "boots"
+            },
+            {
+              "q": "Q8",
+              "type": "fill",
+              "answer": "beginners"
+            },
+            {
+              "q": "Q9",
+              "type": "fill",
+              "answer": "spoons"
+            },
+            {
+              "q": "Q10",
+              "type": "fill",
+              "answer": "35"
+            }
+          ]
+        },
+        {
+          "title": "Section 2 · Boat trip around Tasmania",
+          "questions": [
+            {
+              "q": "Q11",
+              "type": "choice",
+              "options": [
+                "9 passengers",
+                "15 passengers",
+                "18 passengers"
+              ],
+              "answer": 0
+            },
+            {
+              "q": "Q12",
+              "type": "choice",
+              "options": [
+                "dark red",
+                "jet black",
+                "light green"
+              ],
+              "answer": 2
+            },
+            {
+              "q": "Q13",
+              "type": "choice",
+              "options": [
+                "Lunchbox 1",
+                "Lunchbox 2",
+                "Lunchbox 3"
+              ],
+              "answer": 1
+            },
+            {
+              "q": "Q14",
+              "type": "choice",
+              "options": [
+                "take it home",
+                "hand to staff",
+                "put in bins"
+              ],
+              "answer": 1
+            },
+            {
+              "q": "Q15-16",
+              "type": "multi",
+              "options": [
+                "old lighthouse tower",
+                "gift shop access",
+                "lighthouse keeper's cottage",
+                "climb to the top",
+                "free admission"
+              ],
+              "answers": [
+                0,
+                3
+              ],
+              "points": 2
+            },
+            {
+              "q": "Q17-18",
+              "type": "multi",
+              "options": [
+                "dolphins",
+                "seals",
+                "whales",
+                "penguins",
+                "sea eagles"
+              ],
+              "answers": [
+                1,
+                2
+              ],
+              "points": 2
+            },
+            {
+              "q": "Q19-20",
+              "type": "multi",
+              "options": [
+                "limestone formations",
+                "underwater tunnels",
+                "fossil remains",
+                "glow worms",
+                "bat colonies"
+              ],
+              "answers": [
+                3,
+                4
+              ],
+              "points": 2
+            }
+          ]
+        },
+        {
+          "title": "Section 3 · Work experience for veterinary science",
+          "questions": [
+            {
+              "q": "Q21",
+              "type": "choice",
+              "options": [
+                "practical experience",
+                "academic research",
+                "voluntary work"
+              ],
+              "answer": 0
+            },
+            {
+              "q": "Q22",
+              "type": "choice",
+              "options": [
+                "too theoretical",
+                "not well-structured",
+                "too demanding"
+              ],
+              "answer": 1
+            },
+            {
+              "q": "Q23",
+              "type": "choice",
+              "options": [
+                "management skills",
+                "communication skills",
+                "technical skills"
+              ],
+              "answer": 1
+            },
+            {
+              "q": "Q24",
+              "type": "choice",
+              "options": [
+                "working independently",
+                "team collaboration",
+                "problem-solving"
+              ],
+              "answer": 0
+            },
+            {
+              "q": "Q25",
+              "type": "choice",
+              "options": [
+                "flexible hours",
+                "good salary",
+                "relevant to studies"
+              ],
+              "answer": 2
+            },
+            {
+              "q": "Q26",
+              "type": "choice",
+              "options": [
+                "lack of training",
+                "unclear expectations",
+                "insufficient feedback"
+              ],
+              "answer": 2
+            },
+            {
+              "q": "Q27",
+              "type": "choice",
+              "options": [
+                "recommend it highly",
+                "would not recommend",
+                "neutral opinion"
+              ],
+              "answer": 0
+            },
+            {
+              "q": "Q28",
+              "type": "choice",
+              "options": [
+                "improved CV",
+                "networking opportunities",
+                "scholarship eligibility",
+                "course credits",
+                "personal growth",
+                "career direction"
+              ],
+              "answer": 4
+            },
+            {
+              "q": "Q29",
+              "type": "choice",
+              "options": [
+                "improved CV",
+                "networking opportunities",
+                "scholarship eligibility",
+                "course credits",
+                "personal growth",
+                "career direction"
+              ],
+              "answer": 5
+            },
+            {
+              "q": "Q30",
+              "type": "choice",
+              "options": [
+                "recommend to juniors",
+                "not for everyone",
+                "only for specific majors"
+              ],
+              "answer": 2
+            }
+          ]
+        },
+        {
+          "title": "Section 4 · Labyrinths",
+          "questions": [
+            {
+              "q": "Q31",
+              "type": "fill",
+              "answer": "puzzle"
+            },
+            {
+              "q": "Q32",
+              "type": "fill",
+              "answer": "logic"
+            },
+            {
+              "q": "Q33",
+              "type": "fill",
+              "answer": "confusion"
+            },
+            {
+              "q": "Q34",
+              "type": "fill",
+              "answer": "meditation"
+            },
+            {
+              "q": "Q35",
+              "type": "fill",
+              "answer": "stone"
+            },
+            {
+              "q": "Q36",
+              "type": "fill",
+              "answer": "coins"
+            },
+            {
+              "q": "Q37",
+              "type": "fill",
+              "answer": "tree"
+            },
+            {
+              "q": "Q38",
+              "type": "fill",
+              "answer": "breathing"
+            },
+            {
+              "q": "Q39",
+              "type": "fill",
+              "answer": "paper"
+            },
+            {
+              "q": "Q40",
+              "type": "fill",
+              "answer": "anxiety"
+            }
+          ]
+        }
+      ]
+    },
+    "reading": {
+      "duration": 60,
+      "passage": "剑桥雅思真题阅读材料 - 剑17 Test 1",
+      "questions": []
+    },
+    "writing": {
+      "duration": 60,
+      "task1": {
+        "prompt": "剑桥雅思真题写作 Task 1 - 剑17 Test 1",
+        "data": "",
+        "minWords": 150,
+        "sample": ""
+      },
+      "task2": {
+        "prompt": "剑桥雅思真题写作 Task 2 - 剑17 Test 1",
+        "minWords": 250,
+        "sample": ""
+      }
+    },
+    "speaking": {
+      "parts": [
+        {
+          "part": "Part 1",
+          "topic": "Introduction & Interview",
+          "questions": [
+            "Do you work or are you a student?",
+            "What do you do in your free time?",
+            "Do you enjoy reading?",
+            "How often do you exercise?"
+          ]
+        },
+        {
+          "part": "Part 2",
+          "topic": "Describe a memorable trip",
+          "cue": "You should say: Where you went, Who you went with, What you did, and explain why it was memorable.",
+          "time": 120
+        },
+        {
+          "part": "Part 3",
+          "topic": "Discussion · Travel",
+          "questions": [
+            "How has tourism changed in recent years?",
+            "Do you think travel broadens the mind?",
+            "What are the impacts of mass tourism?"
+          ]
+        }
+      ]
+    }
+  },
+  {
+    "id": "c17t2",
+    "year": 2022,
+    "name": "剑桥雅思 17 · Test 2",
+    "listening": {
+      "duration": 30,
+      "sections": [
+        {
+          "title": "Section 1 · Charity run",
+          "questions": [
+            {
+              "q": "Q1",
+              "type": "fill",
+              "answer": "collecting"
+            },
+            {
+              "q": "Q2",
+              "type": "fill",
+              "answer": "records"
+            },
+            {
+              "q": "Q3",
+              "type": "fill",
+              "answer": "West"
+            },
+            {
+              "q": "Q4",
+              "type": "fill",
+              "answer": "transport"
+            },
+            {
+              "q": "Q5",
+              "type": "fill",
+              "answer": "art"
+            },
+            {
+              "q": "Q6",
+              "type": "fill",
+              "answer": "hospital"
+            },
+            {
+              "q": "Q7",
+              "type": "fill",
+              "answer": "garden"
+            },
+            {
+              "q": "Q8",
+              "type": "fill",
+              "answer": "quiz"
+            },
+            {
+              "q": "Q9",
+              "type": "fill",
+              "answer": "tickets"
+            },
+            {
+              "q": "Q10",
+              "type": "fill",
+              "answer": "poster"
+            }
+          ]
+        },
+        {
+          "title": "Section 2 · Oniton Hall",
+          "questions": [
+            {
+              "q": "Q11",
+              "type": "choice",
+              "options": [
+                "guided tour",
+                "self-guided walk",
+                "audio guide"
+              ],
+              "answer": 1
+            },
+            {
+              "q": "Q12",
+              "type": "choice",
+              "options": [
+                "great hall",
+                "main staircase",
+                "library wing"
+              ],
+              "answer": 2
+            },
+            {
+              "q": "Q13",
+              "type": "choice",
+              "options": [
+                "Victorian era",
+                "Tudor period",
+                "Georgian style"
+              ],
+              "answer": 2
+            },
+            {
+              "q": "Q14",
+              "type": "choice",
+              "options": [
+                "formal gardens",
+                "walled garden",
+                "woodland walk"
+              ],
+              "answer": 1
+            },
+            {
+              "q": "Q15",
+              "type": "choice",
+              "options": [
+                "paintings display",
+                "costume exhibition",
+                "armour collection",
+                "photography gallery",
+                "furniture rooms"
+              ],
+              "answer": 3
+            },
+            {
+              "q": "Q16",
+              "type": "choice",
+              "options": [
+                "paintings display",
+                "costume exhibition",
+                "armour collection",
+                "photography gallery",
+                "furniture rooms"
+              ],
+              "answer": 2
+            },
+            {
+              "q": "Q17",
+              "type": "choice",
+              "options": [
+                "morning tea room",
+                "gift shop",
+                "plant centre",
+                "children's area",
+                "chapel",
+                "cafe terrace"
+              ],
+              "answer": 6
+            },
+            {
+              "q": "Q18",
+              "type": "choice",
+              "options": [
+                "morning tea room",
+                "gift shop",
+                "plant centre",
+                "children's area",
+                "chapel",
+                "cafe terrace"
+              ],
+              "answer": 0
+            },
+            {
+              "q": "Q19",
+              "type": "choice",
+              "options": [
+                "morning tea room",
+                "gift shop",
+                "plant centre",
+                "children's area",
+                "chapel",
+                "cafe terrace"
+              ],
+              "answer": 4
+            },
+            {
+              "q": "Q20",
+              "type": "choice",
+              "options": [
+                "morning tea room",
+                "gift shop",
+                "plant centre",
+                "children's area",
+                "chapel",
+                "cafe terrace"
+              ],
+              "answer": 5
+            }
+          ]
+        },
+        {
+          "title": "Section 3 · Romeo and Juliet",
+          "questions": [
+            {
+              "q": "Q21-22",
+              "type": "multi",
+              "options": [
+                "costume design",
+                "stage lighting",
+                "set construction",
+                "character analysis",
+                "historical context"
+              ],
+              "answers": [
+                3,
+                4
+              ],
+              "points": 2
+            },
+            {
+              "q": "Q23",
+              "type": "choice",
+              "options": [
+                "modern adaptation",
+                "traditional staging",
+                "musical version",
+                "abridged edition"
+              ],
+              "answer": 3
+            },
+            {
+              "q": "Q24",
+              "type": "choice",
+              "options": [
+                "language complexity",
+                "cultural references",
+                "emotional depth",
+                "plot structure"
+              ],
+              "answer": 2
+            },
+            {
+              "q": "Q25",
+              "type": "choice",
+              "options": [
+                "early scenes",
+                "middle acts",
+                "final act",
+                "prologue"
+              ],
+              "answer": 0
+            },
+            {
+              "q": "Q26",
+              "type": "choice",
+              "options": [
+                "tragic elements",
+                "comic relief",
+                "romantic subplot",
+                "political themes",
+                "family conflict",
+                "supernatural"
+              ],
+              "answer": 4
+            },
+            {
+              "q": "Q27",
+              "type": "choice",
+              "options": [
+                "tragic elements",
+                "comic relief",
+                "romantic subplot",
+                "political themes",
+                "family conflict",
+                "supernatural"
+              ],
+              "answer": 5
+            },
+            {
+              "q": "Q28",
+              "type": "choice",
+              "options": [
+                "stage directions",
+                "character motivation",
+                "symbolic imagery",
+                "rhythmic patterns"
+              ],
+              "answer": 1
+            },
+            {
+              "q": "Q29",
+              "type": "choice",
+              "options": [
+                "written assignment",
+                "group presentation",
+                "practical performance",
+                "research paper"
+              ],
+              "answer": 2
+            },
+            {
+              "q": "Q30",
+              "type": "choice",
+              "options": [
+                "next week",
+                "in two weeks",
+                "end of term",
+                "after the exam"
+              ],
+              "answer": 2
+            }
+          ]
+        },
+        {
+          "title": "Section 4 · Bilingualism",
+          "questions": [
+            {
+              "q": "Q31",
+              "type": "fill",
+              "answer": "321000"
+            },
+            {
+              "q": "Q32",
+              "type": "fill",
+              "answer": "vocabulary"
+            },
+            {
+              "q": "Q33",
+              "type": "fill",
+              "answer": "podcast"
+            },
+            {
+              "q": "Q34",
+              "type": "fill",
+              "answer": "smartphones"
+            },
+            {
+              "q": "Q35",
+              "type": "fill",
+              "answer": "bilingual"
+            },
+            {
+              "q": "Q36",
+              "type": "fill",
+              "answer": "playground"
+            },
+            {
+              "q": "Q37",
+              "type": "fill",
+              "answer": "picture"
+            },
+            {
+              "q": "Q38",
+              "type": "fill",
+              "answer": "grammar"
+            },
+            {
+              "q": "Q39",
+              "type": "fill",
+              "answer": "identity"
+            },
+            {
+              "q": "Q40",
+              "type": "fill",
+              "answer": "fluent"
+            }
+          ]
+        }
+      ]
+    },
+    "reading": {
+      "duration": 60,
+      "passage": "剑桥雅思真题阅读材料 - 剑17 Test 2",
+      "questions": []
+    },
+    "writing": {
+      "duration": 60,
+      "task1": {
+        "prompt": "剑桥雅思真题写作 Task 1 - 剑17 Test 2",
+        "data": "",
+        "minWords": 150,
+        "sample": ""
+      },
+      "task2": {
+        "prompt": "剑桥雅思真题写作 Task 2 - 剑17 Test 2",
+        "minWords": 250,
+        "sample": ""
+      }
+    },
+    "speaking": {
+      "parts": [
+        {
+          "part": "Part 1",
+          "topic": "Introduction & Hobbies",
+          "questions": [
+            "What do you do in your free time?",
+            "Do you enjoy reading?",
+            "How often do you exercise?",
+            "What kind of music do you like?"
+          ]
+        },
+        {
+          "part": "Part 2",
+          "topic": "Describe a skill you would like to learn",
+          "cue": "You should say: What the skill is, Why you want to learn it, How you plan to learn it, and explain how it might benefit you.",
+          "time": 120
+        },
+        {
+          "part": "Part 3",
+          "topic": "Discussion · Learning",
+          "questions": [
+            "What skills are important today?",
+            "How has technology changed learning?",
+            "Should schools teach practical skills?"
+          ]
+        }
+      ]
+    }
+  },
+  {
+    "id": "c17t3",
+    "year": 2022,
+    "name": "剑桥雅思 17 · Test 3",
+    "listening": {
+      "duration": 30,
+      "sections": [
+        {
+          "title": "Section 1 · Holiday rental",
+          "questions": [
+            {
+              "q": "Q1",
+              "type": "fill",
+              "answer": "family"
+            },
+            {
+              "q": "Q2",
+              "type": "fill",
+              "answer": "fit"
+            },
+            {
+              "q": "Q3",
+              "type": "fill",
+              "answer": "hotels"
+            },
+            {
+              "q": "Q4",
+              "type": "fill",
+              "answer": "Carrowniskey"
+            },
+            {
+              "q": "Q5",
+              "type": "fill",
+              "answer": "week"
+            },
+            {
+              "q": "Q6",
+              "type": "fill",
+              "answer": "bay"
+            },
+            {
+              "q": "Q7",
+              "type": "fill",
+              "answer": "September"
+            },
+            {
+              "q": "Q8",
+              "type": "fill",
+              "answer": "19"
+            },
+            {
+              "q": "Q9",
+              "type": "fill",
+              "answer": "30"
+            },
+            {
+              "q": "Q10",
+              "type": "fill",
+              "answer": "boots"
+            }
+          ]
+        },
+        {
+          "title": "Section 2 · Bird Park",
+          "questions": [
+            {
+              "q": "Q11-12",
+              "type": "multi",
+              "options": [
+                "bird feeding area",
+                "children's playground",
+                "picnic facilities",
+                "gift shop",
+                "education centre"
+              ],
+              "answers": [
+                1,
+                4
+              ],
+              "points": 2
+            },
+            {
+              "q": "Q13",
+              "type": "choice",
+              "options": [
+                "10 am",
+                "11 am",
+                "noon",
+                "2 pm"
+              ],
+              "answer": 2
+            },
+            {
+              "q": "Q14",
+              "type": "choice",
+              "options": [
+                "daily",
+                "weekends only",
+                "school holidays",
+                "summer only"
+              ],
+              "answer": 2
+            },
+            {
+              "q": "Q15",
+              "type": "choice",
+              "options": [
+                "entrance gate",
+                "visitor centre",
+                "main aviary",
+                "bird hospital"
+              ],
+              "answer": 0
+            },
+            {
+              "q": "Q16",
+              "type": "choice",
+              "options": [
+                "parrot show",
+                "feeding demonstration",
+                "flight display",
+                "keeper talk",
+                "raptor exhibit",
+                "penguin parade"
+              ],
+              "answer": 4
+            },
+            {
+              "q": "Q17",
+              "type": "choice",
+              "options": [
+                "parrot show",
+                "feeding demonstration",
+                "flight display",
+                "keeper talk",
+                "raptor exhibit",
+                "penguin parade"
+              ],
+              "answer": 3
+            },
+            {
+              "q": "Q18",
+              "type": "choice",
+              "options": [
+                "parrot show",
+                "feeding demonstration",
+                "flight display",
+                "keeper talk",
+                "raptor exhibit",
+                "penguin parade"
+              ],
+              "answer": 6
+            },
+            {
+              "q": "Q19",
+              "type": "choice",
+              "options": [
+                "parrot show",
+                "feeding demonstration",
+                "flight display",
+                "keeper talk",
+                "raptor exhibit",
+                "penguin parade"
+              ],
+              "answer": 5
+            },
+            {
+              "q": "Q20",
+              "type": "choice",
+              "options": [
+                "10-minute walk",
+                "15-minute drive",
+                "accessible by bus",
+                "near car park"
+              ],
+              "answer": 2
+            }
+          ]
+        },
+        {
+          "title": "Section 3 · Sea life project",
+          "questions": [
+            {
+              "q": "Q21",
+              "type": "choice",
+              "options": [
+                "laboratory work",
+                "field research",
+                "data analysis"
+              ],
+              "answer": 1
+            },
+            {
+              "q": "Q22",
+              "type": "choice",
+              "options": [
+                "limited time",
+                "poor equipment",
+                "weather conditions"
+              ],
+              "answer": 0
+            },
+            {
+              "q": "Q23",
+              "type": "choice",
+              "options": [
+                "coral reefs",
+                "rocky shores",
+                "sandy beaches"
+              ],
+              "answer": 0
+            },
+            {
+              "q": "Q24",
+              "type": "choice",
+              "options": [
+                "species identification",
+                "population counts",
+                "habitat mapping"
+              ],
+              "answer": 1
+            },
+            {
+              "q": "Q25",
+              "type": "choice",
+              "options": [
+                "weekly reports",
+                "biweekly meetings",
+                "monthly reviews"
+              ],
+              "answer": 2
+            },
+            {
+              "q": "Q26",
+              "type": "choice",
+              "options": [
+                "photography skills",
+                "swimming ability",
+                "boat handling"
+              ],
+              "answer": 0
+            },
+            {
+              "q": "Q27",
+              "type": "choice",
+              "options": [
+                "marine biology",
+                "environmental policy",
+                "oceanography",
+                "conservation ecology",
+                "fisheries science",
+                "geography"
+              ],
+              "answer": 3
+            },
+            {
+              "q": "Q28",
+              "type": "choice",
+              "options": [
+                "marine biology",
+                "environmental policy",
+                "oceanography",
+                "conservation ecology",
+                "fisheries science",
+                "geography"
+              ],
+              "answer": 1
+            },
+            {
+              "q": "Q29",
+              "type": "choice",
+              "options": [
+                "marine biology",
+                "environmental policy",
+                "oceanography",
+                "conservation ecology",
+                "fisheries science",
+                "geography"
+              ],
+              "answer": 5
+            },
+            {
+              "q": "Q30",
+              "type": "choice",
+              "options": [
+                "marine biology",
+                "environmental policy",
+                "oceanography",
+                "conservation ecology",
+                "fisheries science",
+                "geography"
+              ],
+              "answer": 7
+            }
+          ]
+        },
+        {
+          "title": "Section 4 · Bird migration theory",
+          "questions": [
+            {
+              "q": "Q31",
+              "type": "fill",
+              "answer": "mud"
+            },
+            {
+              "q": "Q32",
+              "type": "fill",
+              "answer": "feathers"
+            },
+            {
+              "q": "Q33",
+              "type": "fill",
+              "answer": "shape"
+            },
+            {
+              "q": "Q34",
+              "type": "fill",
+              "answer": "moon"
+            },
+            {
+              "q": "Q35",
+              "type": "fill",
+              "answer": "neck"
+            },
+            {
+              "q": "Q36",
+              "type": "fill",
+              "answer": "evidence"
+            },
+            {
+              "q": "Q37",
+              "type": "fill",
+              "answer": "destinations"
+            },
+            {
+              "q": "Q38",
+              "type": "fill",
+              "answer": "oceans"
+            },
+            {
+              "q": "Q39",
+              "type": "fill",
+              "answer": "recovery"
+            },
+            {
+              "q": "Q40",
+              "type": "fill",
+              "answer": "atlas"
+            }
+          ]
+        }
+      ]
+    },
+    "reading": {
+      "duration": 60,
+      "passage": "剑桥雅思真题阅读材料 - 剑17 Test 3",
+      "questions": []
+    },
+    "writing": {
+      "duration": 60,
+      "task1": {
+        "prompt": "剑桥雅思真题写作 Task 1 - 剑17 Test 3",
+        "data": "",
+        "minWords": 150,
+        "sample": ""
+      },
+      "task2": {
+        "prompt": "剑桥雅思真题写作 Task 2 - 剑17 Test 3",
+        "minWords": 250,
+        "sample": ""
+      }
+    },
+    "speaking": {
+      "parts": [
+        {
+          "part": "Part 1",
+          "topic": "Introduction",
+          "questions": [
+            "Where do you live?",
+            "What do you like about your hometown?",
+            "How often do you travel?"
+          ]
+        },
+        {
+          "part": "Part 2",
+          "topic": "Describe an interesting place",
+          "cue": "Where it is, What you can see there, and explain why it is interesting.",
+          "time": 120
+        },
+        {
+          "part": "Part 3",
+          "topic": "Discussion · Places",
+          "questions": [
+            "How has your hometown changed?",
+            "What makes a place popular?"
+          ]
+        }
+      ]
+    }
+  },
+  {
+    "id": "c17t4",
+    "year": 2022,
+    "name": "剑桥雅思 17 · Test 4",
+    "listening": {
+      "duration": 30,
+      "sections": [
+        {
+          "title": "Section 1 · Cleaning service",
+          "questions": [
+            {
+              "q": "Q1",
+              "type": "fill",
+              "answer": "floor(s)"
+            },
+            {
+              "q": "Q2",
+              "type": "fill",
+              "answer": "fridge"
+            },
+            {
+              "q": "Q3",
+              "type": "fill",
+              "answer": "shirts"
+            },
+            {
+              "q": "Q4",
+              "type": "fill",
+              "answer": "windows"
+            },
+            {
+              "q": "Q5",
+              "type": "fill",
+              "answer": "balcony"
+            },
+            {
+              "q": "Q6",
+              "type": "fill",
+              "answer": "electrician"
+            },
+            {
+              "q": "Q7",
+              "type": "fill",
+              "answer": "dust"
+            },
+            {
+              "q": "Q8",
+              "type": "fill",
+              "answer": "police"
+            },
+            {
+              "q": "Q9",
+              "type": "fill",
+              "answer": "training"
+            },
+            {
+              "q": "Q10",
+              "type": "fill",
+              "answer": "review"
+            }
+          ]
+        },
+        {
+          "title": "Section 2 · Food festival",
+          "questions": [
+            {
+              "q": "Q11",
+              "type": "choice",
+              "options": [
+                "this weekend",
+                "next weekend",
+                "in two weeks"
+              ],
+              "answer": 0
+            },
+            {
+              "q": "Q12",
+              "type": "choice",
+              "options": [
+                "cooking demonstrations",
+                "live music",
+                "food competitions"
+              ],
+              "answer": 0
+            },
+            {
+              "q": "Q13",
+              "type": "choice",
+              "options": [
+                "morning only",
+                "afternoon only",
+                "all day"
+              ],
+              "answer": 0
+            },
+            {
+              "q": "Q14",
+              "type": "choice",
+              "options": [
+                "Italian cuisine",
+                "Asian street food",
+                "local produce"
+              ],
+              "answer": 2
+            },
+            {
+              "q": "Q15",
+              "type": "choice",
+              "options": [
+                "parking area",
+                "town square",
+                "riverside"
+              ],
+              "answer": 0
+            },
+            {
+              "q": "Q16",
+              "type": "choice",
+              "options": [
+                "cheese making",
+                "bread baking",
+                "wine tasting"
+              ],
+              "answer": 2
+            },
+            {
+              "q": "Q17",
+              "type": "choice",
+              "options": [
+                "free samples",
+                "cooking class",
+                "recipe book"
+              ],
+              "answer": 1
+            },
+            {
+              "q": "Q18",
+              "type": "choice",
+              "options": [
+                "by bus",
+                "walking distance",
+                "by taxi"
+              ],
+              "answer": 2
+            },
+            {
+              "q": "Q19",
+              "type": "choice",
+              "options": [
+                "morning session",
+                "afternoon session",
+                "evening session"
+              ],
+              "answer": 1
+            },
+            {
+              "q": "Q20",
+              "type": "choice",
+              "options": [
+                "£5",
+                "free",
+                "£10"
+              ],
+              "answer": 0
+            }
+          ]
+        },
+        {
+          "title": "Section 3 · Hair workshop",
+          "questions": [
+            {
+              "q": "Q21-22",
+              "type": "multi",
+              "options": [
+                "scalp care",
+                "hair washing technique",
+                "colouring methods",
+                "cutting styles",
+                "client consultation"
+              ],
+              "answers": [
+                2,
+                4
+              ],
+              "points": 2
+            },
+            {
+              "q": "Q23-24",
+              "type": "multi",
+              "options": [
+                "product knowledge",
+                "time management",
+                "hygiene standards",
+                "pricing strategy",
+                "customer feedback"
+              ],
+              "answers": [
+                0,
+                3
+              ],
+              "points": 2
+            },
+            {
+              "q": "Q25",
+              "type": "choice",
+              "options": [
+                "practical workshop",
+                "online course",
+                "apprenticeship"
+              ],
+              "answer": 1
+            },
+            {
+              "q": "Q26",
+              "type": "choice",
+              "options": [
+                "hair types",
+                "face shapes",
+                "skin tones",
+                "texture types",
+                "density levels",
+                "growth patterns"
+              ],
+              "answer": 5
+            },
+            {
+              "q": "Q27",
+              "type": "choice",
+              "options": [
+                "hair types",
+                "face shapes",
+                "skin tones",
+                "texture types",
+                "density levels",
+                "growth patterns"
+              ],
+              "answer": 0
+            },
+            {
+              "q": "Q28",
+              "type": "choice",
+              "options": [
+                "hair types",
+                "face shapes",
+                "skin tones",
+                "texture types",
+                "density levels",
+                "growth patterns"
+              ],
+              "answer": 3
+            },
+            {
+              "q": "Q29",
+              "type": "choice",
+              "options": [
+                "hair types",
+                "face shapes",
+                "skin tones",
+                "texture types",
+                "density levels",
+                "growth patterns"
+              ],
+              "answer": 2
+            },
+            {
+              "q": "Q30",
+              "type": "choice",
+              "options": [
+                "hair types",
+                "face shapes",
+                "skin tones",
+                "texture types",
+                "density levels",
+                "growth patterns"
+              ],
+              "answer": 6
+            }
+          ]
+        },
+        {
+          "title": "Section 4 · Maple syrup",
+          "questions": [
+            {
+              "q": "Q31",
+              "type": "fill",
+              "answer": "golden"
+            },
+            {
+              "q": "Q32",
+              "type": "fill",
+              "answer": "healthy"
+            },
+            {
+              "q": "Q33",
+              "type": "fill",
+              "answer": "climate"
+            },
+            {
+              "q": "Q34",
+              "type": "fill",
+              "answer": "rock(s)"
+            },
+            {
+              "q": "Q35",
+              "type": "fill",
+              "answer": "diameter"
+            },
+            {
+              "q": "Q36",
+              "type": "fill",
+              "answer": "tube"
+            },
+            {
+              "q": "Q37",
+              "type": "fill",
+              "answer": "fire"
+            },
+            {
+              "q": "Q38",
+              "type": "fill",
+              "answer": "steam"
+            },
+            {
+              "q": "Q39",
+              "type": "fill",
+              "answer": "cloudy"
+            },
+            {
+              "q": "Q40",
+              "type": "fill",
+              "answer": "litre/liter"
+            }
+          ]
+        }
+      ]
+    },
+    "reading": {
+      "duration": 60,
+      "passage": "剑桥雅思真题阅读材料 - 剑17 Test 4",
+      "questions": []
+    },
+    "writing": {
+      "duration": 60,
+      "task1": {
+        "prompt": "剑桥雅思真题写作 Task 1 - 剑17 Test 4",
+        "data": "",
+        "minWords": 150,
+        "sample": ""
+      },
+      "task2": {
+        "prompt": "剑桥雅思真题写作 Task 2 - 剑17 Test 4",
+        "minWords": 250,
+        "sample": ""
+      }
+    },
+    "speaking": {
+      "parts": [
+        {
+          "part": "Part 1",
+          "topic": "Home & Food",
+          "questions": [
+            "Do you like cooking?",
+            "What is your favourite food?",
+            "Do you prefer eating at home or outside?"
+          ]
+        },
+        {
+          "part": "Part 2",
+          "topic": "Describe a special meal",
+          "cue": "What it was, Where you had it, Who you were with, and why it was special.",
+          "time": 120
+        },
+        {
+          "part": "Part 3",
+          "topic": "Food & Culture",
+          "questions": [
+            "How has food culture changed?",
+            "Is traditional food important?"
+          ]
+        }
+      ]
+    }
+  },
+  {
+    "id": "c18t1",
+    "year": 2023,
+    "name": "剑桥雅思 18 · Test 1",
+    "listening": {
+      "duration": 30,
+      "sections": [
+        {
+          "title": "Section 1 · Transport Survey",
+          "questions": [
+            {
+              "q": "Q1",
+              "type": "fill",
+              "answer": "DW30 7YZ"
+            },
+            {
+              "q": "Q2",
+              "type": "fill",
+              "answer": "24(th) April"
+            },
+            {
+              "q": "Q3",
+              "type": "fill",
+              "answer": "dentist"
+            },
+            {
+              "q": "Q4",
+              "type": "fill",
+              "answer": "parking"
+            },
+            {
+              "q": "Q5",
+              "type": "fill",
+              "answer": "Claxby"
+            },
+            {
+              "q": "Q6",
+              "type": "fill",
+              "answer": "late"
+            },
+            {
+              "q": "Q7",
+              "type": "fill",
+              "answer": "evening"
+            },
+            {
+              "q": "Q8",
+              "type": "fill",
+              "answer": "supermarket"
+            },
+            {
+              "q": "Q9",
+              "type": "fill",
+              "answer": "pollution"
+            },
+            {
+              "q": "Q10",
+              "type": "fill",
+              "answer": "storage"
+            }
+          ]
+        },
+        {
+          "title": "Section 2 · ACE Volunteer",
+          "questions": [
+            {
+              "q": "Q11",
+              "type": "choice",
+              "options": [
+                "reading to children",
+                "office administration",
+                "fundraising"
+              ],
+              "answer": 2
+            },
+            {
+              "q": "Q12",
+              "type": "choice",
+              "options": [
+                "one month",
+                "six months",
+                "one year"
+              ],
+              "answer": 0
+            },
+            {
+              "q": "Q13",
+              "type": "choice",
+              "options": [
+                "Monday evening",
+                "Wednesday morning",
+                "Friday afternoon"
+              ],
+              "answer": 0
+            },
+            {
+              "q": "Q14-15",
+              "type": "multi",
+              "options": [
+                "driving license",
+                "first aid certificate",
+                "previous experience",
+                "police check",
+                "references"
+              ],
+              "answers": [
+                1,
+                4
+              ],
+              "points": 2
+            },
+            {
+              "q": "Q16",
+              "type": "choice",
+              "options": [
+                "school",
+                "community centre",
+                "sports club"
+              ],
+              "answer": 1
+            },
+            {
+              "q": "Q17",
+              "type": "choice",
+              "options": [
+                "youth mentoring",
+                "elderly support",
+                "animal welfare",
+                "environmental projects",
+                "homeless support",
+                "hospital visiting"
+              ],
+              "answer": 6
+            },
+            {
+              "q": "Q18",
+              "type": "choice",
+              "options": [
+                "youth mentoring",
+                "elderly support",
+                "animal welfare",
+                "environmental projects",
+                "homeless support",
+                "hospital visiting"
+              ],
+              "answer": 3
+            },
+            {
+              "q": "Q19",
+              "type": "choice",
+              "options": [
+                "youth mentoring",
+                "elderly support",
+                "animal welfare",
+                "environmental projects",
+                "homeless support",
+                "hospital visiting"
+              ],
+              "answer": 0
+            },
+            {
+              "q": "Q20",
+              "type": "choice",
+              "options": [
+                "youth mentoring",
+                "elderly support",
+                "animal welfare",
+                "environmental projects",
+                "homeless support",
+                "hospital visiting"
+              ],
+              "answer": 5
+            }
+          ]
+        },
+        {
+          "title": "Section 3 · Fashion design",
+          "questions": [
+            {
+              "q": "Q21",
+              "type": "choice",
+              "options": [
+                "design principles",
+                "marketing strategies",
+                "manufacturing process"
+              ],
+              "answer": 0
+            },
+            {
+              "q": "Q22",
+              "type": "choice",
+              "options": [
+                "high street",
+                "online retail",
+                "luxury brands"
+              ],
+              "answer": 1
+            },
+            {
+              "q": "Q23",
+              "type": "choice",
+              "options": [
+                "fashion weeks",
+                "trade magazines",
+                "social media"
+              ],
+              "answer": 0
+            },
+            {
+              "q": "Q24",
+              "type": "choice",
+              "options": [
+                "pattern cutting",
+                "textile science",
+                "trend forecasting"
+              ],
+              "answer": 2
+            },
+            {
+              "q": "Q25",
+              "type": "choice",
+              "options": [
+                "internship",
+                "portfolio",
+                "networking"
+              ],
+              "answer": 1
+            },
+            {
+              "q": "Q26",
+              "type": "choice",
+              "options": [
+                "design software",
+                "sewing skills",
+                "colour theory"
+              ],
+              "answer": 0
+            },
+            {
+              "q": "Q27-28",
+              "type": "multi",
+              "options": [
+                "sustainable fashion",
+                "fast fashion impact",
+                "digital design tools",
+                "supply chain ethics",
+                "consumer behaviour"
+              ],
+              "answers": [
+                1,
+                4
+              ],
+              "points": 2
+            },
+            {
+              "q": "Q29-30",
+              "type": "multi",
+              "options": [
+                "brand identity",
+                "price strategy",
+                "celebrity endorsement",
+                "visual merchandising",
+                "customer loyalty"
+              ],
+              "answers": [
+                0,
+                2
+              ],
+              "points": 2
+            }
+          ]
+        },
+        {
+          "title": "Section 4 · Elephant translocation",
+          "questions": [
+            {
+              "q": "Q31",
+              "type": "fill",
+              "answer": "fences"
+            },
+            {
+              "q": "Q32",
+              "type": "fill",
+              "answer": "family"
+            },
+            {
+              "q": "Q33",
+              "type": "fill",
+              "answer": "helicopters"
+            },
+            {
+              "q": "Q34",
+              "type": "fill",
+              "answer": "stress"
+            },
+            {
+              "q": "Q35",
+              "type": "fill",
+              "answer": "sides"
+            },
+            {
+              "q": "Q36",
+              "type": "fill",
+              "answer": "breathing"
+            },
+            {
+              "q": "Q37",
+              "type": "fill",
+              "answer": "feet"
+            },
+            {
+              "q": "Q38",
+              "type": "fill",
+              "answer": "employment"
+            },
+            {
+              "q": "Q39",
+              "type": "fill",
+              "answer": "weapons"
+            },
+            {
+              "q": "Q40",
+              "type": "fill",
+              "answer": "tourism"
+            }
+          ]
+        }
+      ]
+    },
+    "reading": {
+      "duration": 60,
+      "passage": "剑桥雅思真题阅读材料 - 剑18 Test 1",
+      "questions": []
+    },
+    "writing": {
+      "duration": 60,
+      "task1": {
+        "prompt": "剑桥雅思真题写作 Task 1 - 剑18 Test 1",
+        "data": "",
+        "minWords": 150,
+        "sample": ""
+      },
+      "task2": {
+        "prompt": "剑桥雅思真题写作 Task 2 - 剑18 Test 1",
+        "minWords": 250,
+        "sample": ""
+      }
+    },
+    "speaking": {
+      "parts": [
+        {
+          "part": "Part 1",
+          "topic": "Introduction & Work",
+          "questions": [
+            "Do you work or study?",
+            "What do you like about your job?",
+            "Would you change your career?"
+          ]
+        },
+        {
+          "part": "Part 2",
+          "topic": "Describe a person who influenced you",
+          "cue": "Who this person is, How you know them, How they influenced you.",
+          "time": 120
+        },
+        {
+          "part": "Part 3",
+          "topic": "Role Models",
+          "questions": [
+            "What makes a good role model?",
+            "Are celebrities good role models?"
+          ]
+        }
+      ]
+    }
+  },
+  {
+    "id": "c18t2",
+    "year": 2023,
+    "name": "剑桥雅思 18 · Test 2",
+    "placeholder": true,
+    "listening": {
+      "duration": 30,
+      "sections": []
+    },
+    "reading": {
+      "duration": 60,
+      "passage": "",
+      "questions": []
+    },
+    "writing": {
+      "duration": 60,
+      "task1": {
+        "prompt": "",
+        "data": "",
+        "minWords": 150,
+        "sample": ""
+      },
+      "task2": {
+        "prompt": "",
+        "minWords": 250,
+        "sample": ""
+      }
+    },
+    "speaking": {
+      "parts": []
+    }
+  },
+  {
+    "id": "c18t3",
+    "year": 2023,
+    "name": "剑桥雅思 18 · Test 3",
+    "listening": {
+      "duration": 30,
+      "sections": [
+        {
+          "title": "Section 1 · Accommodation",
+          "questions": [
+            {
+              "q": "Q1",
+              "type": "fill",
+              "answer": "Marrowfield"
+            },
+            {
+              "q": "Q2",
+              "type": "fill",
+              "answer": "relative"
+            },
+            {
+              "q": "Q3",
+              "type": "fill",
+              "answer": "socialise"
+            },
+            {
+              "q": "Q4",
+              "type": "fill",
+              "answer": "full"
+            },
+            {
+              "q": "Q5",
+              "type": "fill",
+              "answer": "Domestic Life"
+            },
+            {
+              "q": "Q6",
+              "type": "fill",
+              "answer": "clouds"
+            },
+            {
+              "q": "Q7",
+              "type": "fill",
+              "answer": "timing"
+            },
+            {
+              "q": "Q8",
+              "type": "fill",
+              "answer": "Animal Magic"
+            },
+            {
+              "q": "Q9",
+              "type": "fill",
+              "answer": "animal movement"
+            },
+            {
+              "q": "Q10",
+              "type": "fill",
+              "answer": "dark"
+            }
+          ]
+        },
+        {
+          "title": "Section 2 · English courses / Tennis club",
+          "questions": [
+            {
+              "q": "Q11-12",
+              "type": "multi",
+              "options": [
+                "beginner courses",
+                "advanced training",
+                "junior programme",
+                "ladies morning",
+                "senior sessions"
+              ],
+              "answers": [
+                1,
+                2
+              ],
+              "points": 2
+            },
+            {
+              "q": "Q13-14",
+              "type": "multi",
+              "options": [
+                "free equipment",
+                "professional coaching",
+                "indoor courts",
+                "floodlit courts",
+                "online booking"
+              ],
+              "answers": [
+                1,
+                3
+              ],
+              "points": 2
+            },
+            {
+              "q": "Q15",
+              "type": "choice",
+              "options": [
+                "Monday",
+                "Wednesday",
+                "Friday"
+              ],
+              "answer": 2
+            },
+            {
+              "q": "Q16",
+              "type": "choice",
+              "options": [
+                "£25",
+                "£35",
+                "£45"
+              ],
+              "answer": 1
+            },
+            {
+              "q": "Q17",
+              "type": "choice",
+              "options": [
+                "singles only",
+                "doubles preferred",
+                "both available"
+              ],
+              "answer": 1
+            },
+            {
+              "q": "Q18",
+              "type": "choice",
+              "options": [
+                "spring term",
+                "summer camp",
+                "autumn season"
+              ],
+              "answer": 2
+            },
+            {
+              "q": "Q19",
+              "type": "choice",
+              "options": [
+                "tournament entry",
+                "club championship",
+                "social events"
+              ],
+              "answer": 0
+            },
+            {
+              "q": "Q20",
+              "type": "choice",
+              "options": [
+                "website",
+                "phone",
+                "in person"
+              ],
+              "answer": 0
+            }
+          ]
+        },
+        {
+          "title": "Section 3 · Elephant tracking project",
+          "questions": [
+            {
+              "q": "Q21-22",
+              "type": "multi",
+              "options": [
+                "animal behaviour",
+                "habitat conservation",
+                "veterinary science",
+                "wildlife photography",
+                "research methods"
+              ],
+              "answers": [
+                0,
+                4
+              ],
+              "points": 2
+            },
+            {
+              "q": "Q23-24",
+              "type": "multi",
+              "options": [
+                "field observation",
+                "lab experiments",
+                "data collection",
+                "statistical analysis",
+                "literature review"
+              ],
+              "answers": [
+                1,
+                3
+              ],
+              "points": 2
+            },
+            {
+              "q": "Q25",
+              "type": "choice",
+              "options": [
+                "elephant diet",
+                "social structure",
+                "mating habits",
+                "migration routes",
+                "communication",
+                "lifespan",
+                "threats"
+              ],
+              "answer": 6
+            },
+            {
+              "q": "Q26",
+              "type": "choice",
+              "options": [
+                "elephant diet",
+                "social structure",
+                "mating habits",
+                "migration routes",
+                "communication",
+                "lifespan",
+                "threats"
+              ],
+              "answer": 4
+            },
+            {
+              "q": "Q27",
+              "type": "choice",
+              "options": [
+                "elephant diet",
+                "social structure",
+                "mating habits",
+                "migration routes",
+                "communication",
+                "lifespan",
+                "threats"
+              ],
+              "answer": 1
+            },
+            {
+              "q": "Q28",
+              "type": "choice",
+              "options": [
+                "elephant diet",
+                "social structure",
+                "mating habits",
+                "migration routes",
+                "communication",
+                "lifespan",
+                "threats"
+              ],
+              "answer": 2
+            },
+            {
+              "q": "Q29",
+              "type": "choice",
+              "options": [
+                "elephant diet",
+                "social structure",
+                "mating habits",
+                "migration routes",
+                "communication",
+                "lifespan",
+                "threats"
+              ],
+              "answer": 5
+            },
+            {
+              "q": "Q30",
+              "type": "choice",
+              "options": [
+                "elephant diet",
+                "social structure",
+                "mating habits",
+                "migration routes",
+                "communication",
+                "lifespan",
+                "threats"
+              ],
+              "answer": 0
+            }
+          ]
+        },
+        {
+          "title": "Section 4 · Elephant tracking technology",
+          "questions": [
+            {
+              "q": "Q31",
+              "type": "fill",
+              "answer": "technical"
+            },
+            {
+              "q": "Q32",
+              "type": "fill",
+              "answer": "cheap"
+            },
+            {
+              "q": "Q33",
+              "type": "fill",
+              "answer": "thousands"
+            },
+            {
+              "q": "Q34",
+              "type": "fill",
+              "answer": "identification"
+            },
+            {
+              "q": "Q35",
+              "type": "fill",
+              "answer": "tracking"
+            },
+            {
+              "q": "Q36",
+              "type": "fill",
+              "answer": "military"
+            },
+            {
+              "q": "Q37",
+              "type": "fill",
+              "answer": "location"
+            },
+            {
+              "q": "Q38",
+              "type": "fill",
+              "answer": "prediction"
+            },
+            {
+              "q": "Q39",
+              "type": "fill",
+              "answer": "database"
+            },
+            {
+              "q": "Q40",
+              "type": "fill",
+              "answer": "trust"
+            }
+          ]
+        }
+      ]
+    },
+    "reading": {
+      "duration": 60,
+      "passage": "剑桥雅思真题阅读材料 - 剑18 Test 3",
+      "questions": []
+    },
+    "writing": {
+      "duration": 60,
+      "task1": {
+        "prompt": "剑桥雅思真题写作 Task 1 - 剑18 Test 3",
+        "data": "",
+        "minWords": 150,
+        "sample": ""
+      },
+      "task2": {
+        "prompt": "剑桥雅思真题写作 Task 2 - 剑18 Test 3",
+        "minWords": 250,
+        "sample": ""
+      }
+    },
+    "speaking": {
+      "parts": [
+        {
+          "part": "Part 1",
+          "topic": "Introduction",
+          "questions": [
+            "Where do you live?",
+            "What is your neighbourhood like?",
+            "Do you know your neighbours?"
+          ]
+        },
+        {
+          "part": "Part 2",
+          "topic": "Describe a place in nature",
+          "cue": "What it is, Where it is, What you can do there.",
+          "time": 120
+        },
+        {
+          "part": "Part 3",
+          "topic": "Nature & Environment",
+          "questions": [
+            "How important is nature to people?",
+            "Should cities have more green spaces?"
+          ]
+        }
+      ]
+    }
+  },
+  {
+    "id": "c18t4",
+    "year": 2023,
+    "name": "剑桥雅思 18 · Test 4",
+    "listening": {
+      "duration": 30,
+      "sections": [
+        {
+          "title": "Section 1 · Job enquiry",
+          "questions": [
+            {
+              "q": "Q1",
+              "type": "fill",
+              "answer": "receptionist"
+            },
+            {
+              "q": "Q2",
+              "type": "fill",
+              "answer": "Medical"
+            },
+            {
+              "q": "Q3",
+              "type": "fill",
+              "answer": "Chastons"
+            },
+            {
+              "q": "Q4",
+              "type": "fill",
+              "answer": "appointments"
+            },
+            {
+              "q": "Q5",
+              "type": "fill",
+              "answer": "database"
+            },
+            {
+              "q": "Q6",
+              "type": "fill",
+              "answer": "experience"
+            },
+            {
+              "q": "Q7",
+              "type": "fill",
+              "answer": "confident"
+            },
+            {
+              "q": "Q8",
+              "type": "fill",
+              "answer": "temporary"
+            },
+            {
+              "q": "Q9",
+              "type": "fill",
+              "answer": "1.15"
+            },
+            {
+              "q": "Q10",
+              "type": "fill",
+              "answer": "parking"
+            }
+          ]
+        },
+        {
+          "title": "Section 2 · Museum",
+          "questions": [
+            {
+              "q": "Q11",
+              "type": "choice",
+              "options": [
+                "local history",
+                "natural science",
+                "art gallery"
+              ],
+              "answer": 1
+            },
+            {
+              "q": "Q12",
+              "type": "choice",
+              "options": [
+                "free entry",
+                "guided tours",
+                "cafe facilities"
+              ],
+              "answer": 0
+            },
+            {
+              "q": "Q13",
+              "type": "choice",
+              "options": [
+                "ground floor",
+                "first floor",
+                "basement"
+              ],
+              "answer": 0
+            },
+            {
+              "q": "Q14",
+              "type": "choice",
+              "options": [
+                "10:00",
+                "10:30",
+                "11:00"
+              ],
+              "answer": 2
+            },
+            {
+              "q": "Q15",
+              "type": "choice",
+              "options": [
+                "fossil collection",
+                "dinosaur exhibit",
+                "mineral display",
+                "insect specimens",
+                "marine life",
+                "bird gallery"
+              ],
+              "answer": 5
+            },
+            {
+              "q": "Q16",
+              "type": "choice",
+              "options": [
+                "fossil collection",
+                "dinosaur exhibit",
+                "mineral display",
+                "insect specimens",
+                "marine life",
+                "bird gallery"
+              ],
+              "answer": 6
+            },
+            {
+              "q": "Q17",
+              "type": "choice",
+              "options": [
+                "fossil collection",
+                "dinosaur exhibit",
+                "mineral display",
+                "insect specimens",
+                "marine life",
+                "bird gallery"
+              ],
+              "answer": 4
+            },
+            {
+              "q": "Q18",
+              "type": "choice",
+              "options": [
+                "fossil collection",
+                "dinosaur exhibit",
+                "mineral display",
+                "insect specimens",
+                "marine life",
+                "bird gallery"
+              ],
+              "answer": 0
+            },
+            {
+              "q": "Q19",
+              "type": "choice",
+              "options": [
+                "fossil collection",
+                "dinosaur exhibit",
+                "mineral display",
+                "insect specimens",
+                "marine life",
+                "bird gallery"
+              ],
+              "answer": 2
+            },
+            {
+              "q": "Q20",
+              "type": "choice",
+              "options": [
+                "fossil collection",
+                "dinosaur exhibit",
+                "mineral display",
+                "insect specimens",
+                "marine life",
+                "bird gallery"
+              ],
+              "answer": 1
+            }
+          ]
+        },
+        {
+          "title": "Section 3 · Children's art",
+          "questions": [
+            {
+              "q": "Q21-22",
+              "type": "multi",
+              "options": [
+                "colour theory",
+                "composition skills",
+                "art history",
+                "drawing techniques",
+                "creative expression"
+              ],
+              "answers": [
+                1,
+                3
+              ],
+              "points": 2
+            },
+            {
+              "q": "Q23",
+              "type": "choice",
+              "options": [
+                "3-5 years",
+                "5-7 years",
+                "7-9 years",
+                "9-12 years"
+              ],
+              "answer": 3
+            },
+            {
+              "q": "Q24",
+              "type": "choice",
+              "options": [
+                "abstract",
+                "realistic",
+                "imaginative",
+                "symbolic"
+              ],
+              "answer": 0
+            },
+            {
+              "q": "Q25",
+              "type": "choice",
+              "options": [
+                "teacher guidance",
+                "peer learning",
+                "independent exploration"
+              ],
+              "answer": 2
+            },
+            {
+              "q": "Q26",
+              "type": "choice",
+              "options": [
+                "painting",
+                "sculpture",
+                "collage",
+                "printmaking",
+                "digital art",
+                "mixed media"
+              ],
+              "answer": 6
+            },
+            {
+              "q": "Q27",
+              "type": "choice",
+              "options": [
+                "painting",
+                "sculpture",
+                "collage",
+                "printmaking",
+                "digital art",
+                "mixed media"
+              ],
+              "answer": 5
+            },
+            {
+              "q": "Q28",
+              "type": "choice",
+              "options": [
+                "painting",
+                "sculpture",
+                "collage",
+                "printmaking",
+                "digital art",
+                "mixed media"
+              ],
+              "answer": 0
+            },
+            {
+              "q": "Q29",
+              "type": "choice",
+              "options": [
+                "painting",
+                "sculpture",
+                "collage",
+                "printmaking",
+                "digital art",
+                "mixed media"
+              ],
+              "answer": 1
+            },
+            {
+              "q": "Q30",
+              "type": "choice",
+              "options": [
+                "painting",
+                "sculpture",
+                "collage",
+                "printmaking",
+                "digital art",
+                "mixed media"
+              ],
+              "answer": 2
+            }
+          ]
+        },
+        {
+          "title": "Section 4 · Victor Hugo",
+          "questions": [
+            {
+              "q": "Q31",
+              "type": "fill",
+              "answer": "plot"
+            },
+            {
+              "q": "Q32",
+              "type": "fill",
+              "answer": "poverty"
+            },
+            {
+              "q": "Q33",
+              "type": "fill",
+              "answer": "Europe"
+            },
+            {
+              "q": "Q34",
+              "type": "fill",
+              "answer": "poetry"
+            },
+            {
+              "q": "Q35",
+              "type": "fill",
+              "answer": "drawings"
+            },
+            {
+              "q": "Q36",
+              "type": "fill",
+              "answer": "furniture"
+            },
+            {
+              "q": "Q37",
+              "type": "fill",
+              "answer": "lamps"
+            },
+            {
+              "q": "Q38",
+              "type": "fill",
+              "answer": "harbour"
+            },
+            {
+              "q": "Q39",
+              "type": "fill",
+              "answer": "children"
+            },
+            {
+              "q": "Q40",
+              "type": "fill",
+              "answer": "relatives"
+            }
+          ]
+        }
+      ]
+    },
+    "reading": {
+      "duration": 60,
+      "passage": "剑桥雅思真题阅读材料 - 剑18 Test 4",
+      "questions": []
+    },
+    "writing": {
+      "duration": 60,
+      "task1": {
+        "prompt": "剑桥雅思真题写作 Task 1 - 剑18 Test 4",
+        "data": "",
+        "minWords": 150,
+        "sample": ""
+      },
+      "task2": {
+        "prompt": "剑桥雅思真题写作 Task 2 - 剑18 Test 4",
+        "minWords": 250,
+        "sample": ""
+      }
+    },
+    "speaking": {
+      "parts": [
+        {
+          "part": "Part 1",
+          "topic": "Introduction & Art",
+          "questions": [
+            "Do you like art?",
+            "Have you visited any museums?",
+            "Did you do art at school?"
+          ]
+        },
+        {
+          "part": "Part 2",
+          "topic": "Describe a piece of art",
+          "cue": "What it is, Where you saw it, Why you like it.",
+          "time": 120
+        },
+        {
+          "part": "Part 3",
+          "topic": "Art & Society",
+          "questions": [
+            "Is art important in society?",
+            "Should children learn art at school?"
+          ]
+        }
+      ]
+    }
+  },
+  {
+    "id": "c19t1",
+    "year": 2024,
+    "name": "剑桥雅思 19 · Test 1",
+    "listening": {
+      "duration": 30,
+      "sections": [
+        {
+          "title": "Section 1 · Hinchingbrooke Park",
+          "questions": [
+            {
+              "q": "Q1",
+              "type": "fill",
+              "answer": "69"
+            },
+            {
+              "q": "Q2",
+              "type": "fill",
+              "answer": "stream"
+            },
+            {
+              "q": "Q3",
+              "type": "fill",
+              "answer": "data"
+            },
+            {
+              "q": "Q4",
+              "type": "fill",
+              "answer": "map"
+            },
+            {
+              "q": "Q5",
+              "type": "fill",
+              "answer": "visitors"
+            },
+            {
+              "q": "Q6",
+              "type": "fill",
+              "answer": "sounds"
+            },
+            {
+              "q": "Q7",
+              "type": "fill",
+              "answer": "freedom"
+            },
+            {
+              "q": "Q8",
+              "type": "fill",
+              "answer": "skills"
+            },
+            {
+              "q": "Q9",
+              "type": "fill",
+              "answer": "4.95"
+            },
+            {
+              "q": "Q10",
+              "type": "fill",
+              "answer": "leaders"
+            }
+          ]
+        },
+        {
+          "title": "Section 2 · Stanthorpe Twinning",
+          "questions": [
+            {
+              "q": "Q11",
+              "type": "choice",
+              "options": [
+                "community centre",
+                "town hall",
+                "school"
+              ],
+              "answer": 1
+            },
+            {
+              "q": "Q12",
+              "type": "choice",
+              "options": [
+                "cultural exchange",
+                "sports competition",
+                "business partnership"
+              ],
+              "answer": 0
+            },
+            {
+              "q": "Q13",
+              "type": "choice",
+              "options": [
+                "5 years",
+                "10 years",
+                "20 years"
+              ],
+              "answer": 1
+            },
+            {
+              "q": "Q14",
+              "type": "choice",
+              "options": [
+                "spring",
+                "summer",
+                "autumn"
+              ],
+              "answer": 2
+            },
+            {
+              "q": "Q15",
+              "type": "choice",
+              "options": [
+                "language classes",
+                "cooking workshops",
+                "music performances"
+              ],
+              "answer": 0
+            },
+            {
+              "q": "Q16",
+              "type": "choice",
+              "options": [
+                "parking area",
+                "main entrance",
+                "garden centre",
+                "stable shop",
+                "boathouse",
+                "cafe"
+              ],
+              "answer": 3
+            },
+            {
+              "q": "Q17",
+              "type": "choice",
+              "options": [
+                "parking area",
+                "main entrance",
+                "garden centre",
+                "stable shop",
+                "boathouse",
+                "cafe"
+              ],
+              "answer": 2
+            },
+            {
+              "q": "Q18",
+              "type": "choice",
+              "options": [
+                "parking area",
+                "main entrance",
+                "garden centre",
+                "stable shop",
+                "boathouse",
+                "cafe"
+              ],
+              "answer": 1
+            },
+            {
+              "q": "Q19",
+              "type": "choice",
+              "options": [
+                "parking area",
+                "main entrance",
+                "garden centre",
+                "stable shop",
+                "boathouse",
+                "cafe"
+              ],
+              "answer": 3
+            },
+            {
+              "q": "Q20",
+              "type": "choice",
+              "options": [
+                "parking area",
+                "main entrance",
+                "garden centre",
+                "stable shop",
+                "boathouse",
+                "cafe"
+              ],
+              "answer": 0
+            }
+          ]
+        },
+        {
+          "title": "Section 3 · Food",
+          "questions": [
+            {
+              "q": "Q21-22",
+              "type": "multi",
+              "options": [
+                "nutritional value",
+                "food processing",
+                "organic farming",
+                "supply chains",
+                "consumer trends"
+              ],
+              "answers": [
+                1,
+                3
+              ],
+              "points": 2
+            },
+            {
+              "q": "Q23-24",
+              "type": "multi",
+              "options": [
+                "food safety",
+                "cooking methods",
+                "ingredient sourcing",
+                "meal planning",
+                "cultural influences"
+              ],
+              "answers": [
+                0,
+                4
+              ],
+              "points": 2
+            },
+            {
+              "q": "Q25",
+              "type": "choice",
+              "options": [
+                "local markets",
+                "imported goods",
+                "supermarket chains",
+                "online delivery",
+                "farm shops",
+                "wholesale",
+                "restaurants"
+              ],
+              "answer": 3
+            },
+            {
+              "q": "Q26",
+              "type": "choice",
+              "options": [
+                "local markets",
+                "imported goods",
+                "supermarket chains",
+                "online delivery",
+                "farm shops",
+                "wholesale",
+                "restaurants"
+              ],
+              "answer": 6
+            },
+            {
+              "q": "Q27",
+              "type": "choice",
+              "options": [
+                "local markets",
+                "imported goods",
+                "supermarket chains",
+                "online delivery",
+                "farm shops",
+                "wholesale",
+                "restaurants"
+              ],
+              "answer": 2
+            },
+            {
+              "q": "Q28",
+              "type": "choice",
+              "options": [
+                "local markets",
+                "imported goods",
+                "supermarket chains",
+                "online delivery",
+                "farm shops",
+                "wholesale",
+                "restaurants"
+              ],
+              "answer": 1
+            },
+            {
+              "q": "Q29",
+              "type": "choice",
+              "options": [
+                "local markets",
+                "imported goods",
+                "supermarket chains",
+                "online delivery",
+                "farm shops",
+                "wholesale",
+                "restaurants"
+              ],
+              "answer": 5
+            },
+            {
+              "q": "Q30",
+              "type": "choice",
+              "options": [
+                "local markets",
+                "imported goods",
+                "supermarket chains",
+                "online delivery",
+                "farm shops",
+                "wholesale",
+                "restaurants"
+              ],
+              "answer": 7
+            }
+          ]
+        },
+        {
+          "title": "Section 4 · Céide Fields",
+          "questions": [
+            {
+              "q": "Q31",
+              "type": "fill",
+              "answer": "walls"
+            },
+            {
+              "q": "Q32",
+              "type": "fill",
+              "answer": "son"
+            },
+            {
+              "q": "Q33",
+              "type": "fill",
+              "answer": "fuel"
+            },
+            {
+              "q": "Q34",
+              "type": "fill",
+              "answer": "oxygen"
+            },
+            {
+              "q": "Q35",
+              "type": "fill",
+              "answer": "rectangular"
+            },
+            {
+              "q": "Q36",
+              "type": "fill",
+              "answer": "lamps"
+            },
+            {
+              "q": "Q37",
+              "type": "fill",
+              "answer": "family"
+            },
+            {
+              "q": "Q38",
+              "type": "fill",
+              "answer": "winter"
+            },
+            {
+              "q": "Q39",
+              "type": "fill",
+              "answer": "soil"
+            },
+            {
+              "q": "Q40",
+              "type": "fill",
+              "answer": "rain"
+            }
+          ]
+        }
+      ]
+    },
+    "reading": {
+      "duration": 60,
+      "passage": "剑桥雅思真题阅读材料 - 剑19 Test 1",
+      "questions": []
+    },
+    "writing": {
+      "duration": 60,
+      "task1": {
+        "prompt": "剑桥雅思真题写作 Task 1 - 剑19 Test 1",
+        "data": "",
+        "minWords": 150,
+        "sample": ""
+      },
+      "task2": {
+        "prompt": "剑桥雅思真题写作 Task 2 - 剑19 Test 1",
+        "minWords": 250,
+        "sample": ""
+      }
+    },
+    "speaking": {
+      "parts": [
+        {
+          "part": "Part 1",
+          "topic": "Introduction",
+          "questions": [
+            "Where do you live?",
+            "Do you like parks?",
+            "How often do you visit natural places?"
+          ]
+        },
+        {
+          "part": "Part 2",
+          "topic": "Describe a park you like",
+          "cue": "Where it is, What you can do there, Why you like it.",
+          "time": 120
+        },
+        {
+          "part": "Part 3",
+          "topic": "Parks & Nature",
+          "questions": [
+            "Why are parks important?",
+            "Should cities invest more in parks?"
+          ]
+        }
+      ]
+    }
+  },
+  {
+    "id": "c19t2",
+    "year": 2024,
+    "name": "剑桥雅思 19 · Test 2",
+    "placeholder": true,
+    "listening": {
+      "duration": 30,
+      "sections": []
+    },
+    "reading": {
+      "duration": 60,
+      "passage": "",
+      "questions": []
+    },
+    "writing": {
+      "duration": 60,
+      "task1": {
+        "prompt": "",
+        "data": "",
+        "minWords": 150,
+        "sample": ""
+      },
+      "task2": {
+        "prompt": "",
+        "minWords": 250,
+        "sample": ""
+      }
+    },
+    "speaking": {
+      "parts": []
+    }
+  },
+  {
+    "id": "c19t3",
+    "year": 2024,
+    "name": "剑桥雅思 19 · Test 3",
+    "listening": {
+      "duration": 30,
+      "sections": [
+        {
+          "title": "Section 1 · Kitchen",
+          "questions": [
+            {
+              "q": "Q1",
+              "type": "fill",
+              "answer": "harbour"
+            },
+            {
+              "q": "Q2",
+              "type": "fill",
+              "answer": "bridge"
+            },
+            {
+              "q": "Q3",
+              "type": "fill",
+              "answer": "3.30"
+            },
+            {
+              "q": "Q4",
+              "type": "fill",
+              "answer": "Rose"
+            },
+            {
+              "q": "Q5",
+              "type": "fill",
+              "answer": "sign"
+            },
+            {
+              "q": "Q6",
+              "type": "fill",
+              "answer": "purple"
+            },
+            {
+              "q": "Q7",
+              "type": "fill",
+              "answer": "samphire"
+            },
+            {
+              "q": "Q8",
+              "type": "fill",
+              "answer": "melon"
+            },
+            {
+              "q": "Q9",
+              "type": "fill",
+              "answer": "coconut"
+            },
+            {
+              "q": "Q10",
+              "type": "fill",
+              "answer": "strawberry"
+            }
+          ]
+        },
+        {
+          "title": "Section 2 · Local Festival",
+          "questions": [
+            {
+              "q": "Q11",
+              "type": "choice",
+              "options": [
+                "town centre",
+                "seafront",
+                "park"
+              ],
+              "answer": 2
+            },
+            {
+              "q": "Q12",
+              "type": "choice",
+              "options": [
+                "music stage",
+                "food stalls",
+                "craft market",
+                "children's area"
+              ],
+              "answer": 3
+            },
+            {
+              "q": "Q13",
+              "type": "choice",
+              "options": [
+                "Friday only",
+                "Saturday only",
+                "Sunday only",
+                "all weekend",
+                "Saturday & Sunday"
+              ],
+              "answer": 5
+            },
+            {
+              "q": "Q14",
+              "type": "choice",
+              "options": [
+                "Friday only",
+                "Saturday only",
+                "Sunday only",
+                "all weekend",
+                "Saturday & Sunday"
+              ],
+              "answer": 6
+            },
+            {
+              "q": "Q15",
+              "type": "choice",
+              "options": [
+                "Friday only",
+                "Saturday only",
+                "Sunday only",
+                "all weekend",
+                "Saturday & Sunday"
+              ],
+              "answer": 1
+            },
+            {
+              "q": "Q16",
+              "type": "choice",
+              "options": [
+                "Friday only",
+                "Saturday only",
+                "Sunday only",
+                "all weekend",
+                "Saturday & Sunday"
+              ],
+              "answer": 7
+            },
+            {
+              "q": "Q17-18",
+              "type": "multi",
+              "options": [
+                "fireworks display",
+                "parade",
+                "live music",
+                "street performers",
+                "lantern release"
+              ],
+              "answers": [
+                3,
+                4
+              ],
+              "points": 2
+            },
+            {
+              "q": "Q19-20",
+              "type": "multi",
+              "options": [
+                "shuttle bus",
+                "bicycle parking",
+                "extra car parks",
+                "road closures",
+                "train service"
+              ],
+              "answers": [
+                1,
+                2
+              ],
+              "points": 2
+            }
+          ]
+        },
+        {
+          "title": "Section 3 · Swimming",
+          "questions": [
+            {
+              "q": "Q21",
+              "type": "choice",
+              "options": [
+                "technique",
+                "endurance",
+                "speed"
+              ],
+              "answer": 2
+            },
+            {
+              "q": "Q22",
+              "type": "choice",
+              "options": [
+                "breathing",
+                "kicking",
+                "arm stroke"
+              ],
+              "answer": 1
+            },
+            {
+              "q": "Q23",
+              "type": "choice",
+              "options": [
+                "front crawl",
+                "breaststroke",
+                "backstroke"
+              ],
+              "answer": 0
+            },
+            {
+              "q": "Q24",
+              "type": "choice",
+              "options": [
+                "weekly",
+                "fortnightly",
+                "monthly"
+              ],
+              "answer": 0
+            },
+            {
+              "q": "Q25",
+              "type": "choice",
+              "options": [
+                "pool training",
+                "open water",
+                "race simulation"
+              ],
+              "answer": 2
+            },
+            {
+              "q": "Q26",
+              "type": "choice",
+              "options": [
+                "diet plan",
+                "sleep schedule",
+                "injury prevention"
+              ],
+              "answer": 2
+            },
+            {
+              "q": "Q27",
+              "type": "choice",
+              "options": [
+                "technique drills",
+                "sprint sets",
+                "endurance swims",
+                "kick practice",
+                "pull buoy work",
+                "breathing exercises",
+                "turn practice",
+                "race starts"
+              ],
+              "answer": 7
+            },
+            {
+              "q": "Q28",
+              "type": "choice",
+              "options": [
+                "technique drills",
+                "sprint sets",
+                "endurance swims",
+                "kick practice",
+                "pull buoy work",
+                "breathing exercises",
+                "turn practice",
+                "race starts"
+              ],
+              "answer": 4
+            },
+            {
+              "q": "Q29",
+              "type": "choice",
+              "options": [
+                "technique drills",
+                "sprint sets",
+                "endurance swims",
+                "kick practice",
+                "pull buoy work",
+                "breathing exercises",
+                "turn practice",
+                "race starts"
+              ],
+              "answer": 1
+            },
+            {
+              "q": "Q30",
+              "type": "choice",
+              "options": [
+                "technique drills",
+                "sprint sets",
+                "endurance swims",
+                "kick practice",
+                "pull buoy work",
+                "breathing exercises",
+                "turn practice",
+                "race starts"
+              ],
+              "answer": 5
+            }
+          ]
+        },
+        {
+          "title": "Section 4 · Tidal power",
+          "questions": [
+            {
+              "q": "Q31",
+              "type": "fill",
+              "answer": "clothing"
+            },
+            {
+              "q": "Q32",
+              "type": "fill",
+              "answer": "mouths"
+            },
+            {
+              "q": "Q33",
+              "type": "fill",
+              "answer": "salt"
+            },
+            {
+              "q": "Q34",
+              "type": "fill",
+              "answer": "toothpaste"
+            },
+            {
+              "q": "Q35",
+              "type": "fill",
+              "answer": "fertilisers"
+            },
+            {
+              "q": "Q36",
+              "type": "fill",
+              "answer": "nutrients"
+            },
+            {
+              "q": "Q37",
+              "type": "fill",
+              "answer": "growth"
+            },
+            {
+              "q": "Q38",
+              "type": "fill",
+              "answer": "weight"
+            },
+            {
+              "q": "Q39",
+              "type": "fill",
+              "answer": "acid"
+            },
+            {
+              "q": "Q40",
+              "type": "fill",
+              "answer": "society"
+            }
+          ]
+        }
+      ]
+    },
+    "reading": {
+      "duration": 60,
+      "passage": "剑桥雅思真题阅读材料 - 剑19 Test 3",
+      "questions": []
+    },
+    "writing": {
+      "duration": 60,
+      "task1": {
+        "prompt": "剑桥雅思真题写作 Task 1 - 剑19 Test 3",
+        "data": "",
+        "minWords": 150,
+        "sample": ""
+      },
+      "task2": {
+        "prompt": "剑桥雅思真题写作 Task 2 - 剑19 Test 3",
+        "minWords": 250,
+        "sample": ""
+      }
+    },
+    "speaking": {
+      "parts": [
+        {
+          "part": "Part 1",
+          "topic": "Introduction & Food",
+          "questions": [
+            "What is your favourite food?",
+            "Do you like cooking?",
+            "Do you prefer eating at home or outside?"
+          ]
+        },
+        {
+          "part": "Part 2",
+          "topic": "Describe a sport you'd like to try",
+          "cue": "What it is, What equipment is needed, Why you want to try it.",
+          "time": 120
+        },
+        {
+          "part": "Part 3",
+          "topic": "Sports & Health",
+          "questions": [
+            "Why is swimming popular?",
+            "Should children learn to swim?"
+          ]
+        }
+      ]
+    }
+  },
+  {
+    "id": "c19t4",
+    "year": 2024,
+    "name": "剑桥雅思 19 · Test 4",
+    "placeholder": true,
+    "listening": {
+      "duration": 30,
+      "sections": []
+    },
+    "reading": {
+      "duration": 60,
+      "passage": "",
+      "questions": []
+    },
+    "writing": {
+      "duration": 60,
+      "task1": {
+        "prompt": "",
+        "data": "",
+        "minWords": 150,
+        "sample": ""
+      },
+      "task2": {
+        "prompt": "",
+        "minWords": 250,
+        "sample": ""
+      }
+    },
+    "speaking": {
+      "parts": []
+    }
+  }
+];
 
 let state = {
   currentTest: 'c17t1',
@@ -392,6 +4019,26 @@ function renderModules() {
 
 function selectTest(id) {
   state.currentTest = id;
+  const t = TESTS.find(function(tx) { return tx.id === id; });
+  if (t && t.placeholder) {
+    const mc = document.getElementById('mainContent');
+    const wp = document.getElementById('welcomePanel');
+    const ac = document.getElementById('answerSheetCard');
+    if (wp) wp.classList.add('hidden');
+    if (ac) ac.classList.add('hidden');
+    stopTimer();
+    mc.innerHTML = '<div class="panel-header"><h2>' + t.name + '</h2></div>' +
+      '<div class="panel text-center" style="padding:60px 20px;">' +
+      '<div class="empty-state">' +
+      '<div class="empty-icon">📝</div>' +
+      '<h3>真题数据整理中，敬请期待</h3>' +
+      '<p class="text-sub">该套真题的听力答案数据正在收集中，完成后将第一时间更新。</p>' +
+      '<p class="text-sub">您可以先练习其他已上线的真题套卷。</p>' +
+      '</div></div>';
+    document.getElementById('answerSheetCard').classList.add('hidden');
+    renderTestList();
+    return;
+  }
   state.currentModule = state.currentModule;
   renderTestList();
   loadModule();
@@ -604,9 +4251,27 @@ function renderQuestion(q, qIdx, selected, submitted) {
     }
     h += '</div>';
     return h;
+  } else if (q.type === 'multi') {
+    var curr = (Array.isArray(selected) ? selected : []);
+    var multiId = 'multi-' + qIdx;
+    var optionLabels = ['A','B','C','D','E','F','G','H'];
+    var multiHtml = '<div class="question"><span class="q-num">Q' + (qIdx+1) + '.</span><span class="q-text">' + q.q + ' <small style="color:#D4A843">(多选)</small></span><div class="options">';
+    (q.options||[]).forEach(function(opt, oi) {
+      var cls = 'option';
+      var checked = curr.indexOf(oi) !== -1;
+      if (!submitted) {
+        if (checked) cls += ' selected';
+      } else {
+        if ((q.answers||[]).indexOf(oi) !== -1) cls += ' correct';
+        else if (checked) cls += ' wrong';
+      }
+      multiHtml += '<label class="' + cls + '"><input type="checkbox" id="' + multiId + '-' + oi + '" name="' + multiId + '" value="' + oi + '"' + (checked?' checked':'') + (submitted?' disabled':'') + ' onchange="selectMulti(' + qIdx + ',' + oi + ',this)"><span class="letter">' + optionLabels[oi] + '</span> <span>' + opt + '</span></label>';
+    });
+    multiHtml += '</div></div>';
+    return multiHtml;
   }
 
-  var letters = ['A','B','C','D','E'];
+  var letters = ['A','B','C','D','E','F','G','H'];
   var optsHtml = '';
   (q.options||[]).forEach(function(opt, oi) {
     var cls = 'option';
@@ -631,6 +4296,39 @@ function selectAnswer(qIdx, optionIdx) {
   loadModule(); // re-render to show selection
 }
 
+
+
+function selectMulti(qIdx, optionIdx, checkbox) {
+  const ansKey = state.currentTest + '_' + state.currentModule + '_' + qIdx;
+  if (!state.answers[ansKey]) state.answers[ansKey] = [];
+  if (checkbox.checked) {
+    if (!state.answers[ansKey].includes(optionIdx)) state.answers[ansKey].push(optionIdx);
+  } else {
+    state.answers[ansKey] = state.answers[ansKey].filter(function(v){ return v !== optionIdx; });
+  }
+  saveProgress();
+  renderAnswerSheet(getQuestions());
+  updateQNavButtons();
+  // Update option labels visually
+  const questions = getQuestions();
+  const q = questions[qIdx];
+  const options = q.options || [];
+  const multiId = 'multi-' + qIdx;
+  const submitKey = state.currentTest + '_' + state.currentModule;
+  const submitted = state.submitted[submitKey];
+  const correctSet = new Set(q.answers || []);
+  for (let o = 0; o < options.length; o++) {
+    const label = document.getElementById('label-' + multiId + '-' + o);
+    if (label) {
+      label.classList.toggle('selected', state.answers[ansKey].includes(o));
+      if (submitted) {
+        label.classList.toggle('correct', correctSet.has(o));
+        label.classList.toggle('wrong', state.answers[ansKey].includes(o) && !correctSet.has(o));
+      }
+    }
+  }
+}
+
 function fillAnswer(qIdx) {
   var key = state.currentTest + '_' + state.currentModule + '_' + qIdx;
   if (state.submitted[state.currentTest + '_' + state.currentModule]) return;
@@ -639,7 +4337,16 @@ function fillAnswer(qIdx) {
   state.answers[key] = input.value.trim();
   saveProgress();
   renderAnswerSheet(getQuestions());
-  loadModule();
+  updateQNavButtons();
+}
+
+function autoCheckFill(qIdx) {
+  var key = state.currentTest + '_' + state.currentModule + '_' + qIdx;
+  var input = document.getElementById('fillInput_' + qIdx);
+  if (!input) return;
+  state.answers[key] = input.value.trim();
+  saveProgress();
+  renderAnswerSheet(getQuestions());
 }
 
 
@@ -664,10 +4371,18 @@ function renderAnswerSheet(questions) {
     let cls = 'answer-dot';
     if (sel !== undefined) { cls += ' answered'; answered++; }
     if (state.submitted[key]) {
-      if (sel === q.answer) cls += ' correct';
+      let isCorrect;
+      if (q.type === 'multi') {
+        const userSet = new Set(Array.isArray(sel) ? sel : (sel !== undefined ? [sel] : []));
+        const correctSet = new Set(q.answers || []);
+        isCorrect = userSet.size === correctSet.size && Array.from(userSet).every(function(v){ return correctSet.has(v); });
+      } else {
+        isCorrect = (sel === q.answer);
+      }
+      if (isCorrect) cls += ' correct';
       else cls += ' wrong';
     }
-    html += `<span class="${cls}" title="Q${i+1}"></span>`;
+    html += '<span class="' + cls + '" title="Q' + (i+1) + '"></span>';
   });
   el.innerHTML = html;
   document.getElementById('answeredCount').textContent = answered;
@@ -687,6 +4402,12 @@ function submitModule() {
     if (q.type === 'fill') {
       if (sel !== undefined && sel !== '' && sel.toLowerCase().trim() === (q.answer||'').toLowerCase().trim()) correct++;
       else wrong++;
+    } else if (q.type === 'multi') {
+      const userSet = new Set(Array.isArray(sel) ? sel : (sel !== undefined ? [sel] : []));
+      const correctSet = new Set(q.answers || []);
+      const allCorrect = userSet.size === correctSet.size && [...userSet].every(v => correctSet.has(v));
+      if (allCorrect) { correct += (q.points || 2); }
+      else { wrong += (q.points || 2); }
     } else {
       if (sel === q.answer) correct++;
       else wrong++;
@@ -700,16 +4421,34 @@ function submitModule() {
   questions.forEach((q, i) => {
     const ansKey = key + '_' + i;
     const sel = state.answers[ansKey];
-    const isWrong = q.type === 'fill'
-      ? (sel === undefined || sel === '' || sel.toLowerCase().trim() !== (q.answer||'').toLowerCase().trim())
-      : (sel === undefined || sel !== q.answer);
+    let isWrong;
+    if (q.type === 'fill') {
+      isWrong = (sel === undefined || sel === '' || sel.toLowerCase().trim() !== (q.answer||'').toLowerCase().trim());
+    } else if (q.type === 'multi') {
+      const userSet = new Set(Array.isArray(sel) ? sel : (sel !== undefined ? [sel] : []));
+      const correctSet = new Set(q.answers || []);
+      isWrong = !(userSet.size === correctSet.size && [...userSet].every(v => correctSet.has(v)));
+    } else {
+      isWrong = (sel === undefined || sel !== q.answer);
+    }
     if (isWrong) {
+      let yourAnsStr, correctAnsStr;
+      if (q.type === 'fill') {
+        yourAnsStr = sel === undefined ? '（未作答）' : sel;
+        correctAnsStr = q.answer;
+      } else if (q.type === 'multi') {
+        yourAnsStr = Array.isArray(sel) ? sel.map(function(s){ return q.options[s]; }).join(', ') : '（未作答）';
+        correctAnsStr = (q.answers||[]).map(function(a){ return q.options[a]; }).join(', ');
+      } else {
+        yourAnsStr = sel === undefined ? '（未作答）' : q.options[sel];
+        correctAnsStr = q.options[q.answer];
+      }
       const err = { testId: state.currentTest, module: mod, qIdx: i, question: q.q,
-        yourAnswer: sel === undefined ? '（未作答）' : (q.type === 'fill' ? sel : q.options[sel]),
-        correctAnswer: q.type === 'fill' ? q.answer : q.options[q.answer],
+        yourAnswer: yourAnsStr,
+        correctAnswer: correctAnsStr,
         timestamp: Date.now() };
       // 避免重复记录同一题
-      const already = state.errorBook.some(e => e.testId === err.testId && e.module === err.module && e.qIdx === err.qIdx);
+      const already = state.errorBook.some(function(e){ return e.testId === err.testId && e.module === err.module && e.qIdx === err.qIdx; });
       if (!already) state.errorBook.push(err);
     }
   });
@@ -1104,17 +4843,20 @@ function getBandScoreEnhanced(correct, total) {
   const pct = total ? correct/total : 0;
   const pct100 = Math.round(pct * 100);
   let band, comment;
-  if (pct >= 0.97) { band = '9.0'; comment = 'Expert User — 接近母语水平，发挥出色！'; }
-  else if (pct >= 0.93) { band = '8.5'; comment = 'Very Good User — 非常优秀，继续保持！'; }
-  else if (pct >= 0.88) { band = '8.0'; comment = 'Very Good User — 表现很好，细节可再打磨。'; }
-  else if (pct >= 0.83) { band = '7.5'; comment = 'Good User — 良好水平，继续提升准确度。'; }
-  else if (pct >= 0.75) { band = '7.0'; comment = 'Good User — 不错的表现，加强薄弱环节。'; }
-  else if (pct >= 0.67) { band = '6.5'; comment = 'Competent User — 具备基本能力，需系统练习。'; }
-  else if (pct >= 0.58) { band = '6.0'; comment = 'Competent User — 还需努力，多做真题。'; }
-  else if (pct >= 0.50) { band = '5.5'; comment = 'Modest User — 基础尚可，建议重点突破。'; }
-  else if (pct >= 0.42) { band = '5.0'; comment = 'Modest User — 需要加强基础训练。'; }
-  else if (pct >= 0.33) { band = '4.5'; comment = 'Limited User — 建议从基础词汇语法开始。'; }
-  else { band = '<4.5'; comment = 'Limited User — 需要系统学习，不要气馁！'; }
+  // IELTS Listening Band Score (40 questions)
+  if (correct >= 39) { band = '9.0'; comment = 'Expert User — 接近母语水平，发挥出色！'; }
+  else if (correct >= 37) { band = '8.5'; comment = 'Very Good User — 非常优秀，继续保持！'; }
+  else if (correct >= 35) { band = '8.0'; comment = 'Very Good User — 表现很好，细节可再打磨。'; }
+  else if (correct >= 32) { band = '7.5'; comment = 'Good User — 良好水平，继续提升准确度。'; }
+  else if (correct >= 30) { band = '7.0'; comment = 'Good User — 不错的表现，加强薄弱环节。'; }
+  else if (correct >= 26) { band = '6.5'; comment = 'Competent User — 具备基本能力，需系统练习。'; }
+  else if (correct >= 23) { band = '6.0'; comment = 'Competent User — 还需努力，多做真题。'; }
+  else if (correct >= 18) { band = '5.5'; comment = 'Modest User — 基础尚可，建议重点突破。'; }
+  else if (correct >= 16) { band = '5.0'; comment = 'Modest User — 需要加强基础训练。'; }
+  else if (correct >= 13) { band = '4.5'; comment = 'Limited User — 建议从基础词汇语法开始。'; }
+  else if (correct >= 11) { band = '4.0'; comment = 'Limited User — 需要系统学习。'; }
+  else if (correct >= 8) { band = '3.5'; comment = 'Extremely Limited — 建议从基础开始。'; }
+  else { band = '<3.5'; comment = 'Extremely Limited — 需要全面系统学习，不要气馁！'; }
   return { band, comment, pct: pct100 };
 }
 
