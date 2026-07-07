@@ -1,0 +1,1677 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>雅思备考 · 剑桥真题模拟</title>
+<style>
+:root {
+  --bg: #faf8f5; --card: #ffffff; --primary: #1a2744; --accent: #d4a843;
+  --text: #2d2d2d; --sub: #6b7280; --border: #e5e7eb; --success: #059669;
+  --error: #dc2626; --warn: #f59e0b; --hover: #f3f4f6; --shadow: 0 1px 3px rgba(0,0,0,0.08);
+  --radius: 10px; --transition: 0.2s ease;
+}
+.dark { --bg: #0f172a; --card: #1e293b; --primary: #e2e8f0; --accent: #fbbf24;
+  --text: #e2e8f0; --sub: #94a3b8; --border: #334155; --hover: #1e293b; --shadow: 0 1px 3px rgba(0,0,0,0.4); }
+* { margin:0; padding:0; box-sizing:border-box; }
+body { font-family:"PingFang SC","Microsoft YaHei","Helvetica Neue",sans-serif;
+  background:var(--bg); color:var(--text); min-height:100vh; line-height:1.6; }
+.container { max-width:1200px; margin:0 auto; padding:0 20px; }
+
+/* Header */
+.header { background:var(--card); border-bottom:1px solid var(--border); position:sticky; top:0; z-index:100; box-shadow:var(--shadow); }
+.header .container { display:flex; align-items:center; justify-content:space-between; padding:12px 20px; }
+.logo { font-size:1.25rem; font-weight:700; color:var(--primary); display:flex; align-items:center; gap:8px; }
+.logo span.ielts { background:var(--accent); color:#fff; padding:2px 8px; border-radius:4px; font-size:0.75rem; letter-spacing:1px; }
+.header-actions { display:flex; gap:8px; align-items:center; }
+.btn { padding:8px 16px; border:1px solid var(--border); border-radius:6px; background:var(--card); color:var(--text); cursor:pointer; font-size:0.875rem; transition:var(--transition); white-space:nowrap; }
+.btn:hover { background:var(--hover); }
+.btn-primary { background:var(--primary); color:#fff; border-color:var(--primary); }
+.btn-primary:hover { opacity:0.9; }
+.btn-accent { background:var(--accent); color:#fff; border-color:var(--accent); }
+.btn-sm { padding:4px 10px; font-size:0.75rem; }
+.btn-outline { border:1px dashed var(--border); background:transparent; }
+.btn-icon { padding:6px 8px; min-width:36px; display:flex; align-items:center; justify-content:center; }
+
+/* Layout */
+.main { display:flex; gap:24px; padding:24px 0; min-height:calc(100vh - 130px); }
+.sidebar { width:260px; flex-shrink:0; }
+.content { flex:1; min-width:0; }
+
+/* Sidebar */
+.sidebar-card { background:var(--card); border-radius:var(--radius); padding:16px; margin-bottom:12px; box-shadow:var(--shadow); }
+.sidebar-card h3 { font-size:0.875rem; color:var(--sub); margin-bottom:10px; text-transform:uppercase; letter-spacing:0.5px; }
+.test-item { display:flex; align-items:center; justify-content:space-between; padding:8px 10px; border-radius:6px; cursor:pointer; font-size:0.875rem; margin-bottom:2px; transition:var(--transition); }
+.test-item:hover { background:var(--hover); }
+.test-item.active { background:var(--primary); color:#fff; }
+.test-item .badge { font-size:0.7rem; padding:2px 6px; border-radius:3px; background:var(--accent); color:#fff; }
+.module-list { display:flex; flex-wrap:wrap; gap:6px; }
+.module-btn { padding:6px 12px; border:1px solid var(--border); border-radius:6px; cursor:pointer; font-size:0.8rem; background:var(--card); color:var(--text); transition:var(--transition); }
+.module-btn:hover { background:var(--hover); }
+.module-btn.active { background:var(--primary); color:#fff; border-color:var(--primary); }
+
+/* Answer sheet mini */
+.answer-dot { display:inline-block; width:10px; height:10px; border-radius:50%; border:1px solid var(--border); margin:1px; }
+.answer-dot.answered { background:var(--primary); border-color:var(--primary); }
+.answer-dot.correct { background:var(--success); border-color:var(--success); }
+.answer-dot.wrong { background:var(--error); border-color:var(--error); }
+
+/* Score circle */
+.score-circle { width:80px; height:80px; border-radius:50%; border:4px solid var(--accent); display:flex; align-items:center; justify-content:center; margin:0 auto 12px; }
+.score-circle .val { font-size:1.5rem; font-weight:700; color:var(--primary); }
+
+/* Content panel */
+.panel { background:var(--card); border-radius:var(--radius); padding:24px; box-shadow:var(--shadow); margin-bottom:16px; }
+.panel-header { display:flex; justify-content:space-between; align-items:center; margin-bottom:16px; flex-wrap:wrap; gap:8px; }
+.panel-header h2 { font-size:1.15rem; color:var(--primary); }
+.timer { font-size:1.5rem; font-weight:700; color:var(--accent); font-variant-numeric:tabular-nums; }
+.timer.warn { color:var(--error); animation:pulse 1s ease-in-out infinite; }
+@keyframes pulse { 0%,100% { opacity:1; } 50% { opacity:0.5; } }
+
+/* Question */
+.question { padding:14px 0; border-bottom:1px solid var(--border); }
+.question:last-child { border-bottom:none; }
+.question .q-num { font-weight:600; color:var(--accent); margin-right:4px; }
+.question .q-text { margin-bottom:8px; line-height:1.5; }
+.options { display:flex; flex-direction:column; gap:6px; }
+.option { padding:10px 14px; border:1px solid var(--border); border-radius:6px; cursor:pointer; transition:var(--transition); display:flex; align-items:center; gap:8px; font-size:0.9rem; }
+.option:hover { background:var(--hover); }
+.option.selected { border-color:var(--primary); background:rgba(26,39,68,0.05); }
+.option.correct { border-color:var(--success); background:rgba(5,150,105,0.08); }
+.option.wrong { border-color:var(--error); background:rgba(220,38,38,0.05); }
+.option .letter { width:24px; height:24px; border-radius:50%; border:1px solid var(--border); display:flex; align-items:center; justify-content:center; font-size:0.75rem; font-weight:600; flex-shrink:0; }
+.option.selected .letter { background:var(--primary); color:#fff; border-color:var(--primary); }
+.option.correct .letter { background:var(--success); color:#fff; border-color:var(--success); }
+.option.wrong .letter { background:var(--error); color:#fff; border-color:var(--error); }
+
+/* Passage */
+.passage { background:var(--hover); padding:20px; border-radius:var(--radius); margin-bottom:16px; max-height:400px; overflow-y:auto; font-size:0.9rem; line-height:1.8; white-space:pre-wrap; }
+
+/* Writing */
+.writing-textarea { width:100%; min-height:300px; border:1px solid var(--border); border-radius:var(--radius); padding:16px; font-family:inherit; font-size:0.9rem; line-height:1.8; resize:vertical; background:var(--card); color:var(--text); }
+.writing-textarea:focus { outline:none; border-color:var(--primary); box-shadow:0 0 0 3px rgba(26,39,68,0.1); }
+.word-count { font-size:0.8rem; color:var(--sub); margin-top:4px; }
+.word-count.warn { color:var(--error); }
+.writing-prompt { background:var(--hover); padding:16px; border-radius:var(--radius); margin-bottom:12px; font-size:0.9rem; }
+.writing-prompt pre { background:var(--card); padding:10px; border-radius:6px; font-size:0.8rem; margin-top:8px; overflow-x:auto; }
+.sample-essay { background:#f0fdf4; border:1px solid #bbf7d0; padding:16px; border-radius:var(--radius); margin-top:12px; font-size:0.85rem; line-height:1.7; white-space:pre-wrap; display:none; }
+.dark .sample-essay { background:#052e16; border-color:#166534; }
+
+/* Speaking */
+.speaking-card { padding:16px; border:1px solid var(--border); border-radius:var(--radius); margin-bottom:12px; }
+.speaking-card h3 { color:var(--accent); margin-bottom:8px; font-size:1rem; }
+.speaking-card .topic { font-weight:600; margin-bottom:6px; }
+.speaking-card .cue { color:var(--sub); font-size:0.85rem; margin-bottom:8px; }
+.speaking-card ul { padding-left:20px; }
+.speaking-card li { margin-bottom:4px; font-size:0.9rem; }
+.speaking-timer { font-size:2rem; font-weight:700; color:var(--accent); text-align:center; padding:20px; }
+.record-btn { display:inline-flex; align-items:center; gap:6px; }
+.record-btn.recording { background:var(--error); color:#fff; border-color:var(--error); animation:pulse 1s ease-in-out infinite; }
+.audio-playback { margin-top:8px; display:none; }
+
+/* Error book */
+.error-list .error-item { padding:10px 14px; border:1px solid var(--border); border-radius:6px; margin-bottom:8px; display:flex; justify-content:space-between; align-items:center; font-size:0.875rem; }
+.error-item .test-ref { color:var(--sub); font-size:0.75rem; }
+
+/* Stats dashboard */
+.stats-grid { display:grid; grid-template-columns:repeat(auto-fit,minmax(160px,1fr)); gap:12px; }
+.stat-card { background:var(--card); border:1px solid var(--border); border-radius:var(--radius); padding:16px; text-align:center; }
+.stat-card .stat-val { font-size:1.5rem; font-weight:700; color:var(--primary); }
+.stat-card .stat-label { font-size:0.75rem; color:var(--sub); margin-top:4px; }
+
+/* Tabs */
+.tabs { display:flex; gap:4px; margin-bottom:16px; border-bottom:1px solid var(--border); padding-bottom:12px; flex-wrap:wrap; }
+.tab { padding:8px 16px; border:none; background:transparent; color:var(--sub); cursor:pointer; font-size:0.875rem; border-bottom:2px solid transparent; transition:var(--transition); }
+.tab:hover { color:var(--text); }
+.tab.active { color:var(--primary); border-bottom-color:var(--accent); font-weight:600; }
+
+/* Progress bar */
+.progress-bar { height:4px; background:var(--border); border-radius:2px; margin:12px 0; }
+.progress-bar .fill { height:100%; background:var(--accent); border-radius:2px; transition:width 0.3s ease; }
+
+/* Modal */
+.modal-overlay { position:fixed; inset:0; background:rgba(0,0,0,0.5); z-index:200; display:flex; align-items:center; justify-content:center; display:none; }
+.modal-overlay.show { display:flex; }
+.modal { background:var(--card); border-radius:var(--radius); padding:24px; max-width:500px; width:90%; max-height:80vh; overflow-y:auto; }
+.modal h3 { margin-bottom:12px; color:var(--primary); }
+
+/* Mobile */
+@media (max-width:768px) {
+  .main { flex-direction:column; }
+  .sidebar { width:100%; }
+  .sidebar .test-item { display:none; }
+  .sidebar .stats-grid { grid-template-columns:repeat(2,1fr); }
+  .header .container { flex-wrap:wrap; gap:8px; }
+  .tabs { overflow-x:auto; flex-wrap:nowrap; }
+}
+
+/* Utility */
+.hidden { display:none !important; }
+.text-center { text-align:center; }
+.text-sub { color:var(--sub); }
+.mt-12 { margin-top:12px; }
+.mt-16 { margin-top:16px; }
+.gap-8 { gap:8px; }
+.flex { display:flex; }
+.flex-wrap { flex-wrap:wrap; }
+.items-center { align-items:center; }
+.justify-between { justify-content:space-between; }
+
+/* Toast */
+.toast { position:fixed; top:20px; right:20px; z-index:300; background:var(--primary); color:#fff; padding:12px 20px; border-radius:8px; font-size:0.875rem; box-shadow:0 4px 12px rgba(0,0,0,0.2); opacity:0; transform:translateY(-10px); transition:opacity 0.3s,transform 0.3s; }
+.toast.show { opacity:1; transform:translateY(0); }
+
+/* Audio Player */
+.audio-player { display:flex; align-items:center; gap:10px; margin-bottom:12px; padding:10px 14px; background:var(--hover); border-radius:8px; }
+.audio-play-btn { width:38px; height:38px; border-radius:50%; display:flex; align-items:center; justify-content:center; font-size:1rem; flex-shrink:0; padding:0; }
+.audio-play-btn .icon-play { display:inline; }
+.audio-play-btn .icon-pause { display:none; }
+.audio-play-btn.playing .icon-play { display:none; }
+.audio-play-btn.playing .icon-pause { display:inline; }
+.audio-progress-wrapper { flex:1; min-width:0; display:flex; align-items:center; gap:8px; }
+.audio-progress { flex:1; height:6px; background:var(--border); border-radius:3px; cursor:pointer; position:relative; overflow:hidden; }
+.audio-progress-fill { height:100%; background:var(--accent); border-radius:3px; width:0%; transition:width 0.15s linear; }
+.audio-time { font-size:0.75rem; color:var(--sub); min-width:36px; text-align:right; font-variant-numeric:tabular-nums; }
+
+/* Fill-in-the-blank */
+.fill-input-wrapper { display:flex; gap:8px; align-items:center; margin-top:10px; }
+.fill-input { flex:1; padding:10px 14px; border:2px solid var(--border); border-radius:6px; font-size:0.9rem; background:var(--card); color:var(--text); transition:var(--transition); }
+.fill-input:focus { outline:none; border-color:var(--accent); box-shadow:0 0 0 3px rgba(212,168,67,0.15); }
+.fill-input:disabled { opacity:0.8; cursor:not-allowed; }
+.fill-input.fill-correct { border-color:var(--success); background:rgba(5,150,105,0.06); color:var(--success); }
+.fill-input.fill-wrong { border-color:var(--error); background:rgba(220,38,38,0.04); color:var(--error); }
+.fill-answer-label { color:var(--success); font-size:0.85rem; white-space:nowrap; font-weight:500; }
+.fill-mark-correct { color:var(--success); font-size:0.85rem; font-weight:600; white-space:nowrap; }
+
+
+/* Question Number Quick Nav */
+.q-nav { display:flex; flex-wrap:wrap; gap:4px; margin-bottom:14px; padding:10px 0; border-bottom:1px solid var(--border); }
+.q-nav-btn { width:32px; height:32px; border-radius:50%; border:1.5px solid var(--border); background:transparent; color:var(--text); cursor:pointer; font-size:0.75rem; font-weight:600; transition:var(--transition); display:flex; align-items:center; justify-content:center; }
+.q-nav-btn:hover { border-color:var(--primary); color:var(--primary); }
+.q-nav-btn.answered { background:var(--primary); color:#fff; border-color:var(--primary); }
+.q-nav-btn.current { box-shadow:0 0 0 2px var(--accent); }
+
+/* Audio Speed Control */
+.audio-speed { display:flex; gap:3px; margin-left:8px; }
+.audio-speed .spd-btn { padding:2px 8px; border:1px solid var(--border); border-radius:4px; background:var(--card); color:var(--sub); cursor:pointer; font-size:0.7rem; transition:var(--transition); }
+.audio-speed .spd-btn:hover { background:var(--hover); color:var(--text); }
+.audio-speed .spd-btn.active { background:var(--accent); color:#fff; border-color:var(--accent); }
+
+/* Favorite Star */
+.fav-star { background:none; border:none; font-size:1.1rem; cursor:pointer; padding:0 4px; color:var(--sub); transition:var(--transition); line-height:1; flex-shrink:0; }
+.fav-star:hover { color:var(--warn); }
+.fav-star.faved { color:var(--warn); }
+.sidebar-favs { margin-top:8px; }
+.sidebar-fav-item { padding:6px 8px; font-size:0.8rem; cursor:pointer; border-radius:4px; transition:var(--transition); display:flex; align-items:center; gap:6px; }
+.sidebar-fav-item:hover { background:var(--hover); }
+.sidebar-fav-item .rm-fav { margin-left:auto; color:var(--sub); font-size:0.7rem; background:none; border:none; cursor:pointer; }
+.sidebar-fav-item .rm-fav:hover { color:var(--error); }
+
+/* Vocab Modal */
+.vocab-modal-content { max-width:600px; max-height:85vh; }
+.vocab-list { max-height:50vh; overflow-y:auto; }
+.vocab-item { display:flex; align-items:center; justify-content:space-between; padding:10px 12px; border-bottom:1px solid var(--border); font-size:0.85rem; }
+.vocab-item .word { font-weight:600; color:var(--primary); }
+.vocab-item .context { color:var(--sub); font-size:0.75rem; margin-top:2px; }
+.vocab-item .del-vocab { color:var(--error); background:none; border:none; cursor:pointer; font-size:0.75rem; padding:2px 6px; }
+.vocab-input-row { display:flex; gap:8px; margin-bottom:12px; }
+.vocab-input { flex:1; padding:8px 12px; border:1px solid var(--border); border-radius:6px; font-size:0.85rem; background:var(--card); color:var(--text); }
+.vocab-input:focus { outline:none; border-color:var(--accent); }
+.dblclick-hint { font-size:0.75rem; color:var(--sub); margin-top:4px; }
+
+/* Template Library */
+.template-tabs { display:flex; gap:8px; margin-bottom:20px; }
+.template-tab { padding:10px 20px; border:2px solid var(--border); border-radius:8px; background:transparent; color:var(--text); cursor:pointer; font-size:0.95rem; font-weight:600; transition:var(--transition); }
+.template-tab:hover { border-color:var(--accent); }
+.template-tab.active { background:var(--accent); color:#fff; border-color:var(--accent); }
+.template-card { background:var(--card); border:1px solid var(--border); border-radius:var(--radius); padding:20px; margin-bottom:16px; box-shadow:var(--shadow); }
+.template-card h4 { color:var(--accent); font-size:1.05rem; margin-bottom:8px; }
+.template-card .scene { font-size:0.8rem; color:var(--sub); margin-bottom:12px; padding:6px 10px; background:var(--hover); border-radius:4px; }
+.template-card .formula { margin-bottom:10px; }
+.template-card .formula strong { color:var(--primary); display:block; margin-bottom:4px; font-size:0.85rem; }
+.template-card .formula p { font-size:0.85rem; line-height:1.6; margin:0; white-space:pre-wrap; }
+.template-card .vocab-tags { display:flex; flex-wrap:wrap; gap:4px; margin-top:8px; }
+.template-card .vocab-tag { background:rgba(212,168,67,0.15); color:var(--accent); padding:2px 8px; border-radius:4px; font-size:0.75rem; }
+
+/* Achievements */
+.achievements-grid { display:grid; grid-template-columns:repeat(auto-fill,minmax(200px,1fr)); gap:10px; margin-top:16px; }
+.achievement-card { background:var(--card); border:1px solid var(--border); border-radius:var(--radius); padding:14px; text-align:center; transition:var(--transition); }
+.achievement-card.unlocked { border-color:var(--accent); }
+.achievement-card.locked { opacity:0.55; }
+.achievement-card .ach-icon { font-size:1.5rem; margin-bottom:4px; }
+.achievement-card .ach-name { font-size:0.8rem; font-weight:600; color:var(--primary); }
+.achievement-card .ach-desc { font-size:0.7rem; color:var(--sub); margin-top:2px; }
+.achievement-card .ach-date { font-size:0.65rem; color:var(--success); margin-top:2px; }
+
+/* Bottom Nav (mobile) */
+.bottom-nav { display:none; position:fixed; bottom:0; left:0; right:0; background:var(--card); border-top:1px solid var(--border); z-index:99; padding:6px 0 env(safe-area-inset-bottom,0); }
+.bottom-nav .bn-inner { display:flex; justify-content:space-around; max-width:500px; margin:0 auto; }
+.bottom-nav .bn-item { display:flex; flex-direction:column; align-items:center; gap:2px; padding:6px 10px; cursor:pointer; color:var(--sub); font-size:0.65rem; transition:var(--transition); border:none; background:none; }
+.bottom-nav .bn-item:hover { color:var(--text); }
+.bottom-nav .bn-item.active { color:var(--accent); }
+.bottom-nav .bn-icon { font-size:1.1rem; }
+@media (max-width:768px) { .bottom-nav { display:block; } body { padding-bottom:70px; } }
+
+/* Empty state */
+.empty-state { padding:40px 20px; text-align:center; }
+.empty-state .empty-icon { font-size:3rem; margin-bottom:12px; }
+.empty-state p { color:var(--sub); margin-bottom:16px; font-size:0.9rem; }
+</style>
+</head>
+<body>
+
+<div class="header">
+  <div class="container">
+    <div class="logo">IELTS Prep <span class="ielts">Cambridge</span></div>
+    <div class="header-actions">
+      <button class="btn btn-sm" onclick="switchMode('practice')" id="modePractice">练习模式</button>
+      <button class="btn btn-sm" onclick="switchMode('exam')" id="modeExam">模拟考试</button>
+      <button class="btn btn-sm btn-icon" onclick="toggleTheme()" title="切换主题">◎</button>
+      <button class="btn btn-sm" onclick="showView('stats')">学习记录</button>
+      <button class="btn btn-sm" onclick="showView('errors')">错题本</button>
+      <button class="btn btn-sm" onclick="showVocabBook()">生词本</button>
+      <button class="btn btn-sm" onclick="showTemplates('task1')">模板库</button>
+    </div>
+  </div>
+</div>
+
+<div class="container main">
+  <aside class="sidebar">
+    <div class="sidebar-card">
+      <h3>真题套卷</h3>
+      <div id="testList"></div>
+    </div>
+    <div class="sidebar-card">
+      <h3>⭐ 我的收藏</h3>
+      <div id="favList"></div>
+    </div>
+    <div class="sidebar-card">
+      <h3>模块</h3>
+      <div class="module-list" id="moduleList"></div>
+    </div>
+    <div class="sidebar-card hidden" id="answerSheetCard">
+      <h3>答题卡</h3>
+      <div id="answerSheet" style="display:flex;flex-wrap:wrap;gap:3px;"></div>
+      <div class="progress-bar mt-12"><div class="fill" id="progressBar" style="width:0%"></div></div>
+      <div class="text-sub" style="font-size:0.75rem;margin-top:4px;"><span id="answeredCount">0</span> / <span id="totalCount">0</span> 已答</div>
+      <button class="btn btn-accent btn-sm mt-12" style="width:100%" onclick="submitModule()">提交答案</button>
+    </div>
+  </aside>
+  <main class="content" id="mainContent">
+    <div class="panel text-center" id="welcomePanel">
+      <h2 style="font-size:1.5rem;margin-bottom:16px;color:var(--primary)">剑桥雅思真题模拟系统</h2>
+      <p class="text-sub">选择真题套卷和模块开始练习或模拟考试</p>
+      <div class="stats-grid mt-16" id="welcomeStats"></div>
+      <div id="achievementsGrid"></div>
+    </div>
+  </main>
+</div>
+
+<!-- Score Modal -->
+<div class="modal-overlay" id="resultModal">
+  <div class="modal">
+    <h3>成绩报告</h3>
+    <div class="score-circle"><span class="val" id="resultScore">-</span></div>
+    <p class="text-center text-sub" id="resultBand"></p>
+    <div style="margin-top:12px;">
+      <div style="display:flex;justify-content:space-between;font-size:0.85rem;"><span>正确</span><span id="resultCorrect">0</span></div>
+      <div style="display:flex;justify-content:space-between;font-size:0.85rem;margin-top:4px;"><span>错误</span><span id="resultWrong">0</span></div>
+      <div style="display:flex;justify-content:space-between;font-size:0.85rem;margin-top:4px;"><span>正确率</span><span id="resultPct">0%</span></div>
+    </div>
+    <div class="flex gap-8 mt-16 justify-between">
+      <button class="btn" onclick="closeModal()">继续答题</button>
+      <button class="btn btn-primary" onclick="reviewAnswers()">查看解析</button>
+    </div>
+  </div>
+</div>
+
+<!-- Vocab Modal -->
+<div class="modal-overlay" id="vocabModal">
+  <div class="modal vocab-modal-content">
+    <div class="modal-header">
+      <h3>📖 生词本</h3>
+      <button class="modal-close" onclick="closeVocabModal()">&times;</button>
+    </div>
+    <div class="modal-body">
+      <div class="vocab-input-row">
+        <input type="text" class="vocab-input" id="vocabManualInput" placeholder="手动添加生词...">
+        <button class="btn btn-sm" onclick="addVocabManual()">添加</button>
+      </div>
+      <div class="dblclick-hint">💡 双击阅读文章中的单词即可快速收藏</div>
+      <div class="vocab-list" id="vocabList"></div>
+      <div style="margin-top:12px;display:flex;gap:8px;">
+        <button class="btn btn-sm" onclick="clearVocab()" style="color:var(--error);">清空生词本</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="toast" id="toast"></div>
+
+<script>
+const TESTS = [{"id": "c17t1", "year": 2022, "name": "剑桥雅思 17 · Test 1", "listening": {"duration": 30, "sections": [{"title": "Section 1 · 旅游咨询", "audio": "Good morning, Blue Mountain Tours. How can I help? Hello, I'd like to book a day trip. Our Mountain Explorer departs at 8:30 AM. The price is 45 pounds per person, including lunch. The meeting point is the visitor centre car park. Please arrive 15 minutes early. We accept all major credit cards. The booking reference will be MT7834. My name is Sarah Wilson, that's W-I-L-S-O-N.", "questions": [{"q": "The trip departs at ______ AM.", "type": "fill", "answer": "8:30"}, {"q": "The cost is ______ pounds per person.", "type": "fill", "answer": "45"}, {"q": "The meeting point is the ______ car park.", "type": "fill", "answer": "visitor centre"}, {"q": "The booking reference is ______.", "type": "fill", "answer": "MT7834"}, {"q": "The staff member's surname is ______.", "type": "fill", "answer": "Wilson"}]}, {"title": "Section 2 · 大学图书馆介绍", "audio": "Good morning everyone, and welcome to the university library orientation. The main library building is open from 8 AM to midnight on weekdays, and 10 AM to 8 PM on weekends. You will need your student ID card to enter after 6 PM. The reference section is on the second floor, and you can borrow up to 10 books at a time for a period of 4 weeks. If you need to renew, you can do so online up to 3 times. Late returns incur a fine of 50 pence per day per book. The quiet study area is on the third floor, and group study rooms can be booked through the library website.", "questions": [{"q": "When does the library close on weekdays?", "options": ["10 PM", "11 PM", "Midnight", "2 AM"], "answer": 2}, {"q": "What is needed to enter after 6 PM?", "options": ["Key card", "Student ID", "Passport", "Library card"], "answer": 1}, {"q": "How many books can be borrowed at once?", "options": ["5", "8", "10", "15"], "answer": 2}, {"q": "What is the maximum borrowing period?", "options": ["2 weeks", "3 weeks", "4 weeks", "6 weeks"], "answer": 2}, {"q": "How much is the daily late fine per book?", "options": ["20p", "50p", "1 pound", "2 pounds"], "answer": 1}]}]}, "reading": {"duration": 60, "passage": "The Rise of Micro-Credentials in Higher Education\n\nOver the past decade, the landscape of higher education has undergone a significant transformation. Traditional degree programmes, once the undisputed gold standard of academic achievement, are now being challenged by a new contender: micro-credentials. These short, focused learning programmes are designed to provide specific skills and knowledge in a condensed timeframe, typically ranging from a few weeks to several months.\n\nMicro-credentials have gained traction for several reasons. Firstly, the rapid pace of technological change means that many professionals need to continuously update their skills throughout their careers. A four-year degree obtained two decades ago may no longer equip an individual with the competencies required in today's job market. Micro-credentials offer a flexible, targeted approach to lifelong learning that traditional universities have struggled to provide.\n\nSecondly, employers are increasingly valuing skills over degrees. Major corporations such as Google, Apple, and IBM have removed degree requirements for many positions, instead focusing on what candidates can actually do. This shift has created a demand for credentials that accurately signal specific competencies.\n\nHowever, micro-credentials are not without their critics. Some educators argue that the fragmentation of learning into bite-sized units risks losing the depth and breadth that a comprehensive degree programme provides. There are also concerns about quality assurance, as the micro-credential market remains largely unregulated.\n\nDespite these challenges, the micro-credential movement shows no signs of slowing. Universities themselves are entering the market, with institutions like MIT, Harvard, and Stanford offering their own micro-credentials through platforms such as edX. This suggests that rather than replacing traditional degrees, micro-credentials may become a complementary layer in a more diverse and flexible higher education ecosystem.", "questions": [{"q": "What is the main topic of the passage?", "options": ["University admission requirements", "The growth of micro-credentials in education", "Corporate hiring practices", "History of traditional degrees"], "answer": 1}, {"q": "What is the typical duration of a micro-credential programme?", "options": ["A few days", "A few weeks to several months", "One to two years", "Four years"], "answer": 1}, {"q": "Why are professionals drawn to micro-credentials?", "options": ["They are free", "They need to update skills continuously", "They prefer online learning", "Universities recommend them"], "answer": 1}, {"q": "Which companies are mentioned as removing degree requirements?", "options": ["Microsoft, Amazon, Facebook", "Google, Apple, IBM", "Tesla, Netflix, Uber", "Samsung, Sony, LG"], "answer": 1}, {"q": "What concern do critics raise about micro-credentials?", "options": ["They are too expensive", "They may sacrifice depth and breadth of learning", "They take too long to complete", "Employers do not recognise them"], "answer": 1}, {"q": "How have traditional universities responded?", "options": ["They have banned them", "They are ignoring them", "They are offering their own micro-credentials", "They have reduced degree programmes"], "answer": 2}]}, "writing": {"duration": 60, "task1": {"prompt": "The graph below shows the percentage of people using different modes of transport in a European city between 2000 and 2020.", "data": "Year | Car | Bus | Bicycle | Walking\n2000 | 48% | 28% | 8% | 16%\n2005 | 44% | 26% | 12% | 18%\n2010 | 38% | 24% | 18% | 20%\n2015 | 32% | 22% | 24% | 22%\n2020 | 28% | 20% | 30% | 22%", "minWords": 150, "sample": "The line graph illustrates the percentage of commuters using four different modes of transport in a European city over a 20-year period from 2000 to 2020. Overall, car and bus usage declined steadily while cycling and walking gained popularity.\n\nIn 2000, cars were the dominant mode of transport at 48%, followed by buses at 28%. However, both figures fell consistently throughout the period, with cars dropping to 28% and buses to 20% by 2020.\n\nIn contrast, bicycle use rose dramatically from just 8% in 2000 to 30% in 2020, overtaking both buses and cars to become the most popular mode of transport. Walking also increased, though more modestly, from 16% to 22%.\n\nNotably, the most significant shift occurred in cycling, which more than tripled its share over two decades, likely reflecting growing environmental awareness and investment in cycling infrastructure."}, "task2": {"prompt": "Some people believe that governments should invest more in public transportation to reduce traffic congestion and pollution. Others think that encouraging the use of electric vehicles is a better solution. Discuss both views and give your own opinion.", "minWords": 250, "sample": "Traffic congestion and air pollution have become pressing issues in cities worldwide, prompting debate about the most effective solutions. While some advocate for increased investment in public transportation, others argue that promoting electric vehicles offers a better path forward. This essay will examine both perspectives before presenting my own view.\n\nProponents of public transportation argue that buses, trains, and metro systems can move large numbers of people efficiently, dramatically reducing the number of private vehicles on the road. Cities like Tokyo, Singapore, and London demonstrate that well-funded public transit networks can significantly reduce both congestion and emissions. Moreover, public transport is accessible to all socioeconomic groups, making it an equitable solution.\n\nOn the other hand, supporters of electric vehicles point to their zero tailpipe emissions and the convenience they offer. Unlike public transport, EVs do not require people to change their travel habits or adhere to fixed schedules. Advances in battery technology and expanding charging infrastructure are making EVs increasingly practical.\n\nIn my opinion, the most effective approach combines both strategies. Governments should invest in modern, reliable public transportation to provide a viable alternative to private car use, while simultaneously offering incentives for EV adoption among those who genuinely need personal vehicles. This dual approach would address the problem from multiple angles, maximising the reduction in both congestion and pollution."}}, "speaking": {"parts": [{"part": "Part 1", "topic": "Introduction & Interview", "questions": ["Where do you live?", "Do you work or are you a student?", "What do you like about your hometown?", "How often do you travel by public transport?"]}, {"part": "Part 2", "topic": "Describe a memorable trip you have taken", "cue": "You should say: Where you went, Who you went with, What you did there, And explain why it was memorable", "time": 120}, {"part": "Part 3", "topic": "Discussion · Travel & Tourism", "questions": ["How has tourism changed in your country in recent years?", "Do you think travel broadens the mind?", "What are the environmental impacts of mass tourism?", "Should governments limit tourist numbers in popular destinations?"]}]}}, {"id": "c17t2", "year": 2022, "name": "剑桥雅思 17 · Test 2", "listening": {"duration": 30, "sections": [{"title": "Section 1 · 租房咨询", "audio": "Hello, I'm calling about the apartment for rent. Yes, it's a two-bedroom flat on Oak Street. The monthly rent is 850 pounds, bills included. It's available from the 15th of September. There's a deposit of one month's rent required. The landlord is Mr. Thompson, you can reach him at 07700 934 621. The nearest tube station is Brixton, about a 7-minute walk.", "questions": [{"q": "The flat has ______ bedrooms.", "type": "fill", "answer": "two"}, {"q": "The monthly rent is ______ pounds.", "type": "fill", "answer": "850"}, {"q": "It is available from the ______ of September.", "type": "fill", "answer": "15th"}, {"q": "The landlord's name is Mr. ______.", "type": "fill", "answer": "Thompson"}, {"q": "The nearest tube station is ______.", "type": "fill", "answer": "Brixton"}]}, {"title": "Section 2 · 志愿者项目介绍", "audio": "Thank you for your interest in our community volunteering programme. We have three main projects you can get involved with. The first is our tree planting initiative, which takes place every spring in local parks and nature reserves. Volunteers meet on Saturday mornings from 9 AM to 1 PM, and all equipment is provided. The second project is wildlife monitoring, where volunteers help track bird populations in the nearby wetlands. This runs monthly, with a training session on the first Thursday of each month. The third project is our community garden, which operates year-round. We grow organic vegetables that are donated to local food banks. This is particularly popular as volunteers can see the direct impact of their work. All we ask is that volunteers wear sturdy footwear and bring their own water bottle.", "questions": [{"q": "When does the tree planting initiative take place?", "options": ["Winter", "Spring", "Summer", "Autumn"], "answer": 1}, {"q": "How often do wildlife monitoring volunteers meet for training?", "options": ["Weekly", "Monthly", "Quarterly", "Yearly"], "answer": 1}, {"q": "Which project operates year-round?", "options": ["Tree planting", "Wildlife monitoring", "Community garden", "All of them"], "answer": 2}, {"q": "Where are the vegetables donated to?", "options": ["Schools", "Hospitals", "Local food banks", "Restaurants"], "answer": 2}, {"q": "What should volunteers bring themselves?", "options": ["Tools", "Equipment", "Sturdy footwear", "Vegetable seeds"], "answer": 2}]}]}, "reading": {"duration": 60, "passage": "The Psychology of Habit Formation\n\nHabits are the invisible architecture of daily life, shaping approximately 40 percent of our everyday behaviours according to research by Wendy Wood at the University of Southern California. Understanding how habits form and how they can be changed has become a central concern in psychology, with implications for health, productivity, and personal development.\n\nThe neurological basis of habit formation lies in a region of the brain called the basal ganglia, which plays a crucial role in the development of automatic behaviours. When we first perform an action, the prefrontal cortex, responsible for conscious decision-making, is highly active. However, as the behaviour is repeated in a consistent context, control gradually shifts to the basal ganglia, allowing the action to be performed with minimal conscious effort. This transition from deliberate to automatic is what we experience as a habit.\n\nCharles Duhigg popularised the concept of the 'habit loop' consisting of three elements: a cue, a routine, and a reward. The cue triggers the brain to initiate a behaviour, the routine is the behaviour itself, and the reward helps the brain determine whether this particular loop is worth remembering. Over time, this loop becomes more automatic as the brain begins to anticipate the reward as soon as the cue is presented.\n\nHowever, recent research suggests that the habit loop model, while useful, oversimplifies the complexity of habit formation. Studies by Phillippa Lally at University College London found that, on average, it takes 66 days for a new behaviour to become automatic, though this varies widely from 18 to 254 days depending on the complexity of the behaviour and individual differences. Furthermore, contrary to popular belief, missing a single day does not significantly affect the habit formation process.", "questions": [{"q": "What percentage of daily behaviours are habits according to Wood?", "options": ["30%", "40%", "50%", "60%"], "answer": 1}, {"q": "Which brain region is key to habit formation?", "options": ["Cerebellum", "Hippocampus", "Basal ganglia", "Amygdala"], "answer": 2}, {"q": "What is the first element of the habit loop?", "options": ["Routine", "Reward", "Cue", "Trigger"], "answer": 2}, {"q": "How long does it take on average to form a habit?", "options": ["21 days", "30 days", "66 days", "90 days"], "answer": 2}, {"q": "What happens when a behaviour becomes a habit?", "options": ["It requires more effort", "Control shifts to basal ganglia", "Prefrontal cortex becomes more active", "It becomes harder to perform"], "answer": 1}]}, "writing": {"duration": 60, "task1": {"prompt": "The table below shows the percentage of households with various electronic devices in a country from 1995 to 2015.", "data": "Device | 1995 | 2000 | 2005 | 2010 | 2015\nTV | 96% | 98% | 98% | 97% | 96%\nComputer | 28% | 48% | 65% | 78% | 86%\nMobile Phone | 15% | 55% | 82% | 91% | 95%\nTablet | 0% | 0% | 2% | 18% | 52%", "minWords": 150, "sample": "The table compares the percentage of households owning four types of electronic devices in a particular country at five-year intervals from 1995 to 2015.\n\nOverall, while television ownership remained consistently high throughout the period, the most dramatic increases were seen in mobile phones and computers, with tablets emerging as a significant category in the final decade.\n\nTelevision was already present in 96% of households in 1995 and remained largely stable, fluctuating between 96% and 98%. In stark contrast, only 15% of households owned a mobile phone in 1995, but this figure surged to 95% by 2015. Computer ownership followed a similar upward trajectory, rising steadily from 28% to 86%.\n\nTablets, which did not exist in 1995, appeared in 2005 at just 2% but experienced remarkable growth, reaching 52% by 2015. Notably, by the end of the period, mobile phones had overtaken televisions as the most ubiquitous electronic device."}, "task2": {"prompt": "Some people think that children should begin their formal education at a very early age. Others believe that they should start school at a later age. Discuss both views and give your opinion.", "minWords": 250, "sample": "The optimal age for children to begin formal education has long been a subject of debate among parents, educators, and policymakers. While some advocate for an early start to maximise learning opportunities, others contend that a later beginning allows for more natural development through play. This essay will discuss both perspectives before offering my own view.\n\nThose in favour of early formal education argue that young children have a remarkable capacity for learning, particularly in language acquisition and cognitive development. Starting early, proponents claim, helps children develop discipline, social skills, and foundational knowledge that gives them an academic advantage.\n\nConversely, advocates of a later start emphasise the importance of unstructured play in early childhood. Research in developmental psychology suggests that play is essential for developing creativity, problem-solving skills, and emotional regulation. Children who are pushed into formal academics too early may experience stress and burnout, potentially developing negative attitudes toward learning.\n\nIn my opinion, the distinction between 'formal education' and 'learning' is crucial. While I believe that structured, play-based early childhood education provides immense benefits, rigid academic instruction before the age of six or seven may be counterproductive. The focus in early years should be on nurturing curiosity, social skills, and a love of learning rather than on formal academic benchmarks."}}, "speaking": {"parts": [{"part": "Part 1", "topic": "Introduction & Hobbies", "questions": ["What do you do in your free time?", "Do you enjoy reading?", "How often do you exercise?", "What kind of music do you like?"]}, {"part": "Part 2", "topic": "Describe a skill you would like to learn", "cue": "You should say: What the skill is, Why you want to learn it, How you plan to learn it, And explain how it might benefit you", "time": 120}, {"part": "Part 3", "topic": "Discussion · Learning & Education", "questions": ["What skills are most important for young people to learn today?", "How has technology changed the way people learn new skills?", "Do you think schools should teach more practical skills?", "Is it better to learn from an expert or teach yourself?"]}]}}, {"id": "c18t1", "year": 2023, "name": "剑桥雅思 18 · Test 1", "listening": {"duration": 30, "sections": [{"title": "Section 1 · 图书馆会员注册", "audio": "Welcome to City Library. To register for a membership, I need some details. Your full name please. Emily Parker, P-A-R-K-E-R. And your address? 42 Green Lane, Manchester, postcode M14 6QS. Your date of birth? 12th March 1998. A contact number? 07462 815 390. Membership is free for residents. Your card number will be CL88721.", "questions": [{"q": "The applicant's surname is ______.", "type": "fill", "answer": "Parker"}, {"q": "The house number is ______ Green Lane.", "type": "fill", "answer": "42"}, {"q": "The postcode is ______.", "type": "fill", "answer": "M14 6QS"}, {"q": "Her date of birth is 12th ______ 1998.", "type": "fill", "answer": "March"}, {"q": "The library card number is ______.", "type": "fill", "answer": "CL88721"}]}, {"title": "Section 2 · 校园设施介绍", "audio": "I would like to welcome all new students and give you a quick overview of our campus facilities. The main library, located in the centre of campus, is open 24 hours a day during term time. It underwent a major renovation last year at a cost of 12 million pounds, and now features over 40 group study rooms that can be booked online. The sports centre, situated at the north end of campus, includes a 25-metre swimming pool, a fully equipped gym, and two sports halls. Student membership costs 25 pounds per month, with a 40 percent discount if you sign up for a full year. Finally, the Student Services Centre is in the West Building, open from 8:30 AM to 5 PM on weekdays, where you can get advice on accommodation, finances, and wellbeing.", "questions": [{"q": "What time does the Student Services Centre open?", "options": ["7:30 AM", "8:00 AM", "8:30 AM", "9:00 AM"], "answer": 2}, {"q": "How much did the library renovation cost?", "options": ["8 million pounds", "10 million pounds", "12 million pounds", "15 million pounds"], "answer": 2}, {"q": "How many group study rooms does the library have?", "options": ["20", "30", "40", "50"], "answer": 2}, {"q": "What is included in the sports centre?", "options": ["Gym only", "Pool, gym, and sports halls", "Tennis courts", "Running track"], "answer": 1}, {"q": "What is the student discount on sports membership?", "options": ["20%", "30%", "40%", "50%"], "answer": 2}]}]}, "reading": {"duration": 60, "passage": "The Future of Urban Agriculture\n\nAs the global population continues to urbanise, with the United Nations projecting that 68 percent of the world's population will live in cities by 2050, the challenge of feeding urban populations sustainably has become increasingly urgent. Urban agriculture, the practice of cultivating food within or around cities, has emerged as a promising solution that addresses multiple challenges simultaneously.\n\nVertical farming represents one of the most innovative approaches to urban agriculture. By growing crops in stacked layers within controlled environments, vertical farms can produce food year-round with dramatically reduced water usage and zero pesticides. Companies such as AeroFarms in New Jersey and Spread in Japan have demonstrated that vertical farms can achieve yields up to 390 times higher per square metre than traditional farming, while using 95 percent less water.\n\nCommunity gardens offer a more grassroots approach to urban food production. Beyond providing fresh produce, these spaces serve as hubs for community engagement, environmental education, and mental wellbeing. Studies in cities including New York, London, and Melbourne have shown that participation in community gardening is associated with reduced stress levels and increased consumption of fruits and vegetables.\n\nHowever, urban agriculture faces significant barriers. Land in cities is expensive and often contaminated with industrial pollutants, requiring costly remediation before it can be safely used for food production. Additionally, zoning regulations in many cities were not designed with agriculture in mind, creating legal hurdles for would-be urban farmers.\n\nDespite these challenges, cities worldwide are beginning to integrate agriculture into their planning frameworks. Singapore, which imports over 90 percent of its food, has launched an ambitious '30 by 30' initiative aiming to produce 30 percent of its nutritional needs locally by 2030. Paris has mandated that new commercial buildings must include green roofs, many of which are being used for food production.", "questions": [{"q": "What percentage of the world population is projected to live in cities by 2050?", "options": ["55%", "60%", "68%", "75%"], "answer": 2}, {"q": "What is a key advantage of vertical farming?", "options": ["Lower electricity costs", "Year-round production", "More jobs", "Larger crop variety"], "answer": 1}, {"q": "How much less water do vertical farms use?", "options": ["75%", "85%", "90%", "95%"], "answer": 3}, {"q": "What benefit do community gardens provide beyond food?", "options": ["Higher property values", "Reduced stress levels", "Lower crime rates", "Better air quality"], "answer": 1}, {"q": "What is Singapore's '30 by 30' goal?", "options": ["Export 30% of food", "Produce 30% of nutritional needs locally", "Reduce food waste by 30%", "Build 30 vertical farms"], "answer": 1}]}, "writing": {"duration": 60, "task1": {"prompt": "The chart below shows the percentage of adults in different age groups who used the internet daily in a European country between 2006 and 2016.", "data": "Age Group | 2006 | 2011 | 2016\n16-24 | 72% | 91% | 98%\n25-44 | 65% | 85% | 95%\n45-64 | 38% | 62% | 82%\n65+ | 8% | 22% | 48%", "minWords": 150, "sample": "The bar chart illustrates the proportion of adults across four age groups who used the internet on a daily basis in a European country at three points in time: 2006, 2011, and 2016.\n\nOverall, internet usage increased across all age groups over the decade, with the most dramatic growth occurring among older adults.\n\nIn 2006, there was a clear correlation between age and internet usage, with 72% of 16 to 24-year-olds accessing the internet daily compared to just 8% of those aged 65 and over. By 2016, the gap had narrowed considerably. The youngest group reached near-universal usage at 98%, while the 65-plus group experienced the most remarkable growth, increasing sixfold from 8% to 48%.\n\nThe 25 to 44 and 45 to 64 age groups also saw substantial increases of 30 and 44 percentage points respectively. The most significant period of growth for the oldest age group was between 2011 and 2016, when their daily internet usage more than doubled."}, "task2": {"prompt": "In many countries, people are living longer than ever before. What problems does this cause? What can be done to address these problems?", "minWords": 250, "sample": "Increased life expectancy is one of the greatest achievements of modern medicine and public health. However, ageing populations present significant challenges for societies worldwide. This essay will examine the key problems arising from this demographic shift and propose potential solutions.\n\nThe most pressing issue is the strain on healthcare systems. Older populations typically require more medical care, particularly for chronic conditions such as diabetes, heart disease, and dementia. This increased demand drives up healthcare costs and can lead to longer waiting times and resource shortages.\n\nA second major challenge is the economic burden on pension systems. As the ratio of workers to retirees decreases, fewer working-age people must support a growing number of pensioners, potentially leading to unsustainable public finances.\n\nTo address these challenges, governments should consider several measures. Firstly, raising the retirement age gradually, in line with increases in healthy life expectancy, can help maintain the worker-to-retiree ratio. Secondly, investing in preventative healthcare and promoting healthy ageing can reduce the burden of chronic diseases. Thirdly, encouraging older people to remain in the workforce through flexible working arrangements and anti-age-discrimination laws can harness their valuable experience while reducing pension costs.\n\nIn conclusion, while an ageing population presents genuine challenges, they are not insurmountable. With thoughtful policy interventions and a shift in societal attitudes toward ageing, countries can adapt to this new demographic reality."}}, "speaking": {"parts": [{"part": "Part 1", "topic": "Introduction & Daily Life", "questions": ["What time do you usually get up?", "Do you prefer mornings or evenings?", "How do you usually spend your weekends?", "What do you typically eat for breakfast?"]}, {"part": "Part 2", "topic": "Describe a person who has influenced you", "cue": "You should say: Who this person is, How you know them, What they have done, And explain how they have influenced you", "time": 120}, {"part": "Part 3", "topic": "Discussion · Role Models", "questions": ["What qualities make someone a good role model?", "Do celebrities have a responsibility to be good role models?", "How have role models changed over generations?", "Can someone be a role model without knowing it?"]}]}}, {"id": "c18t2", "year": 2023, "name": "剑桥雅思 18 · Test 2", "listening": {"duration": 30, "sections": [{"title": "Section 1 · 求职申请", "audio": "Thanks for applying to Green Valley Hotel. Your name is James O'Connor, O-apostrophe-C-O-N-N-O-R. You're applying for the receptionist position, full-time. Your previous experience is two years at Grand Plaza Hotel. Your expected salary is 22,000 pounds per year. You can start from the 1st of next month. We'll contact you at james.o@email.com.", "questions": [{"q": "The applicant's surname is ______.", "type": "fill", "answer": "O'Connor"}, {"q": "He is applying for a ______ position.", "type": "fill", "answer": "receptionist"}, {"q": "He has ______ years of experience.", "type": "fill", "answer": "two"}, {"q": "The expected salary is ______ pounds per year.", "type": "fill", "answer": "22000"}, {"q": "He can start from the ______ of next month.", "type": "fill", "answer": "1st"}]}, {"title": "Section 2 · 公司健康计划", "audio": "I am pleased to announce the launch of our new employee wellness programme, starting next Monday. The programme has three main components. First, we have partnered with the City Gym to offer discounted memberships at 25 pounds per month instead of the usual 40 pounds. Second, we will be running weekly yoga sessions every Wednesday at 1 PM in the conference room. These sessions last 45 minutes and are suitable for all levels, including complete beginners. Please wear comfortable clothing and bring a towel. Third, we are introducing a nutrition advice service. You can book a 30-minute appointment with a qualified nutritionist through the HR portal. The first consultation is free, and follow-up sessions cost 15 pounds. We believe these initiatives will contribute to a healthier, happier workplace.", "questions": [{"q": "When does the wellness programme launch?", "options": ["This Friday", "Next Monday", "Next Wednesday", "Next month"], "answer": 1}, {"q": "What is the discounted gym membership rate?", "options": ["15 pounds", "20 pounds", "25 pounds", "30 pounds"], "answer": 2}, {"q": "When are yoga sessions held?", "options": ["Monday at 1 PM", "Wednesday at 1 PM", "Friday at 1 PM", "Wednesday at 3 PM"], "answer": 1}, {"q": "How long are the yoga sessions?", "options": ["30 minutes", "45 minutes", "60 minutes", "90 minutes"], "answer": 1}, {"q": "How can employees book nutritionist appointments?", "options": ["By email", "By phone", "Through the HR portal", "In person"], "answer": 2}]}]}, "reading": {"duration": 60, "passage": "The Sharing Economy: Promise and Peril\n\nThe sharing economy, characterised by peer-to-peer platforms that facilitate the exchange of goods and services, has transformed industries from transportation to accommodation in less than two decades. Companies like Airbnb, Uber, and TaskRabbit have become household names, promising greater efficiency, lower costs, and new income opportunities. However, as the sector matures, a more nuanced picture is emerging.\n\nOn the positive side, the sharing economy has demonstrably increased access to goods and services. For consumers, platforms like Airbnb have made travel more affordable by expanding accommodation options beyond traditional hotels. For providers, these platforms have created flexible income opportunities, allowing people to monetise underutilised assets such as spare rooms, cars, and even tools and equipment.\n\nThe economic benefits extend beyond individual participants. Research by the European Commission suggests that the sharing economy could add up to 572 billion euros to the EU economy annually. The environmental case is also compelling: by making better use of existing resources, the sharing economy can reduce waste and lower carbon footprints.\n\nYet the sharing economy has faced mounting criticism. Labour advocates point out that many platform workers are classified as independent contractors rather than employees, denying them access to minimum wage protections, sick pay, and pensions. The 'gig economy' label, once associated with freedom and flexibility, has become synonymous with precarious work for many.\n\nRegulatory challenges have also emerged. Cities from Barcelona to New York have grappled with the impact of short-term rentals on housing affordability, with some implementing strict limits on Airbnb-style listings. The taxi industry has been fundamentally disrupted by ride-hailing apps, leading to protests and calls for tighter regulation.", "questions": [{"q": "What is the sharing economy characterised by?", "options": ["Government regulation", "Peer-to-peer platforms", "Large corporations", "Traditional retail"], "answer": 1}, {"q": "How much could the sharing economy add to the EU economy annually?", "options": ["372 billion euros", "472 billion euros", "572 billion euros", "672 billion euros"], "answer": 2}, {"q": "What is a key criticism of platform workers' status?", "options": ["They earn too much", "They lack employment protections", "They work too few hours", "They have no flexibility"], "answer": 1}, {"q": "What environmental benefit does the sharing economy offer?", "options": ["More production", "Better use of existing resources", "Increased manufacturing", "Higher energy consumption"], "answer": 1}, {"q": "What concern do cities have about short-term rentals?", "options": ["Tourism decline", "Housing affordability", "Transportation issues", "Cultural problems"], "answer": 1}]}, "writing": {"duration": 60, "task1": {"prompt": "The diagram below shows the process of recycling plastic bottles.", "data": "Step 1: Collection from recycling bins → Step 2: Transportation to recycling plant → Step 3: Sorting by type and colour → Step 4: Cleaning and removal of labels → Step 5: Shredding into small flakes → Step 6: Washing and drying flakes → Step 7: Melting and forming into pellets → Step 8: Manufacturing new products", "minWords": 150, "sample": "The flowchart illustrates the eight-stage process by which plastic bottles are recycled, from initial collection to the manufacturing of new products.\n\nThe process begins with consumers depositing used plastic bottles into designated recycling bins. These bottles are then collected and transported by truck to a recycling facility.\n\nAt the plant, the bottles undergo sorting, where they are separated according to their plastic type and colour, as different types of plastic require different treatment. Following sorting, the bottles are thoroughly cleaned to remove any labels, caps, and residual contents.\n\nThe cleaned bottles are then fed into a shredding machine that breaks them down into small plastic flakes. These flakes are subsequently washed again and dried to ensure they are completely free of contaminants.\n\nIn the penultimate stage, the clean flakes are melted at high temperatures and extruded into small pellets, which serve as the raw material for manufacturing. Finally, these recycled plastic pellets are used to produce a wide range of new products, completing the recycling loop."}, "task2": {"prompt": "Some people believe that unpaid community service should be a compulsory part of high school programmes. To what extent do you agree or disagree?", "minWords": 250, "sample": "The proposal to make unpaid community service a mandatory component of secondary education has generated considerable debate. While I acknowledge the potential benefits, I believe that compelling students to perform unpaid work raises significant ethical and practical concerns.\n\nProponents argue that compulsory community service instils civic responsibility and empathy in young people. By engaging with vulnerable populations or environmental projects, students gain perspectives that cannot be taught in a classroom. Additionally, such programmes provide practical experience that enhances university applications and CVs.\n\nHowever, I find the compulsory aspect problematic on several grounds. Firstly, forced labour, even for charitable purposes, contradicts the very values of voluntarism and altruism that such programmes aim to instil. Secondly, mandating unpaid work disproportionately affects students from lower-income backgrounds, who may need to spend their free time on paid employment or family responsibilities.\n\nA more effective approach would be to strongly encourage but not require community service. Schools could integrate service-learning into the curriculum as an optional component, provide recognition for students who participate, and partner with local organisations to create meaningful opportunities. This would achieve the educational goals without the ethical compromises of compulsion.\n\nIn conclusion, while community service has clear educational value, making it compulsory is neither ethically sound nor practically feasible. Encouragement and opportunity, rather than obligation, represent the better path forward."}}, "speaking": {"parts": [{"part": "Part 1", "topic": "Introduction & Work", "questions": ["Do you work or are you a student?", "What do you like about your job/studies?", "Would you like to change your job?", "What job would you like to do in the future?"]}, {"part": "Part 2", "topic": "Describe a time you helped someone", "cue": "You should say: Who you helped, What you did, Why you helped them, And explain how you felt afterwards", "time": 120}, {"part": "Part 3", "topic": "Discussion · Helping Others", "questions": ["Why do some people choose to volunteer?", "Should schools teach children to help others?", "How has technology changed the way people help each other?", "Do you think people are more or less helpful than in the past?"]}]}}, {"id": "c19t1", "year": 2024, "name": "剑桥雅思 19 · Test 1", "listening": {"duration": 30, "sections": [{"title": "Section 1 · 健身房入会", "audio": "Hi, I'd like to join the gym. Great, we have several membership options. The standard monthly membership is 39 pounds. The annual membership is 360 pounds, which works out cheaper. Our facilities include a swimming pool and sauna. We're open from 6 AM to 10 PM on weekdays. Your membership key fob code will be 4521. We're located at 88 Harbour Street.", "questions": [{"q": "The monthly membership fee is ______ pounds.", "type": "fill", "answer": "39"}, {"q": "The annual membership costs ______ pounds.", "type": "fill", "answer": "360"}, {"q": "The gym opens at ______ AM on weekdays.", "type": "fill", "answer": "6"}, {"q": "The key fob code is ______.", "type": "fill", "answer": "4521"}, {"q": "The gym is at ______ Harbour Street.", "type": "fill", "answer": "88"}]}, {"title": "Section 2 · 历史导览", "audio": "Welcome to the Old Town walking tour. We will be visiting six historic sites over the next two hours. Our first stop is the medieval Clock Tower, built in 1682, which offers spectacular views of the city from the top. Next, we will walk through the Merchant's Quarter, where you can see beautifully preserved 18th-century townhouses. The third stop is the Old Harbour, once the busiest port in the region. We will then visit the Cathedral of St. Mary, a stunning example of Gothic architecture completed in 1320. Our fifth stop is the City Museum, housed in a former palace, and finally, we end at the Victorian Gardens. Your ticket also includes free entry to the museum for the rest of the day, so feel free to explore at your leisure after the tour.", "questions": [{"q": "How long is the walking tour?", "options": ["One hour", "90 minutes", "Two hours", "Three hours"], "answer": 2}, {"q": "When was the Clock Tower built?", "options": ["1662", "1682", "1702", "1722"], "answer": 1}, {"q": "How many sites will be visited?", "options": ["Five", "Six", "Seven", "Eight"], "answer": 1}, {"q": "What architectural style is the Cathedral?", "options": ["Romanesque", "Baroque", "Gothic", "Modern"], "answer": 2}, {"q": "What additional benefit does the ticket provide?", "options": ["Free lunch", "Free museum entry", "Free transport", "Souvenir gift"], "answer": 1}]}]}, "reading": {"duration": 60, "passage": "Artificial Intelligence in Healthcare: Revolution or Evolution?\n\nArtificial intelligence has been heralded as a transformative force in healthcare, promising to revolutionise everything from diagnosis to drug discovery. While the potential is undoubtedly enormous, the reality of AI implementation in clinical settings reveals a more complex picture of gradual integration rather than sudden transformation.\n\nIn medical imaging, AI has arguably made the most significant strides. Deep learning algorithms trained on millions of labelled images can now detect certain conditions with accuracy matching or exceeding that of experienced radiologists. A landmark study published in Nature in 2020 demonstrated that an AI system developed by Google Health could identify breast cancer in mammograms with fewer false positives and false negatives than human radiologists. Similar successes have been reported in detecting lung cancer, diabetic retinopathy, and skin cancer.\n\nDrug discovery represents another domain where AI is making substantial contributions. Traditional drug development is notoriously slow and expensive, typically taking 10 to 15 years and costing over 2.6 billion dollars to bring a single drug to market. AI can accelerate this process by predicting how potential drug compounds will interact with biological targets, screening millions of candidates in silico before any laboratory testing begins.\n\nHowever, significant obstacles remain. The 'black box' problem—the difficulty in understanding how AI systems reach their conclusions—creates challenges for clinical adoption and regulatory approval. Data privacy concerns, algorithmic bias, and the fragmented nature of healthcare data systems further complicate deployment. Moreover, the fear that AI might replace healthcare professionals appears largely unfounded; instead, the technology is proving most effective when it augments rather than replaces human expertise.", "questions": [{"q": "In which area has AI made the most significant strides?", "options": ["Surgery", "Medical imaging", "Electronic records", "Hospital management"], "answer": 1}, {"q": "What did the 2020 Nature study demonstrate?", "options": ["AI can replace doctors", "AI can detect breast cancer accurately", "AI can cure cancer", "AI is cheaper than doctors"], "answer": 1}, {"q": "How much does it cost to bring a drug to market?", "options": ["1.6 billion dollars", "2.6 billion dollars", "3.6 billion dollars", "4.6 billion dollars"], "answer": 1}, {"q": "What is the 'black box' problem?", "options": ["AI systems are physically black", "Difficulty understanding AI decisions", "AI systems are invisible", "AI requires dark rooms"], "answer": 1}, {"q": "What is the most effective role for AI in healthcare?", "options": ["Replacing doctors", "Augmenting human expertise", "Managing hospitals", "Reducing patient visits"], "answer": 1}]}, "writing": {"duration": 60, "task1": {"prompt": "The maps below show the changes that have taken place in a coastal town between 1995 and the present.", "data": "1995: Fishing port, small hotel, local market, narrow roads, forest area\nPresent: Marina with yachts, large resort hotel, shopping centre, widened roads, golf course on former forest land", "minWords": 150, "sample": "The maps illustrate the significant transformation of a coastal town from 1995 to the present day.\n\nOverall, the town has undergone extensive commercial development, shifting from a modest fishing community to a modern tourist destination.\n\nIn 1995, the town had a working fishing port along the coastline, a small hotel, and a local market serving residents. The road network was limited to narrow streets, and a substantial forest area occupied the eastern part of the town.\n\nBy the present day, almost every feature has been replaced or upgraded. The fishing port has been converted into a modern marina filled with yachts, while the small hotel has been replaced by a large resort hotel to accommodate increased tourism. The local market has given way to a shopping centre, and the narrow roads have been widened to handle greater traffic volumes.\n\nThe most dramatic change has been in the eastern area, where the entire forest has been cleared to make way for a golf course. This transformation reflects the town's evolution from a traditional fishing economy to one focused on tourism and leisure."}, "task2": {"prompt": "Some people think that social media platforms have a negative impact on both individuals and society. To what extent do you agree or disagree?", "minWords": 250, "sample": "Social media has become deeply embedded in modern life, with billions of users worldwide. While critics argue that its effects are overwhelmingly negative, I believe the reality is more nuanced: social media has both significant drawbacks and meaningful benefits, and its impact depends largely on how it is used.\n\nOn the negative side, there is compelling evidence that excessive social media use can harm mental health, particularly among young people. Studies have linked heavy social media consumption to increased rates of anxiety, depression, and poor body image, driven by constant social comparison and the pressure to present a curated, idealised version of oneself.\n\nHowever, dismissing social media as purely harmful overlooks its genuine benefits. These platforms have enabled social movements to organise and amplify marginalised voices, from the Arab Spring to climate activism. They allow people to maintain relationships across vast distances and provide support communities for individuals with rare conditions or shared interests.\n\nIn conclusion, while I agree that social media can have negative effects, I disagree that these are inevitable or universal. The challenge lies not in the technology itself but in how we regulate it, educate users, and design platforms that prioritise wellbeing over engagement metrics."}}, "speaking": {"parts": [{"part": "Part 1", "topic": "Introduction & Technology", "questions": ["How often do you use social media?", "What is your favourite app?", "Do you think technology makes life easier?", "How has technology changed your daily routine?"]}, {"part": "Part 2", "topic": "Describe a piece of technology you find useful", "cue": "You should say: What it is, How you use it, How long you have had it, And explain why you find it useful", "time": 120}, {"part": "Part 3", "topic": "Discussion · Technology & Society", "questions": ["How has technology changed the way people work?", "Has technology made people more or less social?", "What technological development would you most like to see?", "Should there be limits on technological development?"]}]}}, {"id": "c19t2", "year": 2024, "name": "剑桥雅思 19 · Test 2", "listening": {"duration": 30, "sections": [{"title": "Section 1 · 会议场地预订", "audio": "I need to book a conference room for next Friday, the 22nd. We have the Boardroom, capacity 30 people, or the Riverside Suite for up to 50. Let's go with the Riverside Suite. The rate is 250 pounds for a half day. We'll need a projector and a flip chart. Catering is extra at 15 pounds per person. The booking is under the name of David Chen, C-H-E-N. Confirmation number is BK3491.", "questions": [{"q": "The event date is Friday the ______.", "type": "fill", "answer": "22nd"}, {"q": "The Riverside Suite can hold up to ______ people.", "type": "fill", "answer": "50"}, {"q": "The half-day rate is ______ pounds.", "type": "fill", "answer": "250"}, {"q": "Catering is ______ pounds per person.", "type": "fill", "answer": "15"}, {"q": "The booking is under the name David ______.", "type": "fill", "answer": "Chen"}]}, {"title": "Section 2 · 城市公园介绍", "audio": "Welcome to Riverside Park, one of the largest urban parks in the country. The park was established in 1854 and covers an area of 250 hectares. One of our most popular attractions is the boating lake, where you can rent rowing boats and pedal boats from 9 AM until sunset. For nature enthusiasts, we have 15 kilometres of marked walking trails that pass through woodland, meadows, and along the river. The wildlife observation hide is open daily and is a great spot to see herons, kingfishers, and occasionally otters. If you are visiting with children, the adventure playground near the main entrance has been recently refurbished at a cost of 1.2 million pounds. For refreshments, the Lakeside Cafe serves hot and cold meals and has a terrace with views over the water. It is open from 8 AM to 6 PM in summer and 9 AM to 4 PM in winter.", "questions": [{"q": "When was Riverside Park established?", "options": ["1844", "1854", "1864", "1874"], "answer": 1}, {"q": "How large is the park?", "options": ["150 hectares", "200 hectares", "250 hectares", "300 hectares"], "answer": 2}, {"q": "How long are the walking trails?", "options": ["10 km", "12 km", "15 km", "20 km"], "answer": 2}, {"q": "How much did the playground refurbishment cost?", "options": ["0.8 million", "1.0 million", "1.2 million", "1.5 million"], "answer": 2}, {"q": "When does the cafe close in winter?", "options": ["3 PM", "4 PM", "5 PM", "6 PM"], "answer": 1}]}]}, "reading": {"duration": 60, "passage": "The Renaissance of Remote Work\n\nThe COVID-19 pandemic triggered what many have called the world's largest experiment in remote work. What began as a temporary necessity has evolved into a permanent shift in how and where work gets done. As of 2024, approximately 28 percent of paid workdays in the United States are performed from home, compared to just 5 percent before the pandemic.\n\nResearch on productivity in remote settings has produced mixed but largely encouraging results. A comprehensive study by Stanford University involving 16,000 workers over nine months found that remote work led to a 13 percent increase in productivity, attributed to a quieter working environment and fewer interruptions. However, a separate study by Microsoft Research identified a potential downside: remote work appeared to reduce cross-team collaboration and the formation of new professional connections.\n\nThe impact on employees varies significantly based on individual circumstances. For parents, particularly mothers, remote work has often meant a reduction in the impossible juggle between professional and domestic responsibilities. For younger workers early in their careers, however, the absence of in-person mentorship and networking opportunities has raised concerns about long-term career development.\n\nCompanies have adopted diverse approaches. Some, like Spotify and Dropbox, have embraced fully flexible models where employees choose where they work. Others, including Goldman Sachs and Tesla, have mandated a return to the office, arguing that in-person collaboration is essential for innovation and company culture. A growing number have settled on hybrid arrangements, typically requiring two to three days in the office per week.", "questions": [{"q": "What percentage of paid workdays in the US are now from home?", "options": ["5%", "15%", "28%", "40%"], "answer": 2}, {"q": "What did the Stanford study find about remote work productivity?", "options": ["It decreased by 13%", "It increased by 13%", "No change", "Inconclusive results"], "answer": 1}, {"q": "What downside did Microsoft Research identify?", "options": ["Higher costs", "Reduced cross-team collaboration", "Lower individual output", "More sick days"], "answer": 1}, {"q": "Which group has particularly benefited from remote work?", "options": ["Young workers", "Senior executives", "Parents, especially mothers", "IT professionals"], "answer": 2}, {"q": "Which company is mentioned as requiring a return to the office?", "options": ["Spotify", "Dropbox", "Goldman Sachs", "Airbnb"], "answer": 2}]}, "writing": {"duration": 60, "task1": {"prompt": "The bar chart below shows the average monthly rainfall in three cities over a year.", "data": "Month | London | Sydney | Tokyo\nJan | 55mm | 100mm | 50mm\nApr | 45mm | 120mm | 120mm\nJul | 40mm | 80mm | 160mm\nOct | 70mm | 70mm | 170mm", "minWords": 150, "sample": "The bar chart compares the average monthly rainfall in London, Sydney, and Tokyo across four months representing different seasons.\n\nOverall, Tokyo experienced the highest rainfall in most months, while London recorded the lowest precipitation levels across the period.\n\nIn January, Sydney had the highest rainfall at 100mm, which was nearly double London's 55mm and twice Tokyo's 50mm. By April, the situation had shifted considerably: both Sydney and Tokyo recorded 120mm of rain, while London maintained the lowest figure at 45mm.\n\nJuly saw Tokyo's rainfall peak at 160mm, significantly higher than Sydney's 80mm and London's minimal 40mm. In October, Tokyo maintained the lead with 170mm, followed by London's 70mm and Sydney's 70mm, both considerably lower.\n\nA clear seasonal pattern is evident: London's rainfall remained relatively stable throughout the year, while Tokyo showed a dramatic increase from summer through autumn. Sydney demonstrated a reverse pattern, with higher rainfall in the first half of the year and declining levels in the latter months."}, "task2": {"prompt": "Some people believe that it is better to live in a city, while others prefer living in the countryside. Discuss both views and give your opinion.", "minWords": 250, "sample": "The choice between urban and rural living is one of the most fundamental lifestyle decisions people face. Both environments offer distinct advantages and disadvantages, and the right choice depends heavily on individual priorities and circumstances.\n\nCity living offers unparalleled access to amenities and opportunities. Urban areas typically provide better employment prospects, with a wider range of industries and higher salaries. Cultural institutions such as museums, theatres, and concert halls are concentrated in cities, as are diverse dining and entertainment options. Furthermore, cities generally offer superior public services, including extensive public transportation networks, world-class hospitals, and specialised educational institutions.\n\nConversely, rural areas offer what cities cannot: space, tranquillity, and a closer connection to nature. Countryside residents typically enjoy larger living spaces at lower costs, cleaner air, and a slower pace of life that many find conducive to mental wellbeing. The sense of community is often stronger in rural areas, where neighbours know each other and social bonds run deeper.\n\nIn my opinion, the ideal scenario would be to experience the best of both worlds. Many people now choose to live in smaller towns or suburban areas that offer reasonable proximity to urban centres while retaining a degree of rural character. Ultimately, the decision should be guided by one's career requirements, family needs, and personal preferences rather than any universal prescription."}}, "speaking": {"parts": [{"part": "Part 1", "topic": "Introduction & Home", "questions": ["Do you live in a house or an apartment?", "What is your favourite room in your home?", "Would you like to move to a different place?", "What can you see from your window?"]}, {"part": "Part 2", "topic": "Describe a place you would like to visit", "cue": "You should say: Where it is, What you know about it, Why you want to go there, And explain what you would do there", "time": 120}, {"part": "Part 3", "topic": "Discussion · Travel & Places", "questions": ["Why do people enjoy visiting new places?", "How has tourism affected local communities?", "What makes a place popular with tourists?", "Should tourists be encouraged to visit less well-known destinations?"]}]}}, {"id": "c20t1", "year": 2025, "name": "剑桥雅思 20 · Test 1", "listening": {"duration": 30, "sections": [{"title": "Section 1 · 驾校报名", "audio": "Hello, I'd like to enrol in driving lessons. Sure, your name is Michael Brown, B-R-O-W-N. You need a provisional licence, which takes about two weeks. We offer 10-hour packages at 28 pounds per hour, so 280 pounds total. The instructor is assigned to your area, Park District. Lessons can be weekday mornings or Saturday afternoons. Your first lesson is on the 5th of November.", "questions": [{"q": "The student's surname is ______.", "type": "fill", "answer": "Brown"}, {"q": "The provisional licence takes about ______ weeks.", "type": "fill", "answer": "two"}, {"q": "The total package price is ______ pounds.", "type": "fill", "answer": "280"}, {"q": "The instructor covers the ______ District area.", "type": "fill", "answer": "Park"}, {"q": "The first lesson is on the 5th of ______.", "type": "fill", "answer": "November"}]}, {"title": "Section 2 · 音乐节信息", "audio": "Welcome to the Riverside Music Festival! The festival runs over three days from Friday 14th to Sunday 16th June. There are four stages: the Main Stage, the Acoustic Tent, the Dance Arena, and the Emerging Artists Platform. The Main Stage headliners are The Northern Lights on Friday, Electric Wave on Saturday, and Luna Park on Sunday. The Acoustic Tent features more intimate performances and has limited capacity, so arrive early if there is a particular act you want to see. Food stalls are located in the Global Food Village behind the Main Stage, offering everything from Mexican street food to Japanese ramen. There are also plenty of vegetarian and vegan options. Water refill stations are available throughout the site, so please bring a reusable bottle. Toilets are located at three points around the festival site. In case of emergency, first aid tents are positioned next to each stage.", "questions": [{"q": "How many days does the festival run?", "options": ["Two days", "Three days", "Four days", "Five days"], "answer": 1}, {"q": "Who headlines the Main Stage on Saturday?", "options": ["The Northern Lights", "Electric Wave", "Luna Park", "The Southern Stars"], "answer": 1}, {"q": "Where are the food stalls located?", "options": ["Next to the entrance", "Behind the Main Stage", "Near the car park", "By the Acoustic Tent"], "answer": 1}, {"q": "What should visitors bring?", "options": ["A reusable bottle", "Food", "A chair", "An umbrella"], "answer": 0}, {"q": "Where are first aid tents positioned?", "options": ["At the entrance", "In the car park", "Next to each stage", "In the food village"], "answer": 2}]}]}, "reading": {"duration": 60, "passage": "Ocean Cleanup Technologies: Promise and Limitations\n\nThe growing crisis of ocean plastic pollution has spurred a wave of technological innovation aimed at cleaning up the world's seas. An estimated 11 million metric tons of plastic enter the oceans each year, a figure projected to nearly triple by 2040 without significant intervention. In response, engineers and entrepreneurs have developed a range of technologies, from massive floating barriers to microscopic nanobots.\n\nThe most prominent of these initiatives is The Ocean Cleanup, a Dutch non-profit founded by Boyan Slat. Its approach uses a 600-metre-long U-shaped floating barrier that moves with ocean currents, concentrating plastic debris for collection by support vessels. The organisation claims its System 03 can clean an area the size of a football field every five seconds. In 2023, it began operations in the Great Pacific Garbage Patch, an accumulation zone spanning 1.6 million square kilometres.\n\nSmaller-scale technologies have also emerged. The Seabin, developed by Australian surfers, is a floating rubbish bin that skims the surface of marinas and harbours, capturing plastic, oil, and detergents. Interceptor devices deployed at river mouths aim to stop plastic before it reaches the ocean, addressing the fact that 80 percent of ocean plastic originates from land-based sources via rivers.\n\nHowever, critics argue that these technologies, while valuable, risk distracting from the fundamental solution: reducing plastic production and consumption. Cleanup technologies capture only a fraction of the plastic in the ocean, and much of it is microplastic that cannot be easily recovered. Environmental scientists warn that the energy and resources invested in cleanup might be better directed toward upstream solutions such as improved waste management infrastructure in developing countries.", "questions": [{"q": "How much plastic enters the oceans annually?", "options": ["8 million tons", "11 million tons", "14 million tons", "20 million tons"], "answer": 1}, {"q": "Who founded The Ocean Cleanup?", "options": ["Boyan Slat", "Bill Gates", "Elon Musk", "Richard Branson"], "answer": 0}, {"q": "How large is the Great Pacific Garbage Patch?", "options": ["1.2 million sq km", "1.6 million sq km", "2.0 million sq km", "2.5 million sq km"], "answer": 1}, {"q": "What percentage of ocean plastic comes from rivers?", "options": ["60%", "70%", "80%", "90%"], "answer": 2}, {"q": "What is the critics' main argument?", "options": ["Cleanup is too cheap", "Focus should be on reducing plastic production", "Technology is ineffective", "Oceans will clean themselves"], "answer": 1}]}, "writing": {"duration": 60, "task1": {"prompt": "The line graph below shows the number of visitors to three museums in London from 2010 to 2020.", "data": "Year | British Museum | Science Museum | V&A\n2010 | 5.8m | 2.7m | 2.3m\n2013 | 6.7m | 3.3m | 3.2m\n2016 | 6.4m | 3.0m | 3.8m\n2019 | 6.2m | 3.2m | 4.0m\n2020 | 1.3m | 0.6m | 0.9m", "minWords": 150, "sample": "The line graph illustrates the number of visitors to three major London museums—the British Museum, the Science Museum, and the Victoria and Albert Museum—between 2010 and 2020.\n\nOverall, all three museums experienced a gradual increase in visitor numbers until 2019, followed by a dramatic decline in 2020, likely due to the pandemic.\n\nThe British Museum consistently attracted the most visitors throughout the period, starting at 5.8 million in 2010, peaking at 6.7 million in 2013, and then gradually declining to 6.2 million by 2019 before plummeting to just 1.3 million in 2020.\n\nThe Science Museum started lower at 2.7 million, rose to 3.3 million by 2013, and fluctuated around 3 million until 2019 before dropping to 0.6 million. The V&A showed the most consistent growth among the three, rising from 2.3 million in 2010 to a peak of 4.0 million in 2019, nearly overtaking the Science Museum, before falling to 0.9 million in 2020."}, "task2": {"prompt": "Some people think that the government should provide free housing for those who cannot afford it. Others believe that this is not the government's responsibility. Discuss both views and give your opinion.", "minWords": 250, "sample": "Housing is a fundamental human need, yet in many countries, a significant portion of the population struggles to afford adequate accommodation. Whether governments should provide free housing to those in need is a contentious issue that touches on questions of social justice, economic feasibility, and the proper role of the state.\n\nAdvocates of government-provided housing argue that shelter is a basic right, not a privilege. In a civilised society, they contend, no one should be forced to sleep on the streets. Furthermore, providing stable housing can generate long-term savings for the state by reducing expenditure on emergency healthcare, policing, and other crisis services. Countries such as Finland have demonstrated the effectiveness of the 'Housing First' approach, which provides permanent housing to homeless individuals without preconditions, resulting in significant reductions in homelessness and associated social costs.\n\nOpponents, however, raise valid concerns about cost and dependency. Building and maintaining public housing requires substantial government expenditure that must be funded through taxation. There is also the argument that free housing might create a disincentive to work, potentially trapping people in dependency rather than empowering them toward self-sufficiency.\n\nIn my view, while the government should not necessarily provide free housing to everyone who cannot afford it, it has a clear responsibility to ensure that no one is left without shelter. A tiered approach—providing emergency housing for the most vulnerable while subsidising affordable housing for low-income families—strikes the right balance between compassion and fiscal responsibility."}}, "speaking": {"parts": [{"part": "Part 1", "topic": "Introduction & Food", "questions": ["What is your favourite food?", "Do you enjoy cooking?", "How often do you eat out?", "What is a traditional dish from your country?"]}, {"part": "Part 2", "topic": "Describe a meal you enjoyed", "cue": "You should say: Where you ate it, Who you were with, What you ate, And explain why you enjoyed it", "time": 120}, {"part": "Part 3", "topic": "Discussion · Food & Culture", "questions": ["How has food culture changed in your country?", "Do you think people are more health-conscious about food now?", "What role does food play in celebrations?", "Should schools teach children about nutrition?"]}]}}, {"id": "c20t2", "year": 2025, "name": "剑桥雅思 20 · Test 2", "listening": {"duration": 30, "sections": [{"title": "Section 1 · 酒店预订", "audio": "I'd like to book a room for two nights from the 10th of December. A double room is available at 120 pounds per night, including breakfast. Total comes to 240 pounds. Could I have your name? Susan Taylor, T-A-Y-L-O-R. A credit card is required for the reservation. Check-in is from 2 PM. The hotel is at 15 Victoria Road, near the central station. Your reservation number is HB7756.", "questions": [{"q": "The stay is for ______ nights.", "type": "fill", "answer": "two"}, {"q": "The room rate is ______ pounds per night.", "type": "fill", "answer": "120"}, {"q": "The guest's surname is ______.", "type": "fill", "answer": "Taylor"}, {"q": "Check-in time is from ______ PM.", "type": "fill", "answer": "2"}, {"q": "The reservation number is ______.", "type": "fill", "answer": "HB7756"}]}, {"title": "Section 2 · 企业培训日安排", "audio": "Good morning everyone. Here is the schedule for today's company training day. We will start at 9 AM with a welcome address from the CEO in the main conference room. At 9:30, we split into three groups. Group A will attend the Communication Skills workshop in Room 201, Group B goes to the Leadership Development session in Room 202, and Group C has the IT Security briefing in the IT Lab. Morning tea break is at 11 AM for 30 minutes in the staff canteen. From 11:30 to 1 PM, we continue with the second round of workshops where groups rotate. Lunch is from 1 PM to 2 PM, and we have arranged for catering from the Italian restaurant downstairs. The afternoon session from 2 PM to 4 PM is the team-building activity in the park across the road, weather permitting. If it rains, we will use the sports hall instead.", "questions": [{"q": "What time does the CEO's welcome address begin?", "options": ["8:30 AM", "9:00 AM", "9:30 AM", "10:00 AM"], "answer": 1}, {"q": "Where is the Communication Skills workshop?", "options": ["Room 201", "Room 202", "IT Lab", "Main conference room"], "answer": 0}, {"q": "How long is the morning tea break?", "options": ["15 minutes", "20 minutes", "30 minutes", "45 minutes"], "answer": 2}, {"q": "Where is lunch catered from?", "options": ["Chinese restaurant", "Italian restaurant", "French bakery", "Staff canteen"], "answer": 1}, {"q": "Where is the team-building activity if it rains?", "options": ["Conference room", "Sports hall", "IT Lab", "It is cancelled"], "answer": 1}]}]}, "reading": {"duration": 60, "passage": "The Economics of Renewable Energy Transition\n\nThe global transition from fossil fuels to renewable energy represents one of the most significant economic transformations in modern history. While the environmental imperative is clear, the economic dimensions of this transition are complex and multifaceted, involving questions of cost, employment, energy security, and international competitiveness.\n\nThe economics of renewables have shifted dramatically over the past decade. The levelised cost of electricity from solar photovoltaics has fallen by approximately 89 percent since 2010, while onshore wind costs have dropped by 70 percent, according to the International Renewable Energy Agency. In many parts of the world, building new renewable capacity is now cheaper than operating existing coal plants.\n\nEmployment effects have been a central focus of the transition debate. The renewable energy sector employed approximately 13.7 million people globally in 2023, up from 7.3 million in 2012. Solar photovoltaic installations account for the largest share of these jobs, followed by bioenergy and hydropower. However, the transition also involves substantial job displacement in fossil fuel industries, creating a need for 'just transition' policies that support affected workers and communities.\n\nEnergy security considerations have gained new urgency following the geopolitical disruptions of recent years. Countries heavily dependent on imported fossil fuels have faced severe price volatility and supply uncertainties. Renewables, by contrast, offer the prospect of domestic energy production that is insulated from international market fluctuations, though intermittency challenges require investment in storage and grid infrastructure.", "questions": [{"q": "By how much have solar PV costs fallen since 2010?", "options": ["70%", "80%", "89%", "95%"], "answer": 2}, {"q": "How many people did the renewable energy sector employ in 2023?", "options": ["7.3 million", "10.2 million", "13.7 million", "15.5 million"], "answer": 2}, {"q": "What is the 'just transition' about?", "options": ["Environmental protection", "Supporting displaced fossil fuel workers", "International trade", "Technology transfer"], "answer": 1}, {"q": "What challenge do renewables face regarding energy security?", "options": ["High fuel costs", "Intermittency issues", "Lack of technology", "Poor management"], "answer": 1}, {"q": "Which renewable sector has the most jobs?", "options": ["Wind energy", "Bioenergy", "Solar PV", "Hydropower"], "answer": 2}]}, "writing": {"duration": 60, "task1": {"prompt": "The pie charts below show the energy consumption by source in a country in 2000 and 2023.", "data": "2000: Coal 38%, Oil 32%, Gas 18%, Nuclear 8%, Renewables 4%\n2023: Coal 15%, Oil 28%, Gas 25%, Nuclear 12%, Renewables 20%", "minWords": 150, "sample": "The pie charts compare the distribution of energy consumption across five sources in a particular country between 2000 and 2023.\n\nOverall, the country's energy mix diversified significantly over the 23-year period, with a dramatic decline in coal usage offset by substantial growth in renewables and natural gas.\n\nIn 2000, coal dominated the energy landscape at 38%, followed by oil at 32%. Together, these two fossil fuels accounted for 70% of all energy consumption. Gas contributed 18%, while nuclear and renewables made up just 8% and 4% respectively.\n\nBy 2023, the picture had transformed considerably. Coal fell sharply to just 15%, a decrease of 23 percentage points. Oil also declined to 28%, though more moderately. In contrast, gas consumption rose to 25%, nuclear energy increased to 12%, and renewables experienced the most dramatic growth, surging from 4% to 20%.\n\nThis shift represents a clear movement away from the most carbon-intensive fossil fuels toward cleaner energy sources, with renewables showing the most impressive expansion over the period."}, "task2": {"prompt": "Many people believe that the increasing use of modern technology in the workplace is creating more problems than it solves. To what extent do you agree or disagree?", "minWords": 250, "sample": "Modern technology has fundamentally reshaped the workplace, from the tools we use to the ways we communicate and collaborate. While some argue that this technological integration has created more problems than it has solved, I largely disagree with this assessment, believing that the benefits significantly outweigh the drawbacks when technology is implemented thoughtfully.\n\nOn the positive side, technology has dramatically increased workplace productivity and efficiency. Automation of routine tasks has freed workers to focus on higher-value activities that require creativity and critical thinking. Communication tools such as instant messaging and video conferencing have enabled seamless collaboration across time zones and geographies, a capability that proved invaluable during the pandemic and continues to support flexible working arrangements.\n\nHowever, it would be naive to dismiss the genuine problems that workplace technology can create. The blurring of boundaries between work and personal life, facilitated by constant connectivity, has contributed to increased stress and burnout among many workers. The expectation of immediate responses to emails and messages can fragment attention and reduce deep work. Additionally, the rapid pace of technological change can leave some workers feeling deskilled or obsolete.\n\nIn my view, these problems are not inherent to the technology itself but rather stem from how it is implemented and managed. Organisations that establish clear policies around after-hours communication, provide adequate training, and involve employees in technology decisions tend to experience fewer negative effects. The solution is not to reject workplace technology but to use it more intelligently."}}, "speaking": {"parts": [{"part": "Part 1", "topic": "Introduction & Sports", "questions": ["Do you play any sports?", "How often do you exercise?", "What sports are popular in your country?", "Did you enjoy PE lessons at school?"]}, {"part": "Part 2", "topic": "Describe a sports event you watched", "cue": "You should say: What event it was, Where you watched it, Who you watched it with, And explain why you remember it", "time": 120}, {"part": "Part 3", "topic": "Discussion · Sports & Society", "questions": ["Why are some sports more popular than others?", "Do professional athletes have a responsibility to be role models?", "How has technology changed sports?", "Should governments invest in sports facilities?"]}]}}, {"id": "c21t1", "year": 2025, "name": "剑桥雅思 21 · Test 1", "listening": {"duration": 30, "sections": [{"title": "Section 1 · 诊所预约", "audio": "Good afternoon, I'd like to make an appointment with Dr. Foster. We have availability on Wednesday the 17th at 10:30 AM. Your name is Robert King, K-I-N-G. Your date of birth is 3rd July 1985. Is this a new problem? Yes, I've had a sore throat for three days. Your NHS number please. It's 4837 291 065. Please arrive 10 minutes before your appointment.", "questions": [{"q": "The appointment is with Dr. ______.", "type": "fill", "answer": "Foster"}, {"q": "The date is Wednesday the ______.", "type": "fill", "answer": "17th"}, {"q": "The patient's surname is ______.", "type": "fill", "answer": "King"}, {"q": "The patient has had a sore throat for ______ days.", "type": "fill", "answer": "three"}, {"q": "The NHS number is ______.", "type": "fill", "answer": "4837 291 065"}]}, {"title": "Section 2 · 社区中心活动", "audio": "I would like to tell you about the activities we are offering at the community centre this autumn. Our most popular programme is the Art for All workshop, which runs every Tuesday morning from 10 AM to noon. No previous experience is necessary, and all materials are provided free of charge. For those interested in fitness, we have introduced a new gentle yoga class on Thursday afternoons from 2 PM to 3 PM, specifically designed for older adults. On Saturday mornings, we host a community breakfast from 9 AM to 11 AM, where for just 3 pounds you can enjoy a full cooked breakfast and meet your neighbours. We also have a book club that meets on the first Monday of each month at 7 PM. This month's book is 'The Midnight Library' by Matt Haig. Finally, our computer skills drop-in session runs on Wednesday afternoons where volunteers provide one-to-one help with smartphones, tablets, and laptops.", "questions": [{"q": "When does the Art for All workshop take place?", "options": ["Monday morning", "Tuesday morning", "Wednesday morning", "Thursday morning"], "answer": 1}, {"q": "What time does the yoga class start?", "options": ["1 PM", "2 PM", "3 PM", "4 PM"], "answer": 1}, {"q": "How much does the community breakfast cost?", "options": ["2 pounds", "3 pounds", "4 pounds", "It is free"], "answer": 1}, {"q": "When does the book club meet?", "options": ["First Monday of the month", "Second Monday", "Last Monday", "Every Monday"], "answer": 0}, {"q": "Which book is the book club reading this month?", "options": ["The Silent Patient", "The Midnight Library", "The Thursday Murder Club", "Normal People"], "answer": 1}]}]}, "reading": {"duration": 60, "passage": "The Circular Economy: Beyond Recycling\n\nThe concept of a circular economy has gained significant traction in recent years as an alternative to the traditional linear economic model of 'take, make, dispose'. In a circular economy, resources are kept in use for as long as possible, extracting maximum value before recovering and regenerating products and materials at the end of their service life.\n\nThe environmental case for circularity is compelling. The Ellen MacArthur Foundation estimates that adopting circular economy principles in just five key sectors—cement, aluminium, steel, plastics, and food—could eliminate almost half of the remaining emissions from the production of goods, equivalent to 9.3 billion tonnes of CO2 by 2050. This would be roughly equivalent to cutting all current transport emissions to zero.\n\nBusinesses are beginning to embrace circular principles for clear economic reasons. The volatility of raw material prices, supply chain disruptions, and growing consumer demand for sustainable products have made circularity an increasingly attractive business strategy. Companies like Philips have shifted from selling lighting products to selling 'light as a service', retaining ownership of the physical equipment and ensuring its recovery and refurbishment.\n\nHowever, the transition faces significant obstacles. Current economic systems are optimised for linear production, with subsidies, tax structures, and infrastructure all favouring the extraction of virgin materials over reuse and recycling. Additionally, many products were not designed with circularity in mind, making disassembly and material recovery difficult and expensive.\n\nPerhaps the most profound challenge is cultural. Consumer culture is built on novelty and disposability, and shifting to a mindset that values durability, repairability, and sharing represents a fundamental change in how people relate to the material world.", "questions": [{"q": "What is the traditional economic model referred to as?", "options": ["Circular model", "Linear model of take-make-dispose", "Sharing economy", "Sustainable model"], "answer": 1}, {"q": "How much CO2 could circular principles eliminate by 2050?", "options": ["5.3 billion tonnes", "7.3 billion tonnes", "9.3 billion tonnes", "11.3 billion tonnes"], "answer": 2}, {"q": "What approach has Philips adopted?", "options": ["Selling cheaper bulbs", "Selling light as a service", "Reducing production", "Moving manufacturing overseas"], "answer": 1}, {"q": "What makes disassembly difficult for many products?", "options": ["High labour costs", "Products not designed for circularity", "Lack of technology", "Government regulations"], "answer": 1}, {"q": "What is identified as the most profound challenge?", "options": ["Economic systems", "Product design", "Cultural mindset of disposability", "Lack of infrastructure"], "answer": 2}]}, "writing": {"duration": 60, "task1": {"prompt": "The table below shows the results of a survey about people's reasons for learning a foreign language in two different years.", "data": "Reason | 2005 | 2025\nTravel | 45% | 38%\nWork/Career | 30% | 42%\nEducation | 15% | 8%\nPersonal interest | 10% | 12%", "minWords": 150, "sample": "The table presents the results of a survey comparing the reasons people learn a foreign language, with data from 2005 and 2025.\n\nOverall, work and career overtook travel as the primary motivation for language learning over the 20-year period, while education declined significantly as a reason.\n\nIn 2005, travel was the most common reason at 45%, followed by work at 30%. Education accounted for 15%, while personal interest was the least cited reason at 10%. By 2025, the picture had shifted notably. Work and career became the leading motivation, rising to 42%, an increase of 12 percentage points. Travel, while still significant, declined to 38%.\n\nThe most dramatic change occurred in education, which fell from 15% to just 8%, nearly halving its share. Personal interest showed a modest increase to 12%. This shift likely reflects the growing importance of multilingual skills in an increasingly globalised job market, where language proficiency has become a valuable career asset rather than merely a tool for leisure or academic requirements."}, "task2": {"prompt": "Some people believe that advertising has a powerful effect on what people buy, while others think that advertising no longer influences consumer behaviour. Discuss both views and give your opinion.", "minWords": 250, "sample": "Advertising has been a cornerstone of consumer capitalism for over a century, yet its effectiveness in the digital age is increasingly debated. While some maintain that advertising remains a powerful force shaping purchasing decisions, others argue that modern consumers have developed immunity to its influence. This essay will examine both perspectives.\n\nThose who believe in advertising's continued power point to the sheer scale of investment: global advertising expenditure exceeded 700 billion dollars in 2024, suggesting that businesses continue to see it as highly effective. Modern advertising has also become far more sophisticated, using data analytics and behavioural targeting to deliver personalised messages at precisely the right moment. The rise of influencer marketing demonstrates advertising's ability to adapt to new media environments.\n\nConversely, sceptics argue that consumers today are more informed and sceptical than ever before. Online reviews, comparison websites, and social media discussions allow people to research products independently before making purchases. Ad-blocking software is used by over 40 percent of internet users globally. Furthermore, younger generations, particularly Gen Z, have demonstrated a marked preference for authentic, peer-generated content over polished advertisements.\n\nIn my opinion, the truth lies between these extremes. Advertising has not lost its power, but the nature of that power has transformed. The most effective modern advertising operates subtly, through brand building, emotional association, and social proof rather than direct persuasion. Consumers may believe they are immune, but the cumulative effect of consistent brand messaging shapes preferences in ways that are often unconscious."}}, "speaking": {"parts": [{"part": "Part 1", "topic": "Introduction & Shopping", "questions": ["Do you enjoy shopping?", "How often do you go shopping?", "Do you prefer shopping online or in stores?", "What was the last thing you bought?"]}, {"part": "Part 2", "topic": "Describe something you bought that you were happy with", "cue": "You should say: What you bought, Where you bought it, Why you chose it, And explain why you were happy with it", "time": 120}, {"part": "Part 3", "topic": "Discussion · Consumer Behaviour", "questions": ["How has shopping changed in recent years?", "Do you think advertising influences what people buy?", "Is it better to buy cheap products or invest in quality?", "What impact does online shopping have on local businesses?"]}]}}, {"id": "c21t2", "year": 2025, "name": "剑桥雅思 21 · Test 2", "listening": {"duration": 30, "sections": [{"title": "Section 1 · 夏令营报名", "audio": "I'd like to register my daughter for summer camp. Her name is Lucy White, W-H-I-T-E. She is twelve years old. We have the Adventure Camp from 20th July to 3rd August, that's two weeks. The fee is 350 pounds including meals and activities. She needs to bring a sleeping bag and waterproof jacket. The camp is at Lakewood Forest, about 40 miles from the city. The registration code is SC2024.", "questions": [{"q": "The child's surname is ______.", "type": "fill", "answer": "White"}, {"q": "She is ______ years old.", "type": "fill", "answer": "twelve"}, {"q": "The camp duration is ______ weeks.", "type": "fill", "answer": "two"}, {"q": "The total fee is ______ pounds.", "type": "fill", "answer": "350"}, {"q": "The camp is at ______ Forest.", "type": "fill", "answer": "Lakewood"}]}, {"title": "Section 2 · 环保倡议介绍", "audio": "Today I want to talk about our community's Green Living Initiative, which launched six months ago. The initiative has three main programmes. The first is our food waste reduction scheme. We distributed 2,000 kitchen caddies to households and now collect food waste separately every Monday. In just six months, we have diverted 350 tonnes of food waste from landfill. The second programme is our tree planting campaign. We set a target of planting 10,000 trees across the community, and I am delighted to say we have already reached 7,500, with the remainder to be planted this autumn. Volunteers are always welcome at our monthly planting days. The third is our sustainable transport project. We have installed 50 new electric vehicle charging points across the town and launched a bike-sharing scheme with 200 bicycles at 25 docking stations. The scheme has been hugely popular, with over 15,000 journeys made in the first three months.", "questions": [{"q": "When did the Green Living Initiative launch?", "options": ["Three months ago", "Six months ago", "Nine months ago", "One year ago"], "answer": 1}, {"q": "How many kitchen caddies were distributed?", "options": ["1,500", "2,000", "2,500", "3,000"], "answer": 1}, {"q": "How many tonnes of food waste have been diverted?", "options": ["250 tonnes", "300 tonnes", "350 tonnes", "400 tonnes"], "answer": 2}, {"q": "How many trees have been planted so far?", "options": ["5,000", "6,500", "7,500", "10,000"], "answer": 2}, {"q": "How many journeys were made on the bike scheme in the first three months?", "options": ["10,000", "12,000", "15,000", "20,000"], "answer": 2}]}]}, "reading": {"duration": 60, "passage": "The Anthropology of Digital Communities\n\nThe rise of digital platforms has given birth to new forms of human community that challenge traditional anthropological categories. Online communities, from Reddit forums to Discord servers to massive multiplayer online games, have become genuine sites of culture, complete with their own norms, languages, hierarchies, and rituals.\n\nAnthropologists studying these digital spaces have observed that they function remarkably similarly to physical communities. The concept of 'liminality', originally developed by anthropologist Victor Turner to describe the transitional phase in rites of passage, has proven useful in understanding how newcomers are socialised into online communities. New members typically undergo a period of observation and tentative participation—known as 'lurking' in internet parlance—before becoming fully integrated members with recognised status.\n\nLanguage plays a particularly important role in digital community formation. Each community develops its own lexicon of insider terms, acronyms, and references that serve both communicative and identity-marking functions. The use of these linguistic markers signals belonging and excludes outsiders, much as specialised jargon does in professional communities.\n\nHowever, digital communities also present unique characteristics that distinguish them from their physical counterparts. The absence of physical co-presence fundamentally alters the nature of social accountability. Anonymity and pseudonymity, while enabling freer expression, can also facilitate antisocial behaviour that would be constrained by face-to-face interaction. The ease of exit—simply closing a browser tab—means that community bonds, while often genuine, can be more fragile than those forged through shared physical experience.\n\nPerhaps most significantly, digital communities have demonstrated the capacity to mobilise collective action in the physical world. From political movements to charitable fundraising, online communities have repeatedly translated virtual solidarity into real-world impact.", "questions": [{"q": "What does 'lurking' refer to in online communities?", "options": ["Being banned", "Observation before participation", "Posting frequently", "Moderating content"], "answer": 1}, {"q": "Who developed the concept of 'liminality'?", "options": ["Claude Levi-Strauss", "Victor Turner", "Margaret Mead", "Bronislaw Malinowski"], "answer": 1}, {"q": "What role does language play in digital communities?", "options": ["It is unimportant", "It signals belonging and excludes outsiders", "It simplifies communication", "It replaces visual cues"], "answer": 1}, {"q": "What fundamental difference does the text identify between digital and physical communities?", "options": ["Different interests", "Absence of physical co-presence", "More members", "No rules"], "answer": 1}, {"q": "What capacity have digital communities demonstrated?", "options": ["Creating jobs", "Mobilising collective action", "Reducing screen time", "Improving education"], "answer": 1}]}, "writing": {"duration": 60, "task1": {"prompt": "The bar chart below shows the percentage of men and women in different age groups who participated in volunteer work in a European country in 2023.", "data": "Age Group | Men | Women\n18-25 | 22% | 32%\n26-40 | 18% | 28%\n41-55 | 24% | 35%\n56-70 | 30% | 38%\n71+ | 25% | 20%", "minWords": 150, "sample": "The bar chart illustrates the proportion of males and females across five age groups who engaged in volunteer work in a European country during 2023.\n\nOverall, women participated in volunteering at higher rates than men across most age groups, with the notable exception of the oldest category where the pattern reversed.\n\nAmong the youngest group (18-25), 32% of women volunteered compared to 22% of men, a gap of 10 percentage points. This pattern continued in the 26-40 age bracket, where female participation stood at 28% versus 18% for males. The gender gap widened further in the 41-55 group, with 35% of women and 24% of men volunteering.\n\nThe 56-70 age group showed the highest participation rates for both genders, with 38% of women and 30% of men engaged in volunteer work. However, a striking reversal occurred in the 71-plus category: male participation rose to 25% while female participation dropped sharply to 20%, making this the only age group where men volunteered at a higher rate than women. This pattern may reflect differing retirement patterns and caregiving responsibilities in later life."}, "task2": {"prompt": "Some people think that all university students should study whatever they like. Others believe that they should only be allowed to study subjects that will be useful in the future, such as those related to science and technology. Discuss both views and give your opinion.", "minWords": 250, "sample": "The question of what university students should study touches on fundamental tensions between personal freedom, economic utility, and the purpose of higher education itself. While some argue that students should follow their passions regardless of practical considerations, others advocate for a more utilitarian approach focused on future economic needs.\n\nThose who support academic freedom emphasise that genuine intellectual engagement produces the best outcomes. Students who are passionate about their subjects are more likely to excel, contribute original ideas, and persist through challenges. History shows that many groundbreaking innovations emerged from seemingly 'impractical' disciplines: philosophy gave us the foundations of logic that underpin computer science, while linguistics research contributed to the development of natural language processing.\n\nMoreover, predicting which skills will be 'useful' in the future is notoriously difficult. The rapid pace of technological change means that specific technical knowledge can become obsolete quickly, while transferable skills such as critical thinking, communication, and adaptability—cultivated across all disciplines—retain enduring value.\n\nOn the other hand, pragmatists argue that societies face pressing challenges in areas like climate change, healthcare, and technological development that require specific expertise. Governments investing in higher education have a legitimate interest in ensuring that graduates can contribute to addressing these challenges.\n\nIn my view, a balanced approach is most sensible. Students should have the freedom to pursue their interests, but universities and governments should also ensure that the overall distribution of graduates across disciplines meets societal needs. This could be achieved through incentives such as scholarships in priority fields rather than through restrictions on student choice."}}, "speaking": {"parts": [{"part": "Part 1", "topic": "Introduction & Weather", "questions": ["What is the weather like today?", "Do you prefer hot or cold weather?", "Has the weather in your country changed in recent years?", "What do you like to do when the weather is good?"]}, {"part": "Part 2", "topic": "Describe an environmental problem in your country", "cue": "You should say: What the problem is, What causes it, What effects it has, And explain what could be done about it", "time": 120}, {"part": "Part 3", "topic": "Discussion · Environment", "questions": ["What are the biggest environmental challenges facing the world today?", "Do individuals have a responsibility to protect the environment?", "How can governments encourage people to be more environmentally friendly?", "Do you think the situation will improve in the future?"]}]}}];
+
+let state = {
+  currentTest: 'c17t1',
+  currentModule: 'listening',
+  mode: 'practice', // practice | exam
+  answers: {}, // {testId}_{module}_{qIdx}: selectedOptionIdx
+  results: {}, // {testId}_{module}: {score, correct, wrong, timestamp}
+  theme: localStorage.getItem('ielts-theme') || 'light',
+  timerId: null,
+  timeLeft: 0,
+  submitted: {}, // {testId}_{module}: true
+  errorBook: JSON.parse(localStorage.getItem('ielts-errors') || '[]'),
+};
+
+function init() {
+  if (state.theme === 'dark') document.body.classList.add('dark');
+  renderTestList();
+  renderModules();
+  loadProgress();
+  showView(null);
+}
+
+function renderTestList() {
+  const el = document.getElementById('testList');
+  el.innerHTML = TESTS.map(t =>
+    `<div class="test-item ${t.id===state.currentTest?'active':''}" onclick="selectTest('${t.id}')">
+      ${t.name} <span class="badge">${t.year}</span>
+    </div>`
+  ).join('');
+}
+
+function renderModules() {
+  const el = document.getElementById('moduleList');
+  const mods = ['listening','reading','writing','speaking'];
+  const labels = ['听力','阅读','写作','口语'];
+  el.innerHTML = mods.map((m,i) =>
+    `<button class="module-btn ${m===state.currentModule?'active':''}" onclick="selectModule('${m}')">${labels[i]}</button>`
+  ).join('');
+}
+
+function selectTest(id) {
+  state.currentTest = id;
+  state.currentModule = state.currentModule;
+  renderTestList();
+  loadModule();
+}
+
+function selectModule(mod) {
+  state.currentModule = mod;
+  renderModules();
+  loadModule();
+}
+
+function getTest() { return TESTS.find(t => t.id === state.currentTest); }
+function getModuleData() {
+  const t = getTest();
+  if (!t) return null;
+  return t[state.currentModule];
+}
+
+function getQuestions() {
+  const md = getModuleData();
+  if (!md) return [];
+  if (state.currentModule === 'listening') {
+    let qs = [];
+    (md.sections||[]).forEach(s => { if (s.questions) qs = qs.concat(s.questions); });
+    return qs;
+  }
+  if (state.currentModule === 'reading') {
+    return md.questions || [];
+  }
+  return [];
+}
+
+function getTotalQuestions() {
+  if (state.currentModule === 'listening' || state.currentModule === 'reading') {
+    return getQuestions().length;
+  }
+  return 0;
+}
+
+function loadModule() {
+  stopTimer();
+  const md = getModuleData();
+  const mc = document.getElementById('mainContent');
+  if (!md) { mc.innerHTML = '<div class="panel text-center"><p class="text-sub">数据加载中...</p></div>'; return; }
+
+  const mod = state.currentModule;
+  const key = state.currentTest + '_' + mod;
+  const submitted = state.submitted[key];
+  const questions = getQuestions();
+  const totalQ = getTotalQuestions();
+
+  // Hide/show answer sheet
+  const asCard = document.getElementById('answerSheetCard');
+  if (mod === 'listening' || mod === 'reading') {
+    asCard.classList.remove('hidden');
+    renderAnswerSheet(questions);
+    document.getElementById('totalCount').textContent = totalQ;
+  } else {
+    asCard.classList.add('hidden');
+  }
+
+  if (mod === 'listening') {
+    renderListening(md);
+  } else if (mod === 'reading') {
+    renderReading(md, questions);
+  } else if (mod === 'writing') {
+    renderWriting(md);
+  } else if (mod === 'speaking') {
+    renderSpeaking(md);
+  }
+
+  const wp=document.getElementById('welcomePanel');if(wp)wp.classList.add('hidden');
+
+  // Start timer if exam mode and not submitted
+  if (state.mode === 'exam' && !submitted && (mod==='listening'||mod==='reading')) {
+    startTimer(md.duration * 60);
+  }
+}
+
+function renderListening(md) {
+  const mc = document.getElementById('mainContent');
+  const key = state.currentTest + '_listening';
+  const submitted = state.submitted[key];
+  let sectionsHtml = '';
+
+  (md.sections||[]).forEach((s, si) => {
+    sectionsHtml += `<div class="panel">
+      <div class="panel-header"><h2>${s.title}</h2></div>
+      <div class="audio-player">
+        <button class="btn btn-accent audio-play-btn" id="audioBtn${si}" onclick="toggleAudio(${si})">
+          <span class="icon-play">▶</span><span class="icon-pause">⏸</span>
+        </button>
+        <div class="audio-progress-wrapper">
+          <div class="audio-progress"><div class="audio-progress-fill" id="audioProgress${si}" style="width:0%"></div></div>
+          <span class="audio-time" id="audioTime${si}">0:00</span>
+        </div>
+      </div>`;
+    (s.questions||[]).forEach((q, qi) => {
+      const globalIdx = getGlobalQIndex('listening', si, qi);
+      const ansKey = key + '_' + globalIdx;
+      const sel = state.answers[ansKey];
+      sectionsHtml += renderQuestion(q, globalIdx, sel, submitted);
+    });
+    sectionsHtml += '</div>';
+  });
+
+  mc.innerHTML = `<div class="panel-header"><h2>${getTest().name} · 听力</h2>
+    <span class="timer hidden" id="examTimer">--:--</span></div>` + sectionsHtml;
+}
+
+function renderReading(md, questions) {
+  const mc = document.getElementById('mainContent');
+  const key = state.currentTest + '_reading';
+  const submitted = state.submitted[key];
+  let qHtml = '';
+  questions.forEach((q, i) => {
+    const ansKey = key + '_' + i;
+    const sel = state.answers[ansKey];
+    qHtml += renderQuestion(q, i, sel, submitted);
+  });
+  mc.innerHTML = `<div class="panel-header"><h2>${getTest().name} · 阅读</h2>
+    <span class="timer hidden" id="examTimer">--:--</span></div>
+    <div class="panel"><div class="passage">${md.passage||''}</div></div>
+    <div class="panel">${qHtml}</div>`;
+}
+
+function renderWriting(md) {
+  const mc = document.getElementById('mainContent');
+  const key = state.currentTest + '_writing';
+  const submitted = state.submitted[key];
+
+  const task1Content = state.answers[key+'_task1'] || '';
+  const task2Content = state.answers[key+'_task2'] || '';
+
+  mc.innerHTML = `<div class="panel-header"><h2>${getTest().name} · 写作</h2></div>
+    <div class="panel">
+      <h3 style="margin-bottom:8px;">Task 1</h3>
+      <div class="writing-prompt">
+        <p>${md.task1.prompt}</p>
+        <pre>${md.task1.data||''}</pre>
+        <p style="color:var(--sub);font-size:0.8rem;margin-top:8px;">最少 ${md.task1.minWords} 词</p>
+      </div>
+      <textarea class="writing-textarea" id="writingTask1" placeholder="在此输入你的 Task 1 作文..." ${submitted?'disabled':''}>${task1Content}</textarea>
+      <div class="word-count" id="wc1">词数: ${countWords(task1Content)} / ${md.task1.minWords}</div>
+      ${md.task1.sample ? `<button class="btn btn-sm mt-12" onclick="toggleSample('sample1')">查看范文</button>
+      <div class="sample-essay" id="sample1">${escapeHtml(md.task1.sample)}</div>` : ''}
+    </div>
+    <div class="panel">
+      <h3 style="margin-bottom:8px;">Task 2</h3>
+      <div class="writing-prompt">
+        <p>${md.task2.prompt}</p>
+        <p style="color:var(--sub);font-size:0.8rem;margin-top:8px;">最少 ${md.task2.minWords} 词</p>
+      </div>
+      <textarea class="writing-textarea" id="writingTask2" placeholder="在此输入你的 Task 2 作文..." ${submitted?'disabled':''}>${task2Content}</textarea>
+      <div class="word-count" id="wc2">词数: ${countWords(task2Content)} / ${md.task2.minWords}</div>
+      ${md.task2.sample ? `<button class="btn btn-sm mt-12" onclick="toggleSample('sample2')">查看范文</button>
+      <div class="sample-essay" id="sample2">${escapeHtml(md.task2.sample)}</div>` : ''}
+    </div>
+    <div class="text-center mt-16">
+      <button class="btn btn-accent" onclick="saveWriting()">保存写作</button>
+    </div>`;
+
+  // Attach listeners
+  document.getElementById('writingTask1').addEventListener('input', function() {
+    const wc = countWords(this.value);
+    document.getElementById('wc1').textContent = '词数: ' + wc + ' / ' + md.task1.minWords;
+    const wcEl = document.getElementById('wc1');
+    if (wc < md.task1.minWords) wcEl.classList.add('warn'); else wcEl.classList.remove('warn');
+  });
+  document.getElementById('writingTask2').addEventListener('input', function() {
+    const wc = countWords(this.value);
+    document.getElementById('wc2').textContent = '词数: ' + wc + ' / ' + md.task2.minWords;
+    const wcEl = document.getElementById('wc2');
+    if (wc < md.task2.minWords) wcEl.classList.add('warn'); else wcEl.classList.remove('warn');
+  });
+}
+
+function renderSpeaking(md) {
+  const mc = document.getElementById('mainContent');
+  const parts = md.parts || [];
+  let partsHtml = parts.map(p => {
+    let body = '';
+    if (p.part === 'Part 2') {
+      body = `<div class="topic">${p.topic}</div><div class="cue">${p.cue||''}</div>
+        <div class="speaking-timer" id="speakingTimer">02:00</div>
+        <button class="btn btn-sm record-btn" onclick="toggleRecording()">🎤 开始录音</button>
+        <div class="audio-playback" id="audioPlayback"><audio controls id="speakingAudio"></audio></div>`;
+    } else {
+      body = `<ul>${(p.questions||[]).map(q => `<li>${q}</li>`).join('')}</ul>`;
+    }
+    return `<div class="speaking-card"><h3>${p.part}: ${p.topic||''}</h3>${body}</div>`;
+  }).join('');
+
+  mc.innerHTML = `<div class="panel-header"><h2>${getTest().name} · 口语</h2></div>${partsHtml}`;
+}
+
+function renderQuestion(q, qIdx, selected, submitted) {
+  if (q.type === 'fill') {
+    var val = (typeof selected === 'string') ? selected : '';
+    var h = '<div class="question"><span class="q-num">Q' + (qIdx+1) + '.</span><span class="q-text">' + q.q + '</span>';
+    if (submitted) {
+      var isCorrect = val.toLowerCase().trim() === (q.answer||'').toLowerCase().trim();
+      var disabledAttr = state.mode === 'exam' ? ' disabled' : '';
+      h += '<div class="fill-input-wrapper"><input type="text" class="fill-input ' + (isCorrect?'fill-correct':'fill-wrong') + '" value="' + escapeHtml(val) + '"' + disabledAttr + '>' +
+        (isCorrect ? '<span class="fill-mark-correct">✓ 正确</span>' : '<span class="fill-answer-label">正确答案: ' + escapeHtml(q.answer) + '</span>') +
+        '</div>';
+    } else {
+      h += '<div class="fill-input-wrapper"><input type="text" class="fill-input" id="fillInput_' + qIdx + '" value="' + escapeHtml(val) + '" placeholder="在此输入答案..." onkeydown="if(event.key===\'Enter\')fillAnswer(' + qIdx + ')">' +
+        '<button class="btn btn-sm btn-primary" onclick="fillAnswer(' + qIdx + ')">确认</button></div>';
+    }
+    h += '</div>';
+    return h;
+  }
+
+  var letters = ['A','B','C','D','E'];
+  var optsHtml = '';
+  (q.options||[]).forEach(function(opt, oi) {
+    var cls = 'option';
+    if (!submitted) {
+      if (selected === oi) cls += ' selected';
+    } else {
+      if (oi === q.answer) cls += ' correct';
+      else if (selected === oi && selected !== q.answer) cls += ' wrong';
+    }
+    optsHtml += '<div class="' + cls + '" onclick="' + (submitted?'':'selectAnswer(\''+qIdx+'\','+oi+')') + '"><span class="letter">' + letters[oi] + '</span> <span>' + opt + '</span></div>';
+  });
+
+  return '<div class="question"><span class="q-num">Q' + (qIdx+1) + '.</span><span class="q-text">' + q.q + '</span><div class="options">' + optsHtml + '</div></div>';
+}
+
+function selectAnswer(qIdx, optionIdx) {
+  const key = state.currentTest + '_' + state.currentModule + '_' + qIdx;
+  if (state.submitted[state.currentTest + '_' + state.currentModule]) return;
+  state.answers[key] = optionIdx;
+  saveProgress();
+  renderAnswerSheet(getQuestions());
+  loadModule(); // re-render to show selection
+}
+
+function fillAnswer(qIdx) {
+  var key = state.currentTest + '_' + state.currentModule + '_' + qIdx;
+  if (state.submitted[state.currentTest + '_' + state.currentModule]) return;
+  var input = document.getElementById('fillInput_' + qIdx);
+  if (!input) return;
+  state.answers[key] = input.value.trim();
+  saveProgress();
+  renderAnswerSheet(getQuestions());
+  loadModule();
+}
+
+
+function getGlobalQIndex(mod, sectionIdx, qIdx) {
+  if (mod !== 'listening') return qIdx;
+  const md = getModuleData();
+  let offset = 0;
+  for (let i = 0; i < sectionIdx; i++) {
+    offset += (md.sections[i].questions||[]).length;
+  }
+  return offset + qIdx;
+}
+
+function renderAnswerSheet(questions) {
+  const el = document.getElementById('answerSheet');
+  const key = state.currentTest + '_' + state.currentModule;
+  let answered = 0;
+  let html = '';
+  questions.forEach((q, i) => {
+    const ansKey = key + '_' + i;
+    const sel = state.answers[ansKey];
+    let cls = 'answer-dot';
+    if (sel !== undefined) { cls += ' answered'; answered++; }
+    if (state.submitted[key]) {
+      if (sel === q.answer) cls += ' correct';
+      else cls += ' wrong';
+    }
+    html += `<span class="${cls}" title="Q${i+1}"></span>`;
+  });
+  el.innerHTML = html;
+  document.getElementById('answeredCount').textContent = answered;
+  const total = questions.length;
+  document.getElementById('progressBar').style.width = total ? (answered/total*100)+'%' : '0%';
+}
+
+function submitModule() {
+  const mod = state.currentModule;
+  if (mod !== 'listening' && mod !== 'reading') { toast('该模块无需提交'); return; }
+  const key = state.currentTest + '_' + mod;
+  const questions = getQuestions();
+  let correct = 0, wrong = 0;
+  questions.forEach((q, i) => {
+    const ansKey = key + '_' + i;
+    const sel = state.answers[ansKey];
+    if (q.type === 'fill') {
+      if (sel !== undefined && sel !== '' && sel.toLowerCase().trim() === (q.answer||'').toLowerCase().trim()) correct++;
+      else wrong++;
+    } else {
+      if (sel === q.answer) correct++;
+      else wrong++;
+    }
+  });
+
+  state.submitted[key] = true;
+  state.results[key] = { score: correct, correct, wrong, total: questions.length, timestamp: Date.now() };
+
+  // Error book — 答错或未答均记录
+  questions.forEach((q, i) => {
+    const ansKey = key + '_' + i;
+    const sel = state.answers[ansKey];
+    const isWrong = q.type === 'fill'
+      ? (sel === undefined || sel === '' || sel.toLowerCase().trim() !== (q.answer||'').toLowerCase().trim())
+      : (sel === undefined || sel !== q.answer);
+    if (isWrong) {
+      const err = { testId: state.currentTest, module: mod, qIdx: i, question: q.q,
+        yourAnswer: sel === undefined ? '（未作答）' : (q.type === 'fill' ? sel : q.options[sel]),
+        correctAnswer: q.type === 'fill' ? q.answer : q.options[q.answer],
+        timestamp: Date.now() };
+      // 避免重复记录同一题
+      const already = state.errorBook.some(e => e.testId === err.testId && e.module === err.module && e.qIdx === err.qIdx);
+      if (!already) state.errorBook.push(err);
+    }
+  });
+  localStorage.setItem('ielts-errors', JSON.stringify(state.errorBook));
+  saveProgress();
+  stopTimer();
+
+  const pct = questions.length ? Math.round(correct/questions.length*100) : 0;
+  document.getElementById('resultScore').textContent = correct + '/' + questions.length;
+  document.getElementById('resultBand').textContent = getBandScore(correct, questions.length);
+  document.getElementById('resultCorrect').textContent = correct;
+  document.getElementById('resultWrong').textContent = wrong;
+  document.getElementById('resultPct').textContent = pct + '%';
+  document.getElementById('resultModal').classList.add('show');
+
+  renderAnswerSheet(questions);
+  loadModule();
+}
+
+function getBandScore(correct, total) {
+  const eb = getBandScoreEnhanced(correct, total);
+  return 'Band ' + eb.band + ' · ' + eb.comment;
+}
+
+function closeModal() { document.getElementById('resultModal').classList.remove('show'); }
+
+function reviewAnswers() {
+  closeModal();
+  loadModule(); // already showing correct/wrong since submitted flag is true
+}
+
+function saveWriting() {
+  const key = state.currentTest + '_writing';
+  const t1 = document.getElementById('writingTask1')?.value || '';
+  const t2 = document.getElementById('writingTask2')?.value || '';
+  state.answers[key+'_task1'] = t1;
+  state.answers[key+'_task2'] = t2;
+  state.submitted[key] = true;
+  state.results[key] = { task1Words: countWords(t1), task2Words: countWords(t2), timestamp: Date.now() };
+  saveProgress();
+  toast('写作已保存');
+}
+
+function countWords(text) {
+  const trimmed = text.trim();
+  if (!trimmed) return 0;
+  return trimmed.split(/\s+/).length;
+}
+
+function toggleSample(id) {
+  const el = document.getElementById(id);
+  el.style.display = el.style.display === 'block' ? 'none' : 'block';
+}
+
+function startTimer(seconds) {
+  state.timeLeft = seconds;
+  const el = document.getElementById('examTimer');
+  if (!el) return;
+  el.classList.remove('hidden');
+  updateTimerDisplay();
+  state.timerId = setInterval(() => {
+    state.timeLeft--;
+    updateTimerDisplay();
+    if (state.timeLeft <= 0) {
+      stopTimer();
+      submitModule();
+      toast('时间到！已自动提交');
+    }
+  }, 1000);
+}
+
+function updateTimerDisplay() {
+  const el = document.getElementById('examTimer');
+  if (!el) return;
+  const m = Math.floor(state.timeLeft/60);
+  const s = state.timeLeft%60;
+  el.textContent = m + ':' + String(s).padStart(2,'0');
+  if (state.timeLeft <= 60) el.classList.add('warn');
+}
+
+function stopTimer() {
+  if (state.timerId) { clearInterval(state.timerId); state.timerId = null; }
+}
+
+function switchMode(mode) {
+  state.mode = mode;
+  document.getElementById('modePractice').classList.toggle('btn-primary', mode==='practice');
+  document.getElementById('modeExam').classList.toggle('btn-primary', mode==='exam');
+  stopTimer();
+  loadModule();
+  if (mode === 'exam' && !state.submitted[state.currentTest+'_'+state.currentModule]) {
+    const md = getModuleData();
+    if (md && md.duration) startTimer(md.duration * 60);
+  }
+  toast(mode==='exam' ? '已切换为模拟考试模式' : '已切换为练习模式');
+}
+
+function toggleTheme() {
+  state.theme = state.theme === 'dark' ? 'light' : 'dark';
+  localStorage.setItem('ielts-theme', state.theme);
+  document.body.classList.toggle('dark', state.theme === 'dark');
+}
+
+function showView(view) {
+  stopTimer();
+  if (view === 'stats') showStats();
+  else if (view === 'errors') showErrors();
+  else { document.getElementById('welcomePanel').classList.remove('hidden'); loadWelcomeStats(); }
+}
+
+function showStats() {
+  const mc = document.getElementById('mainContent');
+  const wp=document.getElementById('welcomePanel');if(wp)wp.classList.add('hidden');
+  document.getElementById('answerSheetCard').classList.add('hidden');
+
+  let html = `<div class="panel-header"><h2>学习记录</h2></div>`;
+  let totalCorrect = 0, totalQuestions = 0, modulesDone = 0;
+  const recentResults = [];
+
+  TESTS.forEach(t => {
+    ['listening','reading','writing','speaking'].forEach(mod => {
+      const key = t.id + '_' + mod;
+      if (state.results[key]) {
+        if (mod === 'listening' || mod === 'reading') {
+          const r = state.results[key];
+          totalCorrect += r.correct || 0;
+          totalQuestions += r.total || 0;
+          modulesDone++;
+          recentResults.push({test: t.name, module: mod, score: r.correct, total: r.total,
+            pct: Math.round((r.correct/r.total)*100), time: r.timestamp});
+        } else if (mod === 'writing' || mod === 'speaking') {
+          modulesDone++;
+          recentResults.push({test: t.name, module: mod, score: '-', total: '-', pct: '-', time: state.results[key].timestamp});
+        }
+      }
+    });
+  });
+
+  const overallPct = totalQuestions ? Math.round(totalCorrect/totalQuestions*100) : 0;
+  html += `<div class="stats-grid">
+    <div class="stat-card"><div class="stat-val">${modulesDone}</div><div class="stat-label">已完成模块</div></div>
+    <div class="stat-card"><div class="stat-val">${totalCorrect}/${totalQuestions}</div><div class="stat-label">总正确数</div></div>
+    <div class="stat-card"><div class="stat-val">${overallPct}%</div><div class="stat-label">总正确率</div></div>
+    <div class="stat-card"><div class="stat-val">${state.errorBook.length}</div><div class="stat-label">错题数</div></div>
+  </div>`;
+
+  if (recentResults.length) {
+    html += `<div class="panel mt-16"><h3>近期成绩</h3>`;
+    recentResults.sort((a,b) => b.time - a.time).slice(0,20).forEach(r => {
+      html += `<div class="error-item">
+        <span>${r.test} · ${r.module==='listening'?'听力':r.module==='reading'?'阅读':r.module==='writing'?'写作':'口语'}</span>
+        <span>${r.score}/${r.total} (${r.pct}%) <span class="test-ref">${new Date(r.time).toLocaleDateString('zh-CN')}</span></span>
+      </div>`;
+    });
+    html += `</div>`;
+  }
+
+  mc.innerHTML = html;
+}
+
+function showErrors() {
+  const mc = document.getElementById('mainContent');
+  const wp=document.getElementById('welcomePanel');if(wp)wp.classList.add('hidden');
+  document.getElementById('answerSheetCard').classList.add('hidden');
+
+  let html = `<div class="panel-header"><h2>错题本 (${state.errorBook.length})</h2>
+    ${state.errorBook.length ? '<button class="btn btn-sm" onclick="clearErrors()">清空错题本</button>' : ''}</div>`;
+
+  if (!state.errorBook.length) {
+    html += '<div class="panel text-center"><p class="text-sub">暂无错题记录，继续加油！</p></div>';
+  } else {
+    const testMap = {};
+    TESTS.forEach(t => { testMap[t.id] = t.name; });
+    const modLabels = {listening:'听力',reading:'阅读',writing:'写作',speaking:'口语'};
+
+    state.errorBook.slice().reverse().forEach((e, i) => {
+      html += `<div class="panel error-list"><div class="error-item">
+        <div><strong>${e.question}</strong><br>
+          <span style="color:var(--error)">你的答案: ${e.yourAnswer}</span> ·
+          <span style="color:var(--success)">正确答案: ${e.correctAnswer}</span><br>
+          <span class="test-ref">${testMap[e.testId]||e.testId} · ${modLabels[e.module]||e.module} · ${new Date(e.timestamp).toLocaleDateString('zh-CN')}</span>
+        </div>
+        <button class="btn btn-sm btn-outline" onclick="goToError('${e.testId}','${e.module}')">重做</button>
+      </div></div>`;
+    });
+  }
+
+  mc.innerHTML = html;
+}
+
+function goToError(testId, module) {
+  state.currentTest = testId;
+  state.currentModule = module;
+  renderTestList();
+  renderModules();
+  loadModule();
+}
+
+function clearErrors() {
+  state.errorBook = [];
+  localStorage.setItem('ielts-errors', '[]');
+  showErrors();
+  toast('错题本已清空');
+}
+
+function loadWelcomeStats() {
+  document.getElementById('welcomePanel').classList.remove('hidden');
+  let totalCorrect = 0, totalQuestions = 0;
+  TESTS.forEach(t => {
+    ['listening','reading'].forEach(mod => {
+      const key = t.id + '_' + mod;
+      if (state.results[key]) {
+        totalCorrect += state.results[key].correct || 0;
+        totalQuestions += state.results[key].total || 0;
+      }
+    });
+  });
+  const pct = totalQuestions ? Math.round(totalCorrect/totalQuestions*100) : 0;
+  document.getElementById('welcomeStats').innerHTML = `
+    <div class="stat-card"><div class="stat-val">${TESTS.length}</div><div class="stat-label">真题套卷</div></div>
+    <div class="stat-card"><div class="stat-val">${totalCorrect}/${totalQuestions}</div><div class="stat-label">总正确数</div></div>
+    <div class="stat-card"><div class="stat-val">${pct}%</div><div class="stat-label">正确率</div></div>
+    <div class="stat-card"><div class="stat-val">${state.errorBook.length}</div><div class="stat-label">错题</div></div>
+  `;
+}
+
+// Audio
+let audioStates = {};
+
+function toggleAudio(sectionIdx) {
+  const md = getModuleData();
+  if (!md || !md.sections || !md.sections[sectionIdx]) return;
+  const text = md.sections[sectionIdx].audio || '';
+  if (!text) { toast('无音频文本'); return; }
+  if (!('speechSynthesis' in window)) { toast('浏览器不支持语音合成'); return; }
+
+  const st = audioStates[sectionIdx];
+
+  // Currently playing → pause
+  if (st && st.playing) {
+    speechSynthesis.pause();
+    st.playing = false;
+    updateAudioUI(sectionIdx, false);
+    return;
+  }
+
+  // Paused → resume
+  if (st && !st.playing && st.utterance) {
+    speechSynthesis.resume();
+    st.playing = true;
+    updateAudioUI(sectionIdx, true);
+    return;
+  }
+
+  // Start new playback: cancel all, reset UI
+  speechSynthesis.cancel();
+  Object.keys(audioStates).forEach(k => {
+    if (audioStates[k]) { audioStates[k].playing = false; audioStates[k].utterance = null; }
+    updateAudioUI(parseInt(k), false);
+  });
+
+  const utterance = new SpeechSynthesisUtterance(text);
+  utterance.lang = 'en-GB';
+  utterance.rate = 0.9;
+  const totalChars = text.length;
+
+  const newSt = { playing: true, utterance: utterance, totalChars: totalChars };
+  audioStates[sectionIdx] = newSt;
+
+  utterance.onboundary = (e) => {
+    if (e.charIndex !== undefined) {
+      newSt.charIndex = e.charIndex;
+      updateProgress(sectionIdx, e.charIndex, totalChars);
+    }
+  };
+
+  utterance.onend = () => {
+    audioStates[sectionIdx] = null;
+    updateAudioUI(sectionIdx, false);
+    updateProgress(sectionIdx, totalChars, totalChars);
+  };
+
+  utterance.onerror = () => {
+    audioStates[sectionIdx] = null;
+    updateAudioUI(sectionIdx, false);
+  };
+
+  speechSynthesis.speak(utterance);
+  updateAudioUI(sectionIdx, true);
+}
+
+function updateAudioUI(sectionIdx, playing) {
+  const btn = document.getElementById('audioBtn' + sectionIdx);
+  if (btn) {
+    if (playing) btn.classList.add('playing');
+    else btn.classList.remove('playing');
+  }
+}
+
+function updateProgress(sectionIdx, charIdx, totalChars) {
+  const fill = document.getElementById('audioProgress' + sectionIdx);
+  const time = document.getElementById('audioTime' + sectionIdx);
+  if (fill && totalChars > 0) {
+    const pct = Math.min(100, Math.round((charIdx / totalChars) * 100));
+    fill.style.width = pct + '%';
+  }
+  if (time && totalChars > 0) {
+    // Estimate: ~150 chars per 10 seconds at rate 0.9, rough time display
+    const totalSec = Math.round(totalChars / 12); // ~12 chars/sec at rate 0.9
+    const curSec = Math.round(charIdx / 12);
+    const min = Math.floor(curSec / 60);
+    const sec = String(curSec % 60).padStart(2, '0');
+    time.textContent = min + ':' + sec;
+  }
+}
+
+// Recording
+let mediaRecorder = null, recordedChunks = [];
+function toggleRecording() {
+  const btn = document.querySelector('.record-btn');
+  if (!btn) return;
+  if (mediaRecorder && mediaRecorder.state === 'recording') {
+    mediaRecorder.stop();
+    btn.classList.remove('recording');
+    btn.innerHTML = '🎤 开始录音';
+    return;
+  }
+
+  navigator.mediaDevices.getUserMedia({audio:true}).then(stream => {
+    mediaRecorder = new MediaRecorder(stream);
+    recordedChunks = [];
+    mediaRecorder.ondataavailable = e => recordedChunks.push(e.data);
+    mediaRecorder.onstop = () => {
+      const blob = new Blob(recordedChunks, {type:'audio/webm'});
+      const url = URL.createObjectURL(blob);
+      const ap = document.getElementById('audioPlayback');
+      const audio = document.getElementById('speakingAudio');
+      audio.src = url;
+      ap.style.display = 'block';
+      stream.getTracks().forEach(t => t.stop());
+    };
+    mediaRecorder.start();
+    btn.classList.add('recording');
+    btn.innerHTML = '⏹ 停止录音';
+    toast('录音中...');
+  }).catch(() => toast('无法访问麦克风'));
+}
+
+function escapeHtml(str) { return str.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;'); }
+
+function saveProgress() {
+  const data = { answers:state.answers, results:state.results, submitted:state.submitted };
+  localStorage.setItem('ielts-progress', JSON.stringify(data));
+}
+
+function loadProgress() {
+  try {
+    const raw = localStorage.getItem('ielts-progress');
+    if (raw) {
+      const data = JSON.parse(raw);
+      if (data.answers) state.answers = data.answers;
+      if (data.results) state.results = data.results;
+      if (data.submitted) state.submitted = data.submitted;
+    }
+  } catch(e) {}
+}
+
+function toast(msg) {
+  const el = document.getElementById('toast');
+  el.textContent = msg; el.classList.add('show');
+  setTimeout(() => el.classList.remove('show'), 2000);
+}
+
+document.addEventListener('DOMContentLoaded', init);
+
+// Vocab modal: close on Escape / overlay click
+document.addEventListener('keydown', function(e) {
+  if (e.key === 'Escape') {
+    var vm = document.getElementById('vocabModal');
+    if (vm && vm.classList.contains('show')) closeVocabModal();
+  }
+});
+document.addEventListener('click', function(e) {
+  if (e.target.classList.contains('modal-overlay') && e.target.id === 'vocabModal') {
+    closeVocabModal();
+  }
+});
+
+
+// ===== Enhanced Band Score =====
+function getBandScoreEnhanced(correct, total) {
+  const pct = total ? correct/total : 0;
+  const pct100 = Math.round(pct * 100);
+  let band, comment;
+  if (pct >= 0.97) { band = '9.0'; comment = 'Expert User — 接近母语水平，发挥出色！'; }
+  else if (pct >= 0.93) { band = '8.5'; comment = 'Very Good User — 非常优秀，继续保持！'; }
+  else if (pct >= 0.88) { band = '8.0'; comment = 'Very Good User — 表现很好，细节可再打磨。'; }
+  else if (pct >= 0.83) { band = '7.5'; comment = 'Good User — 良好水平，继续提升准确度。'; }
+  else if (pct >= 0.75) { band = '7.0'; comment = 'Good User — 不错的表现，加强薄弱环节。'; }
+  else if (pct >= 0.67) { band = '6.5'; comment = 'Competent User — 具备基本能力，需系统练习。'; }
+  else if (pct >= 0.58) { band = '6.0'; comment = 'Competent User — 还需努力，多做真题。'; }
+  else if (pct >= 0.50) { band = '5.5'; comment = 'Modest User — 基础尚可，建议重点突破。'; }
+  else if (pct >= 0.42) { band = '5.0'; comment = 'Modest User — 需要加强基础训练。'; }
+  else if (pct >= 0.33) { band = '4.5'; comment = 'Limited User — 建议从基础词汇语法开始。'; }
+  else { band = '<4.5'; comment = 'Limited User — 需要系统学习，不要气馁！'; }
+  return { band, comment, pct: pct100 };
+}
+
+// ===== Q-Nav =====
+function renderQNav(questions) {
+  const mod = state.currentModule;
+  const key = state.currentTest + '_' + mod;
+  let html = '<div class="q-nav" id="qNav">';
+  questions.forEach((q, i) => {
+    const ansKey = key + '_' + i;
+    const answered = state.answers[ansKey] !== undefined;
+    html += '<button class="q-nav-btn' + (answered ? ' answered' : '') + '" onclick="scrollToQ(' + i + ')" title="Q' + (i+1) + '">' + (i+1) + '</button>';
+  });
+  html += '</div>';
+  return html;
+}
+
+function scrollToQ(qIdx) {
+  const qEl = document.getElementById('q-' + qIdx);
+  if (qEl) {
+    qEl.scrollIntoView({ behavior: 'smooth', block: 'center' });
+    qEl.style.transition = 'background 0.3s';
+    qEl.style.background = 'rgba(212,168,67,0.2)';
+    setTimeout(function(){ qEl.style.background = ''; }, 800);
+  }
+}
+
+function updateQNavButtons() {
+  const mod = state.currentModule;
+  if (mod !== 'listening' && mod !== 'reading') return;
+  const key = state.currentTest + '_' + mod;
+  document.querySelectorAll('#qNav .q-nav-btn').forEach(function(btn, i) {
+    const ansKey = key + '_' + i;
+    btn.classList.toggle('answered', state.answers[ansKey] !== undefined);
+  });
+}
+
+// ===== Audio Speed =====
+function setAudioSpeed(sectionIdx, rate) {
+  if (!audioStates[sectionIdx] || !audioStates[sectionIdx].utterance) return;
+  audioStates[sectionIdx].utterance.rate = rate;
+  audioStates[sectionIdx].speed = rate;
+  var btns = document.querySelectorAll('#speedBtns' + sectionIdx + ' .spd-btn');
+  btns.forEach(function(b) {
+    b.classList.toggle('active', parseFloat(b.dataset.rate) === rate);
+  });
+}
+
+function renderSpeedButtons(sectionIdx) {
+  return '<span class="audio-speed" id="speedBtns' + sectionIdx + '">' +
+    '<button class="spd-btn" data-rate="0.75" onclick="setAudioSpeed(' + sectionIdx + ',0.75)">0.75x</button>' +
+    '<button class="spd-btn active" data-rate="1.0" onclick="setAudioSpeed(' + sectionIdx + ',1.0)">1.0x</button>' +
+    '<button class="spd-btn" data-rate="1.25" onclick="setAudioSpeed(' + sectionIdx + ',1.25)">1.25x</button>' +
+    '</span>';
+}
+
+// ===== Favorites =====
+function getFavorites() {
+  try { return JSON.parse(localStorage.getItem('ielts-favorites') || '[]'); }
+  catch(e) { return []; }
+}
+
+function saveFavorites(favs) {
+  localStorage.setItem('ielts-favorites', JSON.stringify(favs));
+}
+
+function toggleFavorite(testId, e) {
+  e.stopPropagation();
+  var favs = getFavorites();
+  var idx = favs.indexOf(testId);
+  if (idx >= 0) { favs.splice(idx, 1); }
+  else { favs.push(testId); }
+  saveFavorites(favs);
+  renderTestList();
+  renderFavList();
+  toast(favs.includes(testId) ? '已收藏' : '已取消收藏');
+}
+
+function isFavorited(testId) {
+  return getFavorites().includes(testId);
+}
+
+function renderFavList() {
+  var el = document.getElementById('favList');
+  if (!el) return;
+  var favs = getFavorites();
+  if (!favs.length) {
+    el.innerHTML = '<p class="text-sub" style="font-size:0.75rem;">暂无收藏</p>';
+    return;
+  }
+  el.innerHTML = favs.map(function(fid) {
+    var t = TESTS.find(function(tx) { return tx.id === fid; });
+    if (!t) return '';
+    return '<div class="sidebar-fav-item" onclick="selectTest(\'' + fid + '\')">' + t.name +
+      '<button class="rm-fav" onclick="event.stopPropagation();removeFavorite(\'' + fid + '\')">✕</button></div>';
+  }).join('');
+}
+
+function removeFavorite(testId) {
+  var favs = getFavorites().filter(function(f) { return f !== testId; });
+  saveFavorites(favs);
+  renderTestList();
+  renderFavList();
+  toast('已取消收藏');
+}
+
+// ===== Vocab Book =====
+function getVocab() {
+  try { return JSON.parse(localStorage.getItem('ielts-vocab') || '[]'); }
+  catch(e) { return []; }
+}
+
+function saveVocab(vocab) {
+  localStorage.setItem('ielts-vocab', JSON.stringify(vocab));
+}
+
+function addVocabWord(word, context) {
+  var vocab = getVocab();
+  if (vocab.some(function(v) { return v.word.toLowerCase() === word.toLowerCase(); })) {
+    toast('该单词已在生词本中');
+    return;
+  }
+  vocab.push({ word: word, context: context || '', timestamp: Date.now() });
+  saveVocab(vocab);
+  checkAchievements();
+  renderVocabList();
+  toast('已添加: ' + word);
+}
+
+function addVocabManual() {
+  var input = document.getElementById('vocabManualInput');
+  var word = input.value.trim();
+  if (!word) { toast('请输入单词'); return; }
+  addVocabWord(word, '手动添加');
+  input.value = '';
+}
+
+function removeVocab(idx) {
+  var vocab = getVocab();
+  vocab.splice(idx, 1);
+  saveVocab(vocab);
+  renderVocabList();
+  toast('已删除');
+}
+
+function clearVocab() {
+  saveVocab([]);
+  renderVocabList();
+  toast('生词本已清空');
+}
+
+function renderVocabList() {
+  var el = document.getElementById('vocabList');
+  if (!el) return;
+  var vocab = getVocab();
+  if (!vocab.length) {
+    el.innerHTML = '<div class="empty-state"><div class="empty-icon">📝</div><p>双击阅读文章中的单词即可收藏</p><p class="text-sub" style="font-size:0.75rem;">也可以在上方输入框手动添加</p></div>';
+    return;
+  }
+  el.innerHTML = vocab.map(function(v, i) {
+    return '<div class="vocab-item"><div><div class="word">' + escapeHtml(v.word) +
+      '</div><div class="context">' + escapeHtml(v.context) + ' · ' + new Date(v.timestamp).toLocaleDateString('zh-CN') +
+      '</div></div><button class="del-vocab" onclick="removeVocab(' + i + ')">删除</button></div>';
+  }).join('');
+}
+
+function showVocabBook() {
+  document.getElementById('vocabModal').classList.add('show');
+  renderVocabList();
+}
+
+function closeVocabModal() {
+  document.getElementById('vocabModal').classList.remove('show');
+}
+
+function setupPassageDblClick() {
+  var passage = document.querySelector('.passage');
+  if (!passage) return;
+  passage.addEventListener('dblclick', function(e) {
+    var selection = window.getSelection();
+    var word = selection.toString().trim();
+    if (word && /^[a-zA-Z]+$/.test(word) && word.length > 2) {
+      var range = selection.getRangeAt(0);
+      var textNode = range.startContainer;
+      var fullText = textNode.textContent || '';
+      var idx = range.startOffset;
+      var contextStart = Math.max(0, idx - 25);
+      var contextEnd = Math.min(fullText.length, idx + word.length + 25);
+      var context = fullText.substring(contextStart, contextEnd).replace(/\s+/g, ' ').trim();
+      addVocabWord(word, '...' + context + '...');
+    }
+  });
+}
+
+// ===== Template Library =====
+var WRITING_TEMPLATES = {
+  task1: [
+    { type: '折线图 Line Graph', scene: '用于描述数据随时间变化的趋势', opening: 'The line graph illustrates/shows/compares the changes in [主题] over a period of [时间段] from [起始时间] to [结束时间].', body: '1. 描述起点数据: In [起始年], [类别A] stood at [数值], while [类别B] was at [数值].\n2. 描述趋势变化: Over the period, [类别A] experienced a [上升/下降] trend, [上升/下降] from [数值] to [数值].\n3. 描述转折点: The most significant change occurred in [年份], when [类别] [上升/下降] sharply to [数值].', conclusion: 'Overall, [类别A] showed an upward/downward trend, whereas [类别B] experienced the opposite pattern. / It is clear that [主要趋势总结].', vocab: 'rise, increase, grow, climb, surge, decline, decrease, drop, fall, plummet, fluctuate, plateau, peak, trough, dramatic, steady, gradual, sharp, slight' },
+    { type: '柱状图 Bar Chart', scene: '用于比较不同类别的数据', opening: 'The bar chart compares/illustrates the [数据] of [类别] in [地点/时间].', body: '1. 最高值: [类别A] had the highest figure at [数值], followed by [类别B] at [数值].\n2. 最低值: In contrast, [类别C] recorded the lowest, at only [数值].\n3. 对比: [类别A] was approximately [倍数] times higher than [类别B].', conclusion: 'Overall, there were significant disparities between the categories, with [类别A] dominating throughout the period.', vocab: 'compare, contrast, highest, lowest, approximately, roughly, disparity, dominate, account for, represent, constitute' },
+    { type: '饼图 Pie Chart', scene: '用于展示各部分占整体的比例', opening: 'The pie chart illustrates the proportion/percentage of [类别] in [地点/时间].', body: '1. 最大占比: The largest proportion was [类别A], accounting for [百分比] of the total.\n2. 第二大: [类别B] constituted the second largest share at [百分比].\n3. 最小占比: The smallest segment was [类别C], representing merely [百分比].', conclusion: 'Overall, [类别A] dominated the distribution, while [类别B] and [类别C] made up the remaining portion.', vocab: 'proportion, percentage, share, segment, account for, constitute, represent, make up, dominate, the majority, minority' },
+    { type: '表格 Table', scene: '用于展示多维度的精确数据', opening: 'The table compares/illustrates data on [主题] across [维度] in [时间/地点].', body: '1. 横向对比: Looking at [行1], [类别A] was the highest at [数值], while [类别B] was the lowest at [数值].\n2. 纵向对比: In terms of [列1], figures ranged from [最低] to [最高].\n3. 显著特征: A notable feature is that [特殊发现].', conclusion: 'Overall, the table reveals that [主要发现], with [类别A] consistently showing the highest figures.', vocab: 'range from...to..., vary, respectively, whereas, while, in terms of, regarding, with respect to, notable, consistently' },
+    { type: '流程图 Process/Flow Chart', scene: '用于描述一个过程的步骤', opening: 'The flowchart/diagram illustrates the process of [主题], which involves [数字] main stages/steps.', body: '1. 第一步: The process begins with [步骤1], where [描述].\n2. 中间步骤: This is followed by [步骤2], during which [描述]. Subsequently, [步骤3] takes place.\n3. 最后一步: In the final stage, [最后步骤], resulting in [最终产物].', conclusion: 'Overall, the process of [主题] is a [线性/循环] procedure consisting of [数字] distinct stages, from [开始] to [结束].', vocab: 'begin with, commence, initially, subsequently, following this, thereafter, in the next stage, finally, culminate in, result in, give rise to' },
+    { type: '地图 Map', scene: '用于描述地理位置的变化', opening: 'The maps illustrate the changes that took place in [地点] between [年份1] and [年份2].', body: '1. 原有特征: In [年份1], [地点] featured [原有设施/地貌], with [描述位置].\n2. 新增变化: By [年份2], several significant changes had occurred. [新设施A] was constructed [位置].\n3. 替代变化: [旧设施] was replaced by/demolished to make way for [新设施B].', conclusion: 'Overall, [地点] underwent a dramatic transformation from [特征A] to [特征B], with considerable [现代化/商业化/扩张].', vocab: 'be situated, be located, be constructed, be built, be demolished, be replaced by, be converted into, be expanded, be extended, make way for, give way to, in the [direction] of' },
+    { type: '混合图 Mixed Charts', scene: '用于同时分析两种图表类型', opening: 'The [图1类型] shows [数据1], while the [图2类型] illustrates [数据2] in [时间/地点].', body: '1. 图1分析: According to the [图1], [主要趋势/对比]. Specifically, [关键数据点].\n2. 图2分析: Turning to the [图2], it is evident that [主要趋势]. [关键数据点].\n3. 关联: The relationship between the two charts suggests that [关联分析].', conclusion: 'Overall, while the [图1] reveals [发现1], the [图2] demonstrates [发现2], indicating that [综合结论].', vocab: 'according to, turning to, as for, in relation to, correlate with, correspond to, mirror, reflect, suggest, indicate' }
+  ],
+  task2: [
+    { type: '观点型 Opinion (Agree/Disagree)', scene: '题目要求表达你是同意还是不同意某个观点', opening: 'It is widely argued that [题目观点]. While there may be some validity to this statement, I [完全同意/部分同意/不同意] because [核心理由].', body: '1. 支持论点一: Firstly, [理由1]. This is evidenced by [例证/数据/事实].\n2. 支持论点二: Secondly, [理由2]. For example, [具体例子].\n3. 让步段(可选): Admittedly, some may argue that [反方观点]. However, this ignores [反驳].', conclusion: 'In conclusion, while [承认反方], I firmly believe that [重申立场] because [总结理由].', vocab: 'argue, contend, assert, advocate, oppose, firmly believe, be convinced that, it is undeniable that, there is no doubt that, this is evidenced by, for instance' },
+    { type: '讨论型 Discuss Both Views', scene: '题目要求讨论双方观点并给出自己的意见', opening: 'The issue of [话题] has generated considerable debate. While some believe that [观点A], others contend that [观点B]. This essay will examine both perspectives before presenting my own view.', body: '1. 观点A论述: On the one hand, proponents of [观点A] argue that [理由]. For instance, [例证]. This is a compelling argument because [分析].\n2. 观点B论述: On the other hand, advocates of [观点B] point out that [理由]. Research shows that [证据].\n3. 自己观点: In my opinion, [你的立场]. While [承认对方], I believe [你的理由] is more convincing.', conclusion: 'In conclusion, both perspectives have merit. However, I believe that [你的立场] because [最终总结].', vocab: 'considerable debate, proponents, advocates, contend, examine, perspective, compelling, convincing, on the one hand...on the other hand, whereas, nevertheless' },
+    { type: '问题解决型 Problem/Solution', scene: '题目提出一个问题，要求分析原因并提出解决方案', opening: 'The issue of [问题] has become increasingly prevalent in recent years. This essay will examine the primary causes of this problem and propose viable solutions.', body: '1. 原因一: One major cause is [原因1]. This is largely due to [深层分析].\n2. 原因二: Another contributing factor is [原因2]. [详细说明].\n3. 解决方案: To address these issues, several measures can be taken. Firstly, governments should [措施1]. Secondly, individuals could [措施2].', conclusion: 'In conclusion, [问题] stems from [原因总结]. However, through [措施总结], this problem can be effectively mitigated.', vocab: 'prevalent, stem from, contribute to, exacerbate, address, tackle, mitigate, alleviate, implement, enforce, viable, feasible, measure, initiative, intervention' },
+    { type: '利弊型 Advantages/Disadvantages', scene: '题目要求分析某事物的利弊', opening: 'In recent years, [话题] has become increasingly common. While this development offers certain benefits, it also presents notable drawbacks that warrant consideration.', body: '1. 优点: On the positive side, [优点1]. This is beneficial because [分析]. Furthermore, [优点2], which [分析].\n2. 缺点: However, there are significant disadvantages. Primarily, [缺点1] can lead to [后果]. Moreover, [缺点2] may result in [后果].', conclusion: 'In conclusion, while [话题] has clear advantages such as [优点], the disadvantages including [缺点] cannot be overlooked. I believe that [你的判断] because [理由].', vocab: 'notable, warrant, beneficial, advantageous, detrimental, adverse, outweigh, on balance, nevertheless, notwithstanding, conversely, pose a threat to, give rise to' },
+    { type: '双边讨论型 Two-Part Question', scene: '题目包含两个相关问题，需要分别回答', opening: 'The questions of [问题1] and [问题2] are increasingly relevant in today\'s society. This essay will address both of these important issues.', body: '1. 回答问题1: Regarding [问题1], I believe that [观点]. The primary reason is [理由], as demonstrated by [例证].\n2. 回答问题2: As for [问题2], [观点]. Evidence suggests that [证据]. Additionally, [补充].', conclusion: 'In conclusion, [问题1答案总结], and [问题2答案总结]. Moving forward, it is essential that [建议/展望].', vocab: 'regarding, as for, in terms of, with respect to, relevant, address, tackle, demonstrate, evidence suggests, moving forward, it is essential that' }
+  ]
+};
+
+function renderTemplateCard(t) {
+  return '<div class="template-card">' +
+    '<h4>' + t.type + '</h4>' +
+    '<div class="scene">适用场景: ' + t.scene + '</div>' +
+    '<div class="formula"><strong>开头段公式:</strong><p>' + t.opening + '</p></div>' +
+    '<div class="formula"><strong>主体段公式:</strong><p>' + t.body.replace(/\n/g, '<br>') + '</p></div>' +
+    '<div class="formula"><strong>结尾段公式:</strong><p>' + t.conclusion + '</p></div>' +
+    '<div class="vocab-tags">' + t.vocab.split(', ').map(function(v) { return '<span class="vocab-tag">' + v + '</span>'; }).join('') + '</div>' +
+    '</div>';
+}
+
+function showTemplates(task) {
+  if (!task) task = 'task1';
+  var mc = document.getElementById('mainContent');
+  var wp = document.getElementById('welcomePanel');
+  var ac = document.getElementById('answerSheetCard');
+  if (wp) wp.classList.add('hidden');
+  if (ac) ac.classList.add('hidden');
+  stopTimer();
+
+  var html = '<div class="panel-header"><h2>写作模板库</h2></div>' +
+    '<div class="panel"><div class="template-tabs">' +
+    '<button class="template-tab' + (task === 'task1' ? ' active' : '') + '" onclick="showTemplates(\'task1\')">Task 1 · 小作文 (7类)</button>' +
+    '<button class="template-tab' + (task === 'task2' ? ' active' : '') + '" onclick="showTemplates(\'task2\')">Task 2 · 大作文 (5类)</button>' +
+    '</div>';
+
+  var templates = task === 'task1' ? WRITING_TEMPLATES.task1 : WRITING_TEMPLATES.task2;
+  html += templates.map(renderTemplateCard).join('') + '</div>';
+
+  mc.innerHTML = html;
+  bnSetActive('templates');
+}
+
+// ===== Achievement System =====
+var ACHIEVEMENTS = [
+  { id: 'first_complete', name: '首次完成', desc: '完成任意1个模块', icon: '🌟', check: function() { return Object.keys(state.results).length >= 1; } },
+  { id: 'three_days', name: '坚持3天', desc: '3次不同日期的答题记录', icon: '🔥', check: function() {
+    var days = new Set();
+    Object.values(state.results).forEach(function(r) { if (r.timestamp) days.add(new Date(r.timestamp).toDateString()); });
+    return days.size >= 3;
+  }},
+  { id: 'perfect_score', name: '满分达人', desc: '单模块获得100%正确率', icon: '💯', check: function() {
+    return Object.entries(state.results).some(function(e) {
+      var k = e[0], r = e[1];
+      if (k.endsWith('_listening') || k.endsWith('_reading')) return r.total > 0 && r.correct === r.total;
+      return false;
+    });
+  }},
+  { id: 'vocab_master', name: '词汇大师', desc: '收藏20+个生词', icon: '📚', check: function() { return getVocab().length >= 20; } },
+  { id: 'archaeologist', name: '考古学家', desc: '完成5套不同真题', icon: '🏺', check: function() {
+    var testSet = new Set();
+    Object.keys(state.results).forEach(function(k) { testSet.add(k.split('_')[0]); });
+    return testSet.size >= 5;
+  }},
+  { id: 'listening_pro', name: '听力高手', desc: '听力正确率≥80%', icon: '🎧', check: function() {
+    return TESTS.some(function(t) {
+      var k = t.id + '_listening';
+      var r = state.results[k];
+      return r && r.total > 0 && (r.correct / r.total) >= 0.8;
+    });
+  }},
+  { id: 'reading_pro', name: '阅读高手', desc: '阅读正确率≥80%', icon: '📖', check: function() {
+    return TESTS.some(function(t) {
+      var k = t.id + '_reading';
+      var r = state.results[k];
+      return r && r.total > 0 && (r.correct / r.total) >= 0.8;
+    });
+  }},
+  { id: 'all_tests', name: '全勤勇士', desc: '完成所有10套真题的任意模块', icon: '⚔️', check: function() {
+    var testSet = new Set();
+    Object.keys(state.results).forEach(function(k) { testSet.add(k.split('_')[0]); });
+    return testSet.size >= TESTS.length;
+  }},
+  { id: 'speed_demon', name: '速通达人', desc: '考试模式下提前5分钟交卷且正确率≥70%', icon: '⚡', check: function() {
+    var records = JSON.parse(localStorage.getItem('ielts-speed-records') || '[]');
+    return records.some(function(r) { return r.timeLeft >= 300 && r.pct >= 70; });
+  }}
+];
+
+function getAchievements() {
+  try { return JSON.parse(localStorage.getItem('ielts-achievements') || '[]'); }
+  catch(e) { return []; }
+}
+
+function checkAchievements() {
+  var unlocked = getAchievements();
+  var changed = false;
+  ACHIEVEMENTS.forEach(function(ach) {
+    if (!unlocked.find(function(u) { return u.id === ach.id; }) && ach.check()) {
+      unlocked.push({ id: ach.id, unlockedAt: Date.now() });
+      changed = true;
+      toast('🏆 解锁成就: ' + ach.name + '!');
+    }
+  });
+  if (changed) {
+    localStorage.setItem('ielts-achievements', JSON.stringify(unlocked));
+  }
+  renderAchievements();
+  return unlocked;
+}
+
+function renderAchievements() {
+  var el = document.getElementById('achievementsGrid');
+  if (!el) return;
+  var unlocked = getAchievements();
+  el.innerHTML = ACHIEVEMENTS.map(function(ach) {
+    var u = unlocked.find(function(ux) { return ux.id === ach.id; });
+    if (u) {
+      return '<div class="achievement-card unlocked"><div class="ach-icon">' + ach.icon + '</div><div class="ach-name">' + ach.name + '</div><div class="ach-desc">' + ach.desc + '</div><div class="ach-date">' + new Date(u.unlockedAt).toLocaleDateString('zh-CN') + '</div></div>';
+    }
+    return '<div class="achievement-card locked"><div class="ach-icon">🔒</div><div class="ach-name">' + ach.name + '</div><div class="ach-desc">' + ach.desc + '</div></div>';
+  }).join('');
+}
+
+// ===== Bottom Nav =====
+function bnNav(target) {
+  if (target === 'home') {
+    showView(null);
+  } else if (target === 'stats') {
+    showView('stats');
+  } else if (target === 'errors') {
+    showView('errors');
+  } else if (target === 'vocab') {
+    showVocabBook();
+  } else if (target === 'templates') {
+    showTemplates('task1');
+  }
+  bnSetActive(target);
+}
+
+function bnSetActive(target) {
+  var items = document.querySelectorAll('#bottomNav .bn-item');
+  for (var i = 0; i < items.length; i++) {
+    items[i].classList.toggle('active', items[i].dataset.nav === target);
+  }
+}
+
+// ===== Function Overrides =====
+var __origShowView = showView;
+showView = function(view) {
+  __origShowView(view);
+  if (view === 'stats') bnSetActive('stats');
+  else if (view === 'errors') bnSetActive('errors');
+  else if (view === 'templates') bnSetActive('templates');
+  else bnSetActive('home');
+};
+
+var __origSubmitModule = submitModule;
+submitModule = function() {
+  __origSubmitModule();
+
+  // Track speed runner
+  var mod = state.currentModule;
+  if (state.mode === 'exam' && (mod === 'listening' || mod === 'reading')) {
+    if (state.timeLeft >= 300) {
+      var key = state.currentTest + '_' + mod;
+      var r = state.results[key];
+      if (r && r.total > 0) {
+        var pct = Math.round(r.correct / r.total * 100);
+        if (pct >= 70) {
+          var records = JSON.parse(localStorage.getItem('ielts-speed-records') || '[]');
+          records.push({ timeLeft: state.timeLeft, pct: pct, timestamp: Date.now() });
+          localStorage.setItem('ielts-speed-records', JSON.stringify(records));
+        }
+      }
+    }
+  }
+
+  checkAchievements();
+
+  // Update modal with enhanced band score
+  var key2 = state.currentTest + '_' + state.currentModule;
+  var r2 = state.results[key2];
+  if (r2 && r2.total > 0) {
+    var eb = getBandScoreEnhanced(r2.correct, r2.total);
+    document.getElementById('resultBand').textContent = 'Band Score ' + eb.band + ' · ' + eb.comment;
+    document.getElementById('resultScore').textContent = '得分: ' + r2.correct + '/' + r2.total;
+  }
+};
+
+var __origRenderTestList = renderTestList;
+renderTestList = function() {
+  __origRenderTestList();
+  var items = document.querySelectorAll('#testList .test-item');
+  items.forEach(function(item) {
+    var onclick = item.getAttribute('onclick');
+    var match = onclick.match(/'([^']+)'/);
+    if (!match) return;
+    var testId = match[1];
+    if (!item.querySelector('.fav-star')) {
+      var star = document.createElement('button');
+      star.className = 'fav-star' + (isFavorited(testId) ? ' faved' : '');
+      star.textContent = isFavorited(testId) ? '★' : '☆';
+      star.onclick = function(e) { toggleFavorite(testId, e); };
+      star.title = isFavorited(testId) ? '取消收藏' : '收藏';
+      item.appendChild(star);
+    }
+  });
+  renderFavList();
+};
+
+var __origRenderListening = renderListening;
+renderListening = function(md) {
+  __origRenderListening(md);
+
+  (md.sections || []).forEach(function(s, si) {
+    var btn = document.getElementById('audioBtn' + si);
+    if (btn) {
+      var player = btn.closest('.audio-player');
+      if (player && !player.querySelector('.audio-speed')) {
+        player.insertAdjacentHTML('beforeend', renderSpeedButtons(si));
+      }
+    }
+  });
+
+  var questions = getQuestions();
+  if (questions.length > 0) {
+    var mc = document.getElementById('mainContent');
+    var panelHeader = mc.querySelector('.panel-header');
+    if (panelHeader && !document.getElementById('qNav')) {
+      panelHeader.insertAdjacentHTML('afterend', renderQNav(questions));
+    }
+  }
+
+  document.querySelectorAll('#mainContent .question').forEach(function(q, i) {
+    if (!q.id) q.id = 'q-' + i;
+  });
+};
+
+var __origRenderReading = renderReading;
+renderReading = function(md, questions) {
+  __origRenderReading(md, questions);
+
+  if (questions.length > 0) {
+    var mc = document.getElementById('mainContent');
+    var panelHeader = mc.querySelector('.panel-header');
+    if (panelHeader && !document.getElementById('qNav')) {
+      panelHeader.insertAdjacentHTML('afterend', renderQNav(questions));
+    }
+  }
+
+  document.querySelectorAll('#mainContent .question').forEach(function(q, i) {
+    if (!q.id) q.id = 'q-' + i;
+  });
+
+  setTimeout(setupPassageDblClick, 100);
+};
+
+var __origSelectAnswer = selectAnswer;
+selectAnswer = function(qIdx, optionIdx) {
+  __origSelectAnswer(qIdx, optionIdx);
+  updateQNavButtons();
+};
+
+var __origFillAnswer = fillAnswer;
+fillAnswer = function(qIdx) {
+  __origFillAnswer(qIdx);
+  updateQNavButtons();
+};
+
+var __origLoadWelcomeStats = loadWelcomeStats;
+loadWelcomeStats = function() {
+  __origLoadWelcomeStats();
+  checkAchievements();
+  renderAchievements();
+};
+
+var __origInit = init;
+init = function() {
+  __origInit();
+  renderFavList();
+  checkAchievements();
+  renderAchievements();
+};
+
+var __origToggleAudio = toggleAudio;
+toggleAudio = function(sectionIdx) {
+  __origToggleAudio(sectionIdx);
+  var st = audioStates[sectionIdx];
+  if (st && st.utterance) {
+    var activeBtn = document.querySelector('#speedBtns' + sectionIdx + ' .spd-btn.active');
+    if (activeBtn) {
+      st.utterance.rate = parseFloat(activeBtn.dataset.rate);
+    }
+  }
+};
+
+
+var __origShowStats = showStats;
+showStats = function() {
+  __origShowStats();
+  var mc = document.getElementById('mainContent');
+  var hasContent = mc && mc.innerHTML && mc.innerHTML.indexOf('welcomePanel') === -1;
+  // If stats is empty (no records), add CTA
+  var statsContent = mc ? mc.innerHTML : '';
+  if (statsContent && statsContent.indexOf('暂无学习记录') !== -1) {
+    var emptyDiv = mc.querySelector('.empty-state') || mc.querySelector('.panel-body');
+    if (emptyDiv) {
+      emptyDiv.innerHTML = '<div class="empty-state"><div class="empty-icon">📊</div><p>还没有学习记录，开始你的第一套真题吧！</p><button class="btn btn-primary" onclick="showView(\'tests\')">开始第一套练习</button></div>';
+    }
+  }
+  bnSetActive('stats');
+};
+
+var __origShowErrors = showErrors;
+showErrors = function() {
+  __origShowErrors();
+  var mc = document.getElementById('mainContent');
+  var errContent = mc ? mc.innerHTML : '';
+  if (errContent && errContent.indexOf('暂无错题记录') !== -1) {
+    var emptyDiv = mc.querySelector('.empty-state') || mc.querySelector('.panel-body');
+    if (emptyDiv) {
+      emptyDiv.innerHTML = '<div class="empty-state"><div class="empty-icon">❌</div><p>暂无错题记录，继续加油！</p><button class="btn btn-primary" onclick="showView(\'tests\')">去真题练习</button></div>';
+    }
+  }
+  bnSetActive('errors');
+};
+</script>
+<!-- Bottom Nav (Mobile) -->
+<div class="bottom-nav" id="bottomNav">
+  <div class="bn-inner">
+    <button class="bn-item active" data-page="home" onclick="bnNav('home')">
+      <span class="bn-icon">🏠</span>
+      <span>首页</span>
+    </button>
+    <button class="bn-item" data-page="stats" onclick="bnNav('stats')">
+      <span class="bn-icon">📊</span>
+      <span>学习记录</span>
+    </button>
+    <button class="bn-item" data-page="errors" onclick="bnNav('errors')">
+      <span class="bn-icon">❌</span>
+      <span>错题本</span>
+    </button>
+    <button class="bn-item" data-page="vocab" onclick="bnNav('vocab')">
+      <span class="bn-icon">📖</span>
+      <span>生词本</span>
+    </button>
+    <button class="bn-item" data-page="templates" onclick="bnNav('templates')">
+      <span class="bn-icon">✍️</span>
+      <span>模板库</span>
+    </button>
+  </div>
+</div>
+
+</body>
+</html>
