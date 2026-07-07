@@ -6002,10 +6002,12 @@ function submitModule() {
   if (mod !== 'listening' && mod !== 'reading') { toast('该模块无需提交'); return; }
   const key = state.currentTest + '_' + mod;
   const questions = getQuestions();
-  let correct = 0, wrong = 0;
+  let correct = 0, wrong = 0, maxScore = 0;
   questions.forEach((q, i) => {
     const ansKey = key + '_' + i;
     const sel = state.answers[ansKey];
+    const qMax = (q.type === 'multi') ? (q.points || 2) : 1;
+    maxScore += qMax;
     if (q.type === 'fill') {
       if (sel !== undefined && sel !== '' && sel.toLowerCase().trim() === (q.answer||'').toLowerCase().trim()) correct++;
       else wrong++;
@@ -6013,16 +6015,19 @@ function submitModule() {
       const userSet = new Set(Array.isArray(sel) ? sel : (sel !== undefined ? [sel] : []));
       const correctSet = new Set(q.answers || []);
       const allCorrect = userSet.size === correctSet.size && [...userSet].every(v => correctSet.has(v));
-      if (allCorrect) { correct += (q.points || 2); }
-      else { wrong += (q.points || 2); }
+      if (allCorrect) { correct += qMax; }
+      else { wrong += qMax; }
     } else {
       if (sel === q.answer) correct++;
       else wrong++;
     }
   });
 
+  // Normalize to 40-point scale for band score (IELTS Listening is always out of 40)
+  const correct40 = maxScore ? Math.round(correct / maxScore * 40) : 0;
+
   state.submitted[key] = true;
-  state.results[key] = { score: correct, correct, wrong, total: questions.length, timestamp: Date.now() };
+  state.results[key] = { score: correct, correct, correct40, wrong, total: questions.length, maxScore, timestamp: Date.now() };
 
   // Error book — 答错或未答均记录
   questions.forEach((q, i) => {
@@ -6063,9 +6068,9 @@ function submitModule() {
   saveProgress();
   stopTimer();
 
-  const pct = questions.length ? Math.round(correct/questions.length*100) : 0;
-  document.getElementById('resultScore').textContent = correct + '/' + questions.length;
-  document.getElementById('resultBand').textContent = getBandScore(correct, questions.length);
+  const pct = maxScore ? Math.round(correct/maxScore*100) : 0;
+  document.getElementById('resultScore').textContent = correct + '/' + maxScore;
+  document.getElementById('resultBand').textContent = getBandScore(correct40, 40);
   document.getElementById('resultCorrect').textContent = correct;
   document.getElementById('resultWrong').textContent = wrong;
   document.getElementById('resultPct').textContent = pct + '%';
@@ -6181,11 +6186,12 @@ function showStats() {
       if (state.results[key]) {
         if (mod === 'listening' || mod === 'reading') {
           const r = state.results[key];
-          totalCorrect += r.correct || 0;
-          totalQuestions += r.total || 0;
+          const c40 = r.correct40 || r.correct || 0;
+          totalCorrect += c40;
+          totalQuestions += 40;
           modulesDone++;
-          recentResults.push({test: t.name, module: mod, score: r.correct, total: r.total,
-            pct: Math.round((r.correct/r.total)*100), time: r.timestamp});
+          recentResults.push({test: t.name, module: mod, score: c40, total: 40,
+            pct: Math.round((c40/40)*100), time: r.timestamp});
         } else if (mod === 'writing' || mod === 'speaking') {
           modulesDone++;
           recentResults.push({test: t.name, module: mod, score: '-', total: '-', pct: '-', time: state.results[key].timestamp});
@@ -6736,14 +6742,16 @@ var ACHIEVEMENTS = [
     return TESTS.some(function(t) {
       var k = t.id + '_listening';
       var r = state.results[k];
-      return r && r.total > 0 && (r.correct / r.total) >= 0.8;
+      var c40 = r && (r.correct40 || r.correct) || 0;
+      return c40 >= 32;
     });
   }},
   { id: 'reading_pro', name: '阅读高手', desc: '阅读正确率≥80%', icon: '📖', check: function() {
     return TESTS.some(function(t) {
       var k = t.id + '_reading';
       var r = state.results[k];
-      return r && r.total > 0 && (r.correct / r.total) >= 0.8;
+      var c40 = r && (r.correct40 || r.correct) || 0;
+      return c40 >= 32;
     });
   }},
   { id: 'all_tests', name: '全勤勇士', desc: '完成所有10套真题的任意模块', icon: '⚔️', check: function() {
