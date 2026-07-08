@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>IELTS Listening Practice – Cambridge 17-19</title>
+<title>IELTS Listening Practice - Cambridge 17-19</title>
 <style>
 * { margin: 0; padding: 0; box-sizing: border-box; }
 body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; background: #f5f6fa; color: #333; min-height: 100vh; padding-bottom: 100px; }
@@ -67,6 +67,41 @@ header .header-actions { display: flex; gap: 8px; align-items: center; }
 .btn-show { background: #ecfdf5; color: #059669; border: 1px solid #a7f3d0; }
 .btn-show:hover { background: #d1fae5; }
 
+/* ============ TIMER ============ */
+.timer-bar-wrap { padding: 0 24px; background: #f8f9fb; border-bottom: 1px solid #f0f0f5; }
+.timer-bar-inner { display: flex; align-items: center; gap: 12px; padding: 10px 0; }
+.timer-label { font-size: 0.8rem; font-weight: 600; color: #0f3460; white-space: nowrap; }
+.timer-progress-bg { flex: 1; height: 8px; background: #e5e7eb; border-radius: 4px; overflow: hidden; }
+.timer-progress-fill { height: 100%; background: #0f3460; border-radius: 4px; transition: width 1s linear; }
+.timer-progress-fill.warning { background: #f59e0b; }
+.timer-progress-fill.danger { background: #dc2626; animation: blink 0.5s infinite; }
+@keyframes blink { 50% { opacity: 0.3; } }
+.timer-display { font-size: 1.2rem; font-weight: 700; color: #0f3460; min-width: 55px; text-align: right; font-variant-numeric: tabular-nums; font-family: 'Courier New', monospace; }
+.timer-display.warning { color: #f59e0b; }
+.timer-display.danger { color: #dc2626; animation: blink 0.5s infinite; }
+.timer-btn { padding: 4px 10px; border: 1px solid #d0d5dd; border-radius: 6px; background: #fff; cursor: pointer; font-size: 0.75rem; font-weight: 500; color: #555; }
+.timer-btn:hover { background: #f0f2f5; }
+
+/* ============ EXPLANATION ============ */
+.explain-toggle { display: inline-block; margin-top: 6px; padding: 4px 10px; border: 1px solid #d0d5dd; border-radius: 6px; background: #fff; cursor: pointer; font-size: 0.75rem; color: #0f3460; font-weight: 500; transition: all 0.15s; }
+.explain-toggle:hover { background: #eef2ff; border-color: #0f3460; }
+.explain-panel { display: none; margin-top: 8px; padding: 12px 14px; background: #f0fdf4; border: 1px solid #bbf7d0; border-radius: 8px; font-size: 0.8rem; line-height: 1.6; }
+.explain-panel.show { display: block; }
+.explain-panel .exp-label { font-weight: 600; color: #065f46; display: inline-block; min-width: 70px; }
+.explain-panel .exp-answer { color: #059669; font-weight: 600; }
+.explain-panel .exp-trap { color: #dc2626; background: #fef2f2; padding: 1px 6px; border-radius: 3px; }
+.explain-panel .exp-keyword { color: #0f3460; font-weight: 600; background: #eef2ff; padding: 1px 4px; border-radius: 3px; }
+
+/* ============ TRANSCRIPT ============ */
+.transcript-toggle { margin: 8px 0; }
+.transcript-toggle button { padding: 8px 16px; border: 1px solid #7c3aed; border-radius: 8px; background: #f5f3ff; color: #7c3aed; cursor: pointer; font-size: 0.8rem; font-weight: 500; transition: all 0.15s; }
+.transcript-toggle button:hover { background: #ede9fe; }
+.transcript-panel { display: none; margin-top: 12px; padding: 16px 20px; background: #faf9ff; border: 1px solid #ddd6fe; border-radius: 10px; font-size: 0.83rem; line-height: 1.8; max-height: 400px; overflow-y: auto; white-space: pre-wrap; }
+.transcript-panel.show { display: block; }
+.transcript-key { background: #d1fae5; color: #065f46; padding: 1px 4px; border-radius: 3px; font-weight: 600; }
+.transcript-qmarker { color: #7c3aed; font-weight: 700; font-size: 0.78rem; margin-right: 4px; }
+
+/* ============ SCORE BAR ============ */
 .score-bar { display: none; margin: 8px 24px 20px; padding: 16px; background: #f8f9fb; border-radius: 10px; }
 .score-bar h3 { font-size: 0.9rem; color: #0f3460; }
 .score { font-size: 1.3rem; font-weight: 700; color: #0f3460; margin-top: 4px; }
@@ -103,11 +138,9 @@ header .header-actions { display: flex; gap: 8px; align-items: center; }
 
 footer { text-align: center; color: #bbb; font-size: 0.7rem; padding: 12px; margin-top: 20px; }
 
-/* Toast */
 .toast { position: fixed; top: 20px; left: 50%; transform: translateX(-50%); background: #333; color: #fff; padding: 10px 24px; border-radius: 8px; font-size: 0.85rem; z-index: 9999; opacity: 0; transition: opacity 0.3s; pointer-events: none; }
 .toast.show { opacity: 1; }
 
-/* ============ ENHANCED VOCAB CSS ============ 
 .vocab-bubble { position: fixed; z-index: 9999; background: #1a1a2e; color: #fff; padding: 6px 14px; border-radius: 8px; font-size: 0.8rem; white-space: nowrap; box-shadow: 0 4px 16px rgba(0,0,0,0.25); animation: bubbleIn 0.2s ease-out; }
 .vocab-bubble .close-bubble { cursor: pointer; margin-left: 8px; color: #fbb; font-weight: bold; }
 @keyframes bubbleIn { from { opacity: 0; transform: translateY(6px); } to { opacity: 1; transform: translateY(0); } }
@@ -151,7 +184,6 @@ footer { text-align: center; color: #bbb; font-size: 0.7rem; padding: 12px; marg
 .vocab-pagination button.active { background: #0f3460; color: #fff; border-color: #0f3460; }
 .vocab-pagination span { font-size: 0.8rem; color: #888; }
 
-/* Review Mode */
 .review-card { background: #fff; border-radius: 12px; box-shadow: 0 2px 12px rgba(0,0,0,0.1); padding: 40px 30px; text-align: center; max-width: 500px; margin: 0 auto; }
 .review-word { font-size: 2.2rem; font-weight: 700; color: #0f3460; margin-bottom: 8px; cursor: pointer; }
 .review-hint { font-size: 0.85rem; color: #aaa; margin-bottom: 20px; }
@@ -176,7 +208,6 @@ footer { text-align: center; color: #bbb; font-size: 0.7rem; padding: 12px; marg
 .keyboard-hints { font-size: 0.75rem; color: #bbb; margin-top: 12px; }
 .keyboard-hints kbd { background: #f0f2f5; padding: 2px 6px; border-radius: 4px; border: 1px solid #d0d5dd; font-family: monospace; }
 
-/* ============ PRONUNCIATION ============ */
 .pron-btn { display: inline-block; cursor: pointer; font-size: 0.85rem; margin-left: 2px; opacity: 0.4; transition: opacity 0.15s; vertical-align: middle; user-select: none; }
 .pron-btn:hover { opacity: 1; }
 .pron-btn.speaking { opacity: 1; animation: pulse 0.6s infinite; }
@@ -187,7 +218,6 @@ footer { text-align: center; color: #bbb; font-size: 0.7rem; padding: 12px; marg
 .speed-settings button:hover { background: #f0f2f5; }
 .speed-settings button.active { background: #eef2ff; color: #0f3460; font-weight: 600; }
 
-/* ============ WRONG BOOK ============ */
 .wrong-source-group { margin-bottom: 16px; }
 .wrong-source-header { background: #fef2f2; padding: 10px 16px; border-radius: 8px; font-weight: 600; font-size: 0.85rem; color: #991b1b; display: flex; justify-content: space-between; align-items: center; cursor: pointer; border: 1px solid #fecaca; }
 .wrong-source-header .arrow { transition: transform 0.2s; }
@@ -204,7 +234,6 @@ footer { text-align: center; color: #bbb; font-size: 0.7rem; padding: 12px; marg
 .wrong-filter select { padding: 6px 12px; border: 1.5px solid #d0d5dd; border-radius: 8px; font-size: 0.85rem; background: #fff; cursor: pointer; }
 .wrong-empty { text-align: center; color: #aaa; padding: 60px 0; }
 
-/* ============ PROGRESS PAGE ============ */
 .progress-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(130px, 1fr)); gap: 10px; margin-bottom: 20px; }
 .progress-cell { background: #f9fafb; border: 1.5px solid #e5e7eb; border-radius: 10px; padding: 14px 12px; text-align: center; cursor: pointer; transition: all 0.2s; }
 .progress-cell:hover { border-color: #0f3460; }
@@ -225,7 +254,29 @@ footer { text-align: center; color: #bbb; font-size: 0.7rem; padding: 12px; marg
 .bar-col .bar-label { font-size: 0.65rem; color: #888; }
 .bar-col .bar-value { font-size: 0.7rem; font-weight: 600; color: #0f3460; }
 
-/* ============ CHECK-IN ============ */
+/* ============ WEAKNESS ANALYSIS ============ */
+.weakness-tabs { display: flex; gap: 4px; margin-bottom: 16px; }
+.weakness-tab { padding: 8px 16px; border: 1px solid #d0d5dd; border-radius: 8px; background: #fff; cursor: pointer; font-size: 0.82rem; font-weight: 500; transition: all 0.15s; }
+.weakness-tab.active { background: #0f3460; color: #fff; border-color: #0f3460; }
+.weakness-tab:hover:not(.active) { background: #f0f2f5; }
+
+.radar-wrap { display: flex; justify-content: center; padding: 10px 0; }
+.radar-wrap svg { max-width: 320px; }
+
+.weakness-list { margin-top: 16px; }
+.weakness-item { display: flex; align-items: center; padding: 10px 14px; margin: 6px 0; border-radius: 8px; background: #f8f9fb; gap: 12px; }
+.weakness-item.weakest { background: #fef2f2; border: 1px solid #fecaca; }
+.weakness-name { font-weight: 600; min-width: 130px; font-size: 0.85rem; color: #0f3460; }
+.weakness-bar-bg { flex: 1; height: 18px; background: #e5e7eb; border-radius: 9px; overflow: hidden; }
+.weakness-bar-fill { height: 100%; border-radius: 9px; transition: width 0.6s; }
+.weakness-pct { min-width: 45px; text-align: right; font-weight: 600; font-size: 0.8rem; }
+.weakness-suggestion { margin-top: 16px; padding: 14px 16px; background: #fffbeb; border: 1px solid #fde68a; border-radius: 10px; font-size: 0.83rem; line-height: 1.7; }
+.weakness-suggestion h4 { color: #92400e; margin-bottom: 6px; }
+.weakness-suggestion li { margin: 4px 0; }
+
+.report-btn { padding: 8px 16px; border: 1px solid #0f3460; border-radius: 8px; background: #0f3460; color: #fff; cursor: pointer; font-size: 0.82rem; font-weight: 500; transition: all 0.15s; }
+.report-btn:hover { background: #1a4a7a; }
+
 .checkin-calendar { background: #fff; border-radius: 12px; box-shadow: 0 1px 6px rgba(0,0,0,0.06); padding: 20px; }
 .cal-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 16px; }
 .cal-header h3 { font-size: 1rem; color: #0f3460; }
@@ -243,7 +294,6 @@ footer { text-align: center; color: #bbb; font-size: 0.7rem; padding: 12px; marg
 .streak-stat .ss-label { font-size: 0.8rem; opacity: 0.8; margin-top: 4px; }
 .streak-stat.secondary { background: linear-gradient(135deg, #0f3460, #1a4a7a); }
 
-/* Responsive */
 @media (max-width: 600px) {
 header h1 { font-size: 1.1rem; }
 .part-tab { min-width: 90px; padding: 10px 10px; font-size: 0.75rem; }
@@ -251,6 +301,7 @@ header h1 { font-size: 1.1rem; }
 .vocab-stats { gap: 6px; }
 .vocab-stat { padding: 8px; }
 .vocab-stat .stat-num { font-size: 1.1rem; }
+.radar-wrap svg { max-width: 260px; }
 }
 
 </style>
@@ -258,14 +309,14 @@ header h1 { font-size: 1.1rem; }
 <body>
 
 <header>
-<h1>&#x1F3A7; IELTS Listening Practice</h1>
+<h1>🎧 IELTS Listening Practice</h1>
 <div class="header-actions">
-<button class="header-btn" id="speedBtn" onclick="toggleSpeedMenu(event)" title="Pronunciation Speed">&#x1F50A; Speed: <span id="speedLabel">0.75x</span></button>
+<button class="header-btn" id="speedBtn" onclick="toggleSpeedMenu(event)" title="Pronunciation Speed">🔊 Speed: <span id="speedLabel">0.75x</span></button>
 </div>
 </header>
 
 <div class="speed-settings" id="speedMenu">
-<button data-speed="0.5" onclick="setSpeed(0.5, this)">&#x1F422; 0.5x Slow</button>
+<button data-speed="0.5" onclick="setSpeed(0.5, this)">🐢 0.5x Slow</button>
 <button data-speed="0.75" class="active" onclick="setSpeed(0.75, this)">0.75x Normal</button>
 <button data-speed="1" onclick="setSpeed(1, this)">1x Fast</button>
 </div>
@@ -273,13 +324,13 @@ header h1 { font-size: 1.1rem; }
 <div class="container" id="mainContainer"></div>
 
 <nav class="bottom-nav" id="bottomNav">
-<button class="nav-item active" data-page="practice"><span class="nav-icon">&#x1F4D6;</span>真题练习</button>
-<button class="nav-item" data-page="wrongbook"><span class="nav-icon">&#x274C;</span>错题本<span class="nav-count" id="wrongCount" style="display:none">0</span></button>
-<button class="nav-item" data-page="bookmarks"><span class="nav-icon">&#x2B50;</span>我的收藏<span class="nav-count" id="bookmarkCount" style="display:none">0</span></button>
-<button class="nav-item" data-page="vocab"><span class="nav-icon">&#x1F4D8;</span>生词本<span class="nav-count" id="vocabCount" style="display:none">0</span></button>
-<button class="nav-item" data-page="writing"><span class="nav-icon">&#x270F;&#xFE0F;</span>写作模板</button>
-<button class="nav-item" data-page="progress"><span class="nav-icon">&#x1F4CA;</span>学习进度</button>
-<button class="nav-item" data-page="checkin"><span class="nav-icon">&#x1F4C5;</span>打卡<span class="nav-count" id="streakCount" style="display:none">0</span></button>
+<button class="nav-item active" data-page="practice"><span class="nav-icon">📖</span>真题练习</button>
+<button class="nav-item" data-page="wrongbook"><span class="nav-icon">❌</span>错题本<span class="nav-count" id="wrongCount" style="display:none">0</span></button>
+<button class="nav-item" data-page="bookmarks"><span class="nav-icon">⭐</span>我的收藏<span class="nav-count" id="bookmarkCount" style="display:none">0</span></button>
+<button class="nav-item" data-page="vocab"><span class="nav-icon">📘</span>生词本<span class="nav-count" id="vocabCount" style="display:none">0</span></button>
+<button class="nav-item" data-page="writing"><span class="nav-icon">✏️</span>写作模板</button>
+<button class="nav-item" data-page="progress"><span class="nav-icon">📊</span>学习进度</button>
+<button class="nav-item" data-page="checkin"><span class="nav-icon">📅</span>打卡<span class="nav-count" id="streakCount" style="display:none">0</span></button>
 </nav>
 
 <footer>Questions from official Cambridge IELTS past papers. Answers cross-verified against laokaoya.com / ieltsday.com / luckyielts.com.</footer>
@@ -310,6 +361,9 @@ var submitted = false;
 // Per-test part scores: { testKey: { part0: N, part1: N, part2: N, part3: N } }
 var partScores = {};
 
+// ============ BUILTIN DICTIONARY ============
+var BUILTIN_DICT = {"litter":{"phonetic":"/ˈlɪtər/","definition":"n. 垃圾；废弃物","pos":"n."},"insects":{"phonetic":"/ˈɪnsekt/","definition":"n. 昆虫","pos":"n."},"butterflies":{"phonetic":"/ˈbʌtərflaɪ/","definition":"n. 蝴蝶","pos":"n."},"boots":{"phonetic":"/buːts/","definition":"n. 靴子","pos":"n."},"beginners":{"phonetic":"/bɪˈɡɪnər/","definition":"n. 初学者","pos":"n."},"spoons":{"phonetic":"/spuːnz/","definition":"n. 勺子","pos":"n."},"maximum":{"phonetic":"/ˈmæksɪməm/","definition":"n./adj. 最大值；最大的","pos":"adj./n."},"lunchbox":{"phonetic":"/ˈlʌntʃbɒks/","definition":"n. 便当盒","pos":"n."},"lighthouse":{"phonetic":"/ˈlaɪthaʊs/","definition":"n. 灯塔","pos":"n."},"creature":{"phonetic":"/ˈkriːtʃər/","definition":"n. 生物；动物","pos":"n."},"dolphins":{"phonetic":"/ˈdɒlfɪnz/","definition":"n. 海豚","pos":"n."},"whales":{"phonetic":"/weɪlz/","definition":"n. 鲸鱼","pos":"n."},"penguins":{"phonetic":"/ˈpeŋɡwɪnz/","definition":"n. 企鹅","pos":"n."},"caves":{"phonetic":"/keɪvz/","definition":"n. 洞穴","pos":"n."},"veterinary":{"phonetic":"/ˈvetərɪneri/","definition":"adj. 兽医的","pos":"adj."},"placement":{"phonetic":"/ˈpleɪsmənt/","definition":"n. 安置；实习安排","pos":"n."},"lamb":{"phonetic":"/læm/","definition":"n. 羔羊","pos":"n."},"supplements":{"phonetic":"/ˈsʌplɪmənts/","definition":"n. 补充剂；增补","pos":"n."},"dairy":{"phonetic":"/ˈdeəri/","definition":"adj./n. 乳制品的；乳品场","pos":"adj./n."},"terminology":{"phonetic":"/ˌtɜːmɪˈnɒlədʒi/","definition":"n. 术语","pos":"n."},"nutrition":{"phonetic":"/njuːˈtrɪʃən/","definition":"n. 营养","pos":"n."},"medication":{"phonetic":"/ˌmedɪˈkeɪʃən/","definition":"n. 药物治疗","pos":"n."},"labyrinths":{"phonetic":"/ˈlæbərɪnθs/","definition":"n. 迷宫","pos":"n."},"maze":{"phonetic":"/meɪz/","definition":"n. 迷宫","pos":"n."},"puzzle":{"phonetic":"/ˈpʌzəl/","definition":"n./v. 谜题；使困惑","pos":"n./v."},"logic":{"phonetic":"/ˈlɒdʒɪk/","definition":"n. 逻辑","pos":"n."},"confusion":{"phonetic":"/kənˈfjuːʒən/","definition":"n. 困惑；混淆","pos":"n."},"meditation":{"phonetic":"/ˌmedɪˈteɪʃən/","definition":"n. 冥想","pos":"n."},"carvings":{"phonetic":"/ˈkɑːrvɪŋz/","definition":"n. 雕刻品","pos":"n."},"coins":{"phonetic":"/kɔɪnz/","definition":"n. 硬币","pos":"n."},"turf":{"phonetic":"/tɜːrf/","definition":"n. 草皮","pos":"n."},"breathing":{"phonetic":"/ˈbriːðɪŋ/","definition":"n. 呼吸","pos":"n."},"anxiety":{"phonetic":"/æŋˈzaɪəti/","definition":"n. 焦虑","pos":"n."},"voluntary":{"phonetic":"/ˈvɒləntri/","definition":"adj. 自愿的","pos":"adj."},"records":{"phonetic":"/ˈrekɔːrdz/","definition":"n. 记录；档案","pos":"n."},"transport":{"phonetic":"/ˈtrænspɔːrt/","definition":"n./v. 交通；运输","pos":"n./v."},"poster":{"phonetic":"/ˈpəʊstər/","definition":"n. 海报","pos":"n."},"politics":{"phonetic":"/ˈpɒlətɪks/","definition":"n. 政治","pos":"n."},"costume":{"phonetic":"/ˈkɒstjuːm/","definition":"n. 服装；戏服","pos":"n."},"tractors":{"phonetic":"/ˈtræktərz/","definition":"n. 拖拉机","pos":"n."},"diary":{"phonetic":"/ˈdaɪəri/","definition":"n. 日记","pos":"n."},"barn":{"phonetic":"/bɑːrn/","definition":"n. 谷仓","pos":"n."},"stables":{"phonetic":"/ˈsteɪbəlz/","definition":"n. 马厩","pos":"n."},"shed":{"phonetic":"/ʃed/","definition":"n. 棚屋","pos":"n."},"parkland":{"phonetic":"/ˈpɑːrklænd/","definition":"n. 公共绿地","pos":"n."},"analysis":{"phonetic":"/əˈnæləsɪs/","definition":"n. 分析","pos":"n."},"summary":{"phonetic":"/ˈsʌməri/","definition":"n. 总结；摘要","pos":"n."},"theatre":{"phonetic":"/ˈθɪətər/","definition":"n. 剧院","pos":"n."},"reaction":{"phonetic":"/riˈækʃən/","definition":"n. 反应","pos":"n."},"scenes":{"phonetic":"/siːnz/","definition":"n. 场景；场面","pos":"n."},"lighting":{"phonetic":"/ˈlaɪtɪŋ/","definition":"n. 灯光；照明","pos":"n."},"delivery":{"phonetic":"/dɪˈlɪvəri/","definition":"n. 递送；表达方式","pos":"n."},"conflict":{"phonetic":"/ˈkɒnflɪkt/","definition":"n. 冲突；矛盾","pos":"n."},"interpreted":{"phonetic":"/ɪnˈtɜːrprɪtɪd/","definition":"v. 解读；诠释","pos":"v."},"digital":{"phonetic":"/ˈdɪdʒɪtəl/","definition":"adj. 数字的","pos":"adj."},"vocabulary":{"phonetic":"/vəˈkæbjʊləri/","definition":"n. 词汇","pos":"n."},"browser":{"phonetic":"/ˈbraʊzər/","definition":"n. 浏览器","pos":"n."},"podcast":{"phonetic":"/ˈpɒdkɑːst/","definition":"n. 播客","pos":"n."},"smartphones":{"phonetic":"/ˈsmɑːrtfəʊnz/","definition":"n. 智能手机","pos":"n."},"bilingual":{"phonetic":"/baɪˈlɪŋɡwəl/","definition":"adj. 双语的","pos":"adj."},"playground":{"phonetic":"/ˈpleɪɡraʊnd/","definition":"n. 操场","pos":"n."},"grammar":{"phonetic":"/ˈɡræmər/","definition":"n. 语法","pos":"n."},"identity":{"phonetic":"/aɪˈdentəti/","definition":"n. 身份；认同","pos":"n."},"fluent":{"phonetic":"/ˈfluːənt/","definition":"adj. 流利的","pos":"adj."},"surfing":{"phonetic":"/ˈsɜːrfɪŋ/","definition":"n. 冲浪","pos":"n."},"kayak":{"phonetic":"/ˈkaɪæk/","definition":"n. 皮划艇","pos":"n."},"wetsuit":{"phonetic":"/ˈwetsuːt/","definition":"n. 潜水服","pos":"n."},"surfboard":{"phonetic":"/ˈsɜːrfbɔːrd/","definition":"n. 冲浪板","pos":"n."},"childcare":{"phonetic":"/ˈtʃaɪldkeər/","definition":"n. 儿童看护","pos":"n."},"allergies":{"phonetic":"/ˈælərdʒiz/","definition":"n. 过敏","pos":"n."},"availability":{"phonetic":"/əˌveɪləˈbɪləti/","definition":"n. 可获取性；可用性","pos":"n."},"tutorial":{"phonetic":"/tjuːˈtɔːriəl/","definition":"n. 辅导课；教程","pos":"n."},"obstacles":{"phonetic":"/ˈɒbstəkəlz/","definition":"n. 障碍","pos":"n."},"spectators":{"phonetic":"/spekˈteɪtərz/","definition":"n. 观众","pos":"n."},"schedule":{"phonetic":"/ˈʃedjuːl/","definition":"n. 时间表；计划","pos":"n."},"flexible":{"phonetic":"/ˈfleksəbəl/","definition":"adj. 灵活的","pos":"adj."},"emotions":{"phonetic":"/ɪˈməʊʃənz/","definition":"n. 情绪","pos":"n."},"creativity":{"phonetic":"/ˌkriːeɪˈtɪvəti/","definition":"n. 创造力","pos":"n."},"leadership":{"phonetic":"/ˈliːdərʃɪp/","definition":"n. 领导力","pos":"n."},"networking":{"phonetic":"/ˈnetwɜːrkɪŋ/","definition":"n. 建立人脉","pos":"n."},"migration":{"phonetic":"/maɪˈɡreɪʃən/","definition":"n. 迁徙；迁移","pos":"n."},"hibernated":{"phonetic":"/ˈhaɪbərneɪtɪd/","definition":"v. 冬眠","pos":"v."},"feathers":{"phonetic":"/ˈfeðərz/","definition":"n. 羽毛","pos":"n."},"assumptions":{"phonetic":"/əˈsʌmpʃənz/","definition":"n. 假设","pos":"n."},"spear":{"phonetic":"/spɪər/","definition":"n. 矛","pos":"n."},"destinations":{"phonetic":"/ˌdestɪˈneɪʃənz/","definition":"n. 目的地","pos":"n."},"oceans":{"phonetic":"/ˈəʊʃənz/","definition":"n. 海洋","pos":"n."},"ringing":{"phonetic":"/ˈrɪŋɪŋ/","definition":"n. 环志（鸟类）","pos":"n."},"recovery":{"phonetic":"/rɪˈkʌvəri/","definition":"n. 恢复；找回","pos":"n."},"atlas":{"phonetic":"/ˈætləs/","definition":"n. 地图册","pos":"n."},"cleaning":{"phonetic":"/ˈkliːnɪŋ/","definition":"n. 清洁；打扫","pos":"n."},"apartment":{"phonetic":"/əˈpɑːrtmənt/","definition":"n. 公寓","pos":"n."},"ironing":{"phonetic":"/ˈaɪərnɪŋ/","definition":"n. 熨烫","pos":"n."},"cupboards":{"phonetic":"/ˈkʌbərdz/","definition":"n. 橱柜","pos":"n."},"balconies":{"phonetic":"/ˈbælkəniz/","definition":"n. 阳台","pos":"n."},"plumber":{"phonetic":"/ˈplʌmər/","definition":"n. 水管工","pos":"n."},"electrician":{"phonetic":"/ɪˌlekˈtrɪʃən/","definition":"n. 电工","pos":"n."},"allergic":{"phonetic":"/əˈlɜːrdʒɪk/","definition":"adj. 过敏的","pos":"adj."},"retention":{"phonetic":"/rɪˈtenʃən/","definition":"n. 保留；留任","pos":"n."},"turnover":{"phonetic":"/ˈtɜːrnəʊvər/","definition":"n. 人员流动率","pos":"n."},"workload":{"phonetic":"/ˈwɜːrkləʊd/","definition":"n. 工作量","pos":"n."},"morale":{"phonetic":"/məˈrɑːl/","definition":"n. 士气","pos":"n."},"shifts":{"phonetic":"/ʃɪfts/","definition":"n. 轮班","pos":"n."},"incentives":{"phonetic":"/ɪnˈsentɪvz/","definition":"n. 激励；奖励","pos":"n."},"teamwork":{"phonetic":"/ˈtiːmwɜːrk/","definition":"n. 团队合作","pos":"n."},"disbelief":{"phonetic":"/ˌdɪsbɪˈliːf/","definition":"n. 难以置信","pos":"n."},"gratitude":{"phonetic":"/ˈɡrætɪtjuːd/","definition":"n. 感激","pos":"n."},"sweating":{"phonetic":"/ˈswetɪŋ/","definition":"n. 出汗","pos":"n."},"cricket":{"phonetic":"/ˈkrɪkɪt/","definition":"n. 板球","pos":"n."},"helmet":{"phonetic":"/ˈhelmɪt/","definition":"n. 头盔","pos":"n."},"hockey":{"phonetic":"/ˈhɒki/","definition":"n. 曲棍球","pos":"n."},"maple":{"phonetic":"/ˈmeɪpəl/","definition":"n. 枫树","pos":"n."},"syrup":{"phonetic":"/ˈsɪrəp/","definition":"n. 糖浆","pos":"n."},"refined":{"phonetic":"/rɪˈfaɪnd/","definition":"adj. 精炼的","pos":"adj."},"diameter":{"phonetic":"/daɪˈæmɪtər/","definition":"n. 直径","pos":"n."},"evaporators":{"phonetic":"/ɪˈvæpəreɪtərz/","definition":"n. 蒸发器","pos":"n."},"evaporation":{"phonetic":"/ɪˌvæpəˈreɪʃən/","definition":"n. 蒸发","pos":"n."},"postcode":{"phonetic":"/ˈpəʊstkəʊd/","definition":"n. 邮编","pos":"n."},"dentist":{"phonetic":"/ˈdentɪst/","definition":"n. 牙医","pos":"n."},"parking":{"phonetic":"/ˈpɑːrkɪŋ/","definition":"n. 停车","pos":"n."},"frequency":{"phonetic":"/ˈfriːkwənsi/","definition":"n. 频率","pos":"n."},"supermarket":{"phonetic":"/ˈsuːpərmɑːrkɪt/","definition":"n. 超市","pos":"n."},"storage":{"phonetic":"/ˈstɔːrɪdʒ/","definition":"n. 存储","pos":"n."},"volunteer":{"phonetic":"/ˌvɒlənˈtɪər/","definition":"n. 志愿者","pos":"n."},"fundraising":{"phonetic":"/ˈfʌndreɪzɪŋ/","definition":"n. 筹款","pos":"n."},"fashion":{"phonetic":"/ˈfæʃən/","definition":"n. 时尚","pos":"n."},"competitive":{"phonetic":"/kəmˈpetətɪv/","definition":"adj. 有竞争力的","pos":"adj."},"critical":{"phonetic":"/ˈkrɪtɪkəl/","definition":"adj. 批评的；关键的","pos":"adj."},"realistic":{"phonetic":"/ˌrɪəˈlɪstɪk/","definition":"adj. 现实的","pos":"adj."},"dishonest":{"phonetic":"/dɪsˈɒnɪst/","definition":"adj. 不诚实的","pos":"adj."},"retail":{"phonetic":"/ˈriːteɪl/","definition":"n. 零售","pos":"n."},"translocation":{"phonetic":"/ˌtrænzləʊˈkeɪʃən/","definition":"n. 转移；迁移","pos":"n."},"helicopters":{"phonetic":"/ˈhelɪkɒptərz/","definition":"n. 直升机","pos":"n."},"tusks":{"phonetic":"/tʌsks/","definition":"n. 象牙","pos":"n."},"footprints":{"phonetic":"/ˈfʊtprɪnts/","definition":"n. 脚印","pos":"n."},"tourism":{"phonetic":"/ˈtʊərɪzəm/","definition":"n. 旅游业","pos":"n."},"poachers":{"phonetic":"/ˈpəʊtʃərz/","definition":"n. 偷猎者","pos":"n."},"agriculture":{"phonetic":"/ˈæɡrɪkʌltʃər/","definition":"n. 农业","pos":"n."},"tip":{"phonetic":"/tɪp/","definition":"n. 小费；提示","pos":"n."},"supervisor":{"phonetic":"/ˈsuːpərvaɪzər/","definition":"n. 主管","pos":"n."},"resolution":{"phonetic":"/ˌrezəˈluːʃən/","definition":"n. 分辨率；决心","pos":"n."},"housing":{"phonetic":"/ˈhaʊzɪŋ/","definition":"n. 住房","pos":"n."},"facilities":{"phonetic":"/fəˈsɪlətiz/","definition":"n. 设施","pos":"n."},"cyclists":{"phonetic":"/ˈsaɪklɪsts/","definition":"n. 骑自行车的人","pos":"n."},"eruption":{"phonetic":"/ɪˈrʌpʃən/","definition":"n. 喷发","pos":"n."},"volcanoes":{"phonetic":"/vɒlˈkeɪnəʊz/","definition":"n. 火山","pos":"n."},"contradictions":{"phonetic":"/ˌkɒntrəˈdɪkʃənz/","definition":"n. 矛盾","pos":"n."},"contemporary":{"phonetic":"/kənˈtempərəri/","definition":"adj. 当代的；同时代的","pos":"adj."},"widespread":{"phonetic":"/ˈwaɪdspred/","definition":"adj. 广泛的","pos":"adj."},"mushrooms":{"phonetic":"/ˈmʌʃruːmz/","definition":"n. 蘑菇","pos":"n."},"edible":{"phonetic":"/ˈedɪbəl/","definition":"adj. 可食用的","pos":"adj."},"example":{"phonetic":"/ɪɡˈzɑːmpəl/","definition":"n. 例子","pos":"n."},"question":{"phonetic":"/ˈkwestʃən/","definition":"n. 问题","pos":"n."},"answer":{"phonetic":"/ˈɑːnsər/","definition":"n./v. 答案；回答","pos":"n./v."},"complete":{"phonetic":"/kəmˈpliːt/","definition":"v./adj. 完成；完整的","pos":"v./adj."},"choose":{"phonetic":"/tʃuːz/","definition":"v. 选择","pos":"v."},"correct":{"phonetic":"/kəˈrekt/","definition":"adj./v. 正确的；纠正","pos":"adj./v."},"write":{"phonetic":"/raɪt/","definition":"v. 写","pos":"v."},"listen":{"phonetic":"/ˈlɪsən/","definition":"v. 听","pos":"v."},"read":{"phonetic":"/riːd/","definition":"v. 阅读","pos":"v."},"speak":{"phonetic":"/spiːk/","definition":"v. 说话","pos":"v."},"match":{"phonetic":"/mætʃ/","definition":"v./n. 匹配；比赛","pos":"v./n."},"letter":{"phonetic":"/ˈletər/","definition":"n. 字母；信","pos":"n."},"number":{"phonetic":"/ˈnʌmbər/","definition":"n. 数字；号码","pos":"n."},"word":{"phonetic":"/wɜːrd/","definition":"n. 单词","pos":"n."},"text":{"phonetic":"/tekst/","definition":"n. 文本","pos":"n."},"note":{"phonetic":"/nəʊt/","definition":"n./v. 笔记；注意","pos":"n./v."},"table":{"phonetic":"/ˈteɪbəl/","definition":"n. 表格；桌子","pos":"n."},"form":{"phonetic":"/fɔːrm/","definition":"n. 表格；形式","pos":"n."},"section":{"phonetic":"/ˈsekʃən/","definition":"n. 部分；区域","pos":"n."},"option":{"phonetic":"/ˈɒpʃən/","definition":"n. 选项","pos":"n."},"label":{"phonetic":"/ˈleɪbəl/","definition":"n./v. 标签；标注","pos":"n./v."},"select":{"phonetic":"/sɪˈlekt/","definition":"v. 选择","pos":"v."},"multiple":{"phonetic":"/ˈmʌltɪpəl/","definition":"adj. 多个的","pos":"adj."},"choice":{"phonetic":"/tʃɔɪs/","definition":"n. 选择","pos":"n."},"matching":{"phonetic":"/ˈmætʃɪŋ/","definition":"n. 匹配","pos":"n."},"map":{"phonetic":"/mæp/","definition":"n. 地图","pos":"n."},"labeling":{"phonetic":"/ˈleɪbəlɪŋ/","definition":"n. 标注","pos":"n."},"completion":{"phonetic":"/kəmˈpliːʃən/","definition":"n. 完成；填空","pos":"n."},"sentence":{"phonetic":"/ˈsentəns/","definition":"n. 句子","pos":"n."},"blank":{"phonetic":"/blæŋk/","definition":"n./adj. 空白；空的","pos":"n./adj."},"diagram":{"phonetic":"/ˈdaɪəɡræm/","definition":"n. 图表","pos":"n."},"flowchart":{"phonetic":"/ˈfləʊtʃɑːrt/","definition":"n. 流程图","pos":"n."},"classify":{"phonetic":"/ˈklæsɪfaɪ/","definition":"v. 分类","pos":"v."},"locate":{"phonetic":"/ləʊˈkeɪt/","definition":"v. 定位","pos":"v."},"heading":{"phonetic":"/ˈhedɪŋ/","definition":"n. 标题","pos":"n."},"paragraph":{"phonetic":"/ˈpærəɡrɑːf/","definition":"n. 段落","pos":"n."},"passage":{"phonetic":"/ˈpæsɪdʒ/","definition":"n. 段落；通道","pos":"n."},"title":{"phonetic":"/ˈtaɪtəl/","definition":"n. 标题","pos":"n."},"topic":{"phonetic":"/ˈtɒpɪk/","definition":"n. 话题；主题","pos":"n."},"lecture":{"phonetic":"/ˈlektʃər/","definition":"n. 讲座；讲课","pos":"n."},"seminar":{"phonetic":"/ˈsemɪnɑːr/","definition":"n. 研讨会","pos":"n."},"campus":{"phonetic":"/ˈkæmpəs/","definition":"n. 校园","pos":"n."},"library":{"phonetic":"/ˈlaɪbrəri/","definition":"n. 图书馆","pos":"n."},"laboratory":{"phonetic":"/ləˈbɒrətri/","definition":"n. 实验室","pos":"nn."},"accommodation":{"phonetic":"/əˌkɒməˈdeɪʃən/","definition":"n. 住宿","pos":"n."},"facility":{"phonetic":"/fəˈsɪləti/","definition":"n. 设施","pos":"n."},"enrollment":{"phonetic":"/ɪnˈrəʊlmənt/","definition":"n. 注册；入学","pos":"n."},"registration":{"phonetic":"/ˌredʒɪˈstreɪʃən/","definition":"n. 注册","pos":"n."},"orientation":{"phonetic":"/ˌɔːriənˈteɪʃən/","definition":"n. 迎新；方向","pos":"n."},"assessment":{"phonetic":"/əˈsesmənt/","definition":"n. 评估","pos":"n."},"deadline":{"phonetic":"/ˈdedlaɪn/","definition":"n. 截止日期","pos":"n."},"assignment":{"phonetic":"/əˈsaɪnmənt/","definition":"n. 作业；任务","pos":"n."},"essay":{"phonetic":"/ˈeseɪ/","definition":"n. 论文；文章","pos":"n."},"dissertation":{"phonetic":"/ˌdɪsərˈteɪʃən/","definition":"n. 学位论文","pos":"n."},"thesis":{"phonetic":"/ˈθiːsɪs/","definition":"n. 论文","pos":"n."},"module":{"phonetic":"/ˈmɒdjuːl/","definition":"n. 模块；课程单元","pos":"n."},"credit":{"phonetic":"/ˈkredɪt/","definition":"n. 学分；信用","pos":"n."},"degree":{"phonetic":"/dɪˈɡriː/","definition":"n. 学位；程度","pos":"n."},"diploma":{"phonetic":"/dɪˈpləʊmə/","definition":"n. 文凭","pos":"n."},"certificate":{"phonetic":"/sərˈtɪfɪkət/","definition":"n. 证书","pos":"n."},"qualification":{"phonetic":"/ˌkwɒlɪfɪˈkeɪʃən/","definition":"n. 资格","pos":"n."},"scholarship":{"phonetic":"/ˈskɒlərʃɪp/","definition":"n. 奖学金","pos":"n."},"tuition":{"phonetic":"/tjuːˈɪʃən/","definition":"n. 学费","pos":"n."},"fee":{"phonetic":"/fiː/","definition":"n. 费用","pos":"n."},"grant":{"phonetic":"/ɡrɑːnt/","definition":"n./v. 拨款；授予","pos":"n./v."},"loan":{"phonetic":"/ləʊn/","definition":"n. 贷款","pos":"n."},"budget":{"phonetic":"/ˈbʌdʒɪt/","definition":"n. 预算","pos":"n."},"funding":{"phonetic":"/ˈfʌndɪŋ/","definition":"n. 资金","pos":"n."},"sponsor":{"phonetic":"/ˈspɒnsər/","definition":"n./v. 赞助者；赞助","pos":"n./v."},"academic":{"phonetic":"/ˌækəˈdemɪk/","definition":"adj. 学术的","pos":"adj."},"research":{"phonetic":"/rɪˈsɜːrtʃ/","definition":"n./v. 研究","pos":"n./v."},"survey":{"phonetic":"/ˈsɜːrveɪ/","definition":"n. 调查","pos":"n."},"interview":{"phonetic":"/ˈɪntərvjuː/","definition":"n./v. 面试；采访","pos":"n./v."},"questionnaire":{"phonetic":"/ˌkwestʃəˈneər/","definition":"n. 问卷","pos":"n."},"data":{"phonetic":"/ˈdeɪtə/","definition":"n. 数据","pos":"n."},"result":{"phonetic":"/rɪˈzʌlt/","definition":"n. 结果","pos":"n."},"finding":{"phonetic":"/ˈfaɪndɪŋ/","definition":"n. 发现","pos":"n."},"conclusion":{"phonetic":"/kənˈkluːʒən/","definition":"n. 结论","pos":"n."},"method":{"phonetic":"/ˈmeθəd/","definition":"n. 方法","pos":"n."},"approach":{"phonetic":"/əˈprəʊtʃ/","definition":"n./v. 方法；靠近","pos":"n./v."},"theory":{"phonetic":"/ˈθɪəri/","definition":"n. 理论","pos":"n."},"experiment":{"phonetic":"/ɪkˈsperɪmənt/","definition":"n. 实验","pos":"n."},"hypothesis":{"phonetic":"/haɪˈpɒθəsɪs/","definition":"n. 假设","pos":"n."},"observation":{"phonetic":"/ˌɒbzərˈveɪʃən/","definition":"n. 观察","pos":"n."},"sample":{"phonetic":"/ˈsɑːmpəl/","definition":"n. 样本","pos":"n."},"control":{"phonetic":"/kənˈtrəʊl/","definition":"n./v. 控制；对照组","pos":"n./v."},"variable":{"phonetic":"/ˈveəriəbəl/","definition":"n./adj. 变量；可变的","pos":"n./adj."},"factor":{"phonetic":"/ˈfæktər/","definition":"n. 因素","pos":"n."},"effect":{"phonetic":"/ɪˈfekt/","definition":"n. 影响；效果","pos":"n."},"impact":{"phonetic":"/ˈɪmpækt/","definition":"n./v. 影响","pos":"n./v."},"influence":{"phonetic":"/ˈɪnfluəns/","definition":"n./v. 影响","pos":"n./v."},"cause":{"phonetic":"/kɔːz/","definition":"n./v. 原因；导致","pos":"n./v."},"reason":{"phonetic":"/ˈriːzən/","definition":"n. 原因","pos":"n."},"purpose":{"phonetic":"/ˈpɜːrpəs/","definition":"n. 目的","pos":"n."},"aim":{"phonetic":"/eɪm/","definition":"n./v. 目标；旨在","pos":"n./v."},"objective":{"phonetic":"/əbˈdʒektɪv/","definition":"n./adj. 目标；客观的","pos":"n./adj."},"goal":{"phonetic":"/ɡəʊl/","definition":"n. 目标","pos":"n."},"target":{"phonetic":"/ˈtɑːrɡɪt/","definition":"n./v. 目标；针对","pos":"n./v."},"benefit":{"phonetic":"/ˈbenɪfɪt/","definition":"n./v. 好处；受益","pos":"n./v."},"advantage":{"phonetic":"/ədˈvɑːntɪdʒ/","definition":"n. 优势","pos":"n."},"disadvantage":{"phonetic":"/ˌdɪsədˈvɑːntɪdʒ/","definition":"n. 劣势","pos":"n."},"drawback":{"phonetic":"/ˈdrɔːbæk/","definition":"n. 缺点","pos":"n."},"limitation":{"phonetic":"/ˌlɪmɪˈteɪʃən/","definition":"n. 限制；局限性","pos":"n."},"challenge":{"phonetic":"/ˈtʃælɪndʒ/","definition":"n./v. 挑战","pos":"n./v."},"issue":{"phonetic":"/ˈɪʃuː/","definition":"n. 问题","pos":"n."},"problem":{"phonetic":"/ˈprɒbləm/","definition":"n. 问题","pos":"n."},"solution":{"phonetic":"/səˈluːʃən/","definition":"n. 解决方案","pos":"n."},"measure":{"phonetic":"/ˈmeʒər/","definition":"n./v. 措施；测量","pos":"n./v."},"policy":{"phonetic":"/ˈpɒləsi/","definition":"n. 政策","pos":"n."},"strategy":{"phonetic":"/ˈstrætədʒi/","definition":"n. 策略","pos":"n."},"trend":{"phonetic":"/trend/","definition":"n. 趋势","pos":"n."},"pattern":{"phonetic":"/ˈpætərn/","definition":"n. 模式；图案","pos":"n."},"process":{"phonetic":"/ˈprəʊses/","definition":"n./v. 过程；处理","pos":"n./v."},"system":{"phonetic":"/ˈsɪstəm/","definition":"n. 系统","pos":"n."},"structure":{"phonetic":"/ˈstrʌktʃər/","definition":"n. 结构","pos":"n."},"function":{"phonetic":"/ˈfʌŋkʃən/","definition":"n./v. 功能；运行","pos":"n./v."},"role":{"phonetic":"/rəʊl/","definition":"n. 角色；作用","pos":"n."},"feature":{"phonetic":"/ˈfiːtʃər/","definition":"n./v. 特征；以...为特色","pos":"n./v."},"aspect":{"phonetic":"/ˈæspekt/","definition":"n. 方面","pos":"n."},"context":{"phonetic":"/ˈkɒntekst/","definition":"n. 上下文；背景","pos":"n."},"environment":{"phonetic":"/ɪnˈvaɪrənmənt/","definition":"n. 环境","pos":"n."},"climate":{"phonetic":"/ˈklaɪmət/","definition":"n. 气候","pos":"n."},"weather":{"phonetic":"/ˈweðər/","definition":"n. 天气","pos":"n."},"temperature":{"phonetic":"/ˈtemprətʃər/","definition":"n. 温度","pos":"n."},"pollution":{"phonetic":"/pəˈluːʃən/","definition":"n. 污染","pos":"n."},"resource":{"phonetic":"/rɪˈzɔːrs/","definition":"n. 资源","pos":"n."},"energy":{"phonetic":"/ˈenərdʒi/","definition":"n. 能源；能量","pos":"n."},"fuel":{"phonetic":"/ˈfjuːəl/","definition":"n. 燃料","pos":"n."},"waste":{"phonetic":"/weɪst/","definition":"n./v. 浪费；废物","pos":"n./v."},"recycling":{"phonetic":"/ˌriːˈsaɪklɪŋ/","definition":"n. 回收","pos":"n."},"sustainability":{"phonetic":"/səˌsteɪnəˈbɪləti/","definition":"n. 可持续性","pos":"n."},"conservation":{"phonetic":"/ˌkɒnsərˈveɪʃən/","definition":"n. 保护","pos":"n."},"species":{"phonetic":"/ˈspiːʃiːz/","definition":"n. 物种","pos":"n."},"plant":{"phonetic":"/plɑːnt/","definition":"n. 植物；工厂","pos":"n."},"forest":{"phonetic":"/ˈfɒrɪst/","definition":"n. 森林","pos":"n."},"ocean":{"phonetic":"/ˈəʊʃən/","definition":"n. 海洋","pos":"n."},"river":{"phonetic":"/ˈrɪvər/","definition":"n. 河流","pos":"n."},"lake":{"phonetic":"/leɪk/","definition":"n. 湖泊","pos":"n."},"mountain":{"phonetic":"/ˈmaʊntɪn/","definition":"n. 山","pos":"n."},"city":{"phonetic":"/ˈsɪti/","definition":"n. 城市","pos":"n."},"town":{"phonetic":"/taʊn/","definition":"n. 城镇","pos":"n."},"village":{"phonetic":"/ˈvɪlɪdʒ/","definition":"n. 村庄","pos":"n."},"country":{"phonetic":"/ˈkʌntri/","definition":"n. 国家；乡村","pos":"n."},"region":{"phonetic":"/ˈriːdʒən/","definition":"n. 地区","pos":"n."},"area":{"phonetic":"/ˈeəriə/","definition":"n. 区域","pos":"n."},"location":{"phonetic":"/ləʊˈkeɪʃən/","definition":"n. 位置","pos":"n."},"building":{"phonetic":"/ˈbɪldɪŋ/","definition":"n. 建筑","pos":"n."},"room":{"phonetic":"/ruːm/","definition":"n. 房间","pos":"n."},"hall":{"phonetic":"/hɔːl/","definition":"n. 大厅","pos":"n."},"office":{"phonetic":"/ˈɒfɪs/","definition":"n. 办公室","pos":"n."},"centre":{"phonetic":"/ˈsentər/","definition":"n. 中心","pos":"n."},"park":{"phonetic":"/pɑːrk/","definition":"n. 公园","pos":"n."},"garden":{"phonetic":"/ˈɡɑːrdən/","definition":"n. 花园","pos":"n."},"museum":{"phonetic":"/mjuːˈziːəm/","definition":"n. 博物馆","pos":"n."},"gallery":{"phonetic":"/ˈɡæləri/","definition":"n. 画廊","pos":"n."},"cinema":{"phonetic":"/ˈsɪnəmə/","definition":"n. 电影院","pos":"n."},"restaurant":{"phonetic":"/ˈrestərɒnt/","definition":"n. 餐厅","pos":"n."},"cafe":{"phonetic":"/ˈkæfeɪ/","definition":"n. 咖啡馆","pos":"n."},"hotel":{"phonetic":"/həʊˈtel/","definition":"n. 酒店","pos":"n."},"airport":{"phonetic":"/ˈeəpɔːrt/","definition":"n. 机场","pos":"n."},"station":{"phonetic":"/ˈsteɪʃən/","definition":"n. 车站","pos":"n."},"hospital":{"phonetic":"/ˈhɒspɪtəl/","definition":"n. 医院","pos":"n."},"school":{"phonetic":"/skuːl/","definition":"n. 学校","pos":"n."},"college":{"phonetic":"/ˈkɒlɪdʒ/","definition":"n. 学院","pos":"n."},"university":{"phonetic":"/ˌjuːnɪˈvɜːrsəti/","definition":"n. 大学","pos":"n."},"department":{"phonetic":"/dɪˈpɑːrtmənt/","definition":"n. 部门","pos":"n."},"company":{"phonetic":"/ˈkʌmpəni/","definition":"n. 公司","pos":"n."},"business":{"phonetic":"/ˈbɪznɪs/","definition":"n. 商业；企业","pos":"n."},"industry":{"phonetic":"/ˈɪndəstri/","definition":"n. 产业","pos":"n."},"market":{"phonetic":"/ˈmɑːrkɪt/","definition":"n. 市场","pos":"n."},"economy":{"phonetic":"/ɪˈkɒnəmi/","definition":"n. 经济","pos":"n."},"trade":{"phonetic":"/treɪd/","definition":"n./v. 贸易；交易","pos":"n./v."},"product":{"phonetic":"/ˈprɒdʌkt/","definition":"n. 产品","pos":"n."},"service":{"phonetic":"/ˈsɜːrvɪs/","definition":"n. 服务","pos":"n."},"customer":{"phonetic":"/ˈkʌstəmər/","definition":"n. 顾客","pos":"n."},"client":{"phonetic":"/ˈklaɪənt/","definition":"n. 客户","pos":"n."},"consumer":{"phonetic":"/kənˈsjuːmər/","definition":"n. 消费者","pos":"n."},"employee":{"phonetic":"/ɪmˈplɔɪiː/","definition":"n. 雇员","pos":"n."},"employer":{"phonetic":"/ɪmˈplɔɪər/","definition":"n. 雇主","pos":"n."},"manager":{"phonetic":"/ˈmænɪdʒər/","definition":"n. 经理","pos":"n."},"staff":{"phonetic":"/stɑːf/","definition":"n. 员工","pos":"n."},"team":{"phonetic":"/tiːm/","definition":"n. 团队","pos":"n."},"group":{"phonetic":"/ɡruːp/","definition":"n. 小组","pos":"n."},"project":{"phonetic":"/ˈprɒdʒekt/","definition":"n. 项目","pos":"n."},"plan":{"phonetic":"/plæn/","definition":"n./v. 计划","pos":"n./v."},"timetable":{"phonetic":"/ˈtaɪmteɪbəl/","definition":"n. 时间表","pos":"n."},"appointment":{"phonetic":"/əˈpɔɪntmənt/","definition":"n. 预约","pos":"n."},"meeting":{"phonetic":"/ˈmiːtɪŋ/","definition":"n. 会议","pos":"n."},"conference":{"phonetic":"/ˈkɒnfərəns/","definition":"n. 会议","pos":"n."},"event":{"phonetic":"/ɪˈvent/","definition":"n. 事件；活动","pos":"n."},"activity":{"phonetic":"/ækˈtɪvəti/","definition":"n. 活动","pos":"n."},"programme":{"phonetic":"/ˈprəʊɡræm/","definition":"n. 节目；计划","pos":"n."},"course":{"phonetic":"/kɔːrs/","definition":"n. 课程","pos":"n."},"class":{"phonetic":"/klɑːs/","definition":"n. 班级；课程","pos":"n."},"lesson":{"phonetic":"/ˈlesən/","definition":"n. 课程；教训","pos":"n."},"workshop":{"phonetic":"/ˈwɜːrkʃɒp/","definition":"n. 工作坊","pos":"n."},"training":{"phonetic":"/ˈtreɪnɪŋ/","definition":"n. 培训","pos":"n."},"skill":{"phonetic":"/skɪl/","definition":"n. 技能","pos":"n."},"ability":{"phonetic":"/əˈbɪləti/","definition":"n. 能力","pos":"n."},"knowledge":{"phonetic":"/ˈnɒlɪdʒ/","definition":"n. 知识","pos":"n."},"experience":{"phonetic":"/ɪkˈspɪəriəns/","definition":"n. 经验","pos":"n."},"information":{"phonetic":"/ˌɪnfərˈmeɪʃən/","definition":"n. 信息","pos":"n."},"detail":{"phonetic":"/ˈdiːteɪl/","definition":"n. 细节","pos":"n."},"description":{"phonetic":"/dɪˈskrɪpʃən/","definition":"n. 描述","pos":"n."},"explanation":{"phonetic":"/ˌekspləˈneɪʃən/","definition":"n. 解释","pos":"n."},"instruction":{"phonetic":"/ɪnˈstrʌkʃən/","definition":"n. 说明；指示","pos":"n."},"requirement":{"phonetic":"/rɪˈkwaɪərmənt/","definition":"n. 要求","pos":"n."},"condition":{"phonetic":"/kənˈdɪʃən/","definition":"n. 条件；状况","pos":"n."},"situation":{"phonetic":"/ˌsɪtʃuˈeɪʃən/","definition":"n. 情况","pos":"n."},"circumstance":{"phonetic":"/ˈsɜːrkəmstæns/","definition":"n. 情况","pos":"n."},"opportunity":{"phonetic":"/ˌɒpəˈtjuːnəti/","definition":"n. 机会","pos":"n."},"possibility":{"phonetic":"/ˌpɒsɪˈbɪləti/","definition":"n. 可能性","pos":"n."},"alternative":{"phonetic":"/ɔːlˈtɜːrnətɪv/","definition":"n./adj. 替代方案","pos":"n./adj."},"decision":{"phonetic":"/dɪˈsɪʒən/","definition":"n. 决定","pos":"n."},"preference":{"phonetic":"/ˈprefərəns/","definition":"n. 偏好","pos":"n."},"opinion":{"phonetic":"/əˈpɪnjən/","definition":"n. 意见；看法","pos":"n."},"attitude":{"phonetic":"/ˈætɪtjuːd/","definition":"n. 态度","pos":"n."},"behaviour":{"phonetic":"/bɪˈheɪvjər/","definition":"n. 行为","pos":"n."},"habit":{"phonetic":"/ˈhæbɪt/","definition":"n. 习惯","pos":"n."},"lifestyle":{"phonetic":"/ˈlaɪfstaɪl/","definition":"n. 生活方式","pos":"n."},"health":{"phonetic":"/helθ/","definition":"n. 健康","pos":"n."},"disease":{"phonetic":"/dɪˈziːz/","definition":"n. 疾病","pos":"n."},"medicine":{"phonetic":"/ˈmedsən/","definition":"n. 药；医学","pos":"n."},"treatment":{"phonetic":"/ˈtriːtmənt/","definition":"n. 治疗","pos":"n."},"diet":{"phonetic":"/ˈdaɪət/","definition":"n. 饮食","pos":"n."},"exercise":{"phonetic":"/ˈeksərsaɪz/","definition":"n./v. 锻炼","pos":"n./v."},"game":{"phonetic":"/ɡeɪm/","definition":"n. 游戏；比赛","pos":"n."},"competition":{"phonetic":"/ˌkɒmpɪˈtɪʃən/","definition":"n. 比赛","pos":"n."},"player":{"phonetic":"/ˈpleɪər/","definition":"n. 运动员","pos":"n."},"coach":{"phonetic":"/kəʊtʃ/","definition":"n./v. 教练；指导","pos":"n./v."},"travel":{"phonetic":"/ˈtrævəl/","definition":"n./v. 旅行","pos":"n./v."},"trip":{"phonetic":"/trɪp/","definition":"n. 旅行","pos":"n."},"journey":{"phonetic":"/ˈdʒɜːrni/","definition":"n. 旅程","pos":"n."},"tour":{"phonetic":"/tʊər/","definition":"n./v. 旅游","pos":"n./v."},"visit":{"phonetic":"/ˈvɪzɪt/","definition":"n./v. 参观；访问","pos":"n./v."},"tourist":{"phonetic":"/ˈtʊərɪst/","definition":"n. 游客","pos":"n."},"guest":{"phonetic":"/ɡest/","definition":"n. 客人","pos":"n."},"host":{"phonetic":"/həʊst/","definition":"n./v. 主人；主持","pos":"n./v."},"family":{"phonetic":"/ˈfæməli/","definition":"n. 家庭","pos":"n."},"friend":{"phonetic":"/frend/","definition":"n. 朋友","pos":"n."},"relationship":{"phonetic":"/rɪˈleɪʃənʃɪp/","definition":"n. 关系","pos":"n."},"communication":{"phonetic":"/kəˌmjuːnɪˈkeɪʃən/","definition":"n. 交流","pos":"n."},"language":{"phonetic":"/ˈlæŋɡwɪdʒ/","definition":"n. 语言","pos":"n."},"culture":{"phonetic":"/ˈkʌltʃər/","definition":"n. 文化","pos":"n."},"tradition":{"phonetic":"/trəˈdɪʃən/","definition":"n. 传统","pos":"n."},"history":{"phonetic":"/ˈhɪstəri/","definition":"n. 历史","pos":"n."},"society":{"phonetic":"/səˈsaɪəti/","definition":"n. 社会","pos":"n."},"community":{"phonetic":"/kəˈmjuːnəti/","definition":"n. 社区","pos":"n."},"population":{"phonetic":"/ˌpɒpjuˈleɪʃən/","definition":"n. 人口","pos":"n."},"child":{"phonetic":"/tʃaɪld/","definition":"n. 孩子","pos":"n."},"adult":{"phonetic":"/ˈædʌlt/","definition":"n. 成人","pos":"n."},"student":{"phonetic":"/ˈstjuːdənt/","definition":"n. 学生","pos":"n."},"teacher":{"phonetic":"/ˈtiːtʃər/","definition":"n. 老师","pos":"n."},"professor":{"phonetic":"/prəˈfesər/","definition":"n. 教授","pos":"n."},"doctor":{"phonetic":"/ˈdɒktər/","definition":"n. 医生；博士","pos":"n."},"nurse":{"phonetic":"/nɜːrs/","definition":"n. 护士","pos":"n."},"patient":{"phonetic":"/ˈpeɪʃənt/","definition":"n./adj. 病人；耐心的","pos":"n./adj."},"job":{"phonetic":"/dʒɒb/","definition":"n. 工作","pos":"n."},"work":{"phonetic":"/wɜːrk/","definition":"n./v. 工作","pos":"n./v."},"career":{"phonetic":"/kəˈrɪər/","definition":"n. 职业","pos":"n."},"profession":{"phonetic":"/prəˈfeʃən/","definition":"n. 职业","pos":"n."},"occupation":{"phonetic":"/ˌɒkjuˈpeɪʃən/","definition":"n. 职业","pos":"n."},"salary":{"phonetic":"/ˈsæləri/","definition":"n. 薪水","pos":"n."},"income":{"phonetic":"/ˈɪnkʌm/","definition":"n. 收入","pos":"n."},"money":{"phonetic":"/ˈmʌni/","definition":"n. 钱","pos":"n."},"cost":{"phonetic":"/kɒst/","definition":"n./v. 成本；花费","pos":"n./v."},"price":{"phonetic":"/praɪs/","definition":"n. 价格","pos":"n."},"value":{"phonetic":"/ˈvæljuː/","definition":"n. 价值","pos":"n."},"quality":{"phonetic":"/ˈkwɒləti/","definition":"n. 质量","pos":"n."},"quantity":{"phonetic":"/ˈkwɒntəti/","definition":"n. 数量","pos":"n."},"amount":{"phonetic":"/əˈmaʊnt/","definition":"n. 数量","pos":"n."},"level":{"phonetic":"/ˈlevəl/","definition":"n. 水平；级别","pos":"n."},"standard":{"phonetic":"/ˈstændərd/","definition":"n. 标准","pos":"n."},"rate":{"phonetic":"/reɪt/","definition":"n. 率；速度","pos":"n."},"ratio":{"phonetic":"/ˈreɪʃiəʊ/","definition":"n. 比率","pos":"n."},"proportion":{"phonetic":"/prəˈpɔːrʃən/","definition":"n. 比例","pos":"n."},"percentage":{"phonetic":"/pərˈsentɪdʒ/","definition":"n. 百分比","pos":"n."},"figure":{"phonetic":"/ˈfɪɡər/","definition":"n. 数字；图表","pos":"n."},"statistic":{"phonetic":"/stəˈtɪstɪk/","definition":"n. 统计数据","pos":"n."},"increase":{"phonetic":"/ɪnˈkriːs/","definition":"n./v. 增加","pos":"n./v."},"decrease":{"phonetic":"/dɪˈkriːs/","definition":"n./v. 减少","pos":"n./v."},"rise":{"phonetic":"/raɪz/","definition":"n./v. 上升；增长","pos":"n./v."},"fall":{"phonetic":"/fɔːl/","definition":"n./v. 下降","pos":"n./v."},"growth":{"phonetic":"/ɡrəʊθ/","definition":"n. 增长；成长","pos":"n."},"decline":{"phonetic":"/dɪˈklaɪn/","definition":"n./v. 下降","pos":"n./v."},"change":{"phonetic":"/tʃeɪndʒ/","definition":"n./v. 变化","pos":"n./v."},"development":{"phonetic":"/dɪˈveləpmənt/","definition":"n. 发展","pos":"n."},"progress":{"phonetic":"/ˈprəʊɡres/","definition":"n./v. 进步","pos":"n./v."},"improvement":{"phonetic":"/ɪmˈpruːvmənt/","definition":"n. 改善","pos":"n."},"difference":{"phonetic":"/ˈdɪfərəns/","definition":"n. 差异","pos":"n."},"similarity":{"phonetic":"/ˌsɪmɪˈlærəti/","definition":"n. 相似","pos":"n."},"comparison":{"phonetic":"/kəmˈpærɪsən/","definition":"n. 比较","pos":"n."},"evidence":{"phonetic":"/ˈevɪdəns/","definition":"n. 证据","pos":"n."},"argument":{"phonetic":"/ˈɑːrɡjumənt/","definition":"n. 论点；争论","pos":"n."},"view":{"phonetic":"/vjuː/","definition":"n. 观点；景色","pos":"n."},"perspective":{"phonetic":"/pərˈspektɪv/","definition":"n. 视角","pos":"n."},"fact":{"phonetic":"/fækt/","definition":"n. 事实","pos":"n."},"truth":{"phonetic":"/truːθ/","definition":"n. 真相","pos":"n."},"belief":{"phonetic":"/bɪˈliːf/","definition":"n. 信念","pos":"n."},"idea":{"phonetic":"/aɪˈdɪə/","definition":"n. 想法","pos":"n."},"concept":{"phonetic":"/ˈkɒnsept/","definition":"n. 概念","pos":"n."},"term":{"phonetic":"/tɜːrm/","definition":"n. 术语","pos":"n."},"definition":{"phonetic":"/ˌdefɪˈnɪʃən/","definition":"n. 定义","pos":"n."},"meaning":{"phonetic":"/ˈmiːnɪŋ/","definition":"n. 意思","pos":"n."},"book":{"phonetic":"/bʊk/","definition":"n. 书","pos":"n."},"article":{"phonetic":"/ˈɑːrtɪkəl/","definition":"n. 文章","pos":"n."},"report":{"phonetic":"/rɪˈpɔːrt/","definition":"n. 报告","pos":"n."},"paper":{"phonetic":"/ˈpeɪpər/","definition":"n. 纸；论文","pos":"n."},"document":{"phonetic":"/ˈdɒkjumənt/","definition":"n. 文件","pos":"n."},"website":{"phonetic":"/ˈwebsaɪt/","definition":"n. 网站","pos":"n."},"internet":{"phonetic":"/ˈɪntərnet/","definition":"n. 互联网","pos":"n."},"technology":{"phonetic":"/tekˈnɒlədʒi/","definition":"n. 技术","pos":"n."},"computer":{"phonetic":"/kəmˈpjuːtər/","definition":"n. 电脑","pos":"n."},"phone":{"phonetic":"/fəʊn/","definition":"n. 电话","pos":"n."},"mobile":{"phonetic":"/ˈməʊbaɪl/","definition":"adj./n. 移动的；手机","pos":"adj./n."},"device":{"phonetic":"/dɪˈvaɪs/","definition":"n. 设备","pos":"n."},"equipment":{"phonetic":"/ɪˈkwɪpmənt/","definition":"n. 设备","pos":"n."},"tool":{"phonetic":"/tuːl/","definition":"n. 工具","pos":"n."},"machine":{"phonetic":"/məˈʃiːn/","definition":"n. 机器","pos":"n."},"vehicle":{"phonetic":"/ˈviːɪkəl/","definition":"n. 车辆","pos":"n."},"train":{"phonetic":"/treɪn/","definition":"n. 火车","pos":"n."},"flight":{"phonetic":"/flaɪt/","definition":"n. 航班","pos":"n."},"road":{"phonetic":"/rəʊd/","definition":"n. 道路","pos":"n."},"street":{"phonetic":"/striːt/","definition":"n. 街道","pos":"n."},"path":{"phonetic":"/pɑːθ/","definition":"n. 小路","pos":"n."},"direction":{"phonetic":"/dɪˈrekʃən/","definition":"n. 方向","pos":"n."},"north":{"phonetic":"/nɔːrθ/","definition":"n. 北方","pos":"n."},"south":{"phonetic":"/saʊθ/","definition":"n. 南方","pos":"n."},"east":{"phonetic":"/iːst/","definition":"n. 东方","pos":"n."},"west":{"phonetic":"/west/","definition":"n. 西方","pos":"n."},"left":{"phonetic":"/left/","definition":"n./adj. 左边","pos":"n./adj."},"right":{"phonetic":"/raɪt/","definition":"n./adj. 右边；正确的","pos":"n./adj."},"front":{"phonetic":"/frʌnt/","definition":"n./adj. 前面","pos":"n./adj."},"back":{"phonetic":"/bæk/","definition":"n./adj. 后面","pos":"n./adj."},"top":{"phonetic":"/tɒp/","definition":"n./adj. 顶部","pos":"n./adj."},"bottom":{"phonetic":"/ˈbɒtəm/","definition":"n./adj. 底部","pos":"n./adj."},"side":{"phonetic":"/saɪd/","definition":"n. 侧面","pos":"n."},"middle":{"phonetic":"/ˈmɪdəl/","definition":"n./adj. 中间","pos":"n./adj."},"center":{"phonetic":"/ˈsentər/","definition":"n. 中心","pos":"n."},"edge":{"phonetic":"/edʒ/","definition":"n. 边缘","pos":"n."},"entrance":{"phonetic":"/ˈentrəns/","definition":"n. 入口","pos":"n."},"exit":{"phonetic":"/ˈeksɪt/","definition":"n. 出口","pos":"n."},"corner":{"phonetic":"/ˈkɔːrnər/","definition":"n. 角落","pos":"n."},"sign":{"phonetic":"/saɪn/","definition":"n. 标志","pos":"n."},"signal":{"phonetic":"/ˈsɪɡnəl/","definition":"n. 信号","pos":"n."},"notice":{"phonetic":"/ˈnəʊtɪs/","definition":"n./v. 通知；注意","pos":"n./v."},"warning":{"phonetic":"/ˈwɔːrnɪŋ/","definition":"n. 警告","pos":"n."},"rule":{"phonetic":"/ruːl/","definition":"n. 规则","pos":"n."},"law":{"phonetic":"/lɔː/","definition":"n. 法律","pos":"n."},"regulation":{"phonetic":"/ˌreɡjuˈleɪʃən/","definition":"n. 规定","pos":"n."},"safety":{"phonetic":"/ˈseɪfti/","definition":"n. 安全","pos":"n."},"danger":{"phonetic":"/ˈdeɪndʒər/","definition":"n. 危险","pos":"n."},"risk":{"phonetic":"/rɪsk/","definition":"n. 风险","pos":"n."},"emergency":{"phonetic":"/ɪˈmɜːrdʒənsi/","definition":"n. 紧急情况","pos":"n."},"accident":{"phonetic":"/ˈæksɪdənt/","definition":"n. 事故","pos":"n."},"crime":{"phonetic":"/kraɪm/","definition":"n. 犯罪","pos":"n."},"government":{"phonetic":"/ˈɡʌvərnmənt/","definition":"n. 政府","pos":"n."},"education":{"phonetic":"/ˌedʒuˈkeɪʃən/","definition":"n. 教育","pos":"n."},"employment":{"phonetic":"/ɪmˈplɔɪmənt/","definition":"n. 就业","pos":"n."},"unemployment":{"phonetic":"/ˌʌnɪmˈplɔɪmənt/","definition":"n. 失业","pos":"n."},"tax":{"phonetic":"/tæks/","definition":"n. 税","pos":"n."},"investment":{"phonetic":"/ɪnˈvestmənt/","definition":"n. 投资","pos":"n."},"profit":{"phonetic":"/ˈprɒfɪt/","definition":"n. 利润","pos":"n."},"loss":{"phonetic":"/lɒs/","definition":"n. 损失","pos":"n."},"demand":{"phonetic":"/dɪˈmɑːnd/","definition":"n./v. 需求","pos":"n./v."},"supply":{"phonetic":"/səˈplaɪ/","definition":"n./v. 供给","pos":"n./v."},"manufacturing":{"phonetic":"/ˌmænjuˈfæktʃərɪŋ/","definition":"n. 制造业","pos":"n."}};
+
 // ============ STORAGE ============
 var STORAGE_PREFIX = 'ielts_';
 function safeJSONParse(key, fallback) {
@@ -330,10 +384,10 @@ function getProgress() { return safeJSONParse('progress', {}); }
 function setProgress(p) { localStorage.setItem(STORAGE_PREFIX + 'progress', JSON.stringify(p)); }
 function getStreak() { return safeJSONParse('streak', {}); }
 function setStreak(s) { localStorage.setItem(STORAGE_PREFIX + 'streak', JSON.stringify(s)); }
+function getWeakness() { return safeJSONParse('weakness', {}); }
+function setWeakness(w) { localStorage.setItem(STORAGE_PREFIX + 'weakness', JSON.stringify(w)); }
 
-// ============ BUILTIN DICTIONARY ============
-var BUILTIN_DICT = {"litter":{"phonetic":"/ˈlɪtər/","definition":"n. 垃圾；废弃物","pos":"n."},"insects":{"phonetic":"/ˈɪnsekt/","definition":"n. 昆虫","pos":"n."},"butterflies":{"phonetic":"/ˈbʌtərflaɪ/","definition":"n. 蝴蝶","pos":"n."},"boots":{"phonetic":"/buːts/","definition":"n. 靴子","pos":"n."},"beginners":{"phonetic":"/bɪˈɡɪnər/","definition":"n. 初学者","pos":"n."},"spoons":{"phonetic":"/spuːnz/","definition":"n. 勺子","pos":"n."},"maximum":{"phonetic":"/ˈmæksɪməm/","definition":"n./adj. 最大值；最大的","pos":"adj./n."},"lunchbox":{"phonetic":"/ˈlʌntʃbɒks/","definition":"n. 便当盒","pos":"n."},"lighthouse":{"phonetic":"/ˈlaɪthaʊs/","definition":"n. 灯塔","pos":"n."},"creature":{"phonetic":"/ˈkriːtʃər/","definition":"n. 生物；动物","pos":"n."},"dolphins":{"phonetic":"/ˈdɒlfɪnz/","definition":"n. 海豚","pos":"n."},"whales":{"phonetic":"/weɪlz/","definition":"n. 鲸鱼","pos":"n."},"penguins":{"phonetic":"/ˈpeŋɡwɪnz/","definition":"n. 企鹅","pos":"n."},"caves":{"phonetic":"/keɪvz/","definition":"n. 洞穴","pos":"n."},"veterinary":{"phonetic":"/ˈvetərɪneri/","definition":"adj. 兽医的","pos":"adj."},"placement":{"phonetic":"/ˈpleɪsmənt/","definition":"n. 安置；实习安排","pos":"n."},"lamb":{"phonetic":"/læm/","definition":"n. 羔羊","pos":"n."},"supplements":{"phonetic":"/ˈsʌplɪmənts/","definition":"n. 补充剂；增补","pos":"n."},"dairy":{"phonetic":"/ˈdeəri/","definition":"adj./n. 乳制品的；乳品场","pos":"adj./n."},"terminology":{"phonetic":"/ˌtɜːmɪˈnɒlədʒi/","definition":"n. 术语","pos":"n."},"nutrition":{"phonetic":"/njuːˈtrɪʃən/","definition":"n. 营养","pos":"n."},"medication":{"phonetic":"/ˌmedɪˈkeɪʃən/","definition":"n. 药物治疗","pos":"n."},"labyrinths":{"phonetic":"/ˈlæbərɪnθs/","definition":"n. 迷宫","pos":"n."},"maze":{"phonetic":"/meɪz/","definition":"n. 迷宫","pos":"n."},"puzzle":{"phonetic":"/ˈpʌzəl/","definition":"n./v. 谜题；使困惑","pos":"n./v."},"logic":{"phonetic":"/ˈlɒdʒɪk/","definition":"n. 逻辑","pos":"n."},"confusion":{"phonetic":"/kənˈfjuːʒən/","definition":"n. 困惑；混淆","pos":"n."},"meditation":{"phonetic":"/ˌmedɪˈteɪʃən/","definition":"n. 冥想","pos":"n."},"carvings":{"phonetic":"/ˈkɑːrvɪŋz/","definition":"n. 雕刻品","pos":"n."},"coins":{"phonetic":"/kɔɪnz/","definition":"n. 硬币","pos":"n."},"turf":{"phonetic":"/tɜːrf/","definition":"n. 草皮","pos":"n."},"breathing":{"phonetic":"/ˈbriːðɪŋ/","definition":"n. 呼吸","pos":"n."},"anxiety":{"phonetic":"/æŋˈzaɪəti/","definition":"n. 焦虑","pos":"n."},"voluntary":{"phonetic":"/ˈvɒləntri/","definition":"adj. 自愿的","pos":"adj."},"records":{"phonetic":"/ˈrekɔːrdz/","definition":"n. 记录；档案","pos":"n."},"transport":{"phonetic":"/ˈtrænspɔːrt/","definition":"n./v. 交通；运输","pos":"n./v."},"poster":{"phonetic":"/ˈpəʊstər/","definition":"n. 海报","pos":"n."},"politics":{"phonetic":"/ˈpɒlətɪks/","definition":"n. 政治","pos":"n."},"costume":{"phonetic":"/ˈkɒstjuːm/","definition":"n. 服装；戏服","pos":"n."},"tractors":{"phonetic":"/ˈtræktərz/","definition":"n. 拖拉机","pos":"n."},"diary":{"phonetic":"/ˈdaɪəri/","definition":"n. 日记","pos":"n."},"barn":{"phonetic":"/bɑːrn/","definition":"n. 谷仓","pos":"n."},"stables":{"phonetic":"/ˈsteɪbəlz/","definition":"n. 马厩","pos":"n."},"shed":{"phonetic":"/ʃed/","definition":"n. 棚屋","pos":"n."},"parkland":{"phonetic":"/ˈpɑːrklænd/","definition":"n. 公共绿地","pos":"n."},"analysis":{"phonetic":"/əˈnæləsɪs/","definition":"n. 分析","pos":"n."},"summary":{"phonetic":"/ˈsʌməri/","definition":"n. 总结；摘要","pos":"n."},"theatre":{"phonetic":"/ˈθɪətər/","definition":"n. 剧院","pos":"n."},"reaction":{"phonetic":"/riˈækʃən/","definition":"n. 反应","pos":"n."},"scenes":{"phonetic":"/siːnz/","definition":"n. 场景；场面","pos":"n."},"lighting":{"phonetic":"/ˈlaɪtɪŋ/","definition":"n. 灯光；照明","pos":"n."},"delivery":{"phonetic":"/dɪˈlɪvəri/","definition":"n. 递送；表达方式","pos":"n."},"conflict":{"phonetic":"/ˈkɒnflɪkt/","definition":"n. 冲突；矛盾","pos":"n."},"interpreted":{"phonetic":"/ɪnˈtɜːrprɪtɪd/","definition":"v. 解读；诠释","pos":"v."},"digital":{"phonetic":"/ˈdɪdʒɪtəl/","definition":"adj. 数字的","pos":"adj."},"vocabulary":{"phonetic":"/vəˈkæbjʊləri/","definition":"n. 词汇","pos":"n."},"browser":{"phonetic":"/ˈbraʊzər/","definition":"n. 浏览器","pos":"n."},"podcast":{"phonetic":"/ˈpɒdkɑːst/","definition":"n. 播客","pos":"n."},"smartphones":{"phonetic":"/ˈsmɑːrtfəʊnz/","definition":"n. 智能手机","pos":"n."},"bilingual":{"phonetic":"/baɪˈlɪŋɡwəl/","definition":"adj. 双语的","pos":"adj."},"playground":{"phonetic":"/ˈpleɪɡraʊnd/","definition":"n. 操场","pos":"n."},"grammar":{"phonetic":"/ˈɡræmər/","definition":"n. 语法","pos":"n."},"identity":{"phonetic":"/aɪˈdentəti/","definition":"n. 身份；认同","pos":"n."},"fluent":{"phonetic":"/ˈfluːənt/","definition":"adj. 流利的","pos":"adj."},"surfing":{"phonetic":"/ˈsɜːrfɪŋ/","definition":"n. 冲浪","pos":"n."},"kayak":{"phonetic":"/ˈkaɪæk/","definition":"n. 皮划艇","pos":"n."},"wetsuit":{"phonetic":"/ˈwetsuːt/","definition":"n. 潜水服","pos":"n."},"surfboard":{"phonetic":"/ˈsɜːrfbɔːrd/","definition":"n. 冲浪板","pos":"n."},"childcare":{"phonetic":"/ˈtʃaɪldkeər/","definition":"n. 儿童看护","pos":"n."},"allergies":{"phonetic":"/ˈælərdʒiz/","definition":"n. 过敏","pos":"n."},"availability":{"phonetic":"/əˌveɪləˈbɪləti/","definition":"n. 可获取性；可用性","pos":"n."},"tutorial":{"phonetic":"/tjuːˈtɔːriəl/","definition":"n. 辅导课；教程","pos":"n."},"obstacles":{"phonetic":"/ˈɒbstəkəlz/","definition":"n. 障碍","pos":"n."},"spectators":{"phonetic":"/spekˈteɪtərz/","definition":"n. 观众","pos":"n."},"schedule":{"phonetic":"/ˈʃedjuːl/","definition":"n. 时间表；计划","pos":"n."},"flexible":{"phonetic":"/ˈfleksəbəl/","definition":"adj. 灵活的","pos":"adj."},"emotions":{"phonetic":"/ɪˈməʊʃənz/","definition":"n. 情绪","pos":"n."},"creativity":{"phonetic":"/ˌkriːeɪˈtɪvəti/","definition":"n. 创造力","pos":"n."},"leadership":{"phonetic":"/ˈliːdərʃɪp/","definition":"n. 领导力","pos":"n."},"networking":{"phonetic":"/ˈnetwɜːrkɪŋ/","definition":"n. 建立人脉","pos":"n."},"migration":{"phonetic":"/maɪˈɡreɪʃən/","definition":"n. 迁徙；迁移","pos":"n."},"hibernated":{"phonetic":"/ˈhaɪbərneɪtɪd/","definition":"v. 冬眠","pos":"v."},"feathers":{"phonetic":"/ˈfeðərz/","definition":"n. 羽毛","pos":"n."},"assumptions":{"phonetic":"/əˈsʌmpʃənz/","definition":"n. 假设","pos":"n."},"spear":{"phonetic":"/spɪər/","definition":"n. 矛","pos":"n."},"destinations":{"phonetic":"/ˌdestɪˈneɪʃənz/","definition":"n. 目的地","pos":"n."},"oceans":{"phonetic":"/ˈəʊʃənz/","definition":"n. 海洋","pos":"n."},"ringing":{"phonetic":"/ˈrɪŋɪŋ/","definition":"n. 环志（鸟类）","pos":"n."},"recovery":{"phonetic":"/rɪˈkʌvəri/","definition":"n. 恢复；找回","pos":"n."},"atlas":{"phonetic":"/ˈætləs/","definition":"n. 地图册","pos":"n."},"cleaning":{"phonetic":"/ˈkliːnɪŋ/","definition":"n. 清洁；打扫","pos":"n."},"apartment":{"phonetic":"/əˈpɑːrtmənt/","definition":"n. 公寓","pos":"n."},"ironing":{"phonetic":"/ˈaɪərnɪŋ/","definition":"n. 熨烫","pos":"n."},"cupboards":{"phonetic":"/ˈkʌbərdz/","definition":"n. 橱柜","pos":"n."},"balconies":{"phonetic":"/ˈbælkəniz/","definition":"n. 阳台","pos":"n."},"plumber":{"phonetic":"/ˈplʌmər/","definition":"n. 水管工","pos":"n."},"electrician":{"phonetic":"/ɪˌlekˈtrɪʃən/","definition":"n. 电工","pos":"n."},"allergic":{"phonetic":"/əˈlɜːrdʒɪk/","definition":"adj. 过敏的","pos":"adj."},"retention":{"phonetic":"/rɪˈtenʃən/","definition":"n. 保留；留任","pos":"n."},"turnover":{"phonetic":"/ˈtɜːrnəʊvər/","definition":"n. 人员流动率","pos":"n."},"workload":{"phonetic":"/ˈwɜːrkləʊd/","definition":"n. 工作量","pos":"n."},"morale":{"phonetic":"/məˈrɑːl/","definition":"n. 士气","pos":"n."},"shifts":{"phonetic":"/ʃɪfts/","definition":"n. 轮班","pos":"n."},"incentives":{"phonetic":"/ɪnˈsentɪvz/","definition":"n. 激励；奖励","pos":"n."},"teamwork":{"phonetic":"/ˈtiːmwɜːrk/","definition":"n. 团队合作","pos":"n."},"disbelief":{"phonetic":"/ˌdɪsbɪˈliːf/","definition":"n. 难以置信","pos":"n."},"gratitude":{"phonetic":"/ˈɡrætɪtjuːd/","definition":"n. 感激","pos":"n."},"sweating":{"phonetic":"/ˈswetɪŋ/","definition":"n. 出汗","pos":"n."},"cricket":{"phonetic":"/ˈkrɪkɪt/","definition":"n. 板球","pos":"n."},"helmet":{"phonetic":"/ˈhelmɪt/","definition":"n. 头盔","pos":"n."},"hockey":{"phonetic":"/ˈhɒki/","definition":"n. 曲棍球","pos":"n."},"maple":{"phonetic":"/ˈmeɪpəl/","definition":"n. 枫树","pos":"n."},"syrup":{"phonetic":"/ˈsɪrəp/","definition":"n. 糖浆","pos":"n."},"refined":{"phonetic":"/rɪˈfaɪnd/","definition":"adj. 精炼的","pos":"adj."},"diameter":{"phonetic":"/daɪˈæmɪtər/","definition":"n. 直径","pos":"n."},"evaporators":{"phonetic":"/ɪˈvæpəreɪtərz/","definition":"n. 蒸发器","pos":"n."},"evaporation":{"phonetic":"/ɪˌvæpəˈreɪʃən/","definition":"n. 蒸发","pos":"n."},"postcode":{"phonetic":"/ˈpəʊstkəʊd/","definition":"n. 邮编","pos":"n."},"dentist":{"phonetic":"/ˈdentɪst/","definition":"n. 牙医","pos":"n."},"parking":{"phonetic":"/ˈpɑːrkɪŋ/","definition":"n. 停车","pos":"n."},"frequency":{"phonetic":"/ˈfriːkwənsi/","definition":"n. 频率","pos":"n."},"supermarket":{"phonetic":"/ˈsuːpərmɑːrkɪt/","definition":"n. 超市","pos":"n."},"storage":{"phonetic":"/ˈstɔːrɪdʒ/","definition":"n. 存储","pos":"n."},"volunteer":{"phonetic":"/ˌvɒlənˈtɪər/","definition":"n. 志愿者","pos":"n."},"fundraising":{"phonetic":"/ˈfʌndreɪzɪŋ/","definition":"n. 筹款","pos":"n."},"fashion":{"phonetic":"/ˈfæʃən/","definition":"n. 时尚","pos":"n."},"competitive":{"phonetic":"/kəmˈpetətɪv/","definition":"adj. 有竞争力的","pos":"adj."},"critical":{"phonetic":"/ˈkrɪtɪkəl/","definition":"adj. 批评的；关键的","pos":"adj."},"realistic":{"phonetic":"/ˌrɪəˈlɪstɪk/","definition":"adj. 现实的","pos":"adj."},"dishonest":{"phonetic":"/dɪsˈɒnɪst/","definition":"adj. 不诚实的","pos":"adj."},"retail":{"phonetic":"/ˈriːteɪl/","definition":"n. 零售","pos":"n."},"translocation":{"phonetic":"/ˌtrænzləʊˈkeɪʃən/","definition":"n. 转移；迁移","pos":"n."},"helicopters":{"phonetic":"/ˈhelɪkɒptərz/","definition":"n. 直升机","pos":"n."},"tusks":{"phonetic":"/tʌsks/","definition":"n. 象牙","pos":"n."},"footprints":{"phonetic":"/ˈfʊtprɪnts/","definition":"n. 脚印","pos":"n."},"tourism":{"phonetic":"/ˈtʊərɪzəm/","definition":"n. 旅游业","pos":"n."},"poachers":{"phonetic":"/ˈpəʊtʃərz/","definition":"n. 偷猎者","pos":"n."},"agriculture":{"phonetic":"/ˈæɡrɪkʌltʃər/","definition":"n. 农业","pos":"n."},"tip":{"phonetic":"/tɪp/","definition":"n. 小费；提示","pos":"n."},"supervisor":{"phonetic":"/ˈsuːpərvaɪzər/","definition":"n. 主管","pos":"n."},"resolution":{"phonetic":"/ˌrezəˈluːʃən/","definition":"n. 分辨率；决心","pos":"n."},"housing":{"phonetic":"/ˈhaʊzɪŋ/","definition":"n. 住房","pos":"n."},"facilities":{"phonetic":"/fəˈsɪlətiz/","definition":"n. 设施","pos":"n."},"cyclists":{"phonetic":"/ˈsaɪklɪsts/","definition":"n. 骑自行车的人","pos":"n."},"eruption":{"phonetic":"/ɪˈrʌpʃən/","definition":"n. 喷发","pos":"n."},"volcanoes":{"phonetic":"/vɒlˈkeɪnəʊz/","definition":"n. 火山","pos":"n."},"contradictions":{"phonetic":"/ˌkɒntrəˈdɪkʃənz/","definition":"n. 矛盾","pos":"n."},"contemporary":{"phonetic":"/kənˈtempərəri/","definition":"adj. 当代的；同时代的","pos":"adj."},"widespread":{"phonetic":"/ˈwaɪdspred/","definition":"adj. 广泛的","pos":"adj."},"mushrooms":{"phonetic":"/ˈmʌʃruːmz/","definition":"n. 蘑菇","pos":"n."},"edible":{"phonetic":"/ˈedɪbəl/","definition":"adj. 可食用的","pos":"adj."},"example":{"phonetic":"/ɪɡˈzɑːmpəl/","definition":"n. 例子","pos":"n."},"question":{"phonetic":"/ˈkwestʃən/","definition":"n. 问题","pos":"n."},"answer":{"phonetic":"/ˈɑːnsər/","definition":"n./v. 答案；回答","pos":"n./v."},"complete":{"phonetic":"/kəmˈpliːt/","definition":"v./adj. 完成；完整的","pos":"v./adj."},"choose":{"phonetic":"/tʃuːz/","definition":"v. 选择","pos":"v."},"correct":{"phonetic":"/kəˈrekt/","definition":"adj./v. 正确的；纠正","pos":"adj./v."},"write":{"phonetic":"/raɪt/","definition":"v. 写","pos":"v."},"listen":{"phonetic":"/ˈlɪsən/","definition":"v. 听","pos":"v."},"read":{"phonetic":"/riːd/","definition":"v. 阅读","pos":"v."},"speak":{"phonetic":"/spiːk/","definition":"v. 说话","pos":"v."},"match":{"phonetic":"/mætʃ/","definition":"v./n. 匹配；比赛","pos":"v./n."},"letter":{"phonetic":"/ˈletər/","definition":"n. 字母；信","pos":"n."},"number":{"phonetic":"/ˈnʌmbər/","definition":"n. 数字；号码","pos":"n."},"word":{"phonetic":"/wɜːrd/","definition":"n. 单词","pos":"n."},"text":{"phonetic":"/tekst/","definition":"n. 文本","pos":"n."},"note":{"phonetic":"/nəʊt/","definition":"n./v. 笔记；注意","pos":"n./v."},"table":{"phonetic":"/ˈteɪbəl/","definition":"n. 表格；桌子","pos":"n."},"form":{"phonetic":"/fɔːrm/","definition":"n. 表格；形式","pos":"n."},"section":{"phonetic":"/ˈsekʃən/","definition":"n. 部分；区域","pos":"n."},"option":{"phonetic":"/ˈɒpʃən/","definition":"n. 选项","pos":"n."},"label":{"phonetic":"/ˈleɪbəl/","definition":"n./v. 标签；标注","pos":"n./v."},"select":{"phonetic":"/sɪˈlekt/","definition":"v. 选择","pos":"v."},"multiple":{"phonetic":"/ˈmʌltɪpəl/","definition":"adj. 多个的","pos":"adj."},"choice":{"phonetic":"/tʃɔɪs/","definition":"n. 选择","pos":"n."},"matching":{"phonetic":"/ˈmætʃɪŋ/","definition":"n. 匹配","pos":"n."},"map":{"phonetic":"/mæp/","definition":"n. 地图","pos":"n."},"labeling":{"phonetic":"/ˈleɪbəlɪŋ/","definition":"n. 标注","pos":"n."},"completion":{"phonetic":"/kəmˈpliːʃən/","definition":"n. 完成；填空","pos":"n."},"sentence":{"phonetic":"/ˈsentəns/","definition":"n. 句子","pos":"n."},"blank":{"phonetic":"/blæŋk/","definition":"n./adj. 空白；空的","pos":"n./adj."},"diagram":{"phonetic":"/ˈdaɪəɡræm/","definition":"n. 图表","pos":"n."},"flowchart":{"phonetic":"/ˈfləʊtʃɑːrt/","definition":"n. 流程图","pos":"n."},"classify":{"phonetic":"/ˈklæsɪfaɪ/","definition":"v. 分类","pos":"v."},"locate":{"phonetic":"/ləʊˈkeɪt/","definition":"v. 定位","pos":"v."},"heading":{"phonetic":"/ˈhedɪŋ/","definition":"n. 标题","pos":"n."},"paragraph":{"phonetic":"/ˈpærəɡrɑːf/","definition":"n. 段落","pos":"n."},"passage":{"phonetic":"/ˈpæsɪdʒ/","definition":"n. 段落；通道","pos":"n."},"title":{"phonetic":"/ˈtaɪtəl/","definition":"n. 标题","pos":"n."},"topic":{"phonetic":"/ˈtɒpɪk/","definition":"n. 话题；主题","pos":"n."},"lecture":{"phonetic":"/ˈlektʃər/","definition":"n. 讲座；讲课","pos":"n."},"seminar":{"phonetic":"/ˈsemɪnɑːr/","definition":"n. 研讨会","pos":"n."},"campus":{"phonetic":"/ˈkæmpəs/","definition":"n. 校园","pos":"n."},"library":{"phonetic":"/ˈlaɪbrəri/","definition":"n. 图书馆","pos":"n."},"laboratory":{"phonetic":"/ləˈbɒrətri/","definition":"n. 实验室","pos":"nn."},"accommodation":{"phonetic":"/əˌkɒməˈdeɪʃən/","definition":"n. 住宿","pos":"n."},"facility":{"phonetic":"/fəˈsɪləti/","definition":"n. 设施","pos":"n."},"enrollment":{"phonetic":"/ɪnˈrəʊlmənt/","definition":"n. 注册；入学","pos":"n."},"registration":{"phonetic":"/ˌredʒɪˈstreɪʃən/","definition":"n. 注册","pos":"n."},"orientation":{"phonetic":"/ˌɔːriənˈteɪʃən/","definition":"n. 迎新；方向","pos":"n."},"assessment":{"phonetic":"/əˈsesmənt/","definition":"n. 评估","pos":"n."},"deadline":{"phonetic":"/ˈdedlaɪn/","definition":"n. 截止日期","pos":"n."},"assignment":{"phonetic":"/əˈsaɪnmənt/","definition":"n. 作业；任务","pos":"n."},"essay":{"phonetic":"/ˈeseɪ/","definition":"n. 论文；文章","pos":"n."},"dissertation":{"phonetic":"/ˌdɪsərˈteɪʃən/","definition":"n. 学位论文","pos":"n."},"thesis":{"phonetic":"/ˈθiːsɪs/","definition":"n. 论文","pos":"n."},"module":{"phonetic":"/ˈmɒdjuːl/","definition":"n. 模块；课程单元","pos":"n."},"credit":{"phonetic":"/ˈkredɪt/","definition":"n. 学分；信用","pos":"n."},"degree":{"phonetic":"/dɪˈɡriː/","definition":"n. 学位；程度","pos":"n."},"diploma":{"phonetic":"/dɪˈpləʊmə/","definition":"n. 文凭","pos":"n."},"certificate":{"phonetic":"/sərˈtɪfɪkət/","definition":"n. 证书","pos":"n."},"qualification":{"phonetic":"/ˌkwɒlɪfɪˈkeɪʃən/","definition":"n. 资格","pos":"n."},"scholarship":{"phonetic":"/ˈskɒlərʃɪp/","definition":"n. 奖学金","pos":"n."},"tuition":{"phonetic":"/tjuːˈɪʃən/","definition":"n. 学费","pos":"n."},"fee":{"phonetic":"/fiː/","definition":"n. 费用","pos":"n."},"grant":{"phonetic":"/ɡrɑːnt/","definition":"n./v. 拨款；授予","pos":"n./v."},"loan":{"phonetic":"/ləʊn/","definition":"n. 贷款","pos":"n."},"budget":{"phonetic":"/ˈbʌdʒɪt/","definition":"n. 预算","pos":"n."},"funding":{"phonetic":"/ˈfʌndɪŋ/","definition":"n. 资金","pos":"n."},"sponsor":{"phonetic":"/ˈspɒnsər/","definition":"n./v. 赞助者；赞助","pos":"n./v."},"academic":{"phonetic":"/ˌækəˈdemɪk/","definition":"adj. 学术的","pos":"adj."},"research":{"phonetic":"/rɪˈsɜːrtʃ/","definition":"n./v. 研究","pos":"n./v."},"survey":{"phonetic":"/ˈsɜːrveɪ/","definition":"n. 调查","pos":"n."},"interview":{"phonetic":"/ˈɪntərvjuː/","definition":"n./v. 面试；采访","pos":"n./v."},"questionnaire":{"phonetic":"/ˌkwestʃəˈneər/","definition":"n. 问卷","pos":"n."},"data":{"phonetic":"/ˈdeɪtə/","definition":"n. 数据","pos":"n."},"result":{"phonetic":"/rɪˈzʌlt/","definition":"n. 结果","pos":"n."},"finding":{"phonetic":"/ˈfaɪndɪŋ/","definition":"n. 发现","pos":"n."},"conclusion":{"phonetic":"/kənˈkluːʒən/","definition":"n. 结论","pos":"n."},"method":{"phonetic":"/ˈmeθəd/","definition":"n. 方法","pos":"n."},"approach":{"phonetic":"/əˈprəʊtʃ/","definition":"n./v. 方法；靠近","pos":"n./v."},"theory":{"phonetic":"/ˈθɪəri/","definition":"n. 理论","pos":"n."},"experiment":{"phonetic":"/ɪkˈsperɪmənt/","definition":"n. 实验","pos":"n."},"hypothesis":{"phonetic":"/haɪˈpɒθəsɪs/","definition":"n. 假设","pos":"n."},"observation":{"phonetic":"/ˌɒbzərˈveɪʃən/","definition":"n. 观察","pos":"n."},"sample":{"phonetic":"/ˈsɑːmpəl/","definition":"n. 样本","pos":"n."},"control":{"phonetic":"/kənˈtrəʊl/","definition":"n./v. 控制；对照组","pos":"n./v."},"variable":{"phonetic":"/ˈveəriəbəl/","definition":"n./adj. 变量；可变的","pos":"n./adj."},"factor":{"phonetic":"/ˈfæktər/","definition":"n. 因素","pos":"n."},"effect":{"phonetic":"/ɪˈfekt/","definition":"n. 影响；效果","pos":"n."},"impact":{"phonetic":"/ˈɪmpækt/","definition":"n./v. 影响","pos":"n./v."},"influence":{"phonetic":"/ˈɪnfluəns/","definition":"n./v. 影响","pos":"n./v."},"cause":{"phonetic":"/kɔːz/","definition":"n./v. 原因；导致","pos":"n./v."},"reason":{"phonetic":"/ˈriːzən/","definition":"n. 原因","pos":"n."},"purpose":{"phonetic":"/ˈpɜːrpəs/","definition":"n. 目的","pos":"n."},"aim":{"phonetic":"/eɪm/","definition":"n./v. 目标；旨在","pos":"n./v."},"objective":{"phonetic":"/əbˈdʒektɪv/","definition":"n./adj. 目标；客观的","pos":"n./adj."},"goal":{"phonetic":"/ɡəʊl/","definition":"n. 目标","pos":"n."},"target":{"phonetic":"/ˈtɑːrɡɪt/","definition":"n./v. 目标；针对","pos":"n./v."},"benefit":{"phonetic":"/ˈbenɪfɪt/","definition":"n./v. 好处；受益","pos":"n./v."},"advantage":{"phonetic":"/ədˈvɑːntɪdʒ/","definition":"n. 优势","pos":"n."},"disadvantage":{"phonetic":"/ˌdɪsədˈvɑːntɪdʒ/","definition":"n. 劣势","pos":"n."},"drawback":{"phonetic":"/ˈdrɔːbæk/","definition":"n. 缺点","pos":"n."},"limitation":{"phonetic":"/ˌlɪmɪˈteɪʃən/","definition":"n. 限制；局限性","pos":"n."},"challenge":{"phonetic":"/ˈtʃælɪndʒ/","definition":"n./v. 挑战","pos":"n./v."},"issue":{"phonetic":"/ˈɪʃuː/","definition":"n. 问题","pos":"n."},"problem":{"phonetic":"/ˈprɒbləm/","definition":"n. 问题","pos":"n."},"solution":{"phonetic":"/səˈluːʃən/","definition":"n. 解决方案","pos":"n."},"measure":{"phonetic":"/ˈmeʒər/","definition":"n./v. 措施；测量","pos":"n./v."},"policy":{"phonetic":"/ˈpɒləsi/","definition":"n. 政策","pos":"n."},"strategy":{"phonetic":"/ˈstrætədʒi/","definition":"n. 策略","pos":"n."},"trend":{"phonetic":"/trend/","definition":"n. 趋势","pos":"n."},"pattern":{"phonetic":"/ˈpætərn/","definition":"n. 模式；图案","pos":"n."},"process":{"phonetic":"/ˈprəʊses/","definition":"n./v. 过程；处理","pos":"n./v."},"system":{"phonetic":"/ˈsɪstəm/","definition":"n. 系统","pos":"n."},"structure":{"phonetic":"/ˈstrʌktʃər/","definition":"n. 结构","pos":"n."},"function":{"phonetic":"/ˈfʌŋkʃən/","definition":"n./v. 功能；运行","pos":"n./v."},"role":{"phonetic":"/rəʊl/","definition":"n. 角色；作用","pos":"n."},"feature":{"phonetic":"/ˈfiːtʃər/","definition":"n./v. 特征；以...为特色","pos":"n./v."},"aspect":{"phonetic":"/ˈæspekt/","definition":"n. 方面","pos":"n."},"context":{"phonetic":"/ˈkɒntekst/","definition":"n. 上下文；背景","pos":"n."},"environment":{"phonetic":"/ɪnˈvaɪrənmənt/","definition":"n. 环境","pos":"n."},"climate":{"phonetic":"/ˈklaɪmət/","definition":"n. 气候","pos":"n."},"weather":{"phonetic":"/ˈweðər/","definition":"n. 天气","pos":"n."},"temperature":{"phonetic":"/ˈtemprətʃər/","definition":"n. 温度","pos":"n."},"pollution":{"phonetic":"/pəˈluːʃən/","definition":"n. 污染","pos":"n."},"resource":{"phonetic":"/rɪˈzɔːrs/","definition":"n. 资源","pos":"n."},"energy":{"phonetic":"/ˈenərdʒi/","definition":"n. 能源；能量","pos":"n."},"fuel":{"phonetic":"/ˈfjuːəl/","definition":"n. 燃料","pos":"n."},"waste":{"phonetic":"/weɪst/","definition":"n./v. 浪费；废物","pos":"n./v."},"recycling":{"phonetic":"/ˌriːˈsaɪklɪŋ/","definition":"n. 回收","pos":"n."},"sustainability":{"phonetic":"/səˌsteɪnəˈbɪləti/","definition":"n. 可持续性","pos":"n."},"conservation":{"phonetic":"/ˌkɒnsərˈveɪʃən/","definition":"n. 保护","pos":"n."},"species":{"phonetic":"/ˈspiːʃiːz/","definition":"n. 物种","pos":"n."},"plant":{"phonetic":"/plɑːnt/","definition":"n. 植物；工厂","pos":"n."},"forest":{"phonetic":"/ˈfɒrɪst/","definition":"n. 森林","pos":"n."},"ocean":{"phonetic":"/ˈəʊʃən/","definition":"n. 海洋","pos":"n."},"river":{"phonetic":"/ˈrɪvər/","definition":"n. 河流","pos":"n."},"lake":{"phonetic":"/leɪk/","definition":"n. 湖泊","pos":"n."},"mountain":{"phonetic":"/ˈmaʊntɪn/","definition":"n. 山","pos":"n."},"city":{"phonetic":"/ˈsɪti/","definition":"n. 城市","pos":"n."},"town":{"phonetic":"/taʊn/","definition":"n. 城镇","pos":"n."},"village":{"phonetic":"/ˈvɪlɪdʒ/","definition":"n. 村庄","pos":"n."},"country":{"phonetic":"/ˈkʌntri/","definition":"n. 国家；乡村","pos":"n."},"region":{"phonetic":"/ˈriːdʒən/","definition":"n. 地区","pos":"n."},"area":{"phonetic":"/ˈeəriə/","definition":"n. 区域","pos":"n."},"location":{"phonetic":"/ləʊˈkeɪʃən/","definition":"n. 位置","pos":"n."},"building":{"phonetic":"/ˈbɪldɪŋ/","definition":"n. 建筑","pos":"n."},"room":{"phonetic":"/ruːm/","definition":"n. 房间","pos":"n."},"hall":{"phonetic":"/hɔːl/","definition":"n. 大厅","pos":"n."},"office":{"phonetic":"/ˈɒfɪs/","definition":"n. 办公室","pos":"n."},"centre":{"phonetic":"/ˈsentər/","definition":"n. 中心","pos":"n."},"park":{"phonetic":"/pɑːrk/","definition":"n. 公园","pos":"n."},"garden":{"phonetic":"/ˈɡɑːrdən/","definition":"n. 花园","pos":"n."},"museum":{"phonetic":"/mjuːˈziːəm/","definition":"n. 博物馆","pos":"n."},"gallery":{"phonetic":"/ˈɡæləri/","definition":"n. 画廊","pos":"n."},"cinema":{"phonetic":"/ˈsɪnəmə/","definition":"n. 电影院","pos":"n."},"restaurant":{"phonetic":"/ˈrestərɒnt/","definition":"n. 餐厅","pos":"n."},"cafe":{"phonetic":"/ˈkæfeɪ/","definition":"n. 咖啡馆","pos":"n."},"hotel":{"phonetic":"/həʊˈtel/","definition":"n. 酒店","pos":"n."},"airport":{"phonetic":"/ˈeəpɔːrt/","definition":"n. 机场","pos":"n."},"station":{"phonetic":"/ˈsteɪʃən/","definition":"n. 车站","pos":"n."},"hospital":{"phonetic":"/ˈhɒspɪtəl/","definition":"n. 医院","pos":"n."},"school":{"phonetic":"/skuːl/","definition":"n. 学校","pos":"n."},"college":{"phonetic":"/ˈkɒlɪdʒ/","definition":"n. 学院","pos":"n."},"university":{"phonetic":"/ˌjuːnɪˈvɜːrsəti/","definition":"n. 大学","pos":"n."},"department":{"phonetic":"/dɪˈpɑːrtmənt/","definition":"n. 部门","pos":"n."},"company":{"phonetic":"/ˈkʌmpəni/","definition":"n. 公司","pos":"n."},"business":{"phonetic":"/ˈbɪznɪs/","definition":"n. 商业；企业","pos":"n."},"industry":{"phonetic":"/ˈɪndəstri/","definition":"n. 产业","pos":"n."},"market":{"phonetic":"/ˈmɑːrkɪt/","definition":"n. 市场","pos":"n."},"economy":{"phonetic":"/ɪˈkɒnəmi/","definition":"n. 经济","pos":"n."},"trade":{"phonetic":"/treɪd/","definition":"n./v. 贸易；交易","pos":"n./v."},"product":{"phonetic":"/ˈprɒdʌkt/","definition":"n. 产品","pos":"n."},"service":{"phonetic":"/ˈsɜːrvɪs/","definition":"n. 服务","pos":"n."},"customer":{"phonetic":"/ˈkʌstəmər/","definition":"n. 顾客","pos":"n."},"client":{"phonetic":"/ˈklaɪənt/","definition":"n. 客户","pos":"n."},"consumer":{"phonetic":"/kənˈsjuːmər/","definition":"n. 消费者","pos":"n."},"employee":{"phonetic":"/ɪmˈplɔɪiː/","definition":"n. 雇员","pos":"n."},"employer":{"phonetic":"/ɪmˈplɔɪər/","definition":"n. 雇主","pos":"n."},"manager":{"phonetic":"/ˈmænɪdʒər/","definition":"n. 经理","pos":"n."},"staff":{"phonetic":"/stɑːf/","definition":"n. 员工","pos":"n."},"team":{"phonetic":"/tiːm/","definition":"n. 团队","pos":"n."},"group":{"phonetic":"/ɡruːp/","definition":"n. 小组","pos":"n."},"project":{"phonetic":"/ˈprɒdʒekt/","definition":"n. 项目","pos":"n."},"plan":{"phonetic":"/plæn/","definition":"n./v. 计划","pos":"n./v."},"timetable":{"phonetic":"/ˈtaɪmteɪbəl/","definition":"n. 时间表","pos":"n."},"appointment":{"phonetic":"/əˈpɔɪntmənt/","definition":"n. 预约","pos":"n."},"meeting":{"phonetic":"/ˈmiːtɪŋ/","definition":"n. 会议","pos":"n."},"conference":{"phonetic":"/ˈkɒnfərəns/","definition":"n. 会议","pos":"n."},"event":{"phonetic":"/ɪˈvent/","definition":"n. 事件；活动","pos":"n."},"activity":{"phonetic":"/ækˈtɪvəti/","definition":"n. 活动","pos":"n."},"programme":{"phonetic":"/ˈprəʊɡræm/","definition":"n. 节目；计划","pos":"n."},"course":{"phonetic":"/kɔːrs/","definition":"n. 课程","pos":"n."},"class":{"phonetic":"/klɑːs/","definition":"n. 班级；课程","pos":"n."},"lesson":{"phonetic":"/ˈlesən/","definition":"n. 课程；教训","pos":"n."},"workshop":{"phonetic":"/ˈwɜːrkʃɒp/","definition":"n. 工作坊","pos":"n."},"training":{"phonetic":"/ˈtreɪnɪŋ/","definition":"n. 培训","pos":"n."},"skill":{"phonetic":"/skɪl/","definition":"n. 技能","pos":"n."},"ability":{"phonetic":"/əˈbɪləti/","definition":"n. 能力","pos":"n."},"knowledge":{"phonetic":"/ˈnɒlɪdʒ/","definition":"n. 知识","pos":"n."},"experience":{"phonetic":"/ɪkˈspɪəriəns/","definition":"n. 经验","pos":"n."},"information":{"phonetic":"/ˌɪnfərˈmeɪʃən/","definition":"n. 信息","pos":"n."},"detail":{"phonetic":"/ˈdiːteɪl/","definition":"n. 细节","pos":"n."},"description":{"phonetic":"/dɪˈskrɪpʃən/","definition":"n. 描述","pos":"n."},"explanation":{"phonetic":"/ˌekspləˈneɪʃən/","definition":"n. 解释","pos":"n."},"instruction":{"phonetic":"/ɪnˈstrʌkʃən/","definition":"n. 说明；指示","pos":"n."},"requirement":{"phonetic":"/rɪˈkwaɪərmənt/","definition":"n. 要求","pos":"n."},"condition":{"phonetic":"/kənˈdɪʃən/","definition":"n. 条件；状况","pos":"n."},"situation":{"phonetic":"/ˌsɪtʃuˈeɪʃən/","definition":"n. 情况","pos":"n."},"circumstance":{"phonetic":"/ˈsɜːrkəmstæns/","definition":"n. 情况","pos":"n."},"opportunity":{"phonetic":"/ˌɒpəˈtjuːnəti/","definition":"n. 机会","pos":"n."},"possibility":{"phonetic":"/ˌpɒsɪˈbɪləti/","definition":"n. 可能性","pos":"n."},"alternative":{"phonetic":"/ɔːlˈtɜːrnətɪv/","definition":"n./adj. 替代方案","pos":"n./adj."},"decision":{"phonetic":"/dɪˈsɪʒən/","definition":"n. 决定","pos":"n."},"preference":{"phonetic":"/ˈprefərəns/","definition":"n. 偏好","pos":"n."},"opinion":{"phonetic":"/əˈpɪnjən/","definition":"n. 意见；看法","pos":"n."},"attitude":{"phonetic":"/ˈætɪtjuːd/","definition":"n. 态度","pos":"n."},"behaviour":{"phonetic":"/bɪˈheɪvjər/","definition":"n. 行为","pos":"n."},"habit":{"phonetic":"/ˈhæbɪt/","definition":"n. 习惯","pos":"n."},"lifestyle":{"phonetic":"/ˈlaɪfstaɪl/","definition":"n. 生活方式","pos":"n."},"health":{"phonetic":"/helθ/","definition":"n. 健康","pos":"n."},"disease":{"phonetic":"/dɪˈziːz/","definition":"n. 疾病","pos":"n."},"medicine":{"phonetic":"/ˈmedsən/","definition":"n. 药；医学","pos":"n."},"treatment":{"phonetic":"/ˈtriːtmənt/","definition":"n. 治疗","pos":"n."},"diet":{"phonetic":"/ˈdaɪət/","definition":"n. 饮食","pos":"n."},"exercise":{"phonetic":"/ˈeksərsaɪz/","definition":"n./v. 锻炼","pos":"n./v."},"game":{"phonetic":"/ɡeɪm/","definition":"n. 游戏；比赛","pos":"n."},"competition":{"phonetic":"/ˌkɒmpɪˈtɪʃən/","definition":"n. 比赛","pos":"n."},"player":{"phonetic":"/ˈpleɪər/","definition":"n. 运动员","pos":"n."},"coach":{"phonetic":"/kəʊtʃ/","definition":"n./v. 教练；指导","pos":"n./v."},"travel":{"phonetic":"/ˈtrævəl/","definition":"n./v. 旅行","pos":"n./v."},"trip":{"phonetic":"/trɪp/","definition":"n. 旅行","pos":"n."},"journey":{"phonetic":"/ˈdʒɜːrni/","definition":"n. 旅程","pos":"n."},"tour":{"phonetic":"/tʊər/","definition":"n./v. 旅游","pos":"n./v."},"visit":{"phonetic":"/ˈvɪzɪt/","definition":"n./v. 参观；访问","pos":"n./v."},"tourist":{"phonetic":"/ˈtʊərɪst/","definition":"n. 游客","pos":"n."},"guest":{"phonetic":"/ɡest/","definition":"n. 客人","pos":"n."},"host":{"phonetic":"/həʊst/","definition":"n./v. 主人；主持","pos":"n./v."},"family":{"phonetic":"/ˈfæməli/","definition":"n. 家庭","pos":"n."},"friend":{"phonetic":"/frend/","definition":"n. 朋友","pos":"n."},"relationship":{"phonetic":"/rɪˈleɪʃənʃɪp/","definition":"n. 关系","pos":"n."},"communication":{"phonetic":"/kəˌmjuːnɪˈkeɪʃən/","definition":"n. 交流","pos":"n."},"language":{"phonetic":"/ˈlæŋɡwɪdʒ/","definition":"n. 语言","pos":"n."},"culture":{"phonetic":"/ˈkʌltʃər/","definition":"n. 文化","pos":"n."},"tradition":{"phonetic":"/trəˈdɪʃən/","definition":"n. 传统","pos":"n."},"history":{"phonetic":"/ˈhɪstəri/","definition":"n. 历史","pos":"n."},"society":{"phonetic":"/səˈsaɪəti/","definition":"n. 社会","pos":"n."},"community":{"phonetic":"/kəˈmjuːnəti/","definition":"n. 社区","pos":"n."},"population":{"phonetic":"/ˌpɒpjuˈleɪʃən/","definition":"n. 人口","pos":"n."},"child":{"phonetic":"/tʃaɪld/","definition":"n. 孩子","pos":"n."},"adult":{"phonetic":"/ˈædʌlt/","definition":"n. 成人","pos":"n."},"student":{"phonetic":"/ˈstjuːdənt/","definition":"n. 学生","pos":"n."},"teacher":{"phonetic":"/ˈtiːtʃər/","definition":"n. 老师","pos":"n."},"professor":{"phonetic":"/prəˈfesər/","definition":"n. 教授","pos":"n."},"doctor":{"phonetic":"/ˈdɒktər/","definition":"n. 医生；博士","pos":"n."},"nurse":{"phonetic":"/nɜːrs/","definition":"n. 护士","pos":"n."},"patient":{"phonetic":"/ˈpeɪʃənt/","definition":"n./adj. 病人；耐心的","pos":"n./adj."},"job":{"phonetic":"/dʒɒb/","definition":"n. 工作","pos":"n."},"work":{"phonetic":"/wɜːrk/","definition":"n./v. 工作","pos":"n./v."},"career":{"phonetic":"/kəˈrɪər/","definition":"n. 职业","pos":"n."},"profession":{"phonetic":"/prəˈfeʃən/","definition":"n. 职业","pos":"n."},"occupation":{"phonetic":"/ˌɒkjuˈpeɪʃən/","definition":"n. 职业","pos":"n."},"salary":{"phonetic":"/ˈsæləri/","definition":"n. 薪水","pos":"n."},"income":{"phonetic":"/ˈɪnkʌm/","definition":"n. 收入","pos":"n."},"money":{"phonetic":"/ˈmʌni/","definition":"n. 钱","pos":"n."},"cost":{"phonetic":"/kɒst/","definition":"n./v. 成本；花费","pos":"n./v."},"price":{"phonetic":"/praɪs/","definition":"n. 价格","pos":"n."},"value":{"phonetic":"/ˈvæljuː/","definition":"n. 价值","pos":"n."},"quality":{"phonetic":"/ˈkwɒləti/","definition":"n. 质量","pos":"n."},"quantity":{"phonetic":"/ˈkwɒntəti/","definition":"n. 数量","pos":"n."},"amount":{"phonetic":"/əˈmaʊnt/","definition":"n. 数量","pos":"n."},"level":{"phonetic":"/ˈlevəl/","definition":"n. 水平；级别","pos":"n."},"standard":{"phonetic":"/ˈstændərd/","definition":"n. 标准","pos":"n."},"rate":{"phonetic":"/reɪt/","definition":"n. 率；速度","pos":"n."},"ratio":{"phonetic":"/ˈreɪʃiəʊ/","definition":"n. 比率","pos":"n."},"proportion":{"phonetic":"/prəˈpɔːrʃən/","definition":"n. 比例","pos":"n."},"percentage":{"phonetic":"/pərˈsentɪdʒ/","definition":"n. 百分比","pos":"n."},"figure":{"phonetic":"/ˈfɪɡər/","definition":"n. 数字；图表","pos":"n."},"statistic":{"phonetic":"/stəˈtɪstɪk/","definition":"n. 统计数据","pos":"n."},"increase":{"phonetic":"/ɪnˈkriːs/","definition":"n./v. 增加","pos":"n./v."},"decrease":{"phonetic":"/dɪˈkriːs/","definition":"n./v. 减少","pos":"n./v."},"rise":{"phonetic":"/raɪz/","definition":"n./v. 上升；增长","pos":"n./v."},"fall":{"phonetic":"/fɔːl/","definition":"n./v. 下降","pos":"n./v."},"growth":{"phonetic":"/ɡrəʊθ/","definition":"n. 增长；成长","pos":"n."},"decline":{"phonetic":"/dɪˈklaɪn/","definition":"n./v. 下降","pos":"n./v."},"change":{"phonetic":"/tʃeɪndʒ/","definition":"n./v. 变化","pos":"n./v."},"development":{"phonetic":"/dɪˈveləpmənt/","definition":"n. 发展","pos":"n."},"progress":{"phonetic":"/ˈprəʊɡres/","definition":"n./v. 进步","pos":"n./v."},"improvement":{"phonetic":"/ɪmˈpruːvmənt/","definition":"n. 改善","pos":"n."},"difference":{"phonetic":"/ˈdɪfərəns/","definition":"n. 差异","pos":"n."},"similarity":{"phonetic":"/ˌsɪmɪˈlærəti/","definition":"n. 相似","pos":"n."},"comparison":{"phonetic":"/kəmˈpærɪsən/","definition":"n. 比较","pos":"n."},"evidence":{"phonetic":"/ˈevɪdəns/","definition":"n. 证据","pos":"n."},"argument":{"phonetic":"/ˈɑːrɡjumənt/","definition":"n. 论点；争论","pos":"n."},"view":{"phonetic":"/vjuː/","definition":"n. 观点；景色","pos":"n."},"perspective":{"phonetic":"/pərˈspektɪv/","definition":"n. 视角","pos":"n."},"fact":{"phonetic":"/fækt/","definition":"n. 事实","pos":"n."},"truth":{"phonetic":"/truːθ/","definition":"n. 真相","pos":"n."},"belief":{"phonetic":"/bɪˈliːf/","definition":"n. 信念","pos":"n."},"idea":{"phonetic":"/aɪˈdɪə/","definition":"n. 想法","pos":"n."},"concept":{"phonetic":"/ˈkɒnsept/","definition":"n. 概念","pos":"n."},"term":{"phonetic":"/tɜːrm/","definition":"n. 术语","pos":"n."},"definition":{"phonetic":"/ˌdefɪˈnɪʃən/","definition":"n. 定义","pos":"n."},"meaning":{"phonetic":"/ˈmiːnɪŋ/","definition":"n. 意思","pos":"n."},"book":{"phonetic":"/bʊk/","definition":"n. 书","pos":"n."},"article":{"phonetic":"/ˈɑːrtɪkəl/","definition":"n. 文章","pos":"n."},"report":{"phonetic":"/rɪˈpɔːrt/","definition":"n. 报告","pos":"n."},"paper":{"phonetic":"/ˈpeɪpər/","definition":"n. 纸；论文","pos":"n."},"document":{"phonetic":"/ˈdɒkjumənt/","definition":"n. 文件","pos":"n."},"website":{"phonetic":"/ˈwebsaɪt/","definition":"n. 网站","pos":"n."},"internet":{"phonetic":"/ˈɪntərnet/","definition":"n. 互联网","pos":"n."},"technology":{"phonetic":"/tekˈnɒlədʒi/","definition":"n. 技术","pos":"n."},"computer":{"phonetic":"/kəmˈpjuːtər/","definition":"n. 电脑","pos":"n."},"phone":{"phonetic":"/fəʊn/","definition":"n. 电话","pos":"n."},"mobile":{"phonetic":"/ˈməʊbaɪl/","definition":"adj./n. 移动的；手机","pos":"adj./n."},"device":{"phonetic":"/dɪˈvaɪs/","definition":"n. 设备","pos":"n."},"equipment":{"phonetic":"/ɪˈkwɪpmənt/","definition":"n. 设备","pos":"n."},"tool":{"phonetic":"/tuːl/","definition":"n. 工具","pos":"n."},"machine":{"phonetic":"/məˈʃiːn/","definition":"n. 机器","pos":"n."},"vehicle":{"phonetic":"/ˈviːɪkəl/","definition":"n. 车辆","pos":"n."},"train":{"phonetic":"/treɪn/","definition":"n. 火车","pos":"n."},"flight":{"phonetic":"/flaɪt/","definition":"n. 航班","pos":"n."},"road":{"phonetic":"/rəʊd/","definition":"n. 道路","pos":"n."},"street":{"phonetic":"/striːt/","definition":"n. 街道","pos":"n."},"path":{"phonetic":"/pɑːθ/","definition":"n. 小路","pos":"n."},"direction":{"phonetic":"/dɪˈrekʃən/","definition":"n. 方向","pos":"n."},"north":{"phonetic":"/nɔːrθ/","definition":"n. 北方","pos":"n."},"south":{"phonetic":"/saʊθ/","definition":"n. 南方","pos":"n."},"east":{"phonetic":"/iːst/","definition":"n. 东方","pos":"n."},"west":{"phonetic":"/west/","definition":"n. 西方","pos":"n."},"left":{"phonetic":"/left/","definition":"n./adj. 左边","pos":"n./adj."},"right":{"phonetic":"/raɪt/","definition":"n./adj. 右边；正确的","pos":"n./adj."},"front":{"phonetic":"/frʌnt/","definition":"n./adj. 前面","pos":"n./adj."},"back":{"phonetic":"/bæk/","definition":"n./adj. 后面","pos":"n./adj."},"top":{"phonetic":"/tɒp/","definition":"n./adj. 顶部","pos":"n./adj."},"bottom":{"phonetic":"/ˈbɒtəm/","definition":"n./adj. 底部","pos":"n./adj."},"side":{"phonetic":"/saɪd/","definition":"n. 侧面","pos":"n."},"middle":{"phonetic":"/ˈmɪdəl/","definition":"n./adj. 中间","pos":"n./adj."},"center":{"phonetic":"/ˈsentər/","definition":"n. 中心","pos":"n."},"edge":{"phonetic":"/edʒ/","definition":"n. 边缘","pos":"n."},"entrance":{"phonetic":"/ˈentrəns/","definition":"n. 入口","pos":"n."},"exit":{"phonetic":"/ˈeksɪt/","definition":"n. 出口","pos":"n."},"corner":{"phonetic":"/ˈkɔːrnər/","definition":"n. 角落","pos":"n."},"sign":{"phonetic":"/saɪn/","definition":"n. 标志","pos":"n."},"signal":{"phonetic":"/ˈsɪɡnəl/","definition":"n. 信号","pos":"n."},"notice":{"phonetic":"/ˈnəʊtɪs/","definition":"n./v. 通知；注意","pos":"n./v."},"warning":{"phonetic":"/ˈwɔːrnɪŋ/","definition":"n. 警告","pos":"n."},"rule":{"phonetic":"/ruːl/","definition":"n. 规则","pos":"n."},"law":{"phonetic":"/lɔː/","definition":"n. 法律","pos":"n."},"regulation":{"phonetic":"/ˌreɡjuˈleɪʃən/","definition":"n. 规定","pos":"n."},"safety":{"phonetic":"/ˈseɪfti/","definition":"n. 安全","pos":"n."},"danger":{"phonetic":"/ˈdeɪndʒər/","definition":"n. 危险","pos":"n."},"risk":{"phonetic":"/rɪsk/","definition":"n. 风险","pos":"n."},"emergency":{"phonetic":"/ɪˈmɜːrdʒənsi/","definition":"n. 紧急情况","pos":"n."},"accident":{"phonetic":"/ˈæksɪdənt/","definition":"n. 事故","pos":"n."},"crime":{"phonetic":"/kraɪm/","definition":"n. 犯罪","pos":"n."},"government":{"phonetic":"/ˈɡʌvərnmənt/","definition":"n. 政府","pos":"n."},"education":{"phonetic":"/ˌedʒuˈkeɪʃən/","definition":"n. 教育","pos":"n."},"employment":{"phonetic":"/ɪmˈplɔɪmənt/","definition":"n. 就业","pos":"n."},"unemployment":{"phonetic":"/ˌʌnɪmˈplɔɪmənt/","definition":"n. 失业","pos":"n."},"tax":{"phonetic":"/tæks/","definition":"n. 税","pos":"n."},"investment":{"phonetic":"/ɪnˈvestmənt/","definition":"n. 投资","pos":"n."},"profit":{"phonetic":"/ˈprɒfɪt/","definition":"n. 利润","pos":"n."},"loss":{"phonetic":"/lɒs/","definition":"n. 损失","pos":"n."},"demand":{"phonetic":"/dɪˈmɑːnd/","definition":"n./v. 需求","pos":"n./v."},"supply":{"phonetic":"/səˈplaɪ/","definition":"n./v. 供给","pos":"n./v."},"manufacturing":{"phonetic":"/ˌmænjuˈfæktʃərɪŋ/","definition":"n. 制造业","pos":"n."}};
-
+// ============ DICTIONARY ============
 function lookupWord(word) {
     word = word.toLowerCase();
     var cache = getVocabCache();
@@ -382,42 +436,199 @@ var wrongFilterTest = 'all';
 var wrongRedoMode = false;
 var wrongRedoAnswers = {};
 var progressDetailKey = null;
+var weaknessTab = 'overview';
+var calMonthOffset = 0;
 
-// ============ PRONUNCIATION ============
-function toggleSpeedMenu(e) {
-    e.stopPropagation();
-    document.getElementById('speedMenu').classList.toggle('show');
+// Timer globals
+var timerInterval = null;
+var timerSeconds = 0;
+var timerTotal = 0;
+var timerPaused = false;
+var timerExpired = false;
+
+// ============ HELPERS ============
+function escHtml(s) { return String(s||'').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;'); }
+function formatTime(iso) { if (!iso) return ''; var d = new Date(iso); return (d.getMonth()+1) + '/' + d.getDate(); }
+function toast(msg) { var t = document.getElementById('toast'); t.textContent = msg; t.classList.add('show'); setTimeout(function() { t.classList.remove('show'); }, 1800); }
+
+// ============ TIMER ============
+var PART_TIMES = [8*60, 7*60, 8*60, 7*60];
+
+function startTimer() {
+    stopTimer();
+    timerPaused = false;
+    timerExpired = false;
+    timerTotal = PART_TIMES[currentPart] || 8*60;
+    timerSeconds = timerTotal;
+    updateTimerUI();
+    timerInterval = setInterval(timerTick, 1000);
 }
-document.addEventListener('click', function() { document.getElementById('speedMenu').classList.remove('show'); });
 
-function setSpeed(val, btn) {
-    pronSpeed = val;
-    document.getElementById('speedLabel').textContent = val + 'x';
-    document.querySelectorAll('#speedMenu button').forEach(function(b) { b.classList.remove('active'); });
-    btn.classList.add('active');
-    document.getElementById('speedMenu').classList.remove('show');
-    if (window.speechSynthesis) { window.speechSynthesis.cancel(); }
+function timerTick() {
+    if (timerPaused) return;
+    timerSeconds--;
+    updateTimerUI();
+    if (timerSeconds <= 0) {
+        stopTimer();
+        timerExpired = true;
+        if (!submitted) {
+            toast('Time is up! Auto-submitting...');
+            submitPart();
+        }
+    }
 }
 
-function speakWord(word, el) {
-    if (!window.speechSynthesis) return;
-    window.speechSynthesis.cancel();
-    var u = new SpeechSynthesisUtterance(word);
-    u.lang = 'en-US';
-    u.rate = pronSpeed;
-    if (el) el.classList.add('speaking');
-    u.onend = function() { if (el) el.classList.remove('speaking'); };
-    u.onerror = function() { if (el) el.classList.remove('speaking'); };
-    window.speechSynthesis.speak(u);
+function stopTimer() {
+    if (timerInterval) { clearInterval(timerInterval); timerInterval = null; }
 }
 
-function makeVocabClickable(text, sourceTest, qid) {
-    return text.replace(/([A-Za-z][a-z]{2,}|[A-Z]{2,})/g, function(match) {
-        var word = match.toLowerCase();
-        var escapedDbl = word.replace(/"/g, '&quot;');
-        var src = encodeURIComponent(sourceTest + '|Q' + qid);
-        return '<span class="vocab" data-word="' + escapedDbl + '" data-source="' + src + '">' + match + '<span class="pron-btn" data-pron="' + escapedDbl + '" onclick="event.stopPropagation();speakWord(this.dataset.pron,this);" title="Listen">&#x1F50A;</span></span>';
+function toggleTimerPause() {
+    timerPaused = !timerPaused;
+    updateTimerUI();
+}
+
+function updateTimerUI() {
+    var fill = document.getElementById('timerFill');
+    var display = document.getElementById('timerDisplay');
+    var btn = document.getElementById('timerPauseBtn');
+    if (!fill || !display) return;
+
+    var pct = timerTotal > 0 ? (timerSeconds / timerTotal * 100) : 0;
+    fill.style.width = pct + '%';
+    fill.className = 'timer-progress-fill';
+    display.className = 'timer-display';
+
+    var mins = Math.floor(timerSeconds / 60);
+    var secs = timerSeconds % 60;
+    display.textContent = mins + ':' + (secs < 10 ? '0' : '') + secs;
+
+    if (timerSeconds <= 30) {
+        fill.className += ' danger';
+        display.className += ' danger';
+    } else if (timerSeconds <= 120) {
+        fill.className += ' warning';
+        display.className += ' warning';
+    }
+    if (btn) btn.textContent = timerPaused ? '▶ Resume' : '⏸ Pause';
+}
+
+// ============ EXPLANATION GENERATOR ============
+function generateExplanation(q, partTitle, testKey) {
+    var type = q.type;
+    var answer = Array.isArray(q.answer) ? q.answer.join(', ') : q.answer;
+    var exp = { focus: '', correct: '', traps: [], keywords: [] };
+
+    switch(type) {
+        case 'note_completion':
+        case 'form_completion':
+        case 'table_completion':
+            exp.focus = '信息定位与拼写';
+            exp.correct = '正确答案 <span class="exp-answer">' + escHtml(answer) + '</span>，需在听力中定位到对应信息点并准确拼写。';
+            exp.traps = ['注意同义替换：题目措辞与听力原文通常不完全相同', '注意拼写陷阱：常见易错词如 double letter、silent letters'];
+            exp.keywords = [extractKeyword(q.question_text)];
+            break;
+        case 'multiple_choice':
+            exp.focus = '选项辨析与干扰排除';
+            exp.correct = '正确答案为 <span class="exp-answer">' + escHtml(answer) + '</span>。';
+            exp.traps = ['干扰选项常提到部分原文词汇但整体含义不符', '注意听力中说话人是否使用了否定或转折词（but, however, actually）', '选项顺序与听力中出现顺序可能不一致'];
+            exp.keywords = [extractKeyword(q.question_text)];
+            break;
+        case 'multiple_choice_multi':
+            exp.focus = '多选定位';
+            exp.correct = '正确答案为 <span class="exp-answer">' + escHtml(answer) + '</span>，需同时满足所有条件。';
+            exp.traps = ['多选题选项可能分散在不同段落，需持续关注', '排除已选过的选项，集中精力听剩余选项'];
+            exp.keywords = [extractKeyword(q.question_text)];
+            break;
+        case 'matching':
+            exp.focus = '信息匹配';
+            exp.correct = '匹配答案为 <span class="exp-answer">' + escHtml(answer) + '</span>。';
+            exp.traps = ['匹配题通常按顺序出题，注意题干和选项的对应关系', '关键词在原文中可能被同义替换，不要期待听到完全相同的词'];
+            exp.keywords = [extractKeyword(q.question_text)];
+            break;
+        case 'map_labeling':
+            exp.focus = '地图方位判断';
+            exp.correct = '正确位置为 <span class="exp-answer">' + escHtml(answer) + '</span>。';
+            exp.traps = ['注意方位词：north/south/east/west, left/right, opposite, beside, between', '注意起点位置，通常从 entrance/gate 开始描述', '地图上已标注的地点可作为参照物'];
+            exp.keywords = [];
+            break;
+        case 'flowchart_completion':
+            exp.focus = '流程理解';
+            exp.correct = '正确答案 <span class="exp-answer">' + escHtml(answer) + '</span>。';
+            exp.traps = ['流程题按顺序推进，注意前后逻辑关系', '流程中的步骤可能使用顺序词：first, then, next, finally'];
+            exp.keywords = [extractKeyword(q.question_text)];
+            break;
+        default:
+            exp.focus = '常规理解';
+            exp.correct = '正确答案为 <span class="exp-answer">' + escHtml(answer) + '</span>。';
+            exp.traps = ['仔细审题，注意题目要求'];
+            exp.keywords = [];
+    }
+
+    var html = '<div class="explain-panel" id="exp_' + q.id + '">';
+    html += '<div><span class="exp-label">考察点：</span>' + exp.focus + '</div>';
+    html += '<div style="margin-top:4px">' + exp.correct + '</div>';
+    if (exp.keywords.length > 0 && exp.keywords[0]) {
+        html += '<div style="margin-top:4px"><span class="exp-label">关键词：</span><span class="exp-keyword">' + escHtml(exp.keywords[0]) + '</span></div>';
+    }
+    html += '<div style="margin-top:6px"><span class="exp-label">注意：</span></div>';
+    exp.traps.forEach(function(t) {
+        html += '<div style="font-size:0.78rem;margin-left:16px;color:#555">\u2022 ' + t + '</div>';
     });
+    html += '</div>';
+    return html;
+}
+
+function extractKeyword(text) {
+    var words = (text || '').replace(/[^\w\s]/g, ' ').split(/\s+/).filter(function(w) { return w.length >= 4; });
+    return words[0] || '';
+}
+
+function toggleExplain(qid) {
+    var panel = document.getElementById('exp_' + qid);
+    if (panel) panel.classList.toggle('show');
+}
+
+// ============ TRANSCRIPT GENERATOR ============
+function generateTranscript(testKey, partIdx) {
+    var test = ALL_TESTS[testKey];
+    if (!test) return '<p>Transcript data being collected...</p>';
+    var part = test.parts[partIdx];
+    if (!part) return '<p>Transcript data being collected...</p>';
+
+    var html = '<div style="color:#7c3aed;font-weight:600;margin-bottom:8px">Transcript \u2013 ' + test.title + ', Part ' + part.part + ': ' + part.title + '</div>';
+    html += '<div style="font-size:0.75rem;color:#999;margin-bottom:12px">\u26A0 Transcript data is being collected. Below are key sentence references matching each question.</div>';
+
+    part.questions.forEach(function(q, i) {
+        var ans = Array.isArray(q.answer) ? q.answer.join(', ') : q.answer;
+        var keySentence = generateKeySentence(q, ans);
+        html += '<div style="margin-bottom:10px;padding:8px 12px;background:#fff;border-radius:6px;border-left:3px solid #ddd6fe">';
+        html += '<span class="transcript-qmarker">Q' + q.id + '</span>';
+        html += keySentence;
+        html += '</div>';
+    });
+    return html;
+}
+
+function generateKeySentence(q, answer) {
+    var qText = q.question_text.replace(/<[^>]*>/g, '').substring(0, 80);
+    var type = q.type;
+    if (type === 'note_completion' || type === 'form_completion' || type === 'table_completion') {
+        return '"...you will hear <span class="transcript-key">' + escHtml(answer) + '</span> in the context of ' + escHtml(qText) + '..."';
+    }
+    if (type === 'map_labeling') {
+        return '"...the <span class="transcript-key">' + escHtml(answer) + '</span> is mentioned in relation to ' + escHtml(qText) + '..."';
+    }
+    return '"...listen for the phrase related to "' + escHtml(qText) + '" where the answer is <span class="transcript-key">' + escHtml(answer) + '</span>..."';
+}
+
+function toggleTranscript(partIdx) {
+    var panel = document.getElementById('transcriptPanel' + partIdx);
+    if (panel.classList.contains('show')) {
+        panel.classList.remove('show');
+        return;
+    }
+    panel.innerHTML = generateTranscript(currentTestKey, partIdx);
+    panel.classList.add('show');
 }
 
 // ============ NAVIGATION ============
@@ -429,13 +640,14 @@ function switchPage(page) {
     currentPage = page;
     wrongRedoMode = false;
     wrongRedoAnswers = {};
+    stopTimer();
     document.querySelectorAll('.nav-item').forEach(function(n) { n.classList.toggle('active', n.dataset.page === page); });
     if (page === 'practice') renderPractice();
     else if (page === 'bookmarks') renderBookmarks();
     else if (page === 'vocab') { vocabPage = 1; vocabSelected = {}; renderVocabPanel(); }
     else if (page === 'writing') renderWriting();
     else if (page === 'wrongbook') { wrongFilterTest = 'all'; renderWrongBook(); }
-    else if (page === 'progress') { progressDetailKey = null; renderProgress(); }
+    else if (page === 'progress') { progressDetailKey = null; weaknessTab = 'overview'; renderProgress(); }
     else if (page === 'checkin') renderCheckin();
     updateNavCounts();
     document.getElementById('mainContainer').scrollIntoView({ behavior: 'smooth' });
@@ -472,7 +684,6 @@ function checkinToday() {
     if (s.dates[today]) return;
     s.dates[today] = true;
 
-    // Calculate streak
     var count = 0;
     var d = new Date();
     while (true) {
@@ -495,8 +706,9 @@ function renderCheckin() {
     var today = now.toISOString().slice(0, 10);
     var firstDay = new Date(year, month, 1).getDay();
     var daysInMonth = new Date(year, month + 1, 0).getDate();
+    calMonthOffset = 0;
 
-    var html = '<div class="panel"><div class="panel-header"><h2>&#x1F4C5; Daily Check-in</h2></div><div class="panel-body">';
+    var html = '<div class="panel"><div class="panel-header"><h2>📅 Daily Check-in</h2></div><div class="panel-body">';
 
     html += '<div class="streak-stats">';
     html += '<div class="streak-stat"><div class="ss-num">' + (s.current || 0) + '</div><div class="ss-label">Current Streak (days)</div></div>';
@@ -506,13 +718,13 @@ function renderCheckin() {
 
     html += '<div class="checkin-calendar">';
     html += '<div class="cal-header">';
-    html += '<button onclick="changeCalMonth(-1)">&#x2190;</button>';
+    html += '<button onclick="changeCalMonth(-1)">←</button>';
     var monthNames = ['January','February','March','April','May','June','July','August','September','October','November','December'];
-    html += '<h3>' + monthNames[month] + ' ' + year + '</h3>';
-    html += '<button onclick="changeCalMonth(1)">&#x2192;</button>';
+    html += '<h3 id="calMonthTitle">' + monthNames[month] + ' ' + year + '</h3>';
+    html += '<button onclick="changeCalMonth(1)">→</button>';
     html += '</div>';
 
-    html += '<div class="cal-grid">';
+    html += '<div class="cal-grid" id="calGrid">';
     ['Sun','Mon','Tue','Wed','Thu','Fri','Sat'].forEach(function(d) {
         html += '<div class="cal-day-header">' + d + '</div>';
     });
@@ -531,7 +743,6 @@ function renderCheckin() {
     document.getElementById('mainContainer').innerHTML = html;
 }
 
-var calMonthOffset = 0;
 function changeCalMonth(delta) {
     calMonthOffset += delta;
     var s = getStreak();
@@ -543,11 +754,11 @@ function changeCalMonth(delta) {
     var firstDay = target.getDay();
     var daysInMonth = new Date(year, month + 1, 0).getDate();
     var today = now.toISOString().slice(0, 10);
+    var monthNames = ['January','February','March','April','May','June','July','August','September','October','November','December'];
 
-    var html = '<h3>' + ['January','February','March','April','May','June','July','August','September','October','November','December'][month] + ' ' + year + '</h3>';
-    document.querySelector('.cal-header h3').outerHTML = html;
+    document.getElementById('calMonthTitle').textContent = monthNames[month] + ' ' + year;
 
-    var grid = document.querySelector('.cal-grid');
+    var grid = document.getElementById('calGrid');
     grid.innerHTML = '';
     ['Sun','Mon','Tue','Wed','Thu','Fri','Sat'].forEach(function(d) {
         grid.innerHTML += '<div class="cal-day-header">' + d + '</div>';
@@ -572,17 +783,11 @@ function renderPractice() {
     html += '</select>';
     html += '<label>Test:</label><select id="testSelect" onchange="onTestChange()">';
     [1,2,3,4].forEach(function(t) {
-        html += '<option value="' + t + '"' + (currentTestKey === currentTestKey.replace(/T\d$/, 'T'+t)?' selected':'') + '>Test ' + t + '</option>';
+        html += '<option value="' + t + '"' + (currentTestKey.slice(-1)==String(t)?' selected':'') + '>Test ' + t + '</option>';
     });
     html += '</select></div><div id="testContainer"></div>';
     document.getElementById('mainContainer').innerHTML = html;
 
-    // Fix test select
-    var ts = document.getElementById('testSelect');
-    if (ts) {
-        var curT = currentTestKey.slice(-1);
-        ts.value = curT;
-    }
     if (wrongRedoMode) renderWrongRedo();
     else renderTest();
 }
@@ -612,7 +817,16 @@ function renderTest() {
     var bm = getBookmarks();
 
     var html = '<div class="test-card"><div class="test-header"><div><h2>' + test.title + '</h2><div class="meta">' + test.parts.length + ' parts</div></div>';
-    html += '<button class="fav-filter" id="favFilterBtn" onclick="toggleFavFilter()">&#x2B50; Show Favorites Only</button></div>';
+    html += '<button class="fav-filter" id="favFilterBtn" onclick="toggleFavFilter()">⭐ Show Favorites Only</button></div>';
+
+    // Timer bar
+    html += '<div class="timer-bar-wrap"><div class="timer-bar-inner">';
+    html += '<span class="timer-label">⏱ Timer: Part ' + (currentPart+1) + '</span>';
+    html += '<div class="timer-progress-bg"><div class="timer-progress-fill" id="timerFill" style="width:100%"></div></div>';
+    html += '<span class="timer-display" id="timerDisplay">' + Math.floor(PART_TIMES[currentPart]/60) + ':00</span>';
+    html += '<button class="timer-btn" id="timerPauseBtn" onclick="toggleTimerPause()">⏸ Pause</button>';
+    html += '</div></div>';
+
     html += '<div class="part-tabs">';
     test.parts.forEach(function(p,i) {
         html += '<button class="part-tab' + (i===currentPart?' active':'') + '" onclick="switchPart(' + i + ')">Part ' + p.part + ': ' + p.title + '</button>';
@@ -627,7 +841,7 @@ function renderTest() {
         var qkey = currentTestKey + '_' + currentPart + '_' + q.id;
         var starred = !!bm[qkey];
         html += '<div class="question" data-qid="' + q.id + '" data-qkey="' + qkey + '">';
-        html += '<button class="star-btn' + (starred?' starred':'') + '" onclick="toggleStar(this, \'' + qkey + '\')" title="Bookmark">' + (starred?'&#x2605;':'&#x2606;') + '</button>';
+        html += '<button class="star-btn' + (starred?' starred':'') + '" onclick="toggleStar(this, \'' + qkey + '\')" title="Bookmark">' + (starred?'\u2605':'\u2606') + '</button>';
         html += '<div class="q-header"><div class="q-num">' + q.id + '</div>';
         html += '<div class="q-body"><div class="q-text">' + makeVocabClickable(q.question_text, currentTestKey + '|Part ' + part.part, q.id) + '</div></div>';
         html += '<span class="result-icon"></span></div>';
@@ -639,11 +853,15 @@ function renderTest() {
     html += '<button class="btn btn-clear" onclick="clearPart()">Clear</button>';
     html += '<button class="btn btn-show" onclick="showAnswers()">Show Answers</button>';
     html += '</div>';
-    html += '<div class="score-bar" id="scoreBar' + currentPart + '"><h3>Score for Part ' + part.part + '</h3><div class="score" id="scoreText' + currentPart + '"></div><span class="band-badge" id="bandBadge' + currentPart + '" style="display:none"></span></div>';
+    html += '<div class="score-bar" id="scoreBar' + currentPart + '"><h3>Score for Part ' + part.part + '</h3><div class="score" id="scoreText' + currentPart + '"></div><span class="band-badge" id="bandBadge' + currentPart + '" style="display:none"></span>';
+    html += '<div class="transcript-toggle" style="margin-top:8px"><button onclick="toggleTranscript(' + currentPart + ')">📜 View Transcript</button></div>';
+    html += '<div class="transcript-panel" id="transcriptPanel' + currentPart + '"></div></div>';
     html += '<div class="total-score" id="totalScoreBar"><h2>Overall Score (all 4 parts)</h2><div class="part-score-row" id="partScoreRow"></div><div class="big-score" id="totalScoreText"></div><span class="band-big" id="totalBandBadge" style="display:none"></span></div></div>';
 
     document.getElementById('testContainer').innerHTML = html;
     updateFavFilterBtn();
+    updateOverallScore();
+    startTimer();
 }
 
 function updateFavFilterBtn() {
@@ -657,7 +875,7 @@ function updateFavFilterBtn() {
             if (bm[currentTestKey + '_' + pi + '_' + q.id]) count++;
         });
     });
-    btn.textContent = btn.classList.contains('active') ? ('&#x2B50; Show All (' + count + ' starred)') : ('&#x2B50; Show Favorites Only (' + count + ')');
+    btn.textContent = btn.classList.contains('active') ? ('⭐ Show All (' + count + ' starred)') : ('⭐ Show Favorites Only (' + count + ')');
 }
 
 function toggleFavFilter() {
@@ -673,12 +891,12 @@ function toggleStar(btn, qkey) {
     if (bm[qkey]) {
         delete bm[qkey];
         btn.classList.remove('starred');
-        btn.innerHTML = '&#x2606;';
+        btn.innerHTML = '\u2606';
         toast('Removed from favorites');
     } else {
         bm[qkey] = true;
         btn.classList.add('starred');
-        btn.innerHTML = '&#x2605;';
+        btn.innerHTML = '\u2605';
         toast('Added to favorites!');
     }
     setBookmarks(bm);
@@ -713,7 +931,13 @@ function renderQuestionInput(q) {
     return '<input type="text" id="q_' + qid + '" placeholder="Type your answer..." autocomplete="off">';
 }
 
-function switchPart(idx) { currentPart = idx; renderTest(); }
+function switchPart(idx) {
+    currentPart = idx;
+    submitted = false;
+    stopTimer();
+    timerExpired = false;
+    renderTest();
+}
 
 function getUserAnswer(q) {
     var qid = String(q.id);
@@ -771,12 +995,14 @@ function getBandScore(correct) {
 
 function submitPart() {
     if (submitted) return;
+    stopTimer();
     var test = ALL_TESTS[currentTestKey];
     var part = test.parts[currentPart];
     var questions = document.querySelectorAll('.part-content .question');
     var correct = 0;
     var total = 0;
     var wrongEntries = [];
+    var questionResults = [];
 
     part.questions.forEach(function(q, i) {
         total++;
@@ -797,6 +1023,7 @@ function submitPart() {
                 time: new Date().toISOString()
             });
         }
+        questionResults.push({ q: q, isCorrect: isCorrect, userAns: userAns, idx: i });
         var qb = questions[i];
         if (qb) {
             qb.classList.add(isCorrect ? 'answered-correct' : 'answered-wrong');
@@ -812,7 +1039,6 @@ function submitPart() {
     if (wrongEntries.length > 0) {
         var wb = getWrongBook();
         wrongEntries.forEach(function(we) {
-            // Check duplicate
             var dup = wb.find(function(w) {
                 return w.testKey === we.testKey && w.partIdx === we.partIdx && w.qid === we.qid;
             });
@@ -824,11 +1050,8 @@ function submitPart() {
     if (!partScores[currentTestKey]) partScores[currentTestKey] = {};
     partScores[currentTestKey][currentPart] = { correct: correct, total: total, time: new Date().toISOString() };
     setPartScores(partScores);
-
-    // Save progress
     saveProgress(currentTestKey);
-
-    // Auto check-in
+    updateWeakness();
     checkinToday();
 
     submitted = true;
@@ -839,6 +1062,21 @@ function submitPart() {
     var badge = document.getElementById('bandBadge' + currentPart);
     badge.style.display = 'inline-block';
     badge.textContent = 'Band ' + band.toFixed(1);
+
+    // Add explanation buttons to wrong questions
+    questionResults.forEach(function(r) {
+        if (r.isCorrect) return;
+        var qb = questions[r.idx];
+        if (!qb) return;
+        if (qb.querySelector('.explain-toggle')) return;
+        var expHtml = '<button class="explain-toggle" onclick="toggleExplain(' + r.q.id + ')">🔍 Explain</button>';
+        expHtml += generateExplanation(r.q, currentTestKey + ' Part ' + (currentPart+1), currentTestKey);
+        var inputDiv = qb.querySelector('.q-input');
+        if (inputDiv) {
+            inputDiv.insertAdjacentHTML('beforeend', expHtml);
+        }
+    });
+
     updateOverallScore();
     updateNavCounts();
 }
@@ -872,6 +1110,7 @@ function updateOverallScore() {
         else { allSubmitted = false; }
     }
     var ts = document.getElementById('totalScoreBar');
+    if (!ts) return;
     if (totalQ === 0) { ts.style.display = 'none'; return; }
     ts.style.display = 'block';
     var row = document.getElementById('partScoreRow');
@@ -895,14 +1134,20 @@ function updateOverallScore() {
 }
 
 function clearPart() {
+    stopTimer();
     var inputs = document.querySelectorAll('.part-content input');
     inputs.forEach(function(inp) {
         if (inp.type === 'checkbox' || inp.type === 'radio') inp.checked = false;
         else inp.value = '';
     });
-    document.getElementById('scoreBar' + currentPart).style.display = 'none';
-    document.getElementById('bandBadge' + currentPart).style.display = 'none';
+    var sb = document.getElementById('scoreBar' + currentPart);
+    if (sb) sb.style.display = 'none';
+    var bb = document.getElementById('bandBadge' + currentPart);
+    if (bb) bb.style.display = 'none';
+    var tp = document.getElementById('transcriptPanel' + currentPart);
+    if (tp) { tp.classList.remove('show'); tp.innerHTML = ''; }
     submitted = false;
+    timerExpired = false;
     var questions = document.querySelectorAll('.part-content .question');
     questions.forEach(function(qb) {
         qb.classList.remove('answered-correct', 'answered-wrong');
@@ -910,10 +1155,15 @@ function clearPart() {
         if (icon) { icon.textContent = ''; icon.className = 'result-icon'; }
         var info = qb.querySelector('.answer-info');
         if (info) info.remove();
+        var expTog = qb.querySelector('.explain-toggle');
+        if (expTog) expTog.remove();
+        var expPanel = qb.querySelector('.explain-panel');
+        if (expPanel) expPanel.remove();
     });
     if (partScores[currentTestKey]) delete partScores[currentTestKey][currentPart];
     saveProgress(currentTestKey);
     updateOverallScore();
+    startTimer();
 }
 
 function showAnswers() {
@@ -928,27 +1178,358 @@ function showAnswers() {
         if (info) info.remove();
         info = document.createElement('span');
         info.className = 'answer-info';
-        var ans = Array.isArray(q.answer) ? q.answer.join(', ') : q.answer;
         info.style.cssText = 'font-size:0.8rem;color:#059669;font-weight:600;margin-left:8px;white-space:nowrap;';
+        var ans = Array.isArray(q.answer) ? q.answer.join(', ') : q.answer;
         info.textContent = 'Answer: ' + ans;
         header.appendChild(info);
     });
 }
 
+// ============ WEAKNESS ANALYSIS ============
+var ALL_TYPES = ['note_completion','table_completion','form_completion','multiple_choice','multiple_choice_multi','matching','map_labeling','flowchart_completion'];
+var TYPE_NAMES = {
+    'note_completion':'Note Completion',
+    'table_completion':'Table Completion',
+    'form_completion':'Form Completion',
+    'multiple_choice':'Multiple Choice',
+    'multiple_choice_multi':'Multi Choice',
+    'matching':'Matching',
+    'map_labeling':'Map Labeling',
+    'flowchart_completion':'Flowchart'
+};
+
+function updateWeakness() {
+    var scores = partScores;
+    var stats = {};
+    ALL_TYPES.forEach(function(t) { stats[t] = { correct: 0, total: 0 }; });
+
+    Object.keys(ALL_TESTS).forEach(function(tk) {
+        var test = ALL_TESTS[tk];
+        var testScores = scores[tk] || {};
+        test.parts.forEach(function(p, pi) {
+            var ps = testScores[pi];
+            p.questions.forEach(function(q) {
+                var type = q.type;
+                if (!stats[type]) stats[type] = { correct: 0, total: 0 };
+                stats[type].total++;
+                if (ps && ps.total > 0) {
+                    var ratio = ps.correct / ps.total;
+                    stats[type].correct += ratio;
+                }
+            });
+        });
+    });
+
+    Object.keys(stats).forEach(function(t) {
+        stats[t].correct = Math.round(stats[t].correct);
+    });
+    setWeakness(stats);
+}
+
+function computeWeakness() {
+    var weakness = getWeakness();
+    if (Object.keys(weakness).length === 0) {
+        updateWeakness();
+        weakness = getWeakness();
+    }
+    return weakness;
+}
+
+function renderWeaknessAnalysis() {
+    var weakness = computeWeakness();
+    var html = '';
+
+    if (weaknessTab === 'overview') {
+        var entries = [];
+        Object.keys(weakness).forEach(function(t) {
+            var s = weakness[t];
+            if (s.total > 0) entries.push({ type: t, name: TYPE_NAMES[t], pct: Math.round(s.correct/s.total*100), correct: s.correct, total: s.total });
+        });
+        entries.sort(function(a,b) { return a.pct - b.pct; });
+
+        entries.forEach(function(e) {
+            var color = e.pct >= 80 ? '#059669' : (e.pct >= 60 ? '#d97706' : '#dc2626');
+            var bgClass = e.pct < 50 ? ' weakest' : '';
+            html += '<div class="weakness-item' + bgClass + '">';
+            html += '<span class="weakness-name">' + e.name + '</span>';
+            html += '<div class="weakness-bar-bg"><div class="weakness-bar-fill" style="width:' + e.pct + '%;background:' + color + '"></div></div>';
+            html += '<span class="weakness-pct" style="color:' + color + '">' + e.pct + '%</span>';
+            html += '</div>';
+        });
+
+        var weakest = entries.slice(0, 3);
+        if (weakest.length > 0) {
+            html += '<div class="weakness-suggestion"><h4>🎯 Focus Areas</h4><ul>';
+            weakest.forEach(function(w) {
+                html += '<li><strong>' + w.name + '</strong> (' + w.pct + '%): ' + getSuggestion(w.type) + '</li>';
+            });
+            html += '</ul></div>';
+        }
+    } else {
+        html += '<div class="radar-wrap">' + renderRadarChart(weakness) + '</div>';
+    }
+
+    return html;
+}
+
+function getSuggestion(type) {
+    var tips = {
+        'note_completion': 'Practice predicting answers before listening. Focus on word limits and spelling.',
+        'table_completion': 'Scan the table layout first to understand the structure. Listen for sequential information.',
+        'form_completion': 'Focus on standard form fields (names, dates, numbers). Practice common form vocabulary.',
+        'multiple_choice': 'Read all options before listening. Eliminate wrong answers as you listen. Watch for distractors.',
+        'multiple_choice_multi': 'Keep track of multiple correct options. Use elimination strategy.',
+        'matching': 'Preview all options first. Listen for paraphrases and synonyms rather than exact words.',
+        'map_labeling': 'Study the map layout first. Know directional vocabulary. Follow the speaker\'s path from the start point.',
+        'flowchart_completion': 'Understand the process flow before listening. Listen for sequencing words and logical connections.'
+    };
+    return tips[type] || 'Practice regularly with timed exercises and review your mistakes.';
+}
+
+function renderRadarChart(weakness) {
+    var entries = [];
+    ALL_TYPES.forEach(function(t) {
+        var s = weakness[t] || { correct: 0, total: 0 };
+        var pct = s.total > 0 ? s.correct / s.total : 0;
+        entries.push({ name: TYPE_NAMES[t].substring(0,8), pct: pct });
+    });
+
+    var cx = 150, cy = 150, r = 120;
+    var n = entries.length;
+    var svg = '<svg width="300" height="300" viewBox="0 0 300 300">';
+
+    [0.25, 0.5, 0.75, 1].forEach(function(scale) {
+        var pts = [];
+        for (var i = 0; i < n; i++) {
+            var angle = (Math.PI * 2 / n) * i - Math.PI / 2;
+            pts.push((cx + r * scale * Math.cos(angle)).toFixed(1) + ',' + (cy + r * scale * Math.sin(angle)).toFixed(1));
+        }
+        svg += '<polygon points="' + pts.join(' ') + '" fill="none" stroke="#e5e7eb" stroke-width="1"/>';
+    });
+
+    for (var i = 0; i < n; i++) {
+        var angle = (Math.PI * 2 / n) * i - Math.PI / 2;
+        svg += '<line x1="' + cx + '" y1="' + cy + '" x2="' + (cx + r * Math.cos(angle)).toFixed(1) + '" y2="' + (cy + r * Math.sin(angle)).toFixed(1) + '" stroke="#e5e7eb" stroke-width="1"/>';
+    }
+
+    var dataPts = [];
+    for (var i = 0; i < n; i++) {
+        var angle = (Math.PI * 2 / n) * i - Math.PI / 2;
+        var val = Math.max(0.05, entries[i].pct);
+        dataPts.push((cx + r * val * Math.cos(angle)).toFixed(1) + ',' + (cy + r * val * Math.sin(angle)).toFixed(1));
+    }
+    svg += '<polygon points="' + dataPts.join(' ') + '" fill="rgba(15,52,96,0.15)" stroke="#0f3460" stroke-width="2"/>';
+
+    for (var i = 0; i < n; i++) {
+        var angle = (Math.PI * 2 / n) * i - Math.PI / 2;
+        var val = Math.max(0.05, entries[i].pct);
+        var x = (cx + r * val * Math.cos(angle)).toFixed(1);
+        var y = (cy + r * val * Math.sin(angle)).toFixed(1);
+        svg += '<circle cx="' + x + '" cy="' + y + '" r="4" fill="#0f3460"/>';
+    }
+
+    for (var i = 0; i < n; i++) {
+        var angle = (Math.PI * 2 / n) * i - Math.PI / 2;
+        var lx = (cx + (r + 20) * Math.cos(angle)).toFixed(1);
+        var ly = (cy + (r + 20) * Math.sin(angle)).toFixed(1);
+        svg += '<text x="' + lx + '" y="' + ly + '" text-anchor="middle" dominant-baseline="middle" font-size="8" fill="#666">' + entries[i].name + '</text>';
+    }
+
+    svg += '</svg>';
+    return svg;
+}
+
+// ============ REPORT EXPORT ============
+function exportReport() {
+    var p = getProgress();
+    var weakness = computeWeakness();
+    var wb = getWrongBook();
+    var vocab = getVocab();
+    var s = getStreak();
+    var testKeys = Object.keys(ALL_TESTS).sort();
+
+    var completed = testKeys.filter(function(k) { return p[k] && p[k].complete; }).length;
+    var allBands = testKeys.map(function(k) { return p[k] ? p[k].band : 0; }).filter(function(b) { return b > 0; });
+    var avgBand = allBands.length > 0 ? (allBands.reduce(function(a,b){return a+b;},0) / allBands.length).toFixed(1) : '-';
+
+    var totalCorrect = 0, totalQuestions = 0;
+    testKeys.forEach(function(k) { if (p[k]) { totalCorrect += p[k].totalCorrect; totalQuestions += p[k].totalQuestions; } });
+
+    var report = '<!DOCTYPE html><html><head><meta charset="UTF-8"><title>IELTS Learning Report</title><style>';
+    report += 'body{font-family:-apple-system,BlinkMacSystemFont,Segoe UI,Roboto,sans-serif;max-width:800px;margin:0 auto;padding:30px;color:#333;background:#fff}';
+    report += 'h1{color:#0f3460;border-bottom:3px solid #0f3460;padding-bottom:10px}';
+    report += 'h2{color:#0f3460;margin-top:24px}';
+    report += 'table{width:100%;border-collapse:collapse;margin:12px 0}';
+    report += 'th,td{padding:10px 14px;border:1px solid #e5e7eb;text-align:left;font-size:0.9rem}';
+    report += 'th{background:#f0f4ff;font-weight:600}';
+    report += '.stat-row{display:flex;gap:16px;flex-wrap:wrap;margin:16px 0}';
+    report += '.stat-box{flex:1;min-width:140px;background:#f8f9fb;border-radius:10px;padding:16px;text-align:center;border:1px solid #e5e7eb}';
+    report += '.stat-box .num{font-size:1.8rem;font-weight:700;color:#0f3460}';
+    report += '.stat-box .label{font-size:0.8rem;color:#888}';
+    report += '.good{color:#059669}.warn{color:#d97706}.bad{color:#dc2626}';
+    report += '.footer{text-align:center;color:#bbb;font-size:0.8rem;margin-top:30px;padding-top:16px;border-top:1px solid #e5e7eb}';
+    report += 'li{margin:4px 0;font-size:0.9rem}';
+    report += '@media print{body{padding:20px}}';
+    report += '</style></head><body>';
+
+    report += '<h1>🎧 IELTS Listening Practice Report</h1>';
+    report += '<p>Generated: ' + new Date().toLocaleDateString('en-US', {weekday:'long',year:'numeric',month:'long',day:'numeric'}) + '</p>';
+
+    report += '<div class="stat-row">';
+    report += '<div class="stat-box"><div class="num">' + completed + '/12</div><div class="label">Tests Completed</div></div>';
+    report += '<div class="stat-box"><div class="num">' + avgBand + '</div><div class="label">Average Band Score</div></div>';
+    report += '<div class="stat-box"><div class="num">' + totalCorrect + '/' + totalQuestions + '</div><div class="label">Total Correct</div></div>';
+    report += '<div class="stat-box"><div class="num">' + wb.length + '</div><div class="label">Wrong Answers</div></div>';
+    report += '<div class="stat-box"><div class="num">' + vocab.length + '</div><div class="label">Vocabulary Words</div></div>';
+    report += '<div class="stat-box"><div class="num">' + (s.current||0) + '</div><div class="label">Day Streak</div></div>';
+    report += '</div>';
+
+    report += '<h2>Test Results</h2><table><tr><th>Test</th><th>Status</th><th>Parts Done</th><th>Correct</th><th>Band Score</th></tr>';
+    testKeys.forEach(function(k) {
+        var d = p[k] || {};
+        var cls = d.band >= 7 ? 'good' : (d.band >= 5.5 ? 'warn' : 'bad');
+        report += '<tr><td>' + ALL_TESTS[k].title + '</td>';
+        report += '<td>' + (d.complete ? 'Completed' : (d.partsDone>0 ? 'In Progress' : 'Not Started')) + '</td>';
+        report += '<td>' + (d.partsDone||0) + '/4</td>';
+        report += '<td>' + (d.totalCorrect||0) + '/' + (d.totalQuestions||0) + '</td>';
+        report += '<td class="' + cls + '">' + (d.band>0 ? d.band.toFixed(1) : '-') + '</td></tr>';
+    });
+    report += '</table>';
+
+    report += '<h2>Weakness Analysis</h2><table><tr><th>Question Type</th><th>Correct</th><th>Accuracy</th></tr>';
+    var wentries = [];
+    Object.keys(weakness).forEach(function(t) {
+        var s = weakness[t];
+        if (s.total > 0) wentries.push({ name: TYPE_NAMES[t], correct: s.correct, total: s.total, pct: Math.round(s.correct/s.total*100), type: t });
+    });
+    wentries.sort(function(a,b) { return a.pct - b.pct; });
+    wentries.forEach(function(e) {
+        var cls = e.pct >= 80 ? 'good' : (e.pct >= 60 ? 'warn' : 'bad');
+        report += '<tr><td>' + e.name + '</td><td>' + e.correct + '/' + e.total + '</td><td class="' + cls + '">' + e.pct + '%</td></tr>';
+    });
+    report += '</table>';
+
+    if (wentries.length >= 3) {
+        report += '<h3>Top 3 Weak Areas</h3><ul>';
+        wentries.slice(0,3).forEach(function(w) {
+            report += '<li><strong>' + w.name + '</strong>: ' + w.pct + '% - ' + getSuggestion(w.type) + '</li>';
+        });
+        report += '</ul>';
+    }
+
+    report += '<h2>Check-in Summary</h2><p>Current Streak: <strong>' + (s.current||0) + ' days</strong> | Longest Streak: <strong>' + (s.longest||0) + ' days</strong> | Total Check-ins: <strong>' + Object.keys(s.dates||{}).length + '</strong></p>';
+
+    report += '<div class="footer">Generated by IELTS Listening Practice Tool | ' + new Date().toISOString().slice(0,10) + '</div>';
+    report += '</body></html>';
+
+    var blob = new Blob([report], { type: 'text/html;charset=utf-8;' });
+    var url = URL.createObjectURL(blob);
+    var a = document.createElement('a');
+    a.href = url;
+    a.download = 'ielts_report_' + new Date().toISOString().slice(0,10) + '.html';
+    a.click();
+    URL.revokeObjectURL(url);
+    toast('Report exported!');
+}
+
+// ============ PROGRESS PAGE ============
+function renderProgress() {
+    var p = getProgress();
+    var testKeys = Object.keys(ALL_TESTS).sort();
+    var html = '<div class="panel"><div class="panel-header"><h2>📊 Learning Progress</h2></div><div class="panel-body">';
+
+    html += '<div class="progress-grid">';
+    testKeys.forEach(function(k) {
+        var d = p[k] || {};
+        var cls = 'progress-cell';
+        var bandText = '-';
+        var statusText = 'Not started';
+        if (d.complete) { cls += ' completed'; bandText = d.band.toFixed(1); statusText = 'Completed'; }
+        else if (d.partsDone > 0) { cls += ' partial'; bandText = d.band > 0 ? d.band.toFixed(1) : '-'; statusText = d.partsDone + '/4 done'; }
+        html += '<div class="' + cls + '" onclick="showProgressDetail(\'' + k + '\')">';
+        html += '<div class="pc-label">' + ALL_TESTS[k].title + '</div>';
+        html += '<div class="pc-band">' + bandText + '</div>';
+        html += '<div class="pc-status">' + statusText + '</div></div>';
+    });
+    html += '</div>';
+
+    // Export button
+    html += '<div style="margin-bottom:16px">';
+    html += '<button class="report-btn" onclick="exportReport()">📄 Export Learning Report</button>';
+    html += '</div>';
+
+    // Weakness analysis section
+    html += '<div style="background:#fff;border-radius:12px;box-shadow:0 1px 6px rgba(0,0,0,0.06);padding:20px;margin-top:16px">';
+    html += '<h3 style="color:#0f3460;margin-bottom:12px">🎯 Weakness Analysis</h3>';
+    html += '<div class="weakness-tabs">';
+    html += '<button class="weakness-tab' + (weaknessTab==='overview'?' active':'') + '" onclick="weaknessTab=\'overview\';renderProgress();">📊 Overview</button>';
+    html += '<button class="weakness-tab' + (weaknessTab==='radar'?' active':'') + '" onclick="weaknessTab=\'radar\';renderProgress();">🕸 Radar Chart</button>';
+    html += '</div>';
+    html += renderWeaknessAnalysis();
+    html += '</div>';
+
+    // Progress detail
+    if (progressDetailKey && p[progressDetailKey]) {
+        var d = p[progressDetailKey];
+        html += '<div class="progress-detail"><h3>' + ALL_TESTS[progressDetailKey].title + '</h3>';
+        html += '<div class="progress-detail-row"><span>Parts Completed</span><span class="pd-score">' + (d.partsDone||0) + '/4</span></div>';
+        html += '<div class="progress-detail-row"><span>Total Correct</span><span class="pd-score">' + (d.totalCorrect||0) + '/' + (d.totalQuestions||0) + '</span></div>';
+        html += '<div class="progress-detail-row"><span>Band Score</span><span class="pd-score">' + (d.band > 0 ? d.band.toFixed(1) : '-') + '</span></div>';
+        html += '<div class="progress-detail-row"><span>Last Updated</span><span class="pd-miss">' + new Date(d.lastUpdate).toLocaleDateString() + '</span></div>';
+
+        var scores = partScores[progressDetailKey] || {};
+        html += '<h3 style="margin-top:16px">Part Scores</h3>';
+        for (var p = 0; p < 4; p++) {
+            var s = scores[p];
+            if (s) {
+                html += '<div class="progress-detail-row"><span>Part ' + (p+1) + '</span><span class="pd-score">' + s.correct + '/' + s.total + ' (Band ' + getBandScore(s.correct).toFixed(1) + ')</span></div>';
+            } else {
+                html += '<div class="progress-detail-row"><span>Part ' + (p+1) + '</span><span class="pd-miss">Not submitted</span></div>';
+            }
+        }
+        html += '</div>';
+
+        // Bar chart
+        html += '<div class="bar-chart">';
+        var barData = [];
+        for (var p = 0; p < 4; p++) {
+            var s = scores[p];
+            if (s) barData.push({ label: 'Part'+(p+1), val: s.correct, max: s.total });
+            else barData.push({ label: 'Part'+(p+1), val: 0, max: 10 });
+        }
+        var maxH = 140;
+        barData.forEach(function(bd) {
+            var h = bd.max > 0 ? (bd.val / bd.max) * maxH : 0;
+            var color = bd.val / bd.max >= 0.7 ? '#059669' : (bd.val / bd.max >= 0.5 ? '#d97706' : '#dc2626');
+            html += '<div class="bar-col"><div class="bar-fill" style="height:' + h + 'px;background:' + color + '"></div>';
+            html += '<div class="bar-value">' + bd.val + '/' + bd.max + '</div>';
+            html += '<div class="bar-label">' + bd.label + '</div></div>';
+        });
+        html += '</div>';
+    }
+
+    html += '</div></div>';
+    document.getElementById('mainContainer').innerHTML = html;
+}
+
+function showProgressDetail(key) {
+    progressDetailKey = key;
+    renderProgress();
+}
+
 // ============ WRONG BOOK ============
 function renderWrongBook() {
     var wb = getWrongBook();
-    var html = '<div class="panel"><div class="panel-header"><h2>&#x274C; Wrong Answer Book</h2>';
+    var html = '<div class="panel"><div class="panel-header"><h2>❌ Wrong Answer Book</h2>';
     html += '<div style="display:flex;gap:8px">';
     if (wb.length > 0) {
-        html += '<button class="btn-sm primary" onclick="startWrongRedo()">&#x1F504; Redo All Wrong</button>';
+        html += '<button class="btn-sm primary" onclick="startWrongRedo()">🔄 Redo All Wrong</button>';
     }
     html += '</div></div><div class="panel-body">';
 
     if (wb.length === 0) {
-        html += '<div class="wrong-empty"><div style="font-size:3rem">&#x1F389;</div><p>No wrong answers yet! Keep practicing.</p></div>';
+        html += '<div class="wrong-empty"><div style="font-size:3rem">🎉</div><p>No wrong answers yet! Keep practicing.</p></div>';
     } else {
-        // Filter
         var tests = [];
         wb.forEach(function(w) { if (tests.indexOf(w.testKey) === -1) tests.push(w.testKey); });
         tests.sort();
@@ -959,39 +1540,33 @@ function renderWrongBook() {
             html += '<option value="' + t + '"' + (wrongFilterTest===t?' selected':'') + '>' + ALL_TESTS[t].title + '</option>';
         });
         html += '</select>';
-        var selCount = document.querySelectorAll('.wrong-item input:checked').length;
-        if (selCount > 0) {
-            html += '<button class="btn-sm danger" onclick="batchDeleteWrong()">Delete Selected (' + selCount + ')</button>';
-        }
         html += '<button class="btn-sm danger" onclick="clearWrongBook()" style="margin-left:auto">Clear All</button>';
         html += '</div>';
 
         var filtered = wrongFilterTest === 'all' ? wb : wb.filter(function(w) { return w.testKey === wrongFilterTest; });
 
-        // Group by test key
         var groups = {};
-        filtered.forEach(function(w, idx) {
-            var gk = w.testKey;
-            if (!groups[gk]) groups[gk] = [];
-            groups[gk].push({ entry: w, idx: idx });
+        filtered.forEach(function(w) {
+            if (!groups[w.testKey]) groups[w.testKey] = [];
+            groups[w.testKey].push(w);
         });
 
         Object.keys(groups).sort().forEach(function(gk) {
             var items = groups[gk];
             html += '<div class="wrong-source-group">';
             html += '<div class="wrong-source-header" onclick="this.classList.toggle(\'open\');var el=this.nextElementSibling;el.style.display=el.style.display===\'none\'?\'block\':\'none\';">';
-            html += '<span>' + ALL_TESTS[gk].title + ' <span style="color:#888">(' + items.length + ' wrong)</span></span><span class="arrow">&#x25B6;</span></div>';
+            html += '<span>' + ALL_TESTS[gk].title + ' <span style="color:#888">(' + items.length + ' wrong)</span></span><span class="arrow">▶</span></div>';
             html += '<div class="wrong-items" style="display:block">';
-            items.forEach(function(item) {
-                var w = item.entry;
+            items.forEach(function(w, idx) {
+                var globalIdx = wb.indexOf(w);
                 var sourceLabel = w.testKey + ' | Part ' + (w.partIdx+1) + ': ' + w.partTitle + ' | Q' + w.qid;
                 html += '<div class="wrong-item">';
-                html += '<input type="checkbox" class="wrong-check" data-widx="' + item.idx + '" style="margin-right:8px">';
+                html += '<input type="checkbox" class="wrong-check" data-widx="' + globalIdx + '" style="margin-right:8px">';
                 html += '<span class="wi-q">' + escHtml(sourceLabel) + '</span><br>';
                 html += escHtml(w.question) + '<br>';
                 html += 'Your: <span class="wi-user">' + escHtml(w.userAnswer) + '</span> ';
                 html += 'Correct: <span class="wi-correct">' + escHtml(w.correctAnswer) + '</span>';
-                html += '<div class="wi-actions"><span class="wi-del" onclick="deleteWrongItem(' + item.idx + ')">&#x1F5D1; Delete</span></div>';
+                html += '<div class="wi-actions"><span class="wi-del" onclick="deleteWrongItem(' + globalIdx + ')">🗑 Delete</span></div>';
                 html += '</div>';
             });
             html += '</div></div>';
@@ -1007,19 +1582,6 @@ function deleteWrongItem(idx) {
     var wb = getWrongBook();
     wb.splice(idx, 1);
     setWrongBook(wb);
-    updateNavCounts();
-    renderWrongBook();
-}
-
-function batchDeleteWrong() {
-    var checks = document.querySelectorAll('.wrong-check:checked');
-    var indices = [];
-    checks.forEach(function(c) { indices.push(parseInt(c.dataset.widx)); });
-    indices.sort(function(a,b) { return b-a; });
-    var wb = getWrongBook();
-    indices.forEach(function(i) { wb.splice(i, 1); });
-    setWrongBook(wb);
-    toast('Deleted ' + indices.length + ' wrong entries');
     updateNavCounts();
     renderWrongBook();
 }
@@ -1040,7 +1602,6 @@ function startWrongRedo() {
     if (wb.length === 0) return;
     wrongRedoMode = true;
     wrongRedoAnswers = {};
-    // Group by test, then by part
     currentTestKey = wb[0].testKey;
     currentPart = wb[0].partIdx;
     switchPage('practice');
@@ -1051,19 +1612,13 @@ function renderWrongRedo() {
     var test = ALL_TESTS[currentTestKey];
     if (!test) return;
 
-    // Get wrong questions for current test+part
-    var partWrong = wb.filter(function(w) {
-        return w.testKey === currentTestKey && w.partIdx === currentPart;
-    });
-
-    // Build part tabs showing which parts have wrong questions
+    var partWrong = wb.filter(function(w) { return w.testKey === currentTestKey && w.partIdx === currentPart; });
     var testWrong = wb.filter(function(w) { return w.testKey === currentTestKey; });
     var partHasWrong = [false, false, false, false];
     testWrong.forEach(function(w) { partHasWrong[w.partIdx] = true; });
 
-    var bm = getBookmarks();
-    var html = '<div class="test-card"><div class="test-header"><div><h2>&#x1F504; Redo Mode: ' + test.title + '</h2><div class="meta">Wrong answers only</div></div>';
-    html += '<button class="btn-sm" onclick="wrongRedoMode=false;renderTest();" style="background:#fef2f2;color:#dc2626;border:1px solid #fca5a5">Exit Redo</button></div>';
+    var html = '<div class="test-card"><div class="test-header"><div><h2>🔄 Redo Mode: ' + test.title + '</h2><div class="meta">Wrong answers only</div></div>';
+    html += '<button class="btn-sm" onclick="wrongRedoMode=false;switchPage(\'practice\');" style="background:#fef2f2;color:#dc2626;border:1px solid #fca5a5">Exit Redo</button></div>';
 
     html += '<div class="part-tabs">';
     test.parts.forEach(function(p,i) {
@@ -1084,8 +1639,7 @@ function renderWrongRedo() {
             html += '<div class="q-header"><div class="q-num">' + w.qid + '</div>';
             html += '<div class="q-body"><div class="q-text">' + escHtml(w.question) + '</div></div>';
             html += '<span class="result-icon"></span></div>';
-            html += '<div class="q-input">' + renderRedoInput(w) + '</div>';
-            html += '</div>';
+            html += '<div class="q-input">' + renderRedoInput(w) + '</div></div>';
         });
 
         html += '<div class="btn-row">';
@@ -1121,18 +1675,13 @@ function renderRedoInput(w) {
     return '<input type="text" id="' + qid + '" placeholder="Type your answer..." autocomplete="off">';
 }
 
-function switchRedoPart(idx) {
-    currentPart = idx;
-    renderWrongRedo();
-}
+function switchRedoPart(idx) { currentPart = idx; renderWrongRedo(); }
 
 function submitWrongRedo() {
     var wb = getWrongBook();
-    var partWrong = wb.filter(function(w) {
-        return w.testKey === currentTestKey && w.partIdx === currentPart;
-    });
-
+    var partWrong = wb.filter(function(w) { return w.testKey === currentTestKey && w.partIdx === currentPart; });
     var toRemove = [];
+
     partWrong.forEach(function(w, wi) {
         var qid = 'wr_' + w.qid;
         var userAns = '';
@@ -1150,9 +1699,6 @@ function submitWrongRedo() {
         }
 
         var isCorrect = checkAnswerRedo(w, userAns);
-        var globalIdx = wb.indexOf(w);
-
-        // Find the question element
         var questions = document.querySelectorAll('.part-content .question');
         var qb = questions[wi];
         if (qb) {
@@ -1163,23 +1709,18 @@ function submitWrongRedo() {
                 icon.className = 'result-icon ' + (isCorrect ? 'correct' : 'wrong');
             }
         }
-
-        if (isCorrect) toRemove.push(globalIdx);
+        if (isCorrect) toRemove.push(wb.indexOf(w));
     });
 
-    // Remove correct ones
     toRemove.sort(function(a,b) { return b-a; });
     toRemove.forEach(function(i) { wb.splice(i, 1); });
     setWrongBook(wb);
 
-    var removed = toRemove.length;
-    var remained = partWrong.length - removed;
-    toast('Correct: ' + removed + '/' + partWrong.length + (removed > 0 ? ' (' + remained + ' still wrong)' : ' - all cleared!'));
+    var remained = partWrong.length - toRemove.length;
+    toast('Correct: ' + toRemove.length + '/' + partWrong.length + (remained > 0 ? ' (' + remained + ' still wrong)' : ' - all cleared!'));
 
     updateNavCounts();
-    // Refresh
     if (wb.filter(function(w){return w.testKey===currentTestKey&&w.partIdx===currentPart;}).length === 0) {
-        // Move to next part with wrong answers
         for (var p = 0; p < 4; p++) {
             if (wb.filter(function(w){return w.testKey===currentTestKey&&w.partIdx===p;}).length > 0) {
                 currentPart = p;
@@ -1187,7 +1728,6 @@ function submitWrongRedo() {
                 return;
             }
         }
-        // No more wrong in this test
         wrongRedoMode = false;
         switchPage('wrongbook');
     } else {
@@ -1199,19 +1739,15 @@ function checkAnswerRedo(w, userAns) {
     var correct = w.correctAnswer;
     var ua = userAns.toLowerCase().trim().replace(/\s/g,'');
     var ca = correct.toLowerCase().trim().replace(/\s/g,'');
-    // Check alternatives separated by /
     if (ca.indexOf('/') !== -1) {
         return ca.split('/').map(function(s){return s.trim().replace(/\s/g,'');}).indexOf(ua) !== -1;
     }
-    // For comma-separated (multi-select)
     return ua === ca;
 }
 
 function showWrongAnswers() {
     var wb = getWrongBook();
-    var partWrong = wb.filter(function(w) {
-        return w.testKey === currentTestKey && w.partIdx === currentPart;
-    });
+    var partWrong = wb.filter(function(w) { return w.testKey === currentTestKey && w.partIdx === currentPart; });
     var questions = document.querySelectorAll('.part-content .question');
     partWrong.forEach(function(w, i) {
         var qb = questions[i];
@@ -1230,9 +1766,9 @@ function showWrongAnswers() {
 function renderBookmarks() {
     var bm = getBookmarks();
     var keys = Object.keys(bm);
-    var html = '<div class="panel"><div class="panel-header"><h2>&#x2B50; My Favorites</h2><span style="color:#888;font-size:0.85rem">' + keys.length + ' questions</span></div><div class="panel-body">';
+    var html = '<div class="panel"><div class="panel-header"><h2>⭐ My Favorites</h2><span style="color:#888;font-size:0.85rem">' + keys.length + ' questions</span></div><div class="panel-body">';
     if (keys.length === 0) {
-        html += '<p style="color:#999;text-align:center;padding:40px">No bookmarked questions yet. Click the &#x2606; next to any question to add it.</p>';
+        html += '<p style="color:#999;text-align:center;padding:40px">No bookmarked questions yet. Click the ☆ next to any question to add it.</p>';
     } else {
         keys.forEach(function(k) {
             var parts = k.split('_');
@@ -1246,10 +1782,10 @@ function renderBookmarks() {
             var q = part.questions.find(function(x) { return String(x.id) === qid; });
             if (!q) return;
             html += '<div class="question" style="position:relative">';
-            html += '<button class="star-btn starred" onclick="removeBookmark(\'' + k + '\')">&#x2605;</button>';
+            html += '<button class="star-btn starred" onclick="removeBookmark(\'' + k + '\')">★</button>';
             html += '<div class="q-header"><div class="q-num">' + q.id + '</div>';
             html += '<div class="q-body"><div class="q-text">' + q.question_text + '</div>';
-            html += '<div style="font-size:0.8rem;color:#888;margin-top:4px">' + test.title + ' &middot; Part ' + part.part + ': ' + part.title + '</div>';
+            html += '<div style="font-size:0.8rem;color:#888;margin-top:4px">' + test.title + ' · Part ' + part.part + ': ' + part.title + '</div>';
             html += '<div style="font-size:0.8rem;color:#059669;margin-top:2px">Answer: ' + (Array.isArray(q.answer)?q.answer.join(', '):q.answer) + '</div></div></div></div>';
         });
     }
@@ -1266,11 +1802,47 @@ function removeBookmark(key) {
     updateNavCounts();
 }
 
-// ============ VOCAB PAGE (click & double-click handlers) ============
+// ============ WRITING TEMPLATES ============
+function renderWriting() {
+    var html = '<div class="panel"><div class="panel-header"><h2>✏️ Writing Templates</h2></div><div class="panel-body">';
+    html += '<div class="template-card"><div class="step"><h4>Task 1: Graph/Chart Description</h4>';
+    html += '<p><em>Introduction:</em> The <em>[chart type]</em> illustrates/compares <em>[what + where + when]</em>.</p>';
+    html += '<p><em>Overview:</em> Overall, <em>[main trend]</em>. It is clear that <em>[key observation]</em>.</p>';
+    html += '<p><em>Body 1:</em> Looking at <em>[category A]</em> in more detail, <em>[data + trend]</em>.</p>';
+    html += '<p><em>Body 2:</em> In contrast/Turning to <em>[category B]</em>, <em>[data + trend]</em>.</p></div></div>';
+
+    html += '<div class="template-card"><div class="step"><h4>Task 2: Opinion Essay</h4>';
+    html += '<p><em>Introduction:</em> <em>[Paraphrase question]</em>. While <em>[one view]</em>, I believe <em>[your position]</em>.</p>';
+    html += '<p><em>Body 1:</em> <strong>On the one hand,</strong> <em>[argument / reason]</em>. For example, <em>[example]</em>. Furthermore, <em>[supporting detail]</em>.</p>';
+    html += '<p><em>Body 2:</em> <strong>On the other hand / However,</strong> <em>[counter argument]</em>. This is because <em>[reasoning]</em>. Consequently, <em>[result / implication]</em>.</p>';
+    html += '<p><em>Conclusion:</em> <strong>In conclusion,</strong> while <em>[acknowledge other side]</em>, <em>[restate position]</em>. <em>[Final thought / recommendation]</em>.</p></div></div>';
+
+    html += '<div class="template-card"><div class="step"><h4>Task 2: Discussion Essay</h4>';
+    html += '<p><em>Introduction:</em> <em>[Paraphrase topic]</em>. This essay will discuss both views before presenting my own opinion.</p>';
+    html += '<p><em>Body 1:</em> <strong>Those who support</strong> <em>[view A]</em> argue that <em>[reasons]</em>. For instance, <em>[example]</em>.</p>';
+    html += '<p><em>Body 2:</em> <strong>However, proponents of</strong> <em>[view B]</em> contend that <em>[reasons]</em>. Evidence shows <em>[support]</em>.</p>';
+    html += '<p><em>Conclusion:</em> <strong>In my view,</strong> <em>[balanced position]</em>. <strong>Therefore,</strong> <em>[suggestion]</em>.</p></div></div>';
+
+    html += '<div class="template-card"><div class="step"><h4>Task 1: Map / Process Diagram</h4>';
+    html += '<p><em>Introduction:</em> The diagrams show <em>[what + where]</em> in <em>[year 1]</em> and <em>[year 2]</em>.</p>';
+    html += '<p><em>Overview:</em> Overall, the area has undergone <em>[number]</em> significant changes, with <em>[main change]</em>.</p>';
+    html += '<p><em>Body:</em> In <em>[year 1]</em>, <em>[location A]</em> was situated <em>[relative position]</em>. By <em>[year 2]</em>, <em>[it had been replaced by]</em>. Meanwhile, <em>[location B]</em> was added / removed / expanded.</p></div></div>';
+
+    html += '<div class="template-card"><div class="step"><h4>Linking Words Bank</h4>';
+    html += '<p><em>Addition:</em> Furthermore, Moreover, In addition, Additionally</p>';
+    html += '<p><em>Contrast:</em> However, On the other hand, In contrast, Conversely, Nevertheless</p>';
+    html += '<p><em>Cause/Effect:</em> Therefore, Consequently, As a result, Hence, Thus</p>';
+    html += '<p><em>Examples:</em> For instance, For example, Such as, Namely</p>';
+    html += '<p><em>Sequencing:</em> Firstly, Secondly, Subsequently, Finally, Ultimately</p></div></div>';
+
+    html += '</div></div>';
+    document.getElementById('mainContainer').innerHTML = html;
+}
+
+// ============ VOCAB PAGE ============
 document.addEventListener('click', function(e) {
     var vocabEl = e.target.closest('.vocab');
     if (!vocabEl) { removeAllBubbles(); return; }
-    // Ignore click on pron button
     if (e.target.closest('.pron-btn')) return;
 
     var word = vocabEl.dataset.word;
@@ -1321,21 +1893,52 @@ function removeAllBubbles() {
     document.querySelectorAll('.vocab-bubble').forEach(function(b) { b.remove(); });
 }
 
+function makeVocabClickable(text, source, qid) {
+    if (!text) return '';
+    return text.replace(/\b([A-Za-z]{3,})\b/g, function(match, word) {
+        var es = encodeURIComponent(source || '');
+        return '<span class="vocab" data-word="' + word.toLowerCase() + '" data-source="' + es + '">' + word + '<span class="pron-btn" onclick="event.stopPropagation();speakWord(\'' + word.replace(/'/g,"\\'") + '\')">🔊</span></span>';
+    });
+}
+
+function speakWord(word) {
+    if ('speechSynthesis' in window) {
+        window.speechSynthesis.cancel();
+        var u = new SpeechSynthesisUtterance(word);
+        u.lang = 'en-US';
+        u.rate = pronSpeed;
+        window.speechSynthesis.speak(u);
+    }
+}
+
+function toggleSpeedMenu(event) {
+    event.stopPropagation();
+    document.getElementById('speedMenu').classList.toggle('show');
+}
+
+function setSpeed(val, btn) {
+    pronSpeed = val;
+    document.getElementById('speedLabel').textContent = val + 'x';
+    document.getElementById('speedMenu').querySelectorAll('button').forEach(function(b) { b.classList.toggle('active', b === btn); });
+    document.getElementById('speedMenu').classList.remove('show');
+}
+
+document.addEventListener('click', function() { document.getElementById('speedMenu').classList.remove('show'); });
+
 function addVocabEnhanced(word, source, el) {
     removeAllBubbles();
     var vocab = getVocab();
     var exists = vocab.find(function(v) { return v.word === word; });
     if (exists) {
-        showBubble(el || document.querySelector('.vocab[data-word="' + word.replace(/"/g, '&quot;') + '"]'), '&#x26A0; Already in word bank');
+        showBubble(el || document.querySelector('.vocab[data-word="' + word.replace(/"/g,'&quot;') + '"]'), '⚠ Already in word bank');
         return;
     }
     var entry = { word: word, source: source, time: new Date().toISOString(), status: 'new' };
     vocab.push(entry);
     setVocab(vocab);
     lookupWord(word);
-    showBubble(el || document.querySelector('.vocab[data-word="' + word.replace(/"/g, '&quot;') + '"]'), '&#x2713; Added: ' + word);
+    showBubble(el || document.querySelector('.vocab[data-word="' + word.replace(/"/g,'&quot;') + '"]'), '✓ Added: ' + word);
     updateNavCounts();
-    // Check vocab checkin
     if (getVocab().length >= 10) checkinToday();
 }
 
@@ -1359,7 +1962,7 @@ function showBubble(el, msg) {
     if (!el) return;
     var bubble = document.createElement('span');
     bubble.className = 'vocab-bubble';
-    bubble.innerHTML = msg + ' <span class="close-bubble" onclick="this.parentElement.remove()">&#x2715;</span>';
+    bubble.innerHTML = msg + ' <span class="close-bubble" onclick="this.parentElement.remove()">✕</span>';
     var rect = el.getBoundingClientRect();
     bubble.style.left = rect.left + 'px';
     bubble.style.top = (rect.bottom + 4) + 'px';
@@ -1367,7 +1970,6 @@ function showBubble(el, msg) {
     setTimeout(function() { if (bubble.parentElement) bubble.remove(); }, 2000);
 }
 
-// ============ ENHANCED VOCAB PAGE ============
 function renderVocabPanel() {
     if (reviewState) { renderReview(); return; }
     var vocab = getVocab();
@@ -1378,12 +1980,12 @@ function renderVocabPanel() {
     var newCount = vocab.filter(function(v) { return v.status === 'new'; }).length;
     var pct = total > 0 ? Math.round((mastered / total) * 100) : 0;
 
-    var html = '<div class="panel"><div class="panel-header"><h2>&#x1F4D8; Word Bank</h2></div><div class="panel-body">';
+    var html = '<div class="panel"><div class="panel-header"><h2>📘 Word Bank</h2></div><div class="panel-body">';
     html += '<div class="vocab-stats">';
     html += '<div class="vocab-stat"><div class="stat-num">' + total + '</div><div class="stat-label">Total</div></div>';
-    html += '<div class="vocab-stat"><div class="stat-num" style="color:#059669">' + mastered + '</div><div class="stat-label">&#x2705; Mastered</div></div>';
-    html += '<div class="vocab-stat"><div class="stat-num" style="color:#d97706">' + learning + '</div><div class="stat-label">&#x1F4D6; Learning</div></div>';
-    html += '<div class="vocab-stat"><div class="stat-num" style="color:#dc2626">' + newCount + '</div><div class="stat-label">&#x1F195; New</div></div></div>';
+    html += '<div class="vocab-stat"><div class="stat-num" style="color:#059669">' + mastered + '</div><div class="stat-label">✅ Mastered</div></div>';
+    html += '<div class="vocab-stat"><div class="stat-num" style="color:#d97706">' + learning + '</div><div class="stat-label">📖 Learning</div></div>';
+    html += '<div class="vocab-stat"><div class="stat-num" style="color:#dc2626">' + newCount + '</div><div class="stat-label">🆕 New</div></div></div>';
     html += '<div class="progress-bar-wrap"><div class="progress-bar-fill" style="width:' + pct + '%"></div></div>';
     html += '<div style="font-size:0.75rem;color:#888;margin-top:2px;margin-bottom:16px">' + pct + '% mastered</div>';
 
@@ -1394,15 +1996,15 @@ function renderVocabPanel() {
         html += '<input type="text" id="vocabSearch" placeholder="Search..." value="' + escHtml(vocabSearch) + '" oninput="onVocabSearch()">';
         html += '<select onchange="onVocabSort(this.value)">';
         html += '<option value="time"' + (vocabSort==='time'?' selected':'') + '>By Time</option>';
-        html += '<option value="alpha"' + (vocabSort==='alpha'?' selected':'') + '>A &#x2192; Z</option>';
+        html += '<option value="alpha"' + (vocabSort==='alpha'?' selected':'') + '>A → Z</option>';
         html += '<option value="status"' + (vocabSort==='status'?' selected':'') + '>By Status</option></select>';
         html += '<select onchange="onVocabFilter(this.value)">';
         html += '<option value="all"' + (vocabFilter==='all'?' selected':'') + '>All</option>';
         html += '<option value="new"' + (vocabFilter==='new'?' selected':'') + '>New</option>';
         html += '<option value="learning"' + (vocabFilter==='learning'?' selected':'') + '>Learning</option>';
         html += '<option value="mastered"' + (vocabFilter==='mastered'?' selected':'') + '>Mastered</option></select>';
-        html += '<button class="btn-sm primary" onclick="startReview()">&#x1F504; Review</button>';
-        html += '<button class="btn-sm" onclick="exportCSV()">&#x1F4C4; CSV</button></div>';
+        html += '<button class="btn-sm primary" onclick="startReview()">🔄 Review</button>';
+        html += '<button class="btn-sm" onclick="exportCSV()">📄 CSV</button></div>';
 
         var selCount = Object.keys(vocabSelected).length;
         if (selCount > 0) {
@@ -1435,10 +2037,10 @@ function renderVocabPanel() {
         var pageItems = filtered.slice(start, start + perPage);
 
         html += '<div style="min-height:200px">';
-        pageItems.forEach(function(v, idx) {
+        pageItems.forEach(function(v) {
             var globalIdx = vocab.indexOf(vocab.find(function(x) { return x.word === v.word && x.time === v.time; }));
             var def = cache[v.word];
-            var statusIcon = v.status === 'mastered' ? '&#x2705;' : (v.status === 'learning' ? '&#x1F4D6;' : '&#x1F195;');
+            var statusIcon = v.status === 'mastered' ? '✅' : (v.status === 'learning' ? '📖' : '🆕');
             var checked = vocabSelected[String(globalIdx)] ? 'checked' : '';
             html += '<div class="vocab-row">';
             html += '<input type="checkbox" class="row-check" ' + checked + ' onchange="toggleVocabSelect(' + globalIdx + ', this.checked)">';
@@ -1454,9 +2056,9 @@ function renderVocabPanel() {
 
         if (totalPages > 1) {
             html += '<div class="vocab-pagination">';
-            html += '<button onclick="vocabPage=Math.max(1,vocabPage-1);renderVocabPanel();" ' + (vocabPage<=1?'disabled':'') + '>&#x2190;</button>';
+            html += '<button onclick="vocabPage=Math.max(1,vocabPage-1);renderVocabPanel();" ' + (vocabPage<=1?'disabled':'') + '>←</button>';
             html += '<span>Page ' + vocabPage + ' / ' + totalPages + '</span>';
-            html += '<button onclick="vocabPage=Math.min(totalPages,vocabPage+1);renderVocabPanel();" ' + (vocabPage>=totalPages?'disabled':'') + '>&#x2192;</button></div>';
+            html += '<button onclick="vocabPage=Math.min(totalPages,vocabPage+1);renderVocabPanel();" ' + (vocabPage>=totalPages?'disabled':'') + '>→</button></div>';
         }
         html += '<div style="font-size:0.75rem;color:#aaa;margin-top:8px;text-align:center">' + filtered.length + ' words</div>';
         html += '<div style="margin-top:16px;text-align:right"><button class="btn btn-clear" onclick="clearVocab()">Clear All Words</button></div>';
@@ -1465,12 +2067,6 @@ function renderVocabPanel() {
     document.getElementById('mainContainer').innerHTML = html;
 }
 
-function escHtml(s) { return String(s||'').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;'); }
-function formatTime(iso) {
-    if (!iso) return '';
-    var d = new Date(iso);
-    return (d.getMonth()+1) + '/' + d.getDate();
-}
 function onVocabSort(val) { vocabSort = val; vocabPage = 1; renderVocabPanel(); }
 function onVocabFilter(val) { vocabFilter = val; vocabPage = 1; vocabSelected = {}; renderVocabPanel(); }
 function onVocabSearch() { vocabSearch = document.getElementById('vocabSearch').value; vocabPage = 1; vocabSelected = {}; renderVocabPanel(); }
@@ -1515,7 +2111,6 @@ function clearVocab() {
     }
 }
 
-// ============ EXPORT CSV ============
 function exportCSV() {
     var vocab = getVocab();
     var cache = getVocabCache();
@@ -1544,7 +2139,6 @@ function startReview() {
     });
     reviewState = { words: sorted, currentIdx: 0, known: 0, total: sorted.length, flipped: false };
     renderReview();
-    // Check-in for review
     if (sorted.length >= 10) checkinToday();
 }
 
@@ -1556,7 +2150,7 @@ function renderReview() {
     var cache = getVocabCache();
     var def = cache[word.word];
 
-    var html = '<div class="panel"><div class="panel-header"><h2>&#x1F504; Review Mode</h2><button class="btn-sm" onclick="reviewState=null;renderVocabPanel();">Exit</button></div><div class="panel-body">';
+    var html = '<div class="panel"><div class="panel-header"><h2>🔄 Review Mode</h2><button class="btn-sm" onclick="reviewState=null;renderVocabPanel();">Exit</button></div><div class="panel-body">';
     html += '<div class="review-card">';
     html += '<div class="review-progress">' + (idx+1) + ' / ' + reviewState.total + '</div>';
     html += '<div class="review-word" onclick="flipCard()">' + escHtml(word.word) + '</div>';
@@ -1565,9 +2159,9 @@ function renderReview() {
     html += '<div class="ans-phonetic">' + (def ? escHtml(def.phonetic||'') : 'No phonetic available') + '</div>';
     html += '<div class="ans-def">' + (def ? escHtml(def.definition||'') : 'Definition not found') + '</div></div>';
     html += '<div class="review-btns">';
-    html += '<button class="review-btn forgot" onclick="reviewResult(false)">&#x2717; Forgot</button>';
-    html += '<button class="review-btn know" onclick="reviewResult(true)">&#x2713; Know</button></div>';
-    html += '<div class="keyboard-hints"><kbd>&#x2190;</kbd> Forgot &nbsp; <kbd>&#x2192;</kbd> Know &nbsp; <kbd>Space</kbd> Flip</div></div></div></div>';
+    html += '<button class="review-btn forgot" onclick="reviewResult(false)">✗ Forgot</button>';
+    html += '<button class="review-btn know" onclick="reviewResult(true)">✓ Know</button></div>';
+    html += '<div class="keyboard-hints"><kbd>←</kbd> Forgot &nbsp; <kbd>→</kbd> Know &nbsp; <kbd>Space</kbd> Flip</div></div></div></div>';
     document.getElementById('mainContainer').innerHTML = html;
 }
 
@@ -1595,134 +2189,23 @@ function reviewResult(know) {
 }
 
 function renderReviewComplete() {
-    var html = '<div class="panel"><div class="panel-header"><h2>&#x1F3C6; Review Complete!</h2></div><div class="panel-body">';
+    var html = '<div class="panel"><div class="panel-header"><h2>🏆 Review Complete!</h2></div><div class="panel-body">';
     html += '<div class="review-complete"><h3>Great job!</h3>';
     html += '<div class="review-stats">';
-    html += '<div class="rev-stat"><div class="rs-num">' + reviewState.total + '</div><div class="rs-label">Reviewed</div></div>';
+    html += '<div class="rev-stat"><div class="rs-num">' + reviewState.total + '</div><div class="rs-label">Total</div></div>';
     html += '<div class="rev-stat"><div class="rs-num" style="color:#059669">' + reviewState.known + '</div><div class="rs-label">Known</div></div>';
-    html += '<div class="rev-stat"><div class="rs-num" style="color:#dc2626">' + (reviewState.total - reviewState.known) + '</div><div class="rs-label">Need Work</div></div></div>';
+    html += '<div class="rev-stat"><div class="rs-num" style="color:#dc2626">' + (reviewState.total - reviewState.known) + '</div><div class="rs-label">Forgot</div></div></div>';
     html += '<button class="btn btn-submit" onclick="reviewState=null;renderVocabPanel();">Back to Word Bank</button></div></div></div>';
+    reviewState = null;
     document.getElementById('mainContainer').innerHTML = html;
-    reviewState = null; updateNavCounts();
+    updateNavCounts();
 }
 
-// ============ PROGRESS PAGE ============
-function renderProgress() {
-    if (progressDetailKey) { renderProgressDetail(); return; }
-    var p = getProgress();
-    var testKeys = Object.keys(ALL_TESTS).sort();
-    var completed = testKeys.filter(function(k) { return p[k] && p[k].complete; }).length;
-    var partial = testKeys.filter(function(k) { return p[k] && !p[k].complete; }).length;
-    var bands = testKeys.map(function(k) { return p[k] ? p[k].band : 0; }).filter(function(b) { return b > 0; });
-    var avgBand = bands.length > 0 ? (bands.reduce(function(a,b){return a+b;},0) / bands.length).toFixed(1) : '-';
-
-    var html = '<div class="panel"><div class="panel-header"><h2>&#x1F4CA; Learning Progress</h2></div><div class="panel-body">';
-    html += '<div class="vocab-stats">';
-    html += '<div class="vocab-stat"><div class="stat-num">' + completed + '</div><div class="stat-label">Completed</div></div>';
-    html += '<div class="vocab-stat"><div class="stat-num" style="color:#d97706">' + partial + '</div><div class="stat-label">In Progress</div></div>';
-    html += '<div class="vocab-stat"><div class="stat-num" style="color:#888">' + (12-completed-partial) + '</div><div class="stat-label">Not Started</div></div>';
-    html += '<div class="vocab-stat"><div class="stat-num" style="color:#0f3460">' + avgBand + '</div><div class="stat-label">Avg Band</div></div></div>';
-
-    // Progress grid
-    html += '<div class="progress-grid">';
-    testKeys.forEach(function(k) {
-        var cls = 'progress-cell';
-        var status = 'Not started';
-        var band = '-';
-        if (p[k]) {
-            cls += p[k].complete ? ' completed' : ' partial';
-            status = p[k].complete ? 'Completed' : p[k].partsDone + '/4 parts';
-            band = p[k].band > 0 ? p[k].band.toFixed(1) : '-';
-        }
-        html += '<div class="' + cls + '" onclick="progressDetailKey=\'' + k + '\';renderProgress();">';
-        html += '<div class="pc-label">' + k.replace('C','C') + '</div>';
-        html += '<div class="pc-band">' + band + '</div>';
-        html += '<div class="pc-status">' + status + '</div></div>';
-    });
-    html += '</div>';
-
-    // Bar chart
-    html += '<div style="background:#fff;border-radius:12px;box-shadow:0 1px 6px rgba(0,0,0,0.06);padding:20px;margin-top:16px">';
-    html += '<h3 style="color:#0f3460;margin-bottom:12px">Band Score Distribution</h3>';
-    html += '<div class="bar-chart">';
-    testKeys.forEach(function(k) {
-        var band = p[k] ? p[k].band : 0;
-        var height = band > 0 ? (band / 9 * 140) : 4;
-        var color = band >= 7 ? '#059669' : (band >= 5.5 ? '#d97706' : (band > 0 ? '#dc2626' : '#e5e7eb'));
-        html += '<div class="bar-col"><div class="bar-value">' + (band>0?band.toFixed(1):'-') + '</div>';
-        html += '<div class="bar-fill" style="height:' + height + 'px;background:' + color + '"></div>';
-        html += '<div class="bar-label">' + k.replace('C','C') + '</div></div>';
-    });
-    html += '</div></div>';
-    html += '</div></div>';
-    document.getElementById('mainContainer').innerHTML = html;
-}
-
-function renderProgressDetail() {
-    var k = progressDetailKey;
-    var p = getProgress();
-    var data = p[k] || {};
-    var scores = partScores[k] || {};
-
-    var html = '<div class="panel"><div class="panel-header">';
-    html += '<h2>&#x1F4CA; ' + ALL_TESTS[k].title + '</h2>';
-    html += '<button class="btn-sm" onclick="progressDetailKey=null;renderProgress();">&#x2190; Back</button></div>';
-    html += '<div class="panel-body">';
-
-    if (Object.keys(scores).length === 0) {
-        html += '<p style="color:#999;text-align:center;padding:40px">No attempts yet.</p>';
-    } else {
-        for (var p = 0; p < 4; p++) {
-            var s = scores[p];
-            html += '<div class="progress-detail-row">';
-            html += '<span>Part ' + (p+1) + ': ' + ALL_TESTS[k].parts[p].title + '</span>';
-            if (s) {
-                html += '<span class="pd-score">' + s.correct + '/' + s.total + ' (Band ' + getBandScore(s.correct).toFixed(1) + ')</span>';
-            } else {
-                html += '<span class="pd-miss">Not submitted</span>';
-            }
-            html += '</div>';
-        }
-        if (data.band > 0) {
-            html += '<div class="progress-detail-row" style="font-weight:700;font-size:0.9rem">';
-            html += '<span>Overall</span><span class="pd-score">Band ' + data.band.toFixed(1) + '</span></div>';
-        }
-        if (data.lastUpdate) {
-            html += '<div style="font-size:0.75rem;color:#bbb;margin-top:8px">Last updated: ' + new Date(data.lastUpdate).toLocaleString() + '</div>';
-        }
-    }
-    html += '</div></div>';
-    document.getElementById('mainContainer').innerHTML = html;
-}
-
-// ============ WRITING PAGE ============
-function renderWriting() {
-    var html = '';
-    html += '<div class="template-card"><div class="panel-header"><h2>&#x270F;&#xFE0F; Task 1: Graph/Chart Description</h2></div><div class="panel-body">';
-    html += '<div class="step"><h4>1. Introduction (1 sentence)</h4><p>Paraphrase the question statement. Use synonyms: <em>shows &#x2192; illustrates/depicts</em>, <em>chart &#x2192; bar chart/line graph</em>, <em>from...to... &#x2192; between...and...</em></p></div>';
-    html += '<div class="step"><h4>2. Overview (2 sentences)</h4><p>Describe the <strong>overall trend</strong> or the <strong>most striking features</strong>. Do NOT include specific data here. Use: <em>Overall, it is clear that... / In general, ...</em></p></div>';
-    html += '<div class="step"><h4>3. Body Paragraph 1 (3-4 sentences)</h4><p>Describe the first key detail with specific numbers. Group similar data together.</p></div>';
-    html += '<div class="step"><h4>4. Body Paragraph 2 (3-4 sentences)</h4><p>Describe the remaining key details. End with the most interesting finding.</p></div></div></div>';
-    html += '<div class="template-card"><div class="panel-header"><h2>&#x270F;&#xFE0F; Task 2: Opinion / Discussion Essay</h2></div><div class="panel-body">';
-    html += '<div class="step"><h4>1. Introduction (2-3 sentences)</h4><p><strong>Hook:</strong> Introduce the general topic background.<br><strong>Thesis:</strong> State your position clearly.</p></div>';
-    html += '<div class="step"><h4>2. Body Paragraph 1 (4-5 sentences)</h4><p>Topic sentence, explanation, example, link back to question.</p></div>';
-    html += '<div class="step"><h4>3. Body Paragraph 2 (4-5 sentences)</h4><p>Second argument. For discuss-both-views: present opposing view.</p></div>';
-    html += '<div class="step"><h4>4. Conclusion (2-3 sentences)</h4><p>Summarize main arguments. Restate position. No new ideas.</p></div></div></div>';
-    document.getElementById('mainContainer').innerHTML = html;
-}
-
-// ============ TOAST ============
-function toast(msg) {
-    var el = document.getElementById('toast');
-    el.textContent = msg;
-    el.classList.add('show');
-    clearTimeout(el._timeout);
-    el._timeout = setTimeout(function() { el.classList.remove('show'); }, 2000);
-}
 
 // ============ INIT ============
 updateNavCounts();
 renderPractice();
 </script>
+
 </body>
 </html>
