@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="en">
 <head>
 <meta charset="UTF-8">
@@ -5438,13 +5438,13 @@ function renderPractice() {
     [1,2,3,4].forEach(function(t) {
         html += '<option value="' + t + '"' + (currentTestKey.slice(-1)==String(t)?' selected':'') + '>Test ' + t + '</option>';
     });
-    html += '</select></div>
-        <div class="provenance-banner" id="provenanceBanner">
-          <strong>📋 数据来源声明</strong><br>
-          题目采集自 <strong>luckyielts.com</strong>（雅思真题练习站）与 <strong>idictation.cn</strong>（雅思听力真题练习站）。C18/C19 Part 1 和 Part 4 题干文本来自 idictation.cn；Part 2/3 题目及全部答案键来自 luckyielts.com。C17 题目与答案均来自 luckyielts.com。<br>
-          <span class="disclaimer">⚠ 本站题目未经剑桥大学出版社官方授权，仅供学习参考。未使用剑桥官方出版物做逐题原文比对，无法100%确认与真题完全一致。共 454 题，暂无逐题分级验证记录。</span>
-        </div>
-        <div id="testContainer"></div>';
+    html += '</select></div> ' +
+        '<div class="provenance-banner" id="provenanceBanner">' +
+          '<strong>📋 数据来源声明</strong><br>' +
+          '题目采集自 <strong>luckyielts.com</strong>（雅思真题练习站）与 <strong>idictation.cn</strong>（雅思听力真题练习站）。C18/C19 Part 1 和 Part 4 题干文本来自 idictation.cn；Part 2/3 题目及全部答案键来自 luckyielts.com。C17 题目与答案均来自 luckyielts.com。<br>' +
+          '<span class="disclaimer">⚠ 本站题目未经剑桥大学出版社官方授权，仅供学习参考。未使用剑桥官方出版物做逐题原文比对，无法100%确认与真题完全一致。共 454 题，暂无逐题分级验证记录。</span>' +
+        '</div>' +
+        '<div id="testContainer"></div>';
     document.getElementById('mainContainer').innerHTML = html;
 
     if (wrongRedoMode) renderWrongRedo();
